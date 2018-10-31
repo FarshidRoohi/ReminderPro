@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
-apply from : rootProject.file('gradle/dependencies.gradle')
+apply plugin: 'kotlin-android'
+apply from: rootProject.file('gradle/dependencies.gradle')
 
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "ir.farshid_roohi.reminderpro"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "0.001"
+        versionName "0.0.01"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -17,7 +18,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding{
+    dataBinding {
         enabled = true
     }
     compileOptions {
@@ -29,6 +30,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation dep.kotlin
     implementation dep.appcompatV7
     implementation dep.cardView
     implementation dep.recyclerView
@@ -44,8 +46,12 @@ dependencies {
     implementation dep.picasso
     implementation dep.constraintLayout
     implementation dep.eventbus
+    implementation dep.calligraphy
 
     annotationProcessor dep.lifecycleCompiler
 
 
+}
+repositories {
+    mavenCentral()
 }

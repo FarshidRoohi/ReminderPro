@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Reminder Pro</string>
+    <string name="subtitle_main">There is nothing to be forgotten!</string>
+
+
+    <string name="note">Note</string>
+    <string name="sound_recorder">Sound Recorder</string>
+    <string name="reminder_location">Reminder Location</string>
 </resources>

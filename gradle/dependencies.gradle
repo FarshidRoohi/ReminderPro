@@ -5,6 +5,7 @@ def versions = [
 ]
 
 ext.dep = [
+        'kotlin'             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
         'appcompatV7'        : "com.android.support:appcompat-v7:$versions.appcompat",
         'cardView'           : "com.android.support:cardview-v7:$versions.appcompat",
         'recyclerView'       : "com.android.support:recyclerview-v7:$versions.appcompat",
@@ -21,6 +22,7 @@ ext.dep = [
         'picasso'            : "com.squareup.picasso:picasso:2.71828",
         'constraintLayout'   : 'com.android.support.constraint:constraint-layout:1.1.3',
         'eventbus'           : 'org.greenrobot:eventbus:3.0.0',
+        'calligraphy'        : "io.github.inflationx:calligraphy3:3.0.0",
 
         // test lib
         'junit'              : "junit:junit:4.12"

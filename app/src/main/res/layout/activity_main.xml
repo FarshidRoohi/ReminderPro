@@ -5,15 +5,126 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:padding="0dp"
     tools:context=".views.activities.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello Farshid!\n ReminderPro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <ImageView
+        android:id="@+id/img_profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_account_circle"
+        android:tint="@color/color_tint_icon"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/txt_title"
+        style="@style/TitleStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center|left|bottom"
+        android:text="@string/app_name"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="RtlHardcoded"/>
+
+    <TextView
+        android:id="@+id/txt_subtitle"
+        style="@style/SubtitleStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center|left|top"
+        android:text="@string/subtitle_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title"
+        tools:ignore="RtlHardcoded"/>
+
+    <TextView
+        android:id="@+id/txt_hi"
+        style="@style/SubtitleStyle"
+        fontPath="fonts/IRSANS_medium.ttf"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Hi farshid"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_subtitle"
+        tools:ignore="MissingPrefix"/>
+
+    <ir.farshid_roohi.reminderpro.customViews.CustomItemView
+        android:id="@+id/item_reminder_location"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="140dp"
+        android:background="@color/color_item_main"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/reminder_location"
+        android:tint="@color/color_tint_item_main"
+        app:item_icon="@drawable/ic_location"
+        app:item_radius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_hi"/>
+
+    <ir.farshid_roohi.reminderpro.customViews.CustomItemView
+        android:id="@+id/item_note"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/color_item_main"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/note"
+        android:tint="@color/color_tint_item_main"
+        app:item_icon="@drawable/ic_note"
+        app:item_radius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_reminder_location"/>
+
+    <ir.farshid_roohi.reminderpro.customViews.CustomItemView
+        android:id="@+id/item_sound_recorder"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/color_item_main"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="@string/sound_recorder"
+        android:tint="@color/color_tint_item_main"
+        app:item_icon="@drawable/ic_record_voice_over"
+        app:item_radius="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_note"/>
 
 </android.support.constraint.ConstraintLayout>

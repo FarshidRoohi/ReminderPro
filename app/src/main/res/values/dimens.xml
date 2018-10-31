@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="padding_title">8dp</dimen>
+    <dimen name="text_title_size">18dp</dimen>
+    <dimen name="text_subtitle_size">14dp</dimen>
+</resources>

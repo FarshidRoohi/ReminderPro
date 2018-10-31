@@ -1,11 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TitleStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_title</item>
+        <item name="android:textSize">@dimen/text_title_size</item>
+    </style>
+
+    <style name="SubtitleStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/color_subtitle</item>
+        <item name="android:textSize">@dimen/text_subtitle_size</item>
     </style>
 
 </resources>
