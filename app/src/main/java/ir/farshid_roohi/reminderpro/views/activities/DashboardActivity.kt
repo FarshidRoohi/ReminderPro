@@ -1,7 +1,6 @@
 package ir.farshid_roohi.reminderpro.views.activities
 
 import android.animation.ObjectAnimator
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -16,9 +15,9 @@ import ir.farshid_roohi.reminderpro.customViews.CustomItemView
 
 class DashboardActivity : BaseActivity(), View.OnClickListener {
 
-    lateinit var itemReminderLocation: CustomItemView
-    lateinit var itemNote: CustomItemView
-    lateinit var itemSoundRecorder: CustomItemView
+    private lateinit var itemReminderLocation: CustomItemView
+    private lateinit var itemNote: CustomItemView
+    private lateinit var itemSoundRecorder: CustomItemView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +27,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         itemNote = findViewById(R.id.item_note)
         itemSoundRecorder = findViewById(R.id.item_sound_recorder)
 
-//        val txtHi = findViewById<TextView>(R.id.txt_hi)
         val imgProfile = findViewById<ImageView>(R.id.img_profile)
 
         itemNote.setOnClickListener(this)
@@ -74,7 +72,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
             }
             R.id.item_sound_recorder -> {
                 animatedViewGone(itemSoundRecorder, 800)
-               SoundRecorderActivity.start(this)
+                SoundRecorderActivity.start(this)
             }
             R.id.img_profile -> {
                 Toast.makeText(this, "profile", Toast.LENGTH_SHORT).show()
