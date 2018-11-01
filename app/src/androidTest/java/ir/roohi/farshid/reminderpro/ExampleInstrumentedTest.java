@@ -1,4 +1,4 @@
-package ir.farshid_roohi.reminderpro;
+package ir.roohi.farshid.reminderpro;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("ir.farshid_roohi.reminderpro", appContext.getPackageName());
+        assertEquals("ir.farshid.roohi.reminderpro", appContext.getPackageName());
     }
 }

@@ -1,12 +1,11 @@
-package ir.farshid_roohi.reminderpro.views.activities
+package ir.roohi.farshid.reminderpro.views.activities
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
-import ir.farshid_roohi.reminderpro.R
-import ir.farshid_roohi.reminderpro.customViews.CustomItemView
+import ir.roohi.farshid.reminderpro.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Created by Farshid Roohi.
@@ -15,19 +14,11 @@ import ir.farshid_roohi.reminderpro.customViews.CustomItemView
 
 class DashboardActivity : BaseActivity(), View.OnClickListener {
 
-    private lateinit var itemReminderLocation: CustomItemView
-    private lateinit var itemNote: CustomItemView
-    private lateinit var itemSoundRecorder: CustomItemView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        itemReminderLocation = findViewById(R.id.item_reminder_location)
-        itemNote = findViewById(R.id.item_note)
-        itemSoundRecorder = findViewById(R.id.item_sound_recorder)
-
-        val imgProfile = findViewById<ImageView>(R.id.img_profile)
 
         itemNote.setOnClickListener(this)
         itemReminderLocation.setOnClickListener(this)
@@ -62,19 +53,19 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.item_note -> {
+            R.id.itemNote -> {
                 animatedViewGone(itemNote, 600)
                 ListNoteActivity.start(this)
             }
-            R.id.item_reminder_location -> {
+            R.id.itemReminderLocation -> {
                 animatedViewGone(itemReminderLocation, 400)
                 ReminderLocationActivity.start(this)
             }
-            R.id.item_sound_recorder -> {
+            R.id.itemSoundRecorder -> {
                 animatedViewGone(itemSoundRecorder, 800)
                 SoundRecorderActivity.start(this)
             }
-            R.id.img_profile -> {
+            R.id.imgProfile -> {
                 Toast.makeText(this, "profile", Toast.LENGTH_SHORT).show()
             }
 

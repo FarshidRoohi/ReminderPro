@@ -8,10 +8,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
     android:padding="0dp"
-    tools:context=".views.activities.MainActivity">
+    tools:context=".views.activities.DashboardActivity">
 
     <ImageView
-        android:id="@+id/img_profile"
+        android:id="@+id/imgProfile"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/txt_title"
+        android:id="@+id/txtTitle"
         style="@style/TitleStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -38,11 +38,11 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_profile"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfile"
         tools:ignore="RtlHardcoded"/>
 
     <TextView
-        android:id="@+id/txt_subtitle"
+        android:id="@+id/txtSubtitle"
         style="@style/SubtitleStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -55,11 +55,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_title"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
         tools:ignore="RtlHardcoded"/>
 
     <TextView
-        android:id="@+id/txt_hi"
+        android:id="@+id/txtHi"
         style="@style/SubtitleStyle"
         fontPath="fonts/IRSANS_medium.ttf"
         android:layout_width="0dp"
@@ -73,11 +73,11 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/txtSubtitle"
         tools:ignore="MissingPrefix"/>
 
-    <ir.farshid_roohi.reminderpro.customViews.CustomItemView
-        android:id="@+id/item_reminder_location"
+    <ir.roohi.farshid.reminderpro.customViews.CustomItemView
+        android:id="@+id/itemReminderLocation"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:layout_marginStart="120dp"
@@ -91,10 +91,10 @@
         app:item_radius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_hi"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtHi"/>
 
-    <ir.farshid_roohi.reminderpro.customViews.CustomItemView
-        android:id="@+id/item_note"
+    <ir.roohi.farshid.reminderpro.customViews.CustomItemView
+        android:id="@+id/itemNote"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:layout_marginStart="80dp"
@@ -108,10 +108,10 @@
         app:item_radius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_reminder_location"/>
+        app:layout_constraintTop_toBottomOf="@+id/itemReminderLocation"/>
 
-    <ir.farshid_roohi.reminderpro.customViews.CustomItemView
-        android:id="@+id/item_sound_recorder"
+    <ir.roohi.farshid.reminderpro.customViews.CustomItemView
+        android:id="@+id/itemSoundRecorder"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:layout_marginStart="40dp"
@@ -126,6 +126,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_note"/>
+        app:layout_constraintTop_toBottomOf="@+id/itemNote"/>
 
 </android.support.constraint.ConstraintLayout>

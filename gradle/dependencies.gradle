@@ -1,5 +1,6 @@
 def versions = [
         'arch'       : '1.1.1',
+        'roomVersion': "1.1.0",
         'appcompat'  : '28.0.0',
         'playService': '16.0.0'
 ]
@@ -23,6 +24,8 @@ ext.dep = [
         'constraintLayout'   : 'com.android.support.constraint:constraint-layout:1.1.3',
         'eventbus'           : 'org.greenrobot:eventbus:3.0.0',
         'calligraphy'        : "io.github.inflationx:calligraphy3:3.0.0",
+        'room'               : "android.arch.persistence.room:runtime:$versions.roomVersion",
+        'roomCompiler'       : "android.arch.persistence.room:compiler:$versions.roomVersion",
 
         // test lib
         'junit'              : "junit:junit:4.12"

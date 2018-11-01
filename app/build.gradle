@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply from: rootProject.file('gradle/dependencies.gradle')
 
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "ir.farshid_roohi.reminderpro"
+        applicationId "ir.farshid.roohi.reminderpro"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
@@ -47,8 +48,10 @@ dependencies {
     implementation dep.constraintLayout
     implementation dep.eventbus
     implementation dep.calligraphy
+    implementation dep.room
 
     annotationProcessor dep.lifecycleCompiler
+    annotationProcessor dep.roomCompiler
 
 
 }

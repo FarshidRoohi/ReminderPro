@@ -1,4 +1,4 @@
-package ir.farshid_roohi.reminderpro;
+package ir.roohi.farshid.reminderpro;
 
 import org.junit.Test;
 

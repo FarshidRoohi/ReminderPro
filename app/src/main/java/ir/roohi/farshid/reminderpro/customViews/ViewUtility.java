@@ -1,4 +1,4 @@
-package ir.farshid_roohi.reminderpro.customViews;
+package ir.roohi.farshid.reminderpro.customViews;
 
 
 import android.content.Context;
