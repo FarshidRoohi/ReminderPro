@@ -8,4 +8,8 @@
         <attr name="android:text" format="string"/>
         <attr name="item_radius" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomRecyclerView">
+        <attr name="show_divider" format="boolean" />
+    </declare-styleable>
 </resources>

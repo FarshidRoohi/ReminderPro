@@ -2,6 +2,7 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
@@ -55,15 +56,24 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         when (v!!.id) {
             R.id.itemNote -> {
                 animatedViewGone(itemNote, 600)
-                ListNoteActivity.start(this)
+
+                Handler().postDelayed({
+                    ListNoteActivity.start(this)
+                }, 350)
             }
             R.id.itemReminderLocation -> {
                 animatedViewGone(itemReminderLocation, 400)
-                ReminderLocationActivity.start(this)
+                Handler().postDelayed({
+                    ReminderLocationActivity.start(this)
+                }, 350)
+
             }
             R.id.itemSoundRecorder -> {
                 animatedViewGone(itemSoundRecorder, 800)
-                SoundRecorderActivity.start(this)
+
+                Handler().postDelayed({
+                    SoundRecorderActivity.start(this)
+                }, 450)
             }
             R.id.imgProfile -> {
                 Toast.makeText(this, "profile", Toast.LENGTH_SHORT).show()
