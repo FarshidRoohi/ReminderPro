@@ -78,4 +78,5 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         animatedView(itemNote, 600)
         animatedView(itemSoundRecorder, 800)
     }
+
 }
