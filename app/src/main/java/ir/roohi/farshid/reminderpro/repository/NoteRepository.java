@@ -49,6 +49,10 @@ public class NoteRepository {
         executor.execute(() -> database.noteDao().insertNote(note));
     }
 
+    public void updateNote(NoteEntity note) {
+        executor.execute(() -> database.noteDao().updateNote(note.getId(), note.getDate(), note.getTitle(), note.getText()));
+    }
+
     public void deleteNote(final NoteEntity noteEntity) {
         executor.execute(() -> database.noteDao().deleteNote(noteEntity));
     }

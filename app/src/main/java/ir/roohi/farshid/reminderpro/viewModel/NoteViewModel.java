@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import java.util.Date;
 import java.util.List;
 
 import ir.roohi.farshid.reminderpro.model.NoteEntity;
@@ -17,20 +18,30 @@ import ir.roohi.farshid.reminderpro.repository.NoteRepository;
 public class NoteViewModel extends AndroidViewModel {
 
     public  LiveData<List<NoteEntity>> notes;
-    private NoteRepository             appRepository;
+    private NoteRepository             noteRepository;
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
-        this.appRepository = NoteRepository.getInstance(application.getApplicationContext());
-        this.notes = this.appRepository.notes;
+        this.noteRepository = NoteRepository.getInstance(application.getApplicationContext());
+        this.notes = this.noteRepository.notes;
 
     }
 
-    public void deleteAllNotes() {
-        this.appRepository.deleteAllNotes();
+    public void add(String text) {
+
+        String title = text;
+        if (text.length() > 30) {
+            title = text.substring(0, 29) + "...";
+        }
+
+        this.noteRepository.insertNote(new NoteEntity(new Date(), title, text));
     }
 
     public void add(NoteEntity entity) {
-        this.appRepository.insertNote(entity);
+        this.noteRepository.insertNote(entity);
+    }
+
+    public void updateNote(NoteEntity entity) {
+        this.noteRepository.updateNote(entity);
     }
 }

@@ -3,6 +3,7 @@ package ir.roohi.farshid.reminderpro.database
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import ir.roohi.farshid.reminderpro.model.NoteEntity
+import java.util.*
 
 /**
  * Created by Farshid Roohi.
@@ -32,5 +33,9 @@ interface NoteDao {
 
     @Query("DELETE FROM notes")
     fun deleteAll(): Int
+
+
+    @Query("UPDATE NOTES SET date = :date , title = :title , text = :text WHERE id == :id")
+    fun updateNote(id: Int, date: Date, title: String, text: String)
 
 }
