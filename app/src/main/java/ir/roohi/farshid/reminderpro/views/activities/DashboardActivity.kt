@@ -42,13 +42,10 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun animatedViewGone(view: View, time: Long) {
-        Thread().run {
             ObjectAnimator.ofFloat(view, View.TRANSLATION_X, 100f, 3000f).apply {
                 duration = time
                 start()
             }
-        }.start()
-
     }
 
 
