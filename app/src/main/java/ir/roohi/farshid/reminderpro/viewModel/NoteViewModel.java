@@ -30,8 +30,8 @@ public class NoteViewModel extends AndroidViewModel {
     public void add(String text) {
 
         String title = text;
-        if (text.length() > 30) {
-            title = text.substring(0, 29) + "...";
+        if (text.length() > 20) {
+            title = text.substring(0, 19) + "...";
         }
 
         this.noteRepository.insertNote(new NoteEntity(new Date(), title, text));
