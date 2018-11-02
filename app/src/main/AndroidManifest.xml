@@ -31,9 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".views.activities.ListNoteActivity"/>
+        <activity android:name=".views.activities.NoteListActivity"/>
         <activity android:name=".views.activities.ReminderLocationActivity"/>
         <activity android:name=".views.activities.SoundRecorderActivity"/>
+        <activity android:name=".views.activities.NoteEditActivity"/>
     </application>
 
 </manifest>

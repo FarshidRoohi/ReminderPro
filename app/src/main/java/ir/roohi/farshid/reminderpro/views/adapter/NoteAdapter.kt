@@ -4,6 +4,7 @@ import android.databinding.ViewDataBinding
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemNoteBinding
 import ir.roohi.farshid.reminderpro.model.NoteEntity
+import ir.roohi.farshid.reminderpro.views.activities.NoteEditActivity
 
 /**
  * Created by Farshid Roohi.
@@ -19,6 +20,10 @@ class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
         val binding = viewDataBinding as ItemNoteBinding
         binding.txtDate.text = element.date.toString()
         binding.txtTitle.text = element.title
+        binding.rootLayout.setOnClickListener {
+            NoteEditActivity.start(context , element)
+        }
+
 
     }
 }

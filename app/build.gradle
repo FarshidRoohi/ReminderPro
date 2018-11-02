@@ -7,7 +7,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "ir.farshid.roohi.reminderpro"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
         versionName "0.0.01"
@@ -49,6 +49,7 @@ dependencies {
     implementation dep.eventbus
     implementation dep.calligraphy
     implementation dep.room
+    implementation dep.viewsZarin
 
     annotationProcessor dep.lifecycleCompiler
     annotationProcessor dep.roomCompiler
