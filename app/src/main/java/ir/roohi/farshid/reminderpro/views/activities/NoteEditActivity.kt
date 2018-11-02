@@ -9,6 +9,7 @@ import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import kotlinx.android.synthetic.main.activity_note_edit.*
+import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.annotations.Nullable
 import java.util.*
 
@@ -35,11 +36,14 @@ class NoteEditActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_note_edit)
 
         imgBack.setOnClickListener(this)
+        imgLeft.setImageResource(R.drawable.ic_delete)
+        imgLeft.setOnClickListener(this)
         this.viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
 
         if (noteEntity != null) {
             edtText.setText(noteEntity!!.text)
+            txtTitle.text = noteEntity!!.title
             return
         }
 
@@ -52,6 +56,10 @@ class NoteEditActivity : BaseActivity(), View.OnClickListener {
                 this.save()
                 finish()
             }
+            R.id.imgLeft -> {
+                this.remove()
+                finish()
+            }
         }
 
     }
@@ -59,6 +67,14 @@ class NoteEditActivity : BaseActivity(), View.OnClickListener {
     override fun onBackPressed() {
         this.save()
         super.onBackPressed()
+    }
+
+    private fun remove() {
+        if (noteEntity == null) {
+            return
+        }
+
+        this.viewModel.removeNote(noteEntity)
     }
 
     private fun save() {

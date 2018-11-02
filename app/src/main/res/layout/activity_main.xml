@@ -19,7 +19,7 @@
         android:layout_marginRight="8dp"
         android:background="?android:attr/selectableItemBackground"
         android:src="@drawable/ic_account_circle"
-        android:tint="@color/color_tint_icon"
+        android:tint="@color/color_tint_icon_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 

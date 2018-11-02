@@ -6,7 +6,8 @@
 
     <color name="color_background">#ffffff</color>
 
-    <color name="color_tint_icon">#1B2024</color>
+    <color name="color_tint_icon_dark">#1B2024</color>
+    <color name="color_tint_icon_light">#d1d1d4</color>
     <color name="color_title">#1B2024</color>
     <color name="color_subtitle">#282e33</color>
 
@@ -15,6 +16,9 @@
     <color name="color_tint_item_main">#ffffff</color>
 
     <color name="color_note_text">#e1e1e1</color>
+
+    <color name="color_divider">#211b2024</color>
+
 
 
     <color name="color1">#EFEFF3</color>

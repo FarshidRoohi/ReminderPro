@@ -13,7 +13,10 @@ import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.NoteAdapter
 import kotlinx.android.synthetic.main.activity_list_note.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
+
 
 /**
  * Created by Farshid Roohi.
@@ -44,8 +47,12 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
         viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
         viewModel.notes.observe(this, this)
 
-        imgProfile.setOnClickListener(this)
+        imgLeft.setOnClickListener(this)
+        imgBack.setOnClickListener(this)
         fabAdd.setOnClickListener(this)
+
+        imgLeft.setImageResource(R.drawable.ic_account_circle)
+
 
 
         recycler.addOnScrollStateListener(object : CustomRecyclerView.OnScrollStateListener {
@@ -58,15 +65,24 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
 
     override fun onChanged(list: List<NoteEntity>?) {
         adapter.swapData(list)
+
+        if (adapter.itemCount == 0) {
+            layoutEmptyState.visibility = View.VISIBLE
+        } else {
+            layoutEmptyState.visibility = View.GONE
+        }
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.fabAdd -> {
-                NoteEditActivity.start(this,null)
+                NoteEditActivity.start(this, null)
             }
-            R.id.imgProfile -> {
+            R.id.imgLeft -> {
                 viewModel.add(NoteEntity(Date(), "my title", "my description"))
+            }
+            R.id.imgBack -> {
+                finish()
             }
         }
     }

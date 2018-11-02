@@ -7,35 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_note">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/bg_gradient"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/imgBack"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:padding="7dp"
-            android:src="@drawable/ic_arrow_back"
-            android:tint="@color/color_tint_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription"/>
-
-        <TextView
-            style="@style/TitleStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/note"
-            android:textColor="@color/color_tint_icon"/>
-
-    </android.support.v7.widget.Toolbar>
-
+    <include layout="@layout/toolbar"/>
 
     <EditText
         android:id="@+id/edtText"

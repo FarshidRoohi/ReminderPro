@@ -7,4 +7,5 @@
     <string name="sound_recorder">Sound Recorder</string>
     <string name="reminder_location">Reminder Location</string>
     <string name="add">add</string>
+    <string name="empty">Empty</string>
 </resources>
