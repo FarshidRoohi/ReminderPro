@@ -80,7 +80,7 @@ class CustomProgressCircle : RelativeLayout {
 
 
     fun startAnimated() {
-        this.thread = getThredProgressBar()
+        this.thread = getThreadProgressBar()
         this.thread!!.start()
         imgIcon!!.startAnimation(pulseAnimation)
     }
@@ -93,7 +93,7 @@ class CustomProgressCircle : RelativeLayout {
         this.imgIcon!!.clearAnimation()
     }
 
-    private fun getThredProgressBar(): Thread {
+    private fun getThreadProgressBar(): Thread {
         return Thread(Runnable {
             var number = 0
 
