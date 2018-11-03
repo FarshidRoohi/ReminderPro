@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
-import com.zarinpal.libs.views.ZarinTimer
+import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_record_sound.*
 
@@ -29,6 +29,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_record_sound)
 
         layoutRecordState.setOnClickListener(this)
+        imgBack.setOnClickListener(this)
 
         Thread(Runnable {
             var number = 0
@@ -48,8 +49,12 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if (v!!.id == R.id.layoutRecordState) {
+        when (v!!.id) {
+            R.id.layoutRecordState -> {
 
+            }
+            R.id.imgBack -> finish()
+            R.id.imgShare -> Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -49,7 +49,7 @@
                 android:textColor="@color/color_tint_icon_dark"/>
 
             <ImageView
-                android:id="@+id/imgLeft"
+                android:id="@+id/imgShare"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="?android:attr/selectableItemBackground"
