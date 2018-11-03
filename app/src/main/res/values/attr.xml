@@ -23,4 +23,11 @@
         <attr name="zv_font" format="string"/>
         <attr name="zv_caption" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomProgressCircle">
+        <attr name="android:src" format="reference"/>
+        <attr name="android:max" format="integer"/>
+        <attr name="android:progress" format="integer"/>
+        <attr name="android:tint" format="color"/>
+    </declare-styleable>
 </resources>

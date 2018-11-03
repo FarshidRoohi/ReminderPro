@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_record_sound.*
@@ -30,21 +29,10 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener {
 
         layoutRecordState.setOnClickListener(this)
         imgBack.setOnClickListener(this)
+        imgShare.setOnClickListener(this)
 
-        Thread(Runnable {
-            var number = 0
-            while (true) {
-                if (number == 1000) number = 0
-                number += 20
-                progressBar.progress = number
-                Thread.sleep(30)
+        customProgressCircle.startAnimated()
 
-            }
-        }).start()
-
-
-        val pulse = AnimationUtils.loadAnimation(this, R.anim.pulse)
-        imgVoice.startAnimation(pulse)
 
     }
 
@@ -54,7 +42,10 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener {
 
             }
             R.id.imgBack -> finish()
-            R.id.imgShare -> Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
+            R.id.imgShare -> {
+                customProgressCircle.stopAnimated()
+                Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
