@@ -119,7 +119,7 @@
         android:layout_marginTop="16dp"
         android:background="@color/color_item_main"
         android:foreground="?android:attr/selectableItemBackground"
-        android:text="@string/sound_recorder"
+        android:text="@string/voice_recorder"
         android:tint="@color/color_tint_item_main"
         app:item_icon="@drawable/ic_record_voice_over"
         app:item_radius="30dp"

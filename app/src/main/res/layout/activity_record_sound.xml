@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_record_voice">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
+        app:contentInsetEnd="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="7dp"
+                android:src="@drawable/ic_arrow_back"
+                android:tint="@color/color_tint_icon_dark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"/>
+
+            <TextView
+                android:id="@+id/txtTitle"
+                style="@style/TitleStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/voice_recorder"
+                android:textColor="@color/color_tint_icon_dark"/>
+
+            <ImageView
+                android:id="@+id/imgLeft"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:padding="7dp"
+                android:src="@drawable/ic_share"
+                android:tint="@color/color_tint_icon_dark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription"/>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="14dp"
+            android:src="@drawable/custom_shadow_circle"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/circle_shape"
+            android:max="1000"
+            android:progress="65"
+            android:progressDrawable="@drawable/circle_progress_bar"/>
+
+        <ImageView
+            android:id="@+id/imgVoice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="60dp"
+            android:src="@drawable/ic_keyboard_voice"
+            android:tint="@color/colorPrimaryDark"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <ImageView
+            android:id="@+id/img_time"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="10dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_access_time"
+            android:tint="@color/color_tint_voice_record_details"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="314dp"/>
+
+        <TextView
+            android:id="@+id/txtTime"
+            style="@style/SubtitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/zero_time"
+            android:textColor="@color/color_tint_voice_record_details"
+            />
+
+        <TextView
+            android:id="@+id/txt_pipe"
+            style="@style/SubtitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="@string/pipe"
+            android:textColor="@color/color_tint_voice_record_details"
+            />
+
+        <ImageView
+            android:id="@+id/img_size"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="2dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_music_note"
+            android:tint="@color/color_tint_voice_record_details"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="314dp"/>
+
+        <TextView
+            android:id="@+id/txtSize"
+            style="@style/SubtitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0.2 MB"
+            android:textColor="@color/color_tint_voice_record_details"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layoutRecordState"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/shape_recorder_btn"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_details">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_pause"
+            android:tint="@color/color_tint_voice_record_details"/>
+
+        <TextView
+            style="@style/SubtitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/stop_recording"
+            android:textColor="@color/color_tint_voice_record_details"/>
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

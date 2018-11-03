@@ -35,6 +35,7 @@
         <activity android:name=".views.activities.ReminderLocationActivity"/>
         <activity android:name=".views.activities.SoundRecorderActivity"/>
         <activity android:name=".views.activities.NoteEditActivity"/>
+        <activity android:name=".views.activities.RecordSoundActivity"/>
     </application>
 
 </manifest>

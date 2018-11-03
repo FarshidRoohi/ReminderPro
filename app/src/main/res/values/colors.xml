@@ -20,8 +20,15 @@
     <color name="color_divider">#211b2024</color>
 
 
-
     <color name="color1">#EFEFF3</color>
     <color name="color2">#EFEFF3</color>
+
+    <color name="color_gradient_dark_one">#2E2A42</color>
+    <color name="color_gradient_dark_two">#746176</color>
+
+    <color name="colorStartGradientProgressBar">#642a81</color>
+    <color name="colorEndGradientProgressBar">#4c2567</color>
+
+    <color name="color_tint_voice_record_details">#cccccc</color>
 
 </resources>
