@@ -90,7 +90,8 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customProgressCircle">
+        app:layout_constraintTop_toBottomOf="@+id/customProgressCircle"
+        tools:ignore="ContentDescription,RtlHardcoded">
 
         <ImageView
             android:id="@+id/img_time"
@@ -101,7 +102,8 @@
             android:src="@drawable/ic_access_time"
             android:tint="@color/color_tint_voice_record_details"
             tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="314dp"/>
+            tools:layout_editor_absoluteY="314dp"
+            />
 
         <TextView
             android:id="@+id/txtTime"
@@ -142,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="0.2 MB"
+            android:text="@string/zero_size"
             android:textColor="@color/color_tint_voice_record_details"
             />
 
@@ -156,27 +158,29 @@
         android:layout_height="40dp"
         android:layout_marginTop="36dp"
         android:background="@drawable/shape_recorder_btn"
-        android:foreground="?android:attr/selectableItemBackground"
+        android:foreground="@drawable/ripple"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_details">
+        app:layout_constraintTop_toBottomOf="@+id/layout_details"
+        tools:ignore="ContentDescription,RtlHardcoded">
 
         <ImageView
+            android:id="@+id/imgStatus"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_pause"
+            android:src="@drawable/ic_play"
             android:tint="@color/color_tint_voice_record_details"/>
 
         <TextView
+            android:id="@+id/txtTitleStatus"
             style="@style/SubtitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="@string/stop_recording"
+            android:text="@string/start_recording"
             android:textColor="@color/color_tint_voice_record_details"/>
-
 
     </LinearLayout>
 

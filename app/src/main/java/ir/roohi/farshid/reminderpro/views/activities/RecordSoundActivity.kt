@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_record_sound.*
  */
 class RecordSoundActivity : BaseActivity(), View.OnClickListener {
 
+    private var flagRecording = false
+
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, RecordSoundActivity::class.java)
@@ -31,15 +33,27 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener {
         imgBack.setOnClickListener(this)
         imgShare.setOnClickListener(this)
 
-        customProgressCircle.startAnimated()
+    }
 
 
+    private fun handledVoiceRecording() {
+        if (this.flagRecording) {
+            this.txtTitleStatus.text = getString(R.string.start_recording)
+            this.imgStatus.setImageResource(R.drawable.ic_play)
+            this.customProgressCircle.stopAnimated()
+        } else {
+            this.txtTitleStatus.text = getString(R.string.stop_recording)
+            this.imgStatus.setImageResource(R.drawable.ic_stop)
+            this.customProgressCircle.startAnimated()
+
+        }
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.layoutRecordState -> {
-
+                handledVoiceRecording()
+                this.flagRecording = !this.flagRecording
             }
             R.id.imgBack -> finish()
             R.id.imgShare -> {

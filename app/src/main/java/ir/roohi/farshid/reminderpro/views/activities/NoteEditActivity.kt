@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
@@ -93,5 +94,6 @@ class NoteEditActivity : BaseActivity(), View.OnClickListener {
             this.viewModel.updateNote(noteEntity!!)
 
         }
+        Toast.makeText(this, getString(R.string.save), Toast.LENGTH_SHORT).show()
     }
 }

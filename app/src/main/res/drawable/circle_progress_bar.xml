@@ -8,11 +8,19 @@
         android:thickness="3dp"
         android:useLevel="true">
 
+        <!--<gradient-->
+            <!--android:angle="0"-->
+            <!--android:endColor="@color/colorEndGradientProgressBar"-->
+            <!--android:startColor="@color/colorStartGradientProgressBar"-->
+            <!--android:type="sweep"-->
+            <!--android:useLevel="false"/>-->
+
+
         <gradient
-            android:angle="0"
-            android:endColor="@color/colorEndGradientProgressBar"
-            android:startColor="@color/colorStartGradientProgressBar"
-            android:type="sweep"
-            android:useLevel="false"/>
+            android:angle="45"
+            android:startColor="#0F2027"
+            android:centerColor="#203A43"
+            android:endColor="#2C5364"
+            android:type="linear"/>
     </shape>
 </rotate>
