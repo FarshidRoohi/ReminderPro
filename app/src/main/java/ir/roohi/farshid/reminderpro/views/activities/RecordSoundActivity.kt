@@ -2,10 +2,13 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
+import android.media.MediaRecorder
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.utility.randomName
 import kotlinx.android.synthetic.main.activity_record_sound.*
 
 
@@ -16,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_record_sound.*
 class RecordSoundActivity : BaseActivity(), View.OnClickListener {
 
     private var flagRecording = false
+    private lateinit var recorder: MediaRecorder
 
     companion object {
         fun start(context: Context) {
@@ -33,20 +37,24 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener {
         imgBack.setOnClickListener(this)
         imgShare.setOnClickListener(this)
 
-    }
+        recorder = MediaRecorder()
+        // TODO : Crash to set audio source
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC)
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_WB)
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+        recorder.setAudioSamplingRate(44100)
+        recorder.setAudioEncodingBitRate(16)
+        recorder.setOutputFile(String.format("%s%s%s", resourceApp!!.getDirSoundSave(), randomName(), ".3gp"))
+        recorder.prepare()
+        recorder.setOnInfoListener(object : MediaPlayer.OnInfoListener, MediaRecorder.OnInfoListener {
+            override fun onInfo(mp: MediaPlayer?, what: Int, extra: Int): Boolean {
+                return true
+            }
 
+            override fun onInfo(mr: MediaRecorder?, what: Int, extra: Int) {
+            }
+        })
 
-    private fun handledVoiceRecording() {
-        if (this.flagRecording) {
-            this.txtTitleStatus.text = getString(R.string.start_recording)
-            this.imgStatus.setImageResource(R.drawable.ic_play)
-            this.customProgressCircle.stopAnimated()
-        } else {
-            this.txtTitleStatus.text = getString(R.string.stop_recording)
-            this.imgStatus.setImageResource(R.drawable.ic_stop)
-            this.customProgressCircle.startAnimated()
-
-        }
     }
 
     override fun onClick(v: View?) {
@@ -60,6 +68,22 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener {
                 customProgressCircle.stopAnimated()
                 Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+
+    private fun handledVoiceRecording() {
+        if (this.flagRecording) {
+            this.txtTitleStatus.text = getString(R.string.start_recording)
+            this.imgStatus.setImageResource(R.drawable.ic_play)
+            this.customProgressCircle.stopAnimated()
+
+
+        } else {
+            this.txtTitleStatus.text = getString(R.string.stop_recording)
+            this.imgStatus.setImageResource(R.drawable.ic_stop)
+            this.customProgressCircle.startAnimated()
+
         }
     }
 

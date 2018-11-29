@@ -1,6 +1,7 @@
 package ir.roohi.farshid.reminderpro
 
 import android.content.Context
+import android.os.Environment
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
@@ -15,9 +16,11 @@ import io.github.inflationx.viewpump.ViewPump
 class ResourceApplication(val context: Context) {
 
     private val storage: Storage = Storage(context)
+    private var dirApplication: String
 
     init {
         this.initCalligraphy()
+        this.dirApplication = Environment.getExternalStorageDirectory().absolutePath
     }
 
     private fun initCalligraphy() {
@@ -40,6 +43,14 @@ class ResourceApplication(val context: Context) {
 
     fun getStorage(): Storage {
         return storage
+    }
+
+    fun getDirApplication(): String {
+        return dirApplication
+    }
+
+    fun getDirSoundSave(): String {
+        return this.dirApplication + "/reminderPro/record/"
     }
 
 }
