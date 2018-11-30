@@ -4,16 +4,12 @@
           package="ir.roohi.farshid.reminderpro">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="22"/>
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="22"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
 
     <application
         android:name=".App"
@@ -23,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".views.activities.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -33,7 +29,6 @@
         </activity>
         <activity android:name=".views.activities.NoteListActivity"/>
         <activity android:name=".views.activities.ReminderLocationActivity"/>
-        <activity android:name=".views.activities.SoundRecorderActivity"/>
         <activity android:name=".views.activities.NoteEditActivity"/>
         <activity android:name=".views.activities.RecordSoundActivity"/>
     </application>

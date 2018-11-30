@@ -31,4 +31,7 @@
 
     <color name="color_tint_voice_record_details">#cccccc</color>
 
+    <color name="color_dialog_title">#d2000000</color>
+    <color name="color_dialog_description">#90000000</color>
+
 </resources>

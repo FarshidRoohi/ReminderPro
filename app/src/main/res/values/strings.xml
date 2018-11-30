@@ -14,4 +14,15 @@
     <string name="stop_recording">stop recording…</string>
     <string name="zero_size">0.00 MB</string>
     <string name="save">save</string>
+
+    <string name="not_show_again">دیگر نشان نده</string>
+    <string name="ok">باشه</string>
+    <string name="yes">بله</string>
+    <string name="no">خیر</string>
+    <string name="maybe_later">شاید بعدا</string>
+
+    <string name="permission">دسترسی</string>
+    <string name="permission_audio">برای ضبط صدا  به دسترسی حافظه جانبی و میکروفن نیاز است.</string>
+    <string name="error_can_not_create_file">متاسفانه در ساخت فایل مشکلی پیش آمده است.</string>
+
 </resources>
