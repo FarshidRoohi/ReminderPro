@@ -45,11 +45,15 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         setContentView(R.layout.activity_record_sound, R.color.color_gradient_dark_two)
 
 
+        // TODO : fix UI record & play voice
+
         this.player = MediaPlayer()
+
 
         layoutRecordState.setOnClickListener(this)
         imgBack.setOnClickListener(this)
         imgShare.setOnClickListener(this)
+        btnPlay.setOnClickListener(this)
 
         requestPermission(permissions, this)
 
@@ -75,9 +79,9 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
             }
             R.id.btnPlay -> {
                 if (!this.flagRecording && File(filePath).exists() && !player.isPlaying) {
-                    player.setDataSource(this.filePath)
-                    player.prepare()
-                    player.start()
+                    this.player.setDataSource(this.filePath)
+                    this.player.prepare()
+                    this.player.start()
                 }
             }
         }
@@ -99,7 +103,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
 
     private fun prepare() {
         this.filePath = String.format("%s%s%s%s", resourceApp!!.getDirSoundSave(), "reminderPro-", randomName(), ".3gp")
-        Log.i("TAG_A", "file path save sound  : $filePath")
+        Log.i("TAG_A", "${File(resourceApp!!.getDirSoundSave()).mkdirs()}")
         this.recorder = MediaRecorder()
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC)
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)

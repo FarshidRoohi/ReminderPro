@@ -6,6 +6,7 @@ import android.os.Environment
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
+import java.io.File
 
 /**
  * Created by Farshid Roohi.
@@ -21,6 +22,8 @@ class ResourceApplication(val context: Context) {
     init {
         this.initCalligraphy()
         this.dirApplication = Environment.getExternalStorageDirectory().absolutePath
+
+        File(getDirSoundSave()).mkdirs()
     }
 
     private fun initCalligraphy() {
@@ -50,7 +53,7 @@ class ResourceApplication(val context: Context) {
     }
 
     fun getDirSoundSave(): String {
-        return this.dirApplication + "/reminderPro/record/"
+        return String.format("%s%s%s%s", this.dirApplication, "/android/data/", this.context.packageName!!.toString(), "/record/")
     }
 
 }
