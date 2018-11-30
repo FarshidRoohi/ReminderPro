@@ -23,6 +23,11 @@
 
     <string name="permission">دسترسی</string>
     <string name="permission_audio">برای ضبط صدا  به دسترسی حافظه جانبی و میکروفن نیاز است.</string>
+
+
+    <!-- Error -->
     <string name="error_can_not_create_file">متاسفانه در ساخت فایل مشکلی پیش آمده است.</string>
+    <string name="error_unknown">خطایی غیر منتظره‌ایی رخ داده است.</string>
+
 
 </resources>

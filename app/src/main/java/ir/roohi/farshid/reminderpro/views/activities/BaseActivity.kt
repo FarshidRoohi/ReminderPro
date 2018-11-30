@@ -11,7 +11,6 @@ import android.support.annotation.ColorRes
 import android.support.annotation.LayoutRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
-import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.ResourceApplication
@@ -123,8 +122,10 @@ open class BaseActivity : AppCompatActivity() {
     }
 
 
-    @TargetApi(Build.VERSION_CODES.M)
     fun checkPermissions(permissions: Array<String>): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true
+        }
         for (p in permissions) {
             if ((checkSelfPermission(p) != PackageManager.PERMISSION_GRANTED)) return false
         }

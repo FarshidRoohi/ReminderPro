@@ -3,8 +3,10 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
@@ -23,6 +25,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
 
     private var flagRecording = false
     private lateinit var recorder: MediaRecorder
+    private lateinit var player: MediaPlayer
     private lateinit var filePath: String
 
 
@@ -41,6 +44,9 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record_sound, R.color.color_gradient_dark_two)
 
+
+        this.player = MediaPlayer()
+
         layoutRecordState.setOnClickListener(this)
         imgBack.setOnClickListener(this)
         imgShare.setOnClickListener(this)
@@ -52,13 +58,27 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.layoutRecordState -> {
-                handledVoiceRecording()
                 this.flagRecording = !this.flagRecording
+                handledVoiceRecording()
+
+                if (flagRecording) {
+                    this.recorder.start()
+                    return
+                }
+                this.recorder.stop()
+                this.recorder.release()
             }
             R.id.imgBack -> finish()
             R.id.imgShare -> {
                 customProgressCircle.stopAnimated()
                 Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
+            }
+            R.id.btnPlay -> {
+                if (!this.flagRecording && File(filePath).exists() && !player.isPlaying) {
+                    player.setDataSource(this.filePath)
+                    player.prepare()
+                    player.start()
+                }
             }
         }
     }
@@ -66,40 +86,33 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
 
     private fun handledVoiceRecording() {
         if (this.flagRecording) {
-            this.txtTitleStatus.text = getString(R.string.start_recording)
-            this.imgStatus.setImageResource(R.drawable.ic_play)
-            this.customProgressCircle.stopAnimated()
-
-
-        } else {
             this.txtTitleStatus.text = getString(R.string.stop_recording)
             this.imgStatus.setImageResource(R.drawable.ic_stop)
             this.customProgressCircle.startAnimated()
-
+            return
         }
+        this.txtTitleStatus.text = getString(R.string.start_recording)
+        this.imgStatus.setImageResource(R.drawable.ic_play)
+        this.customProgressCircle.stopAnimated()
+
     }
 
     private fun prepare() {
-        this.filePath = String.format("%s%s%s", resourceApp!!.getDirSoundSave(), randomName(), ".3gp")
-        val file = File(filePath)
-        if (!file.mkdirs()) {
-            showMsg(getString(R.string.error_can_not_create_file))
-            return
-        }
-
-        recorder = MediaRecorder()
+        this.filePath = String.format("%s%s%s%s", resourceApp!!.getDirSoundSave(), "reminderPro-", randomName(), ".3gp")
+        Log.i("TAG_A", "file path save sound  : $filePath")
+        this.recorder = MediaRecorder()
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC)
         recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
         recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_WB)
-        recorder.setAudioSamplingRate(44100)
-        recorder.setAudioEncodingBitRate(16)
+        recorder.setAudioEncodingBitRate(320)
         recorder.setOutputFile(filePath)
         try {
             recorder.prepare()
         } catch (e: IOException) {
             e.printStackTrace()
+            showMsg(getString(R.string.error_unknown))
+            finish()
         }
-
 
     }
 
