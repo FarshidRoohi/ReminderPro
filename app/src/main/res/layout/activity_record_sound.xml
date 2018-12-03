@@ -151,50 +151,82 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/layoutRecordState"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="36dp"
-        android:background="@drawable/shape_recorder_btn"
-        android:foreground="@drawable/ripple"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_details"
-        tools:ignore="ContentDescription,RtlHardcoded">
-
-        <ImageView
-            android:id="@+id/imgStatus"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_play"
-            android:tint="@color/color_tint_voice_record_details"/>
-
-        <TextView
-            android:id="@+id/txtTitleStatus"
-            style="@style/SubtitleStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/start_recording"
-            android:textColor="@color/color_tint_voice_record_details"/>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnPlay"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabRecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:text="play"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_keyboard_voice"
+        app:backgroundTint="@color/colorPrimaryDark"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutRecordState"/>
+        >
+
+        <TextView
+            android:id="@+id/txtDelete"
+            style="@style/SubtitleStyle"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/delete"
+            android:textColor="@color/color_tint_voice_record_details"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/txtPlay"
+            style="@style/SubtitleStyle"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/play"
+            android:textColor="@color/color_tint_voice_record_details"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/txtSave"
+            style="@style/SubtitleStyle"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/save"
+            android:textColor="@color/color_tint_voice_record_details"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>
