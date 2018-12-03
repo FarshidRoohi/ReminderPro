@@ -7,7 +7,6 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@drawable/bg_gradient"
     android:gravity="center"
     app:contentInsetEnd="0dp"
     app:contentInsetLeft="0dp"
@@ -42,11 +41,11 @@
             android:textColor="@color/color_tint_icon_dark"/>
 
         <ImageView
-            android:id="@+id/imgLeft"
+            android:id="@+id/imgRight"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="?android:attr/selectableItemBackground"
-            android:padding="7dp"
+            android:padding="8dp"
             android:src="@drawable/ic_delete"
             android:tint="@color/color_tint_icon_dark"
             app:layout_constraintStart_toStartOf="parent"

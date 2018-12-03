@@ -24,6 +24,8 @@
     <string name="permission">دسترسی</string>
     <string name="permission_audio">برای ضبط صدا  به دسترسی حافظه جانبی و میکروفن نیاز است.</string>
 
+    <string name="sure_note_delete">آیا واقعا میخواهید این یادداشت را پاک کنید؟</string>
+
 
     <!-- Error -->
     <string name="error_can_not_create_file">متاسفانه در ساخت فایل مشکلی پیش آمده است.</string>

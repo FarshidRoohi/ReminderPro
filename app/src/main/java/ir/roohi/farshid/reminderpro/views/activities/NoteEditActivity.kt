@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import kotlinx.android.synthetic.main.activity_note_edit.*
@@ -37,8 +38,8 @@ class NoteEditActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_note_edit)
 
         imgBack.setOnClickListener(this)
-        imgLeft.setImageResource(R.drawable.ic_delete)
-        imgLeft.setOnClickListener(this)
+        imgRight.setImageResource(R.drawable.ic_delete)
+        imgRight.setOnClickListener(this)
         this.viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
 
@@ -57,9 +58,8 @@ class NoteEditActivity : BaseActivity(), View.OnClickListener {
                 this.save()
                 finish()
             }
-            R.id.imgLeft -> {
+            R.id.imgRight -> {
                 this.remove()
-                finish()
             }
         }
 
@@ -74,8 +74,16 @@ class NoteEditActivity : BaseActivity(), View.OnClickListener {
         if (noteEntity == null) {
             return
         }
-
-        this.viewModel.removeNote(noteEntity)
+        val alertDialog = AlertDialog.Builder(supportFragmentManager,
+                getString(R.string.note), getString(R.string.sure_note_delete))
+        alertDialog.setBtnNegative(getString(R.string.no)) {
+            alertDialog.dialog!!.dismiss()
+        }
+        alertDialog.setBtnPositive(getString(R.string.yes)) {
+            this.viewModel.removeNote(noteEntity)
+            finish()
+        }
+        alertDialog.build().show()
     }
 
     private fun save() {

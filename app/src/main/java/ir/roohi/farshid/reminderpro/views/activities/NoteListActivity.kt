@@ -12,8 +12,7 @@ import ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.NoteAdapter
-import kotlinx.android.synthetic.main.activity_list_note.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_note_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
@@ -37,7 +36,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_list_note)
+        setContentView(R.layout.activity_note_list)
 
         recycler.layoutManager = LinearLayoutManager(this)
         adapter = NoteAdapter()
@@ -47,11 +46,11 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
         viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
         viewModel.notes.observe(this, this)
 
-        imgLeft.setOnClickListener(this)
+        imgRight.setOnClickListener(this)
         imgBack.setOnClickListener(this)
         fabAdd.setOnClickListener(this)
 
-        imgLeft.setImageResource(R.drawable.ic_account_circle)
+        imgRight.setImageResource(R.drawable.ic_account_circle)
 
 
 
@@ -78,7 +77,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             R.id.fabAdd -> {
                 NoteEditActivity.start(this, null)
             }
-            R.id.imgLeft -> {
+            R.id.imgRight -> {
                 viewModel.add(NoteEntity(Date(), "my title", "my description"))
             }
             R.id.imgBack -> {
