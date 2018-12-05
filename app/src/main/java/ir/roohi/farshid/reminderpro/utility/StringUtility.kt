@@ -33,7 +33,7 @@ fun convertToTime(counter: Float): String {
     var hourPrefix = ""
     var minPrefix = ""
     var secPrefix = ""
-    var msPrefix = ""
+//    var msPrefix = ""
 
     if (hours < 10)
         hourPrefix = "0"
@@ -41,10 +41,11 @@ fun convertToTime(counter: Float): String {
         minPrefix = "0"
     if (sec < 10)
         secPrefix = "0"
-    if (ms < 10)
-        msPrefix = "0"
+//    if (ms < 10)
+//        msPrefix = "0"
 
-    return "$hourPrefix$hours : $minPrefix$min : $secPrefix$sec : $msPrefix$ms"
+//    return "$hourPrefix$hours : $minPrefix$min : $secPrefix$sec : $msPrefix$ms"
+    return "$hourPrefix$hours : $minPrefix$min : $secPrefix$sec"
 }
 
 fun formatFileSize(size: Long): String {

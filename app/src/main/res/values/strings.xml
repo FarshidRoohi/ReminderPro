@@ -16,6 +16,7 @@
     <string name="save">ذخیره</string>
     <string name="delete">حذف</string>
     <string name="play">پخش</string>
+    <string name="stop">توقف</string>
 
     <string name="not_show_again">دیگر نشان نده</string>
     <string name="ok">باشه</string>
