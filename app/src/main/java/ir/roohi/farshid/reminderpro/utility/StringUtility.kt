@@ -1,8 +1,5 @@
 package ir.roohi.farshid.reminderpro.utility
 
-import android.content.Context
-import ir.roohi.farshid.reminderpro.R
-import java.lang.StringBuilder
 import java.text.DecimalFormat
 import java.util.*
 
@@ -22,8 +19,8 @@ fun randomName(len: Int = 20): String {
     return stringBuilder.toString()
 }
 
-fun convertToTime(counter: Float): String {
-    var counter = counter
+fun convertToTime(cnt: Float): String {
+    var counter = cnt
 
     val ms = (counter % 1000).toInt() / 10
     counter = (counter.toInt() / 1000).toFloat()
@@ -49,7 +46,6 @@ fun convertToTime(counter: Float): String {
 }
 
 fun formatFileSize(size: Long): String {
-    val hrSize: String
 
     val b = size.toDouble()
     val k = size / 1024.0
@@ -59,13 +55,11 @@ fun formatFileSize(size: Long): String {
 
     val dec = DecimalFormat("0.00")
 
-    hrSize = when {
+    return  when {
         t > 1 -> dec.format(t) + ("  TB")
         g > 1 -> dec.format(g) + ("  GB")
         m > 1 -> dec.format(m) + ("  MG")
         k > 1 -> dec.format(k) + ("  KB")
         else -> dec.format(b) + ("  B")
     }
-
-    return hrSize
 }
