@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply from: rootProject.file('gradle/dependencies.gradle')
 
@@ -51,9 +52,8 @@ dependencies {
     implementation dep.room
     implementation dep.viewsZarin
 
-    annotationProcessor dep.lifecycleCompiler
-    annotationProcessor dep.roomCompiler
-
+    kapt dep.lifecycleCompiler
+    kapt dep.roomCompiler
 
 }
 repositories {
