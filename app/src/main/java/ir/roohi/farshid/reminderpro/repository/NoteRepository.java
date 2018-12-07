@@ -3,6 +3,7 @@ package ir.roohi.farshid.reminderpro.repository;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -15,10 +16,10 @@ import ir.roohi.farshid.reminderpro.model.NoteEntity;
  */
 public class NoteRepository {
 
-    private static NoteRepository             ourInstance;
+    private static NoteRepository                  ourInstance;
     public         LiveData<List<NoteEntity>> notes;
-    private        AppDatabase                database;
-    private        Executor                   executor = Executors.newSingleThreadExecutor();
+    private        AppDatabase                     database;
+    private        Executor                        executor = Executors.newSingleThreadExecutor();
 
     public static NoteRepository getInstance(Context context) {
         if (ourInstance == null) {

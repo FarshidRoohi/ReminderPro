@@ -16,12 +16,12 @@ class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
         return R.layout.item_note
     }
 
-    override fun onBindViewHolder(viewDataBinding: ViewDataBinding?, position: Int, viewType: Int, element: NoteEntity) {
+    override fun onBindViewHolder(viewDataBinding: ViewDataBinding, position: Int, viewType: Int, element: NoteEntity) {
         val binding = viewDataBinding as ItemNoteBinding
         binding.txtDate.text = element.date.toString()
         binding.txtTitle.text = element.title
         binding.rootLayout.setOnClickListener {
-            NoteEditActivity.start(context , element)
+            NoteEditActivity.start(context!! , element)
         }
 
 

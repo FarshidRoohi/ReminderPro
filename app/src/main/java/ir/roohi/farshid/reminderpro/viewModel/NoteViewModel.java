@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import ir.roohi.farshid.reminderpro.repository.NoteRepository;
 public class NoteViewModel extends AndroidViewModel {
 
     public  LiveData<List<NoteEntity>> notes;
-    private NoteRepository             noteRepository;
+    private NoteRepository                  noteRepository;
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
