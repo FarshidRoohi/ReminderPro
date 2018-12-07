@@ -213,6 +213,8 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
     }
 
     private fun prepare() {
+        this.resourceApp!!.mkdirsSoundDirectory()
+
         this.filePath = String.format("%s%s%s%s", resourceApp!!.getDirSoundSave(), "reminderPro-", randomName(), ".3gp")
         this.recorder = MediaRecorder()
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC)
@@ -272,6 +274,5 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         PLAY,
         STOP
     }
-
 
 }

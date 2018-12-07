@@ -44,13 +44,12 @@ class ResourceApplication(val context: Context) {
         }
     }
 
-    fun getStorage(): Storage {
-        return storage
-    }
+    fun mkdirsSoundDirectory(): Boolean = File(getDirSoundSave()).mkdirs()
 
-    fun getDirApplication(): String {
-        return dirApplication
-    }
+
+    fun getStorage(): Storage = storage
+
+    fun getDirApplication(): String = dirApplication
 
     fun getDirSoundSave(): String {
         return String.format("%s%s%s%s", this.dirApplication, "/android/data/", this.context.packageName!!.toString(), "/record/")
