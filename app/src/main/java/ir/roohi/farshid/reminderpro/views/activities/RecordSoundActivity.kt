@@ -6,7 +6,6 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
@@ -54,12 +53,12 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         this.player = MediaPlayer()
 
 
+
         fabRecord.setOnClickListener(this)
         imgBack.setOnClickListener(this)
         imgShare.setOnClickListener(this)
-        txtSave.setOnClickListener(this)
-        txtDelete.setOnClickListener(this)
-        txtPlay.setOnClickListener(this)
+        imgSave.setOnClickListener(this)
+        imgDelete.setOnClickListener(this)
 
         requestPermission(permissions, this)
 
@@ -76,38 +75,17 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
                 Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
 
             }
-            R.id.txtDelete -> {
+            R.id.imgDelete -> {
                 delete()
 
             }
-            R.id.txtSave -> {
+            R.id.imgSave -> {
                 showMsg(getString(R.string.save))
                 finish()
             }
-            R.id.txtPlay -> {
-
-                if (this.player.isPlaying || this.txtPlay.text == getString(R.string.stop)) {
-                    this.txtPlay.text = getString(R.string.play)
-                    player.stop()
-                    this.customProgressCircle.stopAnimated()
-                    return
-                }
-                if (!File(filePath).exists()) {
-                    showMsg("problem play voice")
-                    return
-                }
-                if (oncePlay) {
-                    this.player.setDataSource(this.filePath)
-                    this.player.prepare()
-                }
-                this.txtPlay.text = getString(R.string.stop)
-                this.player.start()
-                oncePlay = false
-                counterThreadPlay()
-                this.customProgressCircle.startAnimated()
-            }
         }
     }
+
 
     private fun counterThread() {
         val thread = object : Thread() {
@@ -176,6 +154,8 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
                     runOnUiThread {
                         txtTime.text = convertToTime(counter.toFloat())
                         customProgressCircle.stopAnimated()
+                        fabRecord.setImageResource(R.drawable.ic_play)
+                        player.reset()
                     }
                 }
             }
@@ -189,7 +169,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         when (status) {
             Status.RECORD -> {
                 prepare()
-                this.fabRecord.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_stop))
+                this.fabRecord.setImageResource(R.drawable.ic_stop)
                 this.customProgressCircle.startAnimated()
                 this.recorder.start()
                 this.status = Status.STOP
@@ -202,11 +182,28 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
                 this.recorder.stop()
                 this.recorder.release()
                 this.status = Status.PLAY
-                this.fabRecord.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_play))
-                this.fabRecord.hide()
-                this.txtPlay.visibility = View.VISIBLE
+                this.fabRecord.setImageResource(R.drawable.ic_play)
             }
-            else -> {
+            Status.PLAY -> {
+                if (this.player.isPlaying) {
+                    player.stop()
+                    player.reset()
+
+                    fabRecord.setImageResource(R.drawable.ic_play)
+                    this.customProgressCircle.stopAnimated()
+                    return
+                }
+                if (!File(filePath).exists()) {
+                    showMsg("problem play voice")
+                    return
+                }
+                this.player.setDataSource(this.filePath)
+                this.player.prepare()
+                this.fabRecord.setImageResource(R.drawable.ic_stop)
+                this.player.start()
+                oncePlay = false
+                counterThreadPlay()
+                this.customProgressCircle.startAnimated()
             }
         }
 
@@ -253,7 +250,6 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         this.counterPlay = 1000000000
         this.status = Status.RECORD
 
-        this.txtPlay.visibility = View.GONE
         this.oncePlay = true
         this.counter = 0
         this.player.stop()
@@ -262,7 +258,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         this.txtTime.text = getString(R.string.zero_size)
         this.txtSize.text = getString(R.string.zero_size)
 
-        this.fabRecord.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_keyboard_voice))
+        this.fabRecord.setImageResource(R.drawable.ic_keyboard_voice)
         this.fabRecord.show()
 
         File(filePath).delete()

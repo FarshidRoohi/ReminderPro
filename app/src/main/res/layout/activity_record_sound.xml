@@ -159,78 +159,58 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabRecord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_keyboard_voice"
-        app:backgroundTint="@color/colorPrimaryDark"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
+        android:layout_height="100dp"
+        android:gravity="center|bottom"
         android:orientation="horizontal"
+        android:paddingBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/txtDelete"
-            style="@style/SubtitleStyle"
-            android:layout_width="70dp"
+        <com.zarinpal.libs.views.ZarinImageView
+            android:id="@+id/imgDelete"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
             android:padding="10dp"
-            android:text="@string/delete"
-            android:textColor="@color/color_tint_voice_record_details"
-            android:textSize="15sp"/>
+            android:src="@drawable/ic_delete"
+            android:tint="@color/color_tint_voice_record_details"/>
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
-        <TextView
-            android:id="@+id/txtPlay"
-            style="@style/SubtitleStyle"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="@string/play"
-            android:textColor="@color/color_tint_voice_record_details"
-            android:textSize="15sp"
-            android:visibility="gone"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_keyboard_voice"
+            app:backgroundTint="@color/color_tint_voice_record_details"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
-        <TextView
-            android:id="@+id/txtSave"
-            style="@style/SubtitleStyle"
-            android:layout_width="70dp"
+        <com.zarinpal.libs.views.ZarinImageView
+            android:id="@+id/imgSave"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
             android:padding="10dp"
-            android:text="@string/save"
-            android:textColor="@color/color_tint_voice_record_details"
-            android:textSize="15sp"/>
+            android:src="@drawable/ic_save"
+            android:tint="@color/color_tint_voice_record_details"/>
 
     </LinearLayout>
 
