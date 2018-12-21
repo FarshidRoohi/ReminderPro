@@ -19,6 +19,7 @@ class CustomProgressCircle : RelativeLayout {
     private var progressBar: ProgressBar? = null
     private var imgIcon: ImageView? = null
     private var thread: Thread? = null
+    private var statusAnimated: Boolean = true
 
 
     private var progress = 0
@@ -80,16 +81,17 @@ class CustomProgressCircle : RelativeLayout {
 
 
     fun startAnimated() {
+        statusAnimated = true
         this.thread = getThreadProgressBar()
         this.thread!!.start()
         imgIcon!!.startAnimation(pulseAnimation)
     }
 
     fun stopAnimated() {
+        statusAnimated = false
         if (this.thread != null) {
             this.thread!!.interrupt()
         }
-        this.progressBar!!.progress = 0
         this.imgIcon!!.clearAnimation()
     }
 
@@ -97,8 +99,7 @@ class CustomProgressCircle : RelativeLayout {
         return Thread(Runnable {
             var number = 0
 
-            while (true) {
-
+            while (statusAnimated) {
                 try {
                     if (Thread.interrupted()) throw InterruptedException()
 
@@ -109,10 +110,9 @@ class CustomProgressCircle : RelativeLayout {
 
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
+                    progressBar!!.progress = 0
                     return@Runnable
                 }
-
-
             }
         })
     }

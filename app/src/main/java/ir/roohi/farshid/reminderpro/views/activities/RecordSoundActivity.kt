@@ -75,7 +75,6 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
             }
             R.id.imgDelete -> {
                 delete()
-
             }
             R.id.imgSave -> {
                 showMsg(getString(R.string.save))
