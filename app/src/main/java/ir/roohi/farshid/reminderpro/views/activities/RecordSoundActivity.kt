@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
+import ir.roohi.farshid.reminderpro.model.enums.StatusVoiceRecord
 import ir.roohi.farshid.reminderpro.utility.convertToTime
 import ir.roohi.farshid.reminderpro.utility.formatFileSize
 import ir.roohi.farshid.reminderpro.utility.randomName
@@ -28,7 +29,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
     private lateinit var recorder: MediaRecorder
     private var player = MediaPlayer()
     private lateinit var filePath: String
-    private var status: Status = Status.RECORD
+    private var status: StatusVoiceRecord = StatusVoiceRecord.RECORD
 
     private var counter = 0
     private var counterPlay = 0
@@ -49,10 +50,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record_sound, R.color.color_gradient_dark_two)
 
-
         this.player = MediaPlayer()
-
-
 
         fabRecord.setOnClickListener(this)
         imgBack.setOnClickListener(this)
@@ -90,7 +88,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
     private fun counterThread() {
         val thread = object : Thread() {
             override fun run() {
-                while (status == Status.STOP) {
+                while (status == StatusVoiceRecord.STOP) {
                     try {
                         Thread.sleep(100)
                         counter += 100
@@ -113,7 +111,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         val thread = object : Thread() {
             override fun run() {
                 super.run()
-                while (status == Status.STOP) {
+                while (status == StatusVoiceRecord.STOP) {
                     try {
                         Thread.sleep(1500)
                         runOnUiThread {
@@ -167,24 +165,24 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
 
     private fun handledVoiceRecording() {
         when (status) {
-            Status.RECORD -> {
+            StatusVoiceRecord.RECORD -> {
                 prepare()
                 this.fabRecord.setImageResource(R.drawable.ic_stop)
                 this.customProgressCircle.startAnimated()
                 this.recorder.start()
-                this.status = Status.STOP
+                this.status = StatusVoiceRecord.STOP
                 this.counterThread()
                 this.threadSize()
             }
-            Status.STOP -> {
+            StatusVoiceRecord.STOP -> {
                 this.customProgressCircle.stopAnimated()
                 this.counterPlay = 1000000000
                 this.recorder.stop()
                 this.recorder.release()
-                this.status = Status.PLAY
+                this.status = StatusVoiceRecord.PLAY
                 this.fabRecord.setImageResource(R.drawable.ic_play)
             }
-            Status.PLAY -> {
+            StatusVoiceRecord.PLAY -> {
                 if (this.player.isPlaying) {
                     player.stop()
                     player.reset()
@@ -248,7 +246,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
 
     private fun delete() {
         this.counterPlay = 1000000000
-        this.status = Status.RECORD
+        this.status = StatusVoiceRecord.RECORD
 
         this.oncePlay = true
         this.counter = 0
@@ -264,11 +262,4 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         File(filePath).delete()
 
     }
-
-    enum class Status {
-        RECORD,
-        PLAY,
-        STOP
-    }
-
 }
