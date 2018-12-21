@@ -10,37 +10,37 @@
     <string name="empty">Empty</string>
     <string name="pipe">|</string>
     <string name="zero_time">00 : 00 : 00</string>
-    <string name="start_recording">شروع</string>
-    <string name="stop_recording">توقف</string>
+    <string name="start_recording">start</string>
+    <string name="stop_recording">stop</string>
     <string name="zero_size">0.00 MB</string>
-    <string name="save">ذخیره</string>
-    <string name="delete">حذف</string>
-    <string name="play">پخش</string>
-    <string name="stop">توقف</string>
+    <string name="save">save</string>
+    <string name="delete">delete</string>
+    <string name="play">play</string>
+    <string name="stop">stop</string>
 
-    <string name="not_show_again">دیگر نشان نده</string>
-    <string name="ok">باشه</string>
-    <string name="yes">بله</string>
-    <string name="no">خیر</string>
-    <string name="maybe_later">شاید بعدا</string>
+    <string name="not_show_again">not show again</string>
+    <string name="ok">OK</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
+    <string name="maybe_later">Maybe later</string>
 
-    <string name="permission">دسترسی</string>
-    <string name="permission_audio">برای ضبط صدا  به دسترسی حافظه جانبی و میکروفن نیاز است.</string>
+    <string name="permission">Permission</string>
+    <string name="permission_audio">Memory and microphone access are required to record audio.</string>
 
-    <string name="sure_note_delete">آیا واقعا میخواهید این یادداشت را پاک کنید؟</string>
+    <string name="sure_note_delete">Do you want to delete this note?</string>
 
 
     <!-- Error -->
-    <string name="error_can_not_create_file">متاسفانه در ساخت فایل مشکلی پیش آمده است.</string>
-    <string name="error_unknown">خطایی غیر منتظره‌ایی رخ داده است.</string>
+    <string name="error_can_not_create_file">Sorry, there is a problem creating the file.</string>
+    <string name="error_unknown">unknown error</string>
 
 
 
-    <string name="Byte">بایت</string>
-    <string name="kiloByte">کیلوبایت</string>
-    <string name="megabyte">مگابایت</string>
-    <string name="gigabyte">گیگابایت</string>
-    <string name="trabyte">ترابایت</string>
+    <string name="Byte">Byte</string>
+    <string name="kiloByte">KioByte</string>
+    <string name="megabyte">MB</string>
+    <string name="gigabyte">GB</string>
+    <string name="trabyte">TB</string>
 
 
 </resources>
