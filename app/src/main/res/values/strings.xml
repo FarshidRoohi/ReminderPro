@@ -6,6 +6,7 @@
     <string name="note">Note</string>
     <string name="voice_recorder">Voice Recorder</string>
     <string name="reminder_location">Reminder Location</string>
+    <string name="voices">voices</string>
     <string name="add">add</string>
     <string name="empty">Empty</string>
     <string name="pipe">|</string>
