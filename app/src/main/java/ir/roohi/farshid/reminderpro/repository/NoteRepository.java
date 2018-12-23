@@ -3,7 +3,6 @@ package ir.roohi.farshid.reminderpro.repository;
 import android.arch.lifecycle.LiveData;
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -12,7 +11,8 @@ import ir.roohi.farshid.reminderpro.database.AppDatabase;
 import ir.roohi.farshid.reminderpro.model.NoteEntity;
 
 /**
- * Created by Farshid Roohi.. ZarinPal Crop.
+ * Created by Farshid Roohi.
+ * ReminderPro | Copyrights 2018.
  */
 public class NoteRepository {
 
