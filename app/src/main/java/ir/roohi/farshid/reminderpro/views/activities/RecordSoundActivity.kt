@@ -1,6 +1,7 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
 import android.Manifest
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
@@ -14,9 +15,11 @@ import ir.roohi.farshid.reminderpro.model.enums.StatusVoiceRecord
 import ir.roohi.farshid.reminderpro.utility.convertToTime
 import ir.roohi.farshid.reminderpro.utility.formatFileSize
 import ir.roohi.farshid.reminderpro.utility.randomName
+import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import kotlinx.android.synthetic.main.activity_record_sound.*
 import java.io.File
 import java.io.IOException
+import java.util.*
 
 
 /**
@@ -78,6 +81,8 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
             }
             R.id.imgSave -> {
                 showMsg(getString(R.string.save))
+                val viewModel = ViewModelProviders.of(this).get(VoiceViewModel::class.java)
+                viewModel.add("new title for save #${Random().nextInt()}", this.filePath)
                 finish()
             }
         }

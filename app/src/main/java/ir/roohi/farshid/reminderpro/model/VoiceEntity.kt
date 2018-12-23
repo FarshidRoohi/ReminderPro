@@ -18,13 +18,13 @@ class VoiceEntity {
     var title: String? = null
     var path: String? = null
 
+    @Ignore
     constructor(date: Date?, title: String?, path: String?) {
         this.date = date
         this.title = title
         this.path = path
     }
 
-    @Ignore
     constructor() {
     }
 
