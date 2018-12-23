@@ -9,13 +9,14 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import ir.roohi.farshid.reminderpro.model.NoteEntity;
+import ir.roohi.farshid.reminderpro.model.VoiceEntity;
 
 /**
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 2018.
  */
 
-@Database(entities = {NoteEntity.class}, version = 1)
+@Database(entities = {NoteEntity.class,VoiceEntity.class}, version = 1)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 

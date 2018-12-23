@@ -1,6 +1,6 @@
 package ir.roohi.farshid.reminderpro.repository
 
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.LiveData
 import android.content.Context
 import ir.roohi.farshid.reminderpro.database.AppDatabase
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
@@ -14,7 +14,7 @@ import java.util.concurrent.Executors
 class VoiceRepository(context: Context) {
 
     private var dataBase: AppDatabase? = null
-    private var liveData: MutableLiveData<MutableList<VoiceEntity>>? = null
+    public var liveData: LiveData<List<VoiceEntity>>? = null
 
     private val executor = Executors.newSingleThreadExecutor()
 
@@ -33,13 +33,14 @@ class VoiceRepository(context: Context) {
         this.liveData = getList()
     }
 
-    public fun getList(): MutableLiveData<MutableList<VoiceEntity>> {
+    private fun getList(): LiveData<List<VoiceEntity>> {
+
         return this.dataBase!!.voiceDao().all
     }
 
-    public fun add(title: String, path: String) {
+    public fun add(item:VoiceEntity) {
         executor.execute {
-            this.dataBase!!.voiceDao().insert(VoiceEntity(Date(), title, path))
+            this.dataBase!!.voiceDao().insert(item)
         }
 
     }

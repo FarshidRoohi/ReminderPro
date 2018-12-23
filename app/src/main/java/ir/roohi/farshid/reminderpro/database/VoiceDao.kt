@@ -1,6 +1,6 @@
 package ir.roohi.farshid.reminderpro.database
 
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 
@@ -11,8 +11,8 @@ import ir.roohi.farshid.reminderpro.model.VoiceEntity
 @Dao
 interface VoiceDao {
 
-    @get:Query("SELECT * FROM tbl_voice ORDER BY date DESC")
-    val all: MutableLiveData<MutableList<VoiceEntity>>
+    @get:Query("SELECT * FROM voices ORDER BY date DESC")
+    val all: LiveData<List<VoiceEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(item: VoiceEntity)
