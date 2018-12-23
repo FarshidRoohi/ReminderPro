@@ -69,7 +69,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
                 animatedViewGone(itemSoundRecorder, 800)
 
                 Handler().postDelayed({
-                    RecordSoundActivity.start(this)
+                    SoundListActivity.start(this)
                 }, 450)
             }
             R.id.imgProfile -> {
