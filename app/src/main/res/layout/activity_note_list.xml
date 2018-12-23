@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient">
 
-    <include
+    <ir.roohi.farshid.reminderpro.customViews.CustomToolbar
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:caption="@string/notes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:leftImage="@drawable/ic_arrow_back"/>
 
     <ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
         android:id="@+id/recycler"

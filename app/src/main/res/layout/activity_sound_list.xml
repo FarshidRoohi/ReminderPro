@@ -2,53 +2,16 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient">
 
-    <android.support.v7.widget.Toolbar
+    <ir.roohi.farshid.reminderpro.customViews.CustomToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
-        app:contentInsetEnd="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetStart="0dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            tools:ignore="UseCompoundDrawables">
-
-            <ImageView
-                android:id="@+id/imgBack"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:padding="7dp"
-                android:src="@drawable/ic_arrow_back"
-                android:tint="@color/color_tint_icon_dark"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription"/>
-
-            <TextView
-                android:id="@+id/txtTitle"
-                style="@style/TitleStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="@string/voices"
-                android:textColor="@color/color_tint_icon_dark"/>
-
-        </LinearLayout>
-
-
-    </android.support.v7.widget.Toolbar>
+        app:caption="@string/voices"
+        app:leftImage="@drawable/ic_arrow_back"/>
 
     <ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
         android:id="@+id/recycler"

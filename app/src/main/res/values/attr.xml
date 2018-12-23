@@ -13,15 +13,11 @@
         <attr name="show_divider" format="boolean"/>
     </declare-styleable>
 
-    <declare-styleable name="ZVToolbar">
-        <attr name="zv_rightImage" format="reference"/>
-        <attr name="zv_leftImage" format="reference"/>
-        <attr name="zv_centerImage" format="reference"/>
-        <attr name="zv_rightCaption" format="string"/>
-        <attr name="zv_leftCaption" format="string"/>
-        <attr name="zv_elementTint" format="color"/>
-        <attr name="zv_font" format="string"/>
-        <attr name="zv_caption" format="string"/>
+    <declare-styleable name="CustomToolbar">
+        <attr name="rightImage" format="reference"/>
+        <attr name="leftImage" format="reference"/>
+        <attr name="elementTint" format="color"/>
+        <attr name="caption" format="string"/>
     </declare-styleable>
 
     <declare-styleable name="CustomProgressCircle">

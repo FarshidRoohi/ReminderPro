@@ -5,13 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import kotlinx.android.synthetic.main.activity_note_edit.*
-import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.annotations.Nullable
 import java.util.*
 
@@ -19,7 +17,7 @@ import java.util.*
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 2018.
  */
-class NoteEditActivity : BaseActivity(), View.OnClickListener {
+class NoteEditActivity : BaseActivity() {
 
     private lateinit var viewModel: NoteViewModel
 
@@ -37,38 +35,24 @@ class NoteEditActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_edit)
 
-        imgBack.setOnClickListener(this)
-        imgRight.setImageResource(R.drawable.ic_delete)
-        imgRight.setOnClickListener(this)
         this.viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
+        this.toolbar.setIconLeftListener(View.OnClickListener {
+            this.save()
+            finish()
+        })
+        this.toolbar.setIconRightListener(View.OnClickListener {
+            this.remove()
+        })
 
         if (noteEntity != null) {
             edtText.setText(noteEntity!!.text)
-            txtTitle.text = noteEntity!!.title
+            this.toolbar.setCaption(noteEntity!!.title!!)
             return
         }
 
     }
 
-
-    override fun onClick(v: View?) {
-        when (v!!.id) {
-            R.id.imgBack -> {
-                this.save()
-                finish()
-            }
-            R.id.imgRight -> {
-                this.remove()
-            }
-        }
-
-    }
-
-    override fun onBackPressed() {
-        this.save()
-        super.onBackPressed()
-    }
 
     private fun remove() {
         if (noteEntity == null) {
@@ -102,6 +86,12 @@ class NoteEditActivity : BaseActivity(), View.OnClickListener {
             this.viewModel.updateNote(noteEntity!!)
 
         }
-        Toast.makeText(this, getString(R.string.save), Toast.LENGTH_SHORT).show()
+        showMsg(getString(R.string.save))
     }
+
+    override fun onBackPressed() {
+        this.save()
+        super.onBackPressed()
+    }
+
 }

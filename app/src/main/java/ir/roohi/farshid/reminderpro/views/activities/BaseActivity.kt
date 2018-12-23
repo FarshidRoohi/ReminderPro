@@ -37,12 +37,12 @@ open class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.resourceApp = ResourceApplication.applicationResource
-
     }
 
     fun setContentView(@LayoutRes layoutResID: Int, @ColorRes color: Int) {
         super.setContentView(layoutResID)
         setStatusBarColor(color)
+
     }
 
     fun setStatusBarColor(@ColorRes color: Int) {

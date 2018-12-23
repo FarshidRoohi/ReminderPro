@@ -13,9 +13,7 @@ import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.NoteAdapter
 import kotlinx.android.synthetic.main.activity_note_list.*
-import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 /**
@@ -47,20 +45,13 @@ class NoteListActivity : BaseActivity(), Observer<MutableList<NoteEntity>>, View
         viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
         viewModel.notes.observe(this, this)
 
-        imgRight.setOnClickListener(this)
-        imgBack.setOnClickListener(this)
         fabAdd.setOnClickListener(this)
-
-        imgRight.setImageResource(R.drawable.ic_account_circle)
-
-
+        toolbar.setIconLeftListener(View.OnClickListener { finish() })
 
         recycler.addOnScrollStateListener(object : CustomRecyclerView.OnScrollStateListener {
             override fun onScrollEnded(recyclerView: CustomRecyclerView) {
             }
         })
-
-
     }
 
     override fun onChanged(list: MutableList<NoteEntity>?) {

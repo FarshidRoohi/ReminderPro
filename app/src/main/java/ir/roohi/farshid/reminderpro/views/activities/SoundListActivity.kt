@@ -25,12 +25,14 @@ class SoundListActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sound_list)
 
-        imgBack.setOnClickListener(this)
+        fabAdd.setOnClickListener(this)
+        toolbar.setIconLeftListener(View.OnClickListener {
+            finish()
+        })
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.imgBack -> finish()
             R.id.fabAdd -> RecordSoundActivity.start(this)
         }
     }
