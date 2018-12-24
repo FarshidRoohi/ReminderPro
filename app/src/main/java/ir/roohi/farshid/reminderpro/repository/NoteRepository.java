@@ -29,7 +29,7 @@ public class NoteRepository {
     }
 
     private NoteRepository(Context context) {
-        this.database = AppDatabase.getInstance(context);
+        this.database = AppDatabase.Companion.getInstance(context);
         this.notes = getAllNotes();
     }
 

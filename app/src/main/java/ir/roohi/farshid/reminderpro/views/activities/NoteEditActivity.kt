@@ -64,7 +64,7 @@ class NoteEditActivity : BaseActivity() {
             alertDialog.dialog!!.dismiss()
         })
         alertDialog.setBtnPositive(getString(R.string.yes), View.OnClickListener {
-            this.viewModel.removeNote(noteEntity)
+            this.viewModel.removeNote(noteEntity!!)
             finish()
         })
         alertDialog.build().show()

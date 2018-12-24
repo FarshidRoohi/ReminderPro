@@ -14,13 +14,14 @@ import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.NoteAdapter
 import kotlinx.android.synthetic.main.activity_note_list.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 2018.
  */
-class NoteListActivity : BaseActivity(), Observer<MutableList<NoteEntity>>, View.OnClickListener {
+class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClickListener {
 
     private lateinit var adapter: NoteAdapter
     private lateinit var viewModel: NoteViewModel
@@ -54,9 +55,9 @@ class NoteListActivity : BaseActivity(), Observer<MutableList<NoteEntity>>, View
         })
     }
 
-    override fun onChanged(list: MutableList<NoteEntity>?) {
+    override fun onChanged(list: List<NoteEntity>?) {
         list?.apply {
-            adapter.swapData(this)
+            adapter.swapData(ArrayList(this))
         }
 
         if (adapter.itemCount == 0) {

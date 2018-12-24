@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData
 import android.content.Context
 import ir.roohi.farshid.reminderpro.database.AppDatabase
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
-import java.util.*
 import java.util.concurrent.Executors
 
 /**
@@ -14,7 +13,7 @@ import java.util.concurrent.Executors
 class VoiceRepository(context: Context) {
 
     private var dataBase: AppDatabase? = null
-    public var liveData: LiveData<List<VoiceEntity>>? = null
+    var liveData: LiveData<List<VoiceEntity>>? = null
 
     private val executor = Executors.newSingleThreadExecutor()
 
@@ -33,19 +32,16 @@ class VoiceRepository(context: Context) {
         this.liveData = getList()
     }
 
-    private fun getList(): LiveData<List<VoiceEntity>> {
+    private fun getList(): LiveData<List<VoiceEntity>> = this.dataBase!!.voiceDao().all
 
-        return this.dataBase!!.voiceDao().all
-    }
-
-    public fun add(item:VoiceEntity) {
+    fun add(item: VoiceEntity) {
         executor.execute {
             this.dataBase!!.voiceDao().insert(item)
         }
 
     }
 
-    public fun delete(item: VoiceEntity) {
+    fun delete(item: VoiceEntity) {
         executor.execute {
             this.dataBase!!.voiceDao().delete(item)
         }
