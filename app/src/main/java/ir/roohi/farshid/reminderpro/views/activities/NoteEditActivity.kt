@@ -34,7 +34,6 @@ class NoteEditActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_edit)
-
         this.viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
         this.toolbar.setIconLeftListener(View.OnClickListener {
