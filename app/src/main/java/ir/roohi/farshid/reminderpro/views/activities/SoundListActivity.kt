@@ -1,11 +1,11 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import ir.roohi.farshid.reminderpro.R
@@ -45,7 +45,7 @@ class SoundListActivity : BaseActivity(), View.OnClickListener, Observer<List<Vo
 
     override fun onChanged(list: List<VoiceEntity>?) {
         list?.let {
-            recycler.layoutManager = LinearLayoutManager(this)
+            recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
             val adapter = VoiceAdapter()
             recycler.adapter = adapter
             adapter.swapData(ArrayList(list))

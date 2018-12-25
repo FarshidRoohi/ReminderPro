@@ -2,8 +2,8 @@ package ir.roohi.farshid.reminderpro.customViews
 
 import android.content.Context
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.Toolbar
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import ir.roohi.farshid.reminderpro.R

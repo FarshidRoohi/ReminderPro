@@ -1,6 +1,6 @@
 package ir.roohi.farshid.reminderpro.repository
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import android.content.Context
 import ir.roohi.farshid.reminderpro.database.AppDatabase
 import ir.roohi.farshid.reminderpro.model.VoiceEntity

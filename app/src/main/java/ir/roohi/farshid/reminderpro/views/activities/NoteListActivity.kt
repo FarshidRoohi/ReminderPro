@@ -1,11 +1,10 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
@@ -38,7 +37,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_list)
 
-        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         adapter = NoteAdapter()
         recycler.adapter = adapter
         recycler.addFab(fabAdd)

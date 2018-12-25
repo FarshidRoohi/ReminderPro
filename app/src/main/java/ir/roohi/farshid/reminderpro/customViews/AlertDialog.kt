@@ -4,10 +4,10 @@ package ir.roohi.farshid.reminderpro.customViews
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +20,7 @@ import ir.roohi.farshid.reminderpro.R
  * ReminderPro | Copyrights 12/3/18.
  */
 @SuppressLint("ValidFragment")
-class AlertDialog private constructor(private var fm: FragmentManager, private val builder: Builder) : DialogFragment() {
+class AlertDialog private constructor(private var fm: androidx.fragment.app.FragmentManager, private val builder: Builder) : androidx.fragment.app.DialogFragment() {
     private var layoutAllContent: ViewGroup? = null
     private var imgDialog: ImageView? = null
     private var btnPositive: Button? = null
@@ -42,7 +42,7 @@ class AlertDialog private constructor(private var fm: FragmentManager, private v
         val txtTitle = view.findViewById<TextView>(R.id.txt_title)
         val txtDesc = view.findViewById<TextView>(R.id.txt_desc)
 
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         txtTitle.text = this.builder.title
         txtDesc.text = this.builder.desc
@@ -135,7 +135,7 @@ class AlertDialog private constructor(private var fm: FragmentManager, private v
         super.show(this.fm, javaClass.name)
     }
 
-    class Builder(private val fm: FragmentManager, var title: String?, var desc: String?) {
+    class Builder(private val fm: androidx.fragment.app.FragmentManager, var title: String?, var desc: String?) {
 
         var dialog: AlertDialog? = null
             private set

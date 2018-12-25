@@ -1,6 +1,6 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
-import android.databinding.ViewDataBinding
+import androidx.databinding.ViewDataBinding
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemVoiceBinding
 import ir.roohi.farshid.reminderpro.model.VoiceEntity

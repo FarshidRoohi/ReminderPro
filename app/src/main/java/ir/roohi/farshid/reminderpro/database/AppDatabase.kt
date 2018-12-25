@@ -1,10 +1,10 @@
 package ir.roohi.farshid.reminderpro.database
 
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
-import android.arch.persistence.room.TypeConverters
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import android.content.Context
 
 import ir.roohi.farshid.reminderpro.model.NoteEntity
@@ -15,7 +15,7 @@ import ir.roohi.farshid.reminderpro.model.VoiceEntity
  * ReminderPro | Copyrights 2018.
  */
 
-@Database(entities = [NoteEntity::class, VoiceEntity::class], version = 1)
+@Database(entities = arrayOf(NoteEntity::class, VoiceEntity::class), version = 1)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 

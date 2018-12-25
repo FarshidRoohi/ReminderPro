@@ -1,7 +1,7 @@
 package ir.roohi.farshid.reminderpro.database
 
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.*
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import java.util.*
 
