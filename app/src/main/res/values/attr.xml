@@ -26,4 +26,10 @@
         <attr name="android:progress" format="integer"/>
         <attr name="android:tint" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomInputEditText">
+        <attr name="android:hint"/>
+        <attr name="zv_style" format="reference"/>
+    </declare-styleable>
+
 </resources>

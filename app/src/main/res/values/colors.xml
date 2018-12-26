@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffffff</color>
-    <color name="colorPrimaryDark">#dedede</color>
+    <color name="colorPrimary">#0D43CE</color>
+    <color name="colorPrimaryDark">#0334b4</color>
     <color name="colorAccent">#0D43CE</color>
 
     <color name="color_background">#ffffff</color>
@@ -10,6 +10,7 @@
     <color name="color_tint_icon_light">#d1d1d4</color>
     <color name="color_title">#1B2024</color>
     <color name="color_subtitle">#282e33</color>
+    <color name="color_hint">#c2c2c2</color>
 
     <color name="color_item_main">#0D43CE</color>
     <color name="color_item_main_dark">#0D43CE</color>
@@ -35,5 +36,9 @@
     <color name="color_dialog_description">#90000000</color>
 
     <color name="color_tint_toolbar">#282e33</color>
+    <color name="color_bg_bottom_sheet">#ffffff</color>
+
+    <color name="txt_input_color">#FF303030</color>
+    <color name="hint_input_color">#FF2B4A83</color>
 
 </resources>

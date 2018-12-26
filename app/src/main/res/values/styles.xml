@@ -1,11 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:editTextStyle">@style/EditText</item>
     </style>
 
     <style name="TitleStyle" parent="TextAppearance.AppCompat">
@@ -19,5 +20,24 @@
         <item name="android:textColor">@color/color_subtitle</item>
         <item name="android:textSize">@dimen/text_subtitle_size</item>
     </style>
+
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/color_title</item>
+        <item name="android:textSize">@dimen/text_title_size</item>
+        <item name="android:textColorHint">@color/color_hint</item>
+    </style>
+
+    <style name="EditText" parent="Base.Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/txt_input_color</item>
+        <item name="android:textColorHint">@color/hint_input_color</item>
+        <item name="android:gravity">start</item>
+        <item name="fontPath">fonts/IRSANS_medium.ttf</item>
+    </style>
+
+    <style name="InputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">#0D43CE</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 
 </resources>

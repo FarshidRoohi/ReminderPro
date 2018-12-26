@@ -24,6 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="60dp"
-        android:tint="@color/colorPrimaryDark"/>
+        android:tint="@color/color_background"/>
 
 </RelativeLayout>

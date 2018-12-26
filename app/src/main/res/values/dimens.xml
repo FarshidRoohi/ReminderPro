@@ -4,4 +4,6 @@
     <dimen name="padding_title">8dp</dimen>
     <dimen name="text_title_size">18dp</dimen>
     <dimen name="text_subtitle_size">14dp</dimen>
+
+    <dimen name="bottom_sheet_top_radius">8dp</dimen>
 </resources>

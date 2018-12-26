@@ -16,6 +16,7 @@ import ir.roohi.farshid.reminderpro.utility.convertToTime
 import ir.roohi.farshid.reminderpro.utility.formatFileSize
 import ir.roohi.farshid.reminderpro.utility.randomName
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
+import ir.roohi.farshid.reminderpro.views.NameBottomSheet
 import kotlinx.android.synthetic.main.activity_record_sound.*
 import java.io.File
 import java.io.IOException
@@ -80,14 +81,20 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
                 delete()
             }
             R.id.imgSave -> {
-                showMsg(getString(R.string.save))
-                val viewModel = ViewModelProviders.of(this).get(VoiceViewModel::class.java)
-                viewModel.add("new title for save #${Random().nextInt()}", this.filePath)
-                finish()
+                val bottomSheet = NameBottomSheet(supportFragmentManager)
+                bottomSheet.listener = object : NameBottomSheet.OnTitleListener {
+                    override fun onTitle(title: String) {
+                        showMsg(getString(R.string.save))
+                        val viewModel = ViewModelProviders.of(this@RecordSoundActivity).get(VoiceViewModel::class.java)
+                        viewModel.add(title, filePath)
+                        finish()
+                    }
+                }
+                bottomSheet.show()
+
             }
         }
     }
-
 
     private fun counterThread() {
         val thread = object : Thread() {
