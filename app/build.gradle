@@ -50,7 +50,7 @@ dependencies {
     implementation "io.github.inflationx:calligraphy3:3.0.0"
 
     def lifecycle_version = "2.1.0-alpha01"
-    def room_version = "2.1.0-alpha03"
+    def room_version = "2.0.0-rc01"
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
