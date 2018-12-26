@@ -37,6 +37,7 @@ class NoteEditActivity : BaseActivity() {
         this.viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
         this.toolbar.setIconLeftListener(View.OnClickListener {
+            this.toolbar.getLeftImageView().isEnabled = false
             this.save()
             finish()
         })

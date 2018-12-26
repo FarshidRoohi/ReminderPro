@@ -1,11 +1,11 @@
 package ir.roohi.farshid.reminderpro.customViews
 
 import android.content.Context
-import android.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.appcompat.widget.Toolbar
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.ImageView
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.toolbar.view.*
 
@@ -74,5 +74,6 @@ class CustomToolbar : Toolbar {
         this.txtTitle.text = title
     }
 
-
+    fun getLeftImageView(): ImageView = this.imgLeft
+    fun getRightImageView(): ImageView = this.imgRight
 }

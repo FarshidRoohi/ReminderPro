@@ -55,6 +55,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
     }
 
     override fun onChanged(list: List<NoteEntity>?) {
+        this.progressBar.visibility = View.GONE
         list?.apply {
             adapter.swapData(ArrayList(this))
         }

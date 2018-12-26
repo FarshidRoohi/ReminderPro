@@ -44,13 +44,20 @@ class SoundListActivity : BaseActivity(), View.OnClickListener, Observer<List<Vo
     }
 
     override fun onChanged(list: List<VoiceEntity>?) {
-        list?.let {
+        this.progressBar.visibility = View.GONE
+        if (list == null || list.isEmpty()) {
+            layoutEmptyState.visibility = View.VISIBLE
+            return
+        }
+        list.let {
             recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
             val adapter = VoiceAdapter()
             recycler.adapter = adapter
             adapter.swapData(ArrayList(list))
             return
         }
+
+
     }
 
     override fun onClick(v: View?) {

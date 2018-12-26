@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <ir.roohi.farshid.reminderpro.customViews.CustomToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -40,21 +53,21 @@
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/color_item_main_dark"
-        />
+        app:rippleColor="@color/color_item_main_dark"/>
 
     <LinearLayout
         android:id="@+id/layoutEmptyState"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_note"
             android:padding="5dp"
+            android:src="@drawable/ic_note"
             android:tint="@color/color_tint_icon_light"
             />
 
