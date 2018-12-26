@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
