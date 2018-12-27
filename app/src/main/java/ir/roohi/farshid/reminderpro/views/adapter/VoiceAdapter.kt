@@ -10,6 +10,9 @@ import ir.roohi.farshid.reminderpro.model.VoiceEntity
  * ReminderPro | Copyrights 12/24/18.
  */
 class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
+
+    var listener: OnClickItemListener? = null
+
     override fun getItemLayout(viewType: Int): Int {
         return R.layout.item_voice
     }
@@ -17,7 +20,15 @@ class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
     override fun onBindViewHolder(viewDataBinding: ViewDataBinding, position: Int, viewType: Int, element: VoiceEntity) {
         val binding = viewDataBinding as ItemVoiceBinding
         binding.txtTitle.text = element.title
+        binding.txtDate.text = element.date!!.toString()
+
+        binding.rootLayout.setOnClickListener {
+            listener?.onClickItem(element)
+        }
     }
 
+    interface OnClickItemListener {
+        fun onClickItem(item: VoiceEntity)
+    }
 
 }

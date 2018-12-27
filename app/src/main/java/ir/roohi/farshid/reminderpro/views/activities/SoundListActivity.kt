@@ -18,7 +18,7 @@ import java.util.ArrayList
  * ReminderPro | Copyrights 12/23/18.
  */
 
-class SoundListActivity : BaseActivity(), View.OnClickListener, Observer<List<VoiceEntity>> {
+class SoundListActivity : BaseActivity(), View.OnClickListener, Observer<List<VoiceEntity>>, VoiceAdapter.OnClickItemListener {
 
     companion object {
         fun start(context: Context) {
@@ -52,6 +52,7 @@ class SoundListActivity : BaseActivity(), View.OnClickListener, Observer<List<Vo
             val adapter = VoiceAdapter()
             recycler.adapter = adapter
             adapter.swapData(ArrayList(list))
+            adapter.listener = this
             return
         }
 
@@ -62,6 +63,10 @@ class SoundListActivity : BaseActivity(), View.OnClickListener, Observer<List<Vo
         when (v!!.id) {
             R.id.fabAdd -> RecordSoundActivity.start(this)
         }
+    }
+
+    override fun onClickItem(item: VoiceEntity) {
+        showMsg("click item : ${item.title}")
     }
 
 }
