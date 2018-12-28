@@ -25,6 +25,7 @@
                 android:background="@drawable/circle_accent">
 
                 <ImageView
+                    android:id="@+id/ic_play"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="8dp"

@@ -21,14 +21,15 @@ class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
         val binding = viewDataBinding as ItemVoiceBinding
         binding.txtTitle.text = element.title
         binding.txtDate.text = element.date!!.toString()
+        binding.icPlay.setImageResource(if (element.isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
 
         binding.rootLayout.setOnClickListener {
-            listener?.onClickItem(element)
+            listener?.onClickItem(element,position)
         }
     }
 
     interface OnClickItemListener {
-        fun onClickItem(item: VoiceEntity)
+        fun onClickItem(item: VoiceEntity,position: Int)
     }
 
 }

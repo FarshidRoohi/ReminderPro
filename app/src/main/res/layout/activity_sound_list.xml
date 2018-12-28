@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_voice"
+        android:src="@drawable/ic_microphone"
         android:tint="@color/color_title"
         app:backgroundTint="@android:color/white"
         app:fabSize="normal"
@@ -66,7 +66,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="5dp"
-            android:src="@drawable/ic_voice"
+            android:src="@drawable/ic_microphone"
             android:tint="@color/color_tint_icon_light"
             />
 

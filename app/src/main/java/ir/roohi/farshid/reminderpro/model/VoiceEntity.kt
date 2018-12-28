@@ -17,6 +17,8 @@ class VoiceEntity {
     var date: Date? = null
     var title: String? = null
     var path: String? = null
+    @Ignore
+    var isPlaying: Boolean = false
 
     @Ignore
     constructor(date: Date?, title: String?, path: String?) {

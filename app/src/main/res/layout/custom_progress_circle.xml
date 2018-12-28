@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="60dp"
-        android:src="@drawable/ic_voice"
+        android:src="@drawable/ic_microphone"
         android:tint="@color/colorEndGradientProgressBar"/>
 
 </RelativeLayout>

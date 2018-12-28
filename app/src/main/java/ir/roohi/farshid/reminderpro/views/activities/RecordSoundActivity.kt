@@ -270,7 +270,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         this.txtTime.text = getString(R.string.zero_time)
         this.txtSize.text = getString(R.string.zero_size)
 
-        this.fabRecord.setImageResource(R.drawable.ic_voice)
+        this.fabRecord.setImageResource(R.drawable.ic_microphone)
 
         File(filePath).delete()
 
