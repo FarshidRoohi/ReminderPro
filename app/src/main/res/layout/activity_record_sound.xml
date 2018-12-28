@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient_record_voice">
+    android:background="@drawable/bg_gradient">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -65,23 +65,41 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
-    <ir.roohi.farshid.reminderpro.customViews.CustomProgressCircle
-        android:id="@+id/customProgressCircle"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
+    <RelativeLayout
+        android:id="@+id/layer_animation"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:max="1000"
-        android:progress="65"
-        android:src="@drawable/ic_voice"
         app:layout_constraintBottom_toTopOf="@+id/layout_details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieLayer"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:lottie_autoPlay="false"
+            app:lottie_colorFilter="@color/colorAccent"
+            app:lottie_fileName="voice_animation.json"
+            app:lottie_loop="true"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_voice"
+            android:tint="@android:color/white"/>
+
+
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/layout_details"
@@ -96,7 +114,7 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customProgressCircle"
+        app:layout_constraintTop_toBottomOf="@+id/layer_animation"
         tools:ignore="ContentDescription,RtlHardcoded">
 
         <ImageView
@@ -106,7 +124,7 @@
             android:layout_marginRight="10dp"
             android:padding="2dp"
             android:src="@drawable/ic_access_time"
-            android:tint="@color/color_tint_voice_record_details"
+            android:tint="@color/color_title"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="314dp"
             />
@@ -118,7 +136,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/zero_time"
-            android:textColor="@color/color_tint_voice_record_details"
+            android:textColor="@color/color_title"
             android:textSize="14sp"
             />
 
@@ -131,7 +149,7 @@
             android:layout_marginRight="20dp"
             android:gravity="center"
             android:text="@string/pipe"
-            android:textColor="@color/color_tint_voice_record_details"
+            android:textColor="@color/color_title"
             />
 
         <ImageView
@@ -141,7 +159,7 @@
             android:layout_marginRight="2dp"
             android:padding="2dp"
             android:src="@drawable/ic_music_note"
-            android:tint="@color/color_tint_voice_record_details"
+            android:tint="@color/color_title"
             tools:layout_editor_absoluteX="84dp"
             tools:layout_editor_absoluteY="314dp"/>
 
@@ -152,7 +170,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/zero_size"
-            android:textColor="@color/color_tint_voice_record_details"
+            android:textColor="@color/color_title"
             android:textSize="16sp"
             />
 
@@ -178,7 +196,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="10dp"
             android:src="@drawable/ic_delete"
-            android:tint="@color/color_tint_voice_record_details"/>
+            android:tint="@color/color_title"/>
 
         <ImageView
             android:layout_width="0dp"
@@ -191,7 +209,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:src="@drawable/ic_voice"
-            app:backgroundTint="@color/color_tint_voice_record_details"
+            app:backgroundTint="@android:color/white"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -210,7 +228,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="10dp"
             android:src="@drawable/ic_save"
-            android:tint="@color/color_tint_voice_record_details"/>
+            android:tint="@color/color_title"/>
 
     </LinearLayout>
 

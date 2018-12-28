@@ -64,6 +64,7 @@ dependencies {
     implementation 'com.zarinpal:views:0.4.4'
     implementation 'com.zarinpal:bottomsheet:0.0.5'
     implementation 'com.airbnb.android:paris:1.0.0'
+    implementation 'com.airbnb.android:lottie:2.8.0'
 
 
 }

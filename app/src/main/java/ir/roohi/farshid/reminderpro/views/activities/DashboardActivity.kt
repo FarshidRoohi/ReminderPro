@@ -1,6 +1,8 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
 import android.animation.ObjectAnimator
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -14,6 +16,15 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 
 class DashboardActivity : BaseActivity(), View.OnClickListener {
+
+
+
+    companion object {
+        fun start(context: Context) {
+            val intent = Intent(context, DashboardActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

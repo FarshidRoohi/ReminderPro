@@ -51,7 +51,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_record_sound, R.color.color_gradient_dark_two)
+        setContentView(R.layout.activity_record_sound)
 
         this.player = MediaPlayer()
 
@@ -72,7 +72,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
             }
             R.id.imgBack -> finish()
             R.id.imgShare -> {
-                customProgressCircle.stopAnimated()
+                lottieLayer.cancelAnimation()
                 Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
 
             }
@@ -161,7 +161,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
                 if (counterPlay >= counter) {
                     runOnUiThread {
                         txtTime.text = convertToTime(counter.toFloat())
-                        customProgressCircle.stopAnimated()
+                        lottieLayer.pauseAnimation()
                         fabRecord.setImageResource(R.drawable.ic_play)
                         player.reset()
                     }
@@ -178,14 +178,14 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
             StatusVoiceRecord.RECORD -> {
                 prepare()
                 this.fabRecord.setImageResource(R.drawable.ic_stop)
-                this.customProgressCircle.startAnimated()
+                lottieLayer.playAnimation()
                 this.recorder.start()
                 this.status = StatusVoiceRecord.STOP
                 this.counterThread()
                 this.threadSize()
             }
             StatusVoiceRecord.STOP -> {
-                this.customProgressCircle.stopAnimated()
+                lottieLayer.cancelAnimation()
                 this.counterPlay = 1000000000
                 this.recorder.stop()
                 this.recorder.release()
@@ -198,7 +198,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
                     player.reset()
 
                     fabRecord.setImageResource(R.drawable.ic_play)
-                    this.customProgressCircle.stopAnimated()
+                    lottieLayer.cancelAnimation()
                     return
                 }
                 if (!File(filePath).exists()) {
@@ -211,7 +211,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
                 this.player.start()
                 oncePlay = false
                 counterThreadPlay()
-                this.customProgressCircle.startAnimated()
+                lottieLayer.playAnimation()
             }
         }
 
@@ -244,7 +244,8 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
     }
 
     override fun onDenied(permission: String) {
-        val alertBuilder = AlertDialog.Builder(supportFragmentManager, getString(R.string.permission), getString(R.string.permission_audio))
+        val alertBuilder = AlertDialog.Builder(supportFragmentManager,
+                getString(R.string.permission), getString(R.string.permission_audio))
         alertBuilder.setBtnPositive(getString(R.string.yes), View.OnClickListener {
             requestPermission(permissions, this)
         })
@@ -262,8 +263,8 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
         this.counter = 0
         this.player.stop()
         this.player.reset()
-        this.customProgressCircle.stopAnimated()
-        this.txtTime.text = getString(R.string.zero_size)
+        lottieLayer.cancelAnimation()
+        this.txtTime.text = getString(R.string.zero_time)
         this.txtSize.text = getString(R.string.zero_size)
 
         this.fabRecord.setImageResource(R.drawable.ic_voice)

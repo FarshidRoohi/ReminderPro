@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import android.os.Build
 import android.os.Bundle
+import android.view.Window
 import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
@@ -42,7 +43,10 @@ open class BaseActivity : AppCompatActivity() {
     fun setContentView(@LayoutRes layoutResID: Int, @ColorRes color: Int) {
         super.setContentView(layoutResID)
         setStatusBarColor(color)
-
+    }
+    fun hasFullScreen(){
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     fun setStatusBarColor(@ColorRes color: Int) {
