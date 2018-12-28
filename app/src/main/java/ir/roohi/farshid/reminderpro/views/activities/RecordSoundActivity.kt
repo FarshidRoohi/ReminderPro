@@ -77,12 +77,20 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
             R.id.imgShare -> {
                 lottieLayer.cancelAnimation()
                 Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
-
             }
             R.id.imgDelete -> {
                 delete()
             }
             R.id.imgSave -> {
+
+                if (status == StatusVoiceRecord.STOP) {
+                    lottieLayer.cancelAnimation()
+                    this.counterPlay = 1000000000
+                    this.recorder.stop()
+                    this.recorder.release()
+                    this.status = StatusVoiceRecord.PLAY
+                    this.fabRecord.setImageResource(R.drawable.ic_play)
+                }
                 val bottomSheet = NameBottomSheet(supportFragmentManager)
                 bottomSheet.listener = object : NameBottomSheet.OnTitleListener {
                     override fun onTitle(title: String) {

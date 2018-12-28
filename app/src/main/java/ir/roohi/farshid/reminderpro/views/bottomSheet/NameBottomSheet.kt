@@ -2,6 +2,7 @@ package ir.roohi.farshid.reminderpro.views.bottomSheet
 
 import android.annotation.SuppressLint
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.zarinpal.libs.bottomsheet.BottomSheetModal
@@ -21,15 +22,27 @@ class NameBottomSheet constructor(fm: FragmentManager) : BottomSheetModal(fm) {
     override fun getView(view: View?) {
         val btnOk = view!!.findViewById<ZarinButton>(R.id.btnOk)
         val edtTitle = view.findViewById<CustomInputEditText>(R.id.edtTitle)
-        btnOk.setOnClickListener {
-
-            if (edtTitle.text.isEmpty()) {
-                Toast.makeText(context, getString(R.string.error_empty_title), Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+        edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_DONE
+        edtTitle.edt!!.setSingleLine(true)
+        edtTitle.edt!!.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                validationTitle(edtTitle.text)
             }
-            listener!!.onTitle(edtTitle.text)
-            dismissAllowingStateLoss()
+            false
         }
+        btnOk.setOnClickListener {
+            validationTitle(edtTitle.text)
+        }
+    }
+
+    private fun validationTitle(value: String) {
+
+        if (value.isEmpty()) {
+            Toast.makeText(context, getString(R.string.error_empty_title), Toast.LENGTH_SHORT).show()
+            return
+        }
+        listener!!.onTitle(value)
+        dismissAllowingStateLoss()
     }
 
     override fun getLayout(): Int {
