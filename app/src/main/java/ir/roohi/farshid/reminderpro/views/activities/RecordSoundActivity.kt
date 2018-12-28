@@ -70,7 +70,10 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
             R.id.fabRecord -> {
                 handledVoiceRecording()
             }
-            R.id.imgBack -> finish()
+            R.id.imgBack -> {
+                delete()
+                finish()
+            }
             R.id.imgShare -> {
                 lottieLayer.cancelAnimation()
                 Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
@@ -271,5 +274,10 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
 
         File(filePath).delete()
 
+    }
+
+    override fun onBackPressed() {
+        delete()
+        super.onBackPressed()
     }
 }
