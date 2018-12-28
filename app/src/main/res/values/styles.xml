@@ -39,5 +39,8 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="ButtonBorderLess" parent="Widget.MaterialComponents.Button.TextButton">
+
+    </style>
 
 </resources>

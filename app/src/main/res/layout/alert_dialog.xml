@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_all_content"
     android:layout_width="match_parent"
@@ -58,19 +57,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
-                    android:gravity="center|right"
                     android:textColor="@color/color_dialog_title"
-                    android:textSize="18sp"
-                    tools:ignore="RtlHardcoded"/>
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/txt_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center|right"
                     android:textColor="@color/color_dialog_description"
-                    android:textSize="14sp"
-                    tools:ignore="RtlHardcoded"/>
+                    android:textSize="14sp"/>
 
 
             </LinearLayout>
@@ -92,14 +87,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center|left"
-                android:orientation="horizontal"
-                tools:ignore="RtlHardcoded">
+                android:gravity="center|right"
+                android:orientation="horizontal">
 
 
                 <Button
-                    android:id="@+id/btn_positive"
-                    style="?android:attr/borderlessButtonStyle"
+                    android:id="@+id/btn_skip"
+                    style="@style/ButtonBorderLess"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
@@ -113,7 +107,7 @@
 
                 <Button
                     android:id="@+id/btn_negative"
-                    style="?android:attr/borderlessButtonStyle"
+                    style="@style/ButtonBorderLess"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
@@ -123,11 +117,11 @@
                     android:minHeight="40dp"
                     android:padding="0dp"
                     android:textColor="@color/color_dialog_description"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
                 <Button
-                    android:id="@+id/btn_skip"
-                    style="?android:attr/borderlessButtonStyle"
+                    android:id="@+id/btn_positive"
+                    style="@style/ButtonBorderLess"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@null"
@@ -137,8 +131,7 @@
                     android:minHeight="40dp"
                     android:padding="0dp"
                     android:textColor="@color/color_dialog_description"
-                    android:visibility="gone"/>
-
+                    android:visibility="visible"/>
 
             </LinearLayout>
 

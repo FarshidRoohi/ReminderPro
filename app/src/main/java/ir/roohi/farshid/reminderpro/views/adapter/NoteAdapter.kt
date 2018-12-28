@@ -21,7 +21,7 @@ class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
         binding.txtDate.text = element.date.toString()
         binding.txtTitle.text = element.title
         binding.rootLayout.setOnClickListener {
-            NoteEditActivity.start(context!! , element)
+            NoteEditActivity.start(context!!, element)
         }
 
 
