@@ -1,5 +1,6 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
+import android.view.View
 import androidx.databinding.ViewDataBinding
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemVoiceBinding
@@ -23,13 +24,21 @@ class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
         binding.txtDate.text = element.date!!.toString()
         binding.icPlay.setImageResource(if (element.isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
 
+        if (element.isPlaying) {
+            binding.layoutPlaying.visibility = View.VISIBLE
+            binding.lottieLayer.playAnimation()
+        } else {
+            binding.layoutPlaying.visibility = View.GONE
+            binding.lottieLayer.cancelAnimation()
+        }
+
         binding.rootLayout.setOnClickListener {
-            listener?.onClickItem(element,position)
+            listener?.onClickItem(element, position)
         }
     }
 
     interface OnClickItemListener {
-        fun onClickItem(item: VoiceEntity,position: Int)
+        fun onClickItem(item: VoiceEntity, position: Int)
     }
 
 }

@@ -98,7 +98,6 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
             player.reset()
             adapter.notifyItemChanged(position)
             element.isPlaying = false
-
         }
     }
 
