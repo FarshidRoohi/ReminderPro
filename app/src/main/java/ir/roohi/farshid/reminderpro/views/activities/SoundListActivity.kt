@@ -58,6 +58,8 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
 
     override fun onChanged(list: List<VoiceEntity>?) {
         this.progressBar.visibility = View.GONE
+        this.layoutEmptyState.visibility = View.INVISIBLE
+
         if (list == null || list.isEmpty()) {
             layoutEmptyState.visibility = View.VISIBLE
             return
