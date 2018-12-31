@@ -17,6 +17,9 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         hasFullScreen()
         setContentView(R.layout.activity_splash)
-        Handler().postDelayed({ DashboardActivity.start(this) }, 3000)
+        Handler().postDelayed({
+            DashboardActivity.start(this)
+            finish()
+        }, 3000)
     }
 }
