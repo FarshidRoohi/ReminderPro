@@ -9,6 +9,7 @@
     <color name="color_tint_icon_dark">#1B2024</color>
     <color name="color_tint_icon_light">#d1d1d4</color>
     <color name="color_title">#1B2024</color>
+    <color name="color_title_light">#f2f2f2</color>
     <color name="color_subtitle">#282e33</color>
     <color name="color_hint">#c2c2c2</color>
 

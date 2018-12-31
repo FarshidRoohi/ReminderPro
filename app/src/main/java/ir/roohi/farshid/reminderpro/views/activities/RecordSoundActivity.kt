@@ -57,7 +57,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
 
         fabRecord.setOnClickListener(this)
         imgBack.setOnClickListener(this)
-        imgShare.setOnClickListener(this)
+//        imgShare.setOnClickListener(this)
         imgSave.setOnClickListener(this)
         imgDelete.setOnClickListener(this)
 
