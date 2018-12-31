@@ -21,5 +21,6 @@ class ReminderLocationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminder_location)
+        MapActivity.start(this)
     }
 }

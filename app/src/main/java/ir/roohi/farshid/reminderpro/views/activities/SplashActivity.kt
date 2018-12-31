@@ -2,10 +2,7 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.os.Bundle
 import android.os.Handler
-import android.view.Window
-import android.view.WindowManager
 import ir.roohi.farshid.reminderpro.R
-import kotlinx.android.synthetic.main.activity_splash.*
 
 /**
  * Created by Farshid Roohi.
@@ -20,6 +17,6 @@ class SplashActivity : BaseActivity() {
         Handler().postDelayed({
             DashboardActivity.start(this)
             finish()
-        }, 3000)
+        }, 1000)
     }
 }
