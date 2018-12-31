@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
@@ -65,6 +67,9 @@ dependencies {
     implementation 'com.zarinpal:bottomsheet:0.0.5'
     implementation 'com.airbnb.android:paris:1.0.0'
     implementation 'com.airbnb.android:lottie:2.8.0'
+
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
 
 
 }

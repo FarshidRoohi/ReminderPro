@@ -52,6 +52,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             override fun onScrollEnded(recyclerView: CustomRecyclerView) {
             }
         })
+
     }
 
     override fun onChanged(list: List<NoteEntity>?) {
