@@ -38,10 +38,12 @@ class LocationListActivity : BaseActivity() {
         recycler.layoutManager = LinearLayoutManager(this)
 
         val viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
-        
+
         val adapter = LocationAdapter()
         adapter.listener = object : OnClickItemLocationListener {
             override fun onClickItemLocation(position: Int, element: LocationEntity) {
+//                adapter.getItems()!![position].status = element.status
+//                adapter.notifyItemChanged(position)
                 viewModel.update(element)
             }
         }
@@ -54,6 +56,9 @@ class LocationListActivity : BaseActivity() {
 
             if (list == null || list.isEmpty()) {
                 layoutEmptyState.visibility = View.VISIBLE
+                return@Observer
+            }
+            if (adapter.getItems() != null && !adapter.getItems()!!.isEmpty()) {
                 return@Observer
             }
             adapter.swapData(ArrayList(list))
