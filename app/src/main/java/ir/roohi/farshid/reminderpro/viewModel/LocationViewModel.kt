@@ -25,4 +25,8 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
     public fun add(title: String, text: String?, status: Boolean, point: GeoPoint) {
         repository!!.add(LocationEntity(Date(), title, text, status, point.latitude, point.longitude))
     }
+
+    public fun update(item: LocationEntity) {
+        repository!!.update(item.id, item.date!!, item.title!!, item.text!!, item.status!!, item.latitude!!, item.longitude!!)
+    }
 }

@@ -103,10 +103,10 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener {
             override fun onInformationLocation(title: String, desc: String?) {
                 val viewModel = ViewModelProviders.of(this@MapActivity).get(LocationViewModel::class.java)
                 viewModel.add(title, desc, true, point)
+                finish()
             }
         })
         bottomSheet.show()
-        finish()
 
     }
 

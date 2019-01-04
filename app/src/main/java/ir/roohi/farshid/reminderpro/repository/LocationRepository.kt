@@ -16,7 +16,7 @@ class LocationRepository constructor(context: Context) {
     private var database: AppDatabase? = null
     var locationList: LiveData<List<LocationEntity>>? = null
 
-    private val executors =  Executors.newSingleThreadExecutor()
+    private val executors = Executors.newSingleThreadExecutor()
 
     init {
         database = AppDatabase.getInstance(context)
@@ -49,8 +49,7 @@ class LocationRepository constructor(context: Context) {
         }
     }
 
-    public fun update(id: Int, date: Date, title: String, text: String, status: Boolean,
-                      latitude: Double, longitude: Double) {
+    public fun update(id: Int, date: Date, title: String, text: String, status: Boolean, latitude: Double, longitude: Double) {
         executors.execute {
             database!!.locationDao().update(id, date, title, text, status, latitude, longitude)
         }

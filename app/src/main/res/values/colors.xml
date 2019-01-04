@@ -43,4 +43,6 @@
     <color name="txt_input_color">#FF303030</color>
     <color name="hint_input_color">#FF2B4A83</color>
 
+    <color name="txt_date_color_gray">#8f8f8f</color>
+
 </resources>

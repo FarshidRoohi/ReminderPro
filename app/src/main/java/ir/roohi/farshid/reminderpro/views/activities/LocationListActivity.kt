@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.LocationAdapter
@@ -35,10 +36,17 @@ class LocationListActivity : BaseActivity() {
         fabAdd.setOnClickListener { MapActivity.start(this) }
 
         recycler.layoutManager = LinearLayoutManager(this)
-        val adapter = LocationAdapter()
-        recycler.adapter = adapter
 
         val viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
+        
+        val adapter = LocationAdapter()
+        adapter.listener = object : OnClickItemLocationListener {
+            override fun onClickItemLocation(position: Int, element: LocationEntity) {
+                viewModel.update(element)
+            }
+        }
+        recycler.adapter = adapter
+
         viewModel.liveDateLocations!!.observe(this, Observer<List<LocationEntity>> { list ->
 
             layoutEmptyState.visibility = View.GONE

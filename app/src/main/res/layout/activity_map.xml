@@ -22,5 +22,5 @@
         android:layout_marginBottom="503dp"
         android:src="@drawable/ic_my_location"
         app:backgroundTint="@android:color/white"
-        app:fabSize="mini"/>
+        app:fabSize="normal"/>
 </RelativeLayout>
