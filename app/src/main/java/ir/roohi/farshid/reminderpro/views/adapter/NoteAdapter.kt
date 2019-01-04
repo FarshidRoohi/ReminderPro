@@ -5,6 +5,8 @@ import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemNoteBinding
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.views.activities.NoteEditActivity
+import ir.roohi.farshid.reminderpro.extensions.toAgoTime
+
 
 /**
  * Created by Farshid Roohi.
@@ -18,12 +20,11 @@ class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
 
     override fun onBindViewHolder(viewDataBinding: ViewDataBinding, position: Int, viewType: Int, element: NoteEntity) {
         val binding = viewDataBinding as ItemNoteBinding
-        binding.txtDate.text = element.date.toString()
+        binding.txtDate.text = element.date!!.toAgoTime()
         binding.txtTitle.text = element.title
         binding.rootLayout.setOnClickListener {
             NoteEditActivity.start(context!!, element)
         }
-
-
     }
+
 }

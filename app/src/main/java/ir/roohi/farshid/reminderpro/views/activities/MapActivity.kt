@@ -37,6 +37,8 @@ class MapActivity : BaseActivity() {
         mapView.setHasTransientState(true)
         mapView.controller.setZoom(5)
 
+        mapView.dispatchSetSelected(true)
+
 
         val mMyLocationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(this), mapView)
 
