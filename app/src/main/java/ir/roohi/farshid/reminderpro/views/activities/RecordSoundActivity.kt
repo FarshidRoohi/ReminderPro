@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
+import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
 import ir.roohi.farshid.reminderpro.model.enums.StatusVoiceRecord
 import ir.roohi.farshid.reminderpro.utility.convertToTime
 import ir.roohi.farshid.reminderpro.utility.formatFileSize
@@ -26,7 +27,7 @@ import java.io.IOException
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 2018.
  */
-class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.OnPermissionRequestListener {
+class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRequestListener {
 
     private var oncePlay = true
     private lateinit var recorder: MediaRecorder
@@ -263,6 +264,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
                 getString(R.string.permission), getString(R.string.permission_audio))
         alertBuilder.setBtnPositive(getString(R.string.yes), View.OnClickListener {
             requestPermission(permissions, this)
+            alertBuilder.dialog!!.dismissAllowingStateLoss()
         })
         alertBuilder.setBtnNegative(getString(R.string.no), View.OnClickListener {
             finish()

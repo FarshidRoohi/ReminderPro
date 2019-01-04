@@ -1,10 +1,14 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.view.View
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.customViews.AlertDialog
+import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
 import kotlinx.android.synthetic.main.activity_map.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -17,7 +21,8 @@ import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/1/19.
  */
-class MapActivity : BaseActivity() {
+class MapActivity : BaseActivity(), OnPermissionRequestListener {
+
 
     private var mMyLocationOverlay: MyLocationNewOverlay? = null
 
@@ -40,6 +45,9 @@ class MapActivity : BaseActivity() {
         mapView.dispatchSetSelected(true)
         mapView.setBuiltInZoomControls(false)
         fabMyLocation.setOnClickListener { myLocation() }
+
+        requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), this)
+
         myLocation()
 
 
@@ -71,6 +79,9 @@ class MapActivity : BaseActivity() {
 
 
     private fun myLocation() {
+        if (!checkPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))) {
+            return
+        }
         val mapController = mapView.controller
 
         if (mMyLocationOverlay == null) {
@@ -100,5 +111,24 @@ class MapActivity : BaseActivity() {
     override fun onPause() {
         super.onPause()
         mapView.onPause()
+    }
+
+    override fun onAllow(permission: String) {
+        if (checkPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))) {
+            myLocation()
+        }
+    }
+
+    override fun onDenied(permission: String) {
+        val alertBuilder = AlertDialog.Builder(supportFragmentManager,
+                getString(R.string.permission), getString(R.string.permission_location))
+        alertBuilder.setBtnPositive(getString(R.string.yes), View.OnClickListener {
+            requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), this)
+            alertBuilder.dialog!!.dismissAllowingStateLoss()
+        })
+        alertBuilder.setBtnNegative(getString(R.string.no), View.OnClickListener {
+            finish()
+        })
+        alertBuilder.build().show()
     }
 }

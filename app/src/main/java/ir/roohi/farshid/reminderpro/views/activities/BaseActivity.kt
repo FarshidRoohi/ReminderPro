@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.ResourceApplication
+import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
 import java.util.*
 
 /**
@@ -135,11 +136,4 @@ open class BaseActivity : AppCompatActivity() {
         }
         return true
     }
-
-    interface OnPermissionRequestListener {
-        fun onAllow(permission: String)
-
-        fun onDenied(permission: String)
-    }
-
 }
