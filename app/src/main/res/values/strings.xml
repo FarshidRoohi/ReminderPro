@@ -8,8 +8,9 @@
     <string name="reminder_location">Reminder Location</string>
     <string name="voices">voices</string>
     <string name="notes">notes</string>
+    <string name="locations">locations</string>
     <string name="add">add</string>
-    <string name="empty">Empty</string>
+    <string name="empty">There is no item to display</string>
     <string name="pipe">|</string>
     <string name="zero_time">00 : 00 : 00</string>
     <string name="start_recording">start</string>

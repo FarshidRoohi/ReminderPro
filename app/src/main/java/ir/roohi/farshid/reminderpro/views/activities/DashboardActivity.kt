@@ -72,7 +72,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
             R.id.itemReminderLocation -> {
                 animatedViewGone(itemReminderLocation, 400)
                 Handler().postDelayed({
-                    ReminderLocationActivity.start(this)
+                    LocationListActivity.start(this)
                 }, 350)
 
             }

@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import android.content.Context
+import ir.roohi.farshid.reminderpro.model.LocationEntity
 
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
@@ -15,12 +16,13 @@ import ir.roohi.farshid.reminderpro.model.VoiceEntity
  * ReminderPro | Copyrights 2018.
  */
 
-@Database(entities = arrayOf(NoteEntity::class, VoiceEntity::class), version = 1)
+@Database(entities = arrayOf(NoteEntity::class, VoiceEntity::class, LocationEntity::class), version = 1)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun noteDao(): NoteDao
     abstract fun voiceDao(): VoiceDao
+    abstract fun locationDao(): LocationDao
 
     companion object {
 
