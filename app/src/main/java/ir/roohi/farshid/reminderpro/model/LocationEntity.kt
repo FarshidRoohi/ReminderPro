@@ -26,7 +26,7 @@ class LocationEntity {
 
     }
 
-    constructor(id: Int, date: Date, text: String, status: Boolean, latitude: Double, longitude: Double) {
+    constructor(id: Int, date: Date, text: String?, status: Boolean, latitude: Double, longitude: Double) {
         this.id = id
         this.date = date
         this.text = text
@@ -36,7 +36,7 @@ class LocationEntity {
     }
 
     @Ignore
-    constructor(date: Date, title: String, text: String, status: Boolean?, latitude: Double, longitude: Double) {
+    constructor(date: Date, title: String, text: String?, status: Boolean?, latitude: Double, longitude: Double) {
         this.date = date
         this.title = title
         this.text = text

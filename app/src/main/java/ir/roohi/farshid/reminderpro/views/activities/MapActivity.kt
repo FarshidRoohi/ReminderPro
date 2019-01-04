@@ -6,13 +6,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.View
+import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
+import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
+import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
+import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
 import kotlinx.android.synthetic.main.activity_map.*
 import org.osmdroid.config.Configuration
+import org.osmdroid.events.MapEventsReceiver
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.overlay.MapEventsOverlay
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
@@ -50,6 +56,20 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener {
 
         myLocation()
 
+        val mapEventsReceiver = MapEventsOverlay(object : MapEventsReceiver {
+            override fun longPressHelper(p: GeoPoint?): Boolean {
+                addPin(p!!)
+                return true
+            }
+
+            override fun singleTapConfirmedHelper(p: GeoPoint?): Boolean {
+                return false
+            }
+
+        })
+
+        mapView.overlayManager.add(mapEventsReceiver)
+
 
 //        val compassOverlay = CompassOverlay(this, InternalCompassOrientationProvider(this), mapView)
 //        compassOverlay.enableCompass()
@@ -77,6 +97,18 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener {
 
     }
 
+    private fun addPin(point: GeoPoint) {
+
+        val bottomSheet = InformationLocationBottomSheet(supportFragmentManager, object : OnInformationLocationListener {
+            override fun onInformationLocation(title: String, desc: String?) {
+                val viewModel = ViewModelProviders.of(this@MapActivity).get(LocationViewModel::class.java)
+                viewModel.add(title, desc, true, point)
+            }
+        })
+        bottomSheet.show()
+        finish()
+
+    }
 
     private fun myLocation() {
         if (!checkPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))) {

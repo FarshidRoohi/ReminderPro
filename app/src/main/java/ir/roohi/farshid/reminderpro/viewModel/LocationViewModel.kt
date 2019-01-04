@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.repository.LocationRepository
+import org.osmdroid.util.GeoPoint
 import java.util.*
 
 /**
@@ -21,9 +22,7 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
         liveDateLocations = repository!!.getLocations()
     }
 
-    public fun add(date: Date, title: String, text: String, status: Boolean,
-                   latitude: Double, longitude: Double) {
-
-        repository!!.add(LocationEntity(date, title, text, status, latitude, longitude))
+    public fun add(title: String, text: String?, status: Boolean, point: GeoPoint) {
+        repository!!.add(LocationEntity(Date(), title, text, status, point.latitude, point.longitude))
     }
 }
