@@ -1,6 +1,5 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
-import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import ir.roohi.farshid.reminderpro.R
