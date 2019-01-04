@@ -16,25 +16,28 @@ class VoiceEntity {
     var id: Int = 0
     var date: Date? = null
     var title: String? = null
+    var duration: Int? = null
     var path: String? = null
     @Ignore
     var isPlaying: Boolean = false
 
     @Ignore
-    constructor(date: Date?, title: String?, path: String?) {
+    constructor(date: Date?, title: String?, path: String?,duration:Int?) {
         this.date = date
         this.title = title
         this.path = path
+        this.duration = duration
     }
 
     constructor() {
     }
 
-    constructor(id: Int, date: Date?, title: String?, path: String?) {
+    constructor(id: Int, date: Date?, title: String?, path: String?,duration:Int?) {
         this.id = id
         this.date = date
         this.title = title
         this.path = path
+        this.duration = duration
     }
 
 
@@ -43,6 +46,7 @@ class VoiceEntity {
                 "id=" + id +
                 ", title=" + title +
                 ", date=" + date +
+                ", duration =" + duration +
                 ", text='" + path + '\''.toString() +
                 '}'.toString()
     }

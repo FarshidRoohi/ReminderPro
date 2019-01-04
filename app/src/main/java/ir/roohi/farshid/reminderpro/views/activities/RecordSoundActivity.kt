@@ -95,8 +95,12 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, BaseActivity.O
                 bottomSheet.listener = object : NameBottomSheet.OnTitleListener {
                     override fun onTitle(title: String) {
                         showMsg(getString(R.string.save))
+
+                        val player = MediaPlayer()
+                        player.setDataSource(filePath)
+                        player.prepare()
                         val viewModel = ViewModelProviders.of(this@RecordSoundActivity).get(VoiceViewModel::class.java)
-                        viewModel.add(title, filePath)
+                        viewModel.add(title, filePath, player.duration)
                         finish()
                     }
                 }

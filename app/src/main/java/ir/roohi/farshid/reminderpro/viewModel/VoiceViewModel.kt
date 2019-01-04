@@ -21,7 +21,7 @@ class VoiceViewModel : AndroidViewModel {
         this.mutableList = this.repository!!.liveData
     }
 
-    public fun add(title: String, path: String) {
-        repository!!.add(VoiceEntity(Date(), title, path))
+    public fun add(title: String, path: String,duration:Int) {
+        repository!!.add(VoiceEntity(Date(), title, path,duration))
     }
 }

@@ -71,9 +71,9 @@
             android:id="@+id/layoutPlaying"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:gravity="center"
             android:visibility="visible">
 
             <com.airbnb.lottie.LottieAnimationView
@@ -85,7 +85,11 @@
                 app:lottie_fileName="audio.json"
                 app:lottie_loop="true"/>
 
-            <SeekBar
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

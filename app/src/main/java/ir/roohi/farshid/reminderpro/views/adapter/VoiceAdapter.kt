@@ -1,5 +1,6 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
+import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import ir.roohi.farshid.reminderpro.R
@@ -24,17 +25,32 @@ class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
         binding.txtTitle.text = element.title
         binding.txtDate.text = element.date!!.toAgoTime()
         binding.icPlay.setImageResource(if (element.isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
+        binding.progressBar.max = element.duration!! / 60
 
         if (element.isPlaying) {
             binding.layoutPlaying.visibility = View.VISIBLE
             binding.lottieLayer.playAnimation()
+
+            //TODO : change handled voice progressBar show
+            val t = object : Thread() {
+                override fun run() {
+                    super.run()
+                    for (i in 0..element.duration!!) {
+                        Thread.sleep(60)
+                        binding.progressBar.progress = i
+                        if (!element.isPlaying) break
+                    }
+                }
+            }
+            t.start()
+
         } else {
             binding.layoutPlaying.visibility = View.GONE
             binding.lottieLayer.cancelAnimation()
         }
 
         binding.rootLayout.setOnClickListener {
-            listener?.onClickItem(element, position)
+            listener?.onClickItem(element, position)!!
         }
     }
 
