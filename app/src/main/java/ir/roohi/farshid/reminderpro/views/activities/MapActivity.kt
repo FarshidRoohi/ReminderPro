@@ -4,23 +4,12 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
+import com.mapbox.mapboxsdk.Mapbox
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
-import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
-import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
-import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
 import kotlinx.android.synthetic.main.activity_map.*
-import org.osmdroid.config.Configuration
-import org.osmdroid.events.MapEventsReceiver
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory
-import org.osmdroid.util.GeoPoint
-import org.osmdroid.views.overlay.MapEventsOverlay
-import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 
 /**
@@ -30,8 +19,6 @@ import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 class MapActivity : BaseActivity(), OnPermissionRequestListener {
 
 
-    private var mMyLocationOverlay: MyLocationNewOverlay? = null
-
     companion object {
         fun start(context: Context) {
             context.startActivity(Intent(context, MapActivity::class.java))
@@ -40,114 +27,13 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Configuration.getInstance().load(applicationContext, PreferenceManager.getDefaultSharedPreferences(this))
+        Mapbox.getInstance(this, "pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcW05aHBwZjE5N2o0OG5ubmsxMnc4cWYifQ.2RXagyMWkt5gft6NLdLCtw")
         setContentView(R.layout.activity_map)
-
-
-        mapView.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE)
-        mapView.setMultiTouchControls(true)
-        mapView.setHasTransientState(true)
-        mapView.controller.setZoom(15)
-        mapView.dispatchSetSelected(true)
-        mapView.setBuiltInZoomControls(false)
-        fabMyLocation.setOnClickListener { myLocation() }
-
-        requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), this)
-
-        myLocation()
-
-        val mapEventsReceiver = MapEventsOverlay(object : MapEventsReceiver {
-            override fun longPressHelper(p: GeoPoint?): Boolean {
-                addPin(p!!)
-                return true
-            }
-
-            override fun singleTapConfirmedHelper(p: GeoPoint?): Boolean {
-                return false
-            }
-
-        })
-
-        mapView.overlayManager.add(mapEventsReceiver)
-
-
-//        val compassOverlay = CompassOverlay(this, InternalCompassOrientationProvider(this), mapView)
-//        compassOverlay.enableCompass()
-//        mapView.overlays.add(compassOverlay)
-
-        //your items
-//        val items = ArrayList<OverlayItem>()
-//        items.add(OverlayItem("Title", "Description", GeoPoint(0.0, 0.0))) // Lat/Lon decimal degrees
-//
-//        val mOverlay = ItemizedOverlayWithFocus<OverlayItem>(this,items,
-//                object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
-//                    override fun onItemSingleTapUp(index: Int, item: OverlayItem): Boolean {
-//                        //do something
-//                        return true
-//                    }
-//
-//                    override fun onItemLongPress(index: Int, item: OverlayItem): Boolean {
-//                        return false
-//                    }
-//                })
-//
-//        mOverlay.setFocusItemsOnTap(true)
-//        mapView.overlays.add(mOverlay)
-
-
-    }
-
-    private fun addPin(point: GeoPoint) {
-
-        val bottomSheet = InformationLocationBottomSheet(supportFragmentManager, object : OnInformationLocationListener {
-            override fun onInformationLocation(title: String, desc: String?) {
-                val viewModel = ViewModelProviders.of(this@MapActivity).get(LocationViewModel::class.java)
-                viewModel.add(title, desc, true, point)
-                finish()
-            }
-        })
-        bottomSheet.show()
-
-    }
-
-    private fun myLocation() {
-        if (!checkPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))) {
-            return
-        }
-        val mapController = mapView.controller
-
-        if (mMyLocationOverlay == null) {
-            mMyLocationOverlay = MyLocationNewOverlay(GpsMyLocationProvider(this), mapView)
-//            mMyLocationOverlay!!.setPersonIcon(BitmapFactory.decodeResource(resources, R.drawable.ic_person_pin))
-            val gp = GeoPoint(35.6980012, 51.3337879)
-            mapController.setCenter(gp)
-        }
-        mMyLocationOverlay!!.enableMyLocation()
-        mMyLocationOverlay!!.enableFollowLocation()
-        mMyLocationOverlay!!.isDrawAccuracyEnabled = true
-        mMyLocationOverlay!!.runOnFirstFix {
-            runOnUiThread {
-                mapController.animateTo(mMyLocationOverlay!!.myLocation)
-                mapController.setZoom(18)
-            }
-        }
-        mapView.overlays.add(mMyLocationOverlay)
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-        mapView.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mapView.onPause()
+        mapView.onCreate(savedInstanceState)
     }
 
     override fun onAllow(permission: String) {
         if (checkPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))) {
-            myLocation()
         }
     }
 
@@ -162,5 +48,40 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener {
             finish()
         })
         alertBuilder.build().show()
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        mapView.onStart()
+    }
+
+    public override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    public override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    public override fun onStop() {
+        super.onStop()
+        mapView.onStop()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView.onDestroy()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        mapView.onSaveInstanceState(outState)
     }
 }

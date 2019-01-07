@@ -36,7 +36,7 @@ class NoteRepository private constructor(context: Context) {
     }
 
     fun updateNote(note: NoteEntity) {
-        executor.execute { database!!.noteDao().updateNote(note.id, note.date!!, note.title!!, note.text!!) }
+        executor.execute { database!!.noteDao().updateNote(note.id!!, note.date!!, note.title!!, note.text!!) }
     }
 
     fun deleteNote(noteEntity: NoteEntity) {

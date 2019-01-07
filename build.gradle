@@ -6,32 +6,20 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
 
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
-//        classpath "com.google.gms:google-services:4.2.0"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.2.0'
-        classpath 'io.fabric.tools:gradle:1.26.1'
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'https://maven.google.com' }
         google()
         mavenCentral()
         jcenter()
-        maven { url 'https://jitpack.io' }
         maven { url "https://dl.bintray.com/zarinpali/lib" }
-        maven { url 'https://maven.fabric.io/public' }
-
-
     }
 }
 

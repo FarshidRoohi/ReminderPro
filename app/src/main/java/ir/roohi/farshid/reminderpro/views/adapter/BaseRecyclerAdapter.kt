@@ -18,7 +18,7 @@ import androidx.databinding.DataBindingUtil
  * Copyright Hossein Amini All Rights Reserved.
  */
 
-abstract class BaseRecyclerAdapter<DataSetType> : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder> {
+public abstract class BaseRecyclerAdapter<DataSetType> : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private var items: MutableList<DataSetType>? = null
     var context: Context? = null
@@ -30,30 +30,37 @@ abstract class BaseRecyclerAdapter<DataSetType> : androidx.recyclerview.widget.R
 
     constructor()
 
-    abstract fun getItemLayout(viewType: Int): Int
+    public abstract fun getItemLayout(viewType: Int): Int
 
-    abstract fun onBindViewHolder(viewDataBinding: ViewDataBinding, position: Int,
-                                  viewType: Int, element: DataSetType)
+    public abstract fun onBindViewHolderA(
+        viewDataBinding: ViewDataBinding, position: Int,
+        viewType: Int, element: DataSetType
+    )
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         if (context == null) this.context = parent.context
 
         val v = DataBindingUtil.inflate<ViewDataBinding>(
-                LayoutInflater.from(parent.context),
-                getItemLayout(viewType),
-                parent,
-                false
+            LayoutInflater.from(parent.context),
+            getItemLayout(viewType),
+            parent,
+            false
         )
         return VH(v)
 
     }
 
 
-    private inner class VH constructor(var binding: ViewDataBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(binding.root)
+    private inner class VH constructor(var binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
-        onBindViewHolder((holder as BaseRecyclerAdapter<*>.VH).binding, position, holder.getItemViewType(), items!![position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        onBindViewHolderA(
+            (holder as BaseRecyclerAdapter<*>.VH).binding,
+            position,
+            holder.getItemViewType(),
+            items!![position]
+        )
     }
 
     override fun getItemCount(): Int {

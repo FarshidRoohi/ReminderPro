@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
+
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'io.fabric'
+
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -12,7 +13,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
-        versionName "0.0.01"
+        versionName "1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,16 +35,16 @@ dependencies {
     def lifecycle_version = "2.1.0-alpha01"
     def room_version = "2.0.0-rc01"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+//    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    kapt 'androidx.databinding:databinding-compiler:3.2.1'
+
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
     implementation 'com.google.android.material:material:1.1.0-alpha02'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    //    implementation "com.google.android.gms:play-services-places:16.0.0"
-    //    implementation "com.google.android.gms:play-services-location:16.0.0"
-    //    implementation "com.google.android.gms:play-services-maps:16.0.0"
-    //    implementation 'com.google.maps.android:android-maps-utils:0.5'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -58,9 +59,7 @@ dependencies {
     implementation 'com.zarinpal:bottomsheet:0.0.5'
     implementation 'com.airbnb.android:paris:1.0.0'
     implementation 'com.airbnb.android:lottie:2.8.0'
-    implementation 'com.google.firebase:firebase-core:16.0.6'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.8'
-    implementation 'org.osmdroid:osmdroid-android:6.0.3'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.8.1'
 }
 repositories {
     mavenCentral()
