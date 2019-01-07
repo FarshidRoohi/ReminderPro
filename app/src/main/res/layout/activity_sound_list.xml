@@ -60,11 +60,10 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             android:padding="5dp"
-            android:src="@drawable/ic_microphone"
-            android:tint="@color/color_tint_icon_light"
+            android:src="@drawable/ic_empty_voice"
             />
 
         <TextView
@@ -73,7 +72,8 @@
             android:layout_height="wrap_content"
             android:text="@string/empty"
             android:textColor="@color/color_tint_icon_light"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
