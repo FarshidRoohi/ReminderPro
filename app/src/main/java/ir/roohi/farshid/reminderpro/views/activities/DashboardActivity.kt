@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class DashboardActivity : BaseActivity(), View.OnClickListener {
 
 
-
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, DashboardActivity::class.java)
@@ -53,10 +52,11 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun animatedViewGone(view: View, time: Long) {
-            ObjectAnimator.ofFloat(view, View.TRANSLATION_X, 100f, 3000f).apply {
-                duration = time
-                start()
-            }
+        ObjectAnimator.ofFloat(view, View.TRANSLATION_X, 100f, 3000f).apply {
+            duration = time
+            start()
+            Handler().postDelayed({ animatedView(view, 600)}, 1500)
+        }
     }
 
 
@@ -88,13 +88,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
             }
 
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        animatedView(itemReminderLocation, 400)
-        animatedView(itemNote, 600)
-        animatedView(itemSoundRecorder, 800)
     }
 
 }
