@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
@@ -30,10 +29,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        Log.i("TAG", "Log test")
-        Log.i("TAG", "Log test")
-
 
         itemNote.setOnClickListener(this)
         itemReminderLocation.setOnClickListener(this)
