@@ -32,6 +32,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         Log.i("TAG", "Log test")
+        Log.i("TAG", "Log test")
 
 
         itemNote.setOnClickListener(this)
