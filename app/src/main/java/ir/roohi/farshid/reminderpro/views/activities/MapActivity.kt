@@ -44,13 +44,16 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener, OnMapReadyCallb
         Mapbox.getInstance(this, getString(R.string.api_mapbox_key))
         setContentView(R.layout.activity_map)
         mapView.onCreate(savedInstanceState)
-        requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), this)
+        requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION), this)
         mapView.getMapAsync(this)
 
     }
 
     override fun onMapReady(mpx: MapboxMap) {
         mapboxMap = mpx
+        mapboxMap!!.uiSettings.isAttributionEnabled = false
+        mapboxMap!!.uiSettings.isLogoEnabled = false
+
         enableLocationComponent()
     }
 
