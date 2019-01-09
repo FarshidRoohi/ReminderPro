@@ -1,23 +1,37 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.mapbox.mapboxsdk.Mapbox
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
 import kotlinx.android.synthetic.main.activity_map.*
+import com.mapbox.android.core.permissions.PermissionsManager
+import com.mapbox.mapboxsdk.constants.Style
+import com.mapbox.mapboxsdk.location.modes.CameraMode
+import com.mapbox.mapboxsdk.location.LocationComponent
+import com.mapbox.mapboxsdk.location.modes.RenderMode
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
+import androidx.core.content.ContextCompat
+import com.mapbox.mapboxsdk.location.LocationComponentOptions
+import com.mapbox.mapboxsdk.maps.MapView
 
 
 /**
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/1/19.
  */
-class MapActivity : BaseActivity(), OnPermissionRequestListener {
+class MapActivity : BaseActivity(), OnPermissionRequestListener, OnMapReadyCallback {
 
+
+    private var mapboxMap: MapboxMap? = null
 
     companion object {
         fun start(context: Context) {
@@ -27,19 +41,52 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Mapbox.getInstance(this, "pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcW05aHBwZjE5N2o0OG5ubmsxMnc4cWYifQ.2RXagyMWkt5gft6NLdLCtw")
+        Mapbox.getInstance(this, getString(R.string.api_mapbox_key))
         setContentView(R.layout.activity_map)
         mapView.onCreate(savedInstanceState)
+        requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), this)
+        mapView.getMapAsync(this)
+
+    }
+
+    override fun onMapReady(mpx: MapboxMap) {
+        mapboxMap = mpx
+        enableLocationComponent()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun enableLocationComponent() {
+
+        if (!PermissionsManager.areLocationPermissionsGranted(this)) {
+            return
+        }
+        val options = LocationComponentOptions.builder(this)
+            .trackingGesturesManagement(true)
+            .accuracyColor(ContextCompat.getColor(this, R.color.colorAccent))
+            .build()
+
+        val locationComponent = mapboxMap!!.locationComponent
+
+        locationComponent.activateLocationComponent(this, options)
+
+        locationComponent.isLocationComponentEnabled = true
+        locationComponent.activateLocationComponent(this)
+
+        locationComponent.cameraMode = CameraMode.TRACKING
+        locationComponent.renderMode = RenderMode.COMPASS
     }
 
     override fun onAllow(permission: String) {
         if (checkPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))) {
+
         }
     }
 
     override fun onDenied(permission: String) {
-        val alertBuilder = AlertDialog.Builder(supportFragmentManager,
-                getString(R.string.permission), getString(R.string.permission_location))
+        val alertBuilder = AlertDialog.Builder(
+            supportFragmentManager,
+            getString(R.string.permission), getString(R.string.permission_location)
+        )
         alertBuilder.setBtnPositive(getString(R.string.yes), View.OnClickListener {
             requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), this)
             alertBuilder.dialog!!.dismissAllowingStateLoss()
