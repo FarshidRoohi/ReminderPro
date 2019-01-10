@@ -2,6 +2,7 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.location.Location
@@ -21,6 +22,11 @@ import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
 import kotlinx.android.synthetic.main.activity_map.*
+import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.camera.CameraPosition
+import androidx.core.app.ShareCompat.IntentBuilder
+import com.mapbox.mapboxsdk.plugins.places.picker.PlacePicker
+import com.mapbox.mapboxsdk.plugins.places.picker.model.PlacePickerOptions
 
 
 /**
@@ -31,6 +37,8 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener, OnMapReadyCallb
 
 
     private var mapboxMap: MapboxMap? = null
+
+    private val REQUEST_CODE = 241
 
     companion object {
         fun start(context: Context) {
@@ -54,7 +62,40 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener, OnMapReadyCallb
         fabMyLocation.setOnClickListener {
             enableLocationComponent()
         }
+        fabSelectPlace.setOnClickListener {
+            goToPickerActivity()
+        }
 
+
+    }
+//
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == Activity.RESULT_CANCELED) {
+//            Log.i("myTag", "result : canceled")
+//
+//        } else if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+//            val cameraFuture = PlacePicker.getPlace(data)
+//            Log.i("myTag", "result : ${cameraFuture!!.address()}")
+//            Log.i("myTag", "result : ${cameraFuture!!.placeName()}")
+//            Log.i("myTag", "result : ${cameraFuture!!.toJson()}")
+//        }
+//    }
+
+    private fun goToPickerActivity() {
+//        startActivityForResult(
+//            PlacePicker.IntentBuilder()
+//                .accessToken(getString(R.string.api_mapbox_key))
+//                .placeOptions(
+//                    PlacePickerOptions.builder()
+//                        .statingCameraPosition(
+//                            CameraPosition.Builder()
+//                                .target(LatLng(35.7064704, 51.3171456)).zoom(16.0).build()
+//                        )
+//                        .build()
+//                )
+//                .build(this), REQUEST_CODE
+//        )
     }
 
     override fun onMapReady(mpx: MapboxMap) {
