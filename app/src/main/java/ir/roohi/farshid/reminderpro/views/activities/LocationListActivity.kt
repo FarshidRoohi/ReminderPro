@@ -44,9 +44,9 @@ class LocationListActivity : BaseActivity() {
         val adapter = LocationAdapter()
         adapter.listener = object : OnClickItemLocationListener {
             override fun onClickItemLocation(position: Int, element: LocationEntity) {
-//                adapter.getItems()!![position].status = element.status
+                adapter.getItems()!![position].status = element.status
 //                adapter.notifyItemChanged(position)
-//                viewModel.update(element)
+                viewModel.update(element)
             }
         }
         recycler.adapter = adapter

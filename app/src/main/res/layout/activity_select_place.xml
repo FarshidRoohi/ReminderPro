@@ -30,16 +30,21 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"/>
 
-    <Button
+    <com.zarinpal.libs.views.ZarinButton
             android:id="@+id/btnSelect"
             android:text="@string/select"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="0dp"
+            app:zp_firstColor="@color/colorAccent"
+            android:textColor="@android:color/white"
+            app:zp_fontFace="iransans_bold"
+            app:zp_cornerRadius="0"
+            android:background="@color/colorAccent"
             android:layout_marginBottom="0dp"
             app:layout_constraintBottom_toBottomOf="parent"/>
 

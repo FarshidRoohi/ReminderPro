@@ -35,6 +35,9 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
         val edtDesc = view.findViewById<CustomInputEditText>(R.id.edtDesc)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
 
+        edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_NEXT
+        edtTitle.edt!!.setSingleLine(true)
+
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
 
@@ -49,8 +52,7 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
 
         })
 
-        edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_DONE
-        edtTitle.edt!!.setSingleLine(true)
+
         edtTitle.edt!!.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_NEXT) {
                 edtTitle.clearFocus()
