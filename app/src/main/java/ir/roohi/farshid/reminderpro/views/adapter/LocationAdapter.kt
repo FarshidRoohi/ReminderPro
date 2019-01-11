@@ -1,11 +1,14 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
+import android.util.Log
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemLocBinding
 import ir.roohi.farshid.reminderpro.extensions.toAgoTime
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
+import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.BaseRecyclerAdapter
 
 /**
@@ -19,16 +22,25 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
         return R.layout.item_loc
     }
 
-    override fun onBindViewHolderA(viewDataBinding: ViewDataBinding, position: Int, viewType: Int, element: LocationEntity) {
+    override fun onBindViewHolderA(
+        viewDataBinding: ViewDataBinding,
+        position: Int,
+        viewType: Int,
+        element: LocationEntity
+    ) {
         val binding = viewDataBinding as ItemLocBinding
         binding.txtTitle.text = element.title
         binding.txtDesc.text = element.text
         binding.txtDate.text = element.date.toAgoTime()
-        binding.switchCompat.isChecked = element.status
+
+
+// TODO : fix update item
+        binding.switchCompat.isChecked = getItems()!![position].status
+
 
         binding.switchCompat.setOnCheckedChangeListener { buttonView, isChecked ->
             element.status = isChecked
-            listener!!.onClickItemLocation(position,element)
+            listener!!.onClickItemLocation(position, element)
         }
     }
 
