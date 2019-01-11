@@ -3,6 +3,8 @@ package ir.roohi.farshid.reminderpro.views.bottomSheet
 import android.annotation.SuppressLint
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.SeekBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.zarinpal.libs.bottomsheet.BottomSheetModal
@@ -16,49 +18,67 @@ import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
  * ReminderPro | Copyrights 1/5/19.
  */
 @SuppressLint("ValidFragment")
-class InformationLocationBottomSheet constructor(fm: FragmentManager, val listener: OnInformationLocationListener) : BottomSheetModal(fm) {
+class InformationLocationBottomSheet constructor(fm: FragmentManager, val listener: OnInformationLocationListener) :
+    BottomSheetModal(fm) {
+
+
+    override fun getLayout(): Int {
+        return R.layout.boottom_sheet_location_info
+    }
 
 
     override fun getView(view: View?) {
 
         val btnOk = view!!.findViewById<ZarinButton>(R.id.btnOk)
+        val txtDistance = view.findViewById<TextView>(R.id.txtDistance)
         val edtTitle = view.findViewById<CustomInputEditText>(R.id.edtTitle)
         val edtDesc = view.findViewById<CustomInputEditText>(R.id.edtDesc)
+        val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+            }
+
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                txtDistance.text = String.format(getString(R.string.distance_value), progress)
+            }
+
+        })
 
         edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_DONE
         edtTitle.edt!!.setSingleLine(true)
         edtTitle.edt!!.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_NEXT) {
                 edtTitle.clearFocus()
-                edtDesc.requestFocus()
+                edtDesc.edt!!.requestFocus()
             }
             false
         }
 
         edtDesc.edt!!.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                validation(edtTitle.text, edtDesc.text)
+                validation(edtTitle.text, edtDesc.text, seekBar.progress)
             }
             false
         }
         btnOk.setOnClickListener {
-            validation(edtTitle.text, edtDesc.text)
+            validation(edtTitle.text, edtDesc.text, seekBar.progress)
         }
 
     }
 
-    override fun getLayout(): Int {
-        return R.layout.boottom_sheet_location_info
-    }
-
-    private fun validation(title: String, desc: String) {
+    private fun validation(title: String, desc: String, distance: Int) {
 
         if (title.isEmpty()) {
             Toast.makeText(context, getString(R.string.error_empty_title), Toast.LENGTH_SHORT).show()
             return
         }
 
-        listener.onInformationLocation(title, desc)
+        listener.onInformationLocation(title, desc, distance)
         dismissAllowingStateLoss()
 
     }

@@ -13,10 +13,11 @@ import java.util.*
 data class LocationEntity(
     var date: Date,
     var title: String,
-    var text: String,
+    var text: String?,
     var status: Boolean,
     var latitude: Double,
-    var longitude: Double
+    var longitude: Double,
+    var distance: Int
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null

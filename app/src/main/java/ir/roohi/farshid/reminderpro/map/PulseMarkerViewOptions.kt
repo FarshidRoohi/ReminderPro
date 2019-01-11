@@ -1,4 +1,4 @@
-package ir.roohi.farshid.reminderpro.views.adapter
+package ir.roohi.farshid.reminderpro.map
 
 
 import android.annotation.SuppressLint
@@ -10,23 +10,18 @@ import com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions
 import com.mapbox.mapboxsdk.annotations.IconFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 
-class CountryMarkerViewOptions : BaseMarkerViewOptions<CountryMarkerView, CountryMarkerViewOptions> {
-
-    private var abbrevName: String? = null
-    private var flagRes: Int = 0
+class PulseMarkerViewOptions : BaseMarkerViewOptions<PulseMarkerView, PulseMarkerViewOptions> {
 
     constructor() {}
 
-    constructor(`in`: Parcel) {
+    protected constructor(`in`: Parcel) {
         position(`in`.readParcelable<Parcelable>(LatLng::class.java.classLoader) as LatLng)
         snippet(`in`.readString())
         title(`in`.readString())
         flat(`in`.readByte().toInt() != 0)
         anchor(`in`.readFloat(), `in`.readFloat())
-        infoWindowAnchor(`in`.readFloat(), `in`.readFloat())
+        selected = `in`.readByte().toInt() != 0
         rotation(`in`.readFloat())
-        visible(`in`.readByte().toInt() != 0)
-        alpha(`in`.readFloat())
         if (`in`.readByte().toInt() != 0) {
             // this means we have an icon
             val iconId = `in`.readString()
@@ -34,11 +29,9 @@ class CountryMarkerViewOptions : BaseMarkerViewOptions<CountryMarkerView, Countr
             val icon = IconFactory.recreate(iconId!!, iconBitmap!!)
             icon(icon)
         }
-        abbrevName(`in`.readString())
-        flagRes(`in`.readInt())
     }
 
-    override fun getThis(): CountryMarkerViewOptions {
+    override fun getThis(): PulseMarkerViewOptions {
         return this
     }
 
@@ -55,31 +48,18 @@ class CountryMarkerViewOptions : BaseMarkerViewOptions<CountryMarkerView, Countr
         out.writeFloat(getAnchorV())
         out.writeFloat(getInfoWindowAnchorU())
         out.writeFloat(getInfoWindowAnchorV())
+        out.writeByte((if (selected) 1 else 0).toByte())
         out.writeFloat(getRotation())
-        out.writeByte((if (isVisible) 1 else 0).toByte())
-        out.writeFloat(getAlpha())
         val icon = getIcon()
         out.writeByte((if (icon != null) 1 else 0).toByte())
         if (icon != null) {
             out.writeString(getIcon().id)
             out.writeParcelable(getIcon().bitmap, flags)
         }
-        out.writeString(abbrevName)
-        out.writeInt(flagRes)
     }
 
-    override fun getMarker(): CountryMarkerView {
-        return CountryMarkerView(this, abbrevName!!, flagRes)
-    }
-
-    fun abbrevName(abbrevName: String?): CountryMarkerViewOptions {
-        this.abbrevName = abbrevName
-        return getThis()
-    }
-
-    fun flagRes(flagRes: Int): CountryMarkerViewOptions {
-        this.flagRes = flagRes
-        return getThis()
+    override fun getMarker(): PulseMarkerView {
+        return PulseMarkerView(this)
     }
 
     companion object {
@@ -92,10 +72,8 @@ class CountryMarkerViewOptions : BaseMarkerViewOptions<CountryMarkerView, Countr
                 }
 
                 override fun newArray(size: Int): Array<CountryMarkerViewOptions?> {
-                    return arrayOfNulls(size)
+                    return arrayOfNulls<CountryMarkerViewOptions>(size)
                 }
             }
     }
-
-
 }

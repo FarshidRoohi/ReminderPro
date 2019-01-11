@@ -6,6 +6,7 @@ import ir.roohi.farshid.reminderpro.databinding.ItemLocBinding
 import ir.roohi.farshid.reminderpro.extensions.toAgoTime
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
+import ir.roohi.farshid.reminderpro.views.adapter.BaseRecyclerAdapter
 
 /**
  * Created by Farshid Roohi.

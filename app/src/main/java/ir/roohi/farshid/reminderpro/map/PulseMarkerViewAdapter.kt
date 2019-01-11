@@ -1,4 +1,4 @@
-package ir.roohi.farshid.reminderpro.views.adapter
+package ir.roohi.farshid.reminderpro.map
 
 import android.content.Context
 import android.view.LayoutInflater

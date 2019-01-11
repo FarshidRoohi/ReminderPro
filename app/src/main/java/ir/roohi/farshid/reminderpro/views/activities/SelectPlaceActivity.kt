@@ -1,5 +1,6 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -15,6 +16,7 @@ import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProviders
 import com.mapbox.android.core.location.LocationEngineListener
 import com.mapbox.android.core.location.LocationEnginePriority
 import com.mapbox.android.core.permissions.PermissionsManager
@@ -29,8 +31,13 @@ import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import ir.roohi.farshid.reminderpro.R
-import ir.roohi.farshid.reminderpro.views.adapter.PulseMarkerViewAdapter
-import ir.roohi.farshid.reminderpro.views.adapter.PulseMarkerViewOptions
+import ir.roohi.farshid.reminderpro.customViews.AlertDialog
+import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
+import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
+import ir.roohi.farshid.reminderpro.map.PulseMarkerViewAdapter
+import ir.roohi.farshid.reminderpro.map.PulseMarkerViewOptions
+import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
+import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
 import kotlinx.android.synthetic.main.activity_select_place.*
 
 
@@ -38,12 +45,13 @@ import kotlinx.android.synthetic.main.activity_select_place.*
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/10/19.
  */
-class SelectPlaceActivity : BaseActivity() {
+class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
     private var mapboxMap: MapboxMap? = null
     private var addressPin: Marker? = null
     private var userMarker: MarkerView? = null
     private var dropPinView: ImageView? = null
+    private lateinit var viewModel:LocationViewModel
 
     companion object {
         fun start(context: Context) {
@@ -58,24 +66,47 @@ class SelectPlaceActivity : BaseActivity() {
         mapView.onCreate(savedInstanceState)
         createDropPin()
 
+        viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
+
+        requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+            this
+        )
+
+        fabMyLocation.setOnClickListener { enableLocationComponent() }
+
         mapView.getMapAsync {
             mapboxMap = it
             mapboxMap!!.uiSettings.isAttributionEnabled = false
             mapboxMap!!.uiSettings.isLogoEnabled = false
             enableLocationComponent()
-            mapboxMap!!.markerViewManager.addMarkerViewAdapter(PulseMarkerViewAdapter(this))
+            mapboxMap!!.markerViewManager.addMarkerViewAdapter(
+                PulseMarkerViewAdapter(
+                    this
+                )
+            )
             trackUserLocationView(userMarker)
         }
 
         btnSelect.setOnClickListener {
-            if (mapboxMap != null) {
-                val position: LatLng = getLocationPickerLocation()
 
-                Log.i("TAG", "latitude : ${position.latitude}  || longitude : ${position.longitude}")
+            val bottomSheet =  InformationLocationBottomSheet(supportFragmentManager,object :OnInformationLocationListener{
+                override fun onInformationLocation(title: String, text: String?,distance:Int) {
 
-                //Show the address pin (result)
-                showAddressPin(position)
-            }
+                    if (mapboxMap != null) {
+                        val position: LatLng = getLocationPickerLocation()
+
+                        //Create new one
+                        addressPin = mapboxMap!!.addMarker(MarkerViewOptions().title(title).position(position))
+                        mapboxMap!!.selectMarker(addressPin!!)
+
+                        viewModel.add(title,text,true,position,distance)
+                    }
+                }
+            })
+            bottomSheet.show()
+
+
+
         }
 
     }
@@ -129,7 +160,7 @@ class SelectPlaceActivity : BaseActivity() {
     private fun showAddressPin(position: LatLng): Marker {
 
         //Create new one
-        addressPin = mapboxMap!!.addMarker(MarkerViewOptions().title("Loading address...").position(position));
+        addressPin = mapboxMap!!.addMarker(MarkerViewOptions().title("Loading address...").position(position))
         mapboxMap!!.selectMarker(addressPin!!)
         return addressPin!!
     }
@@ -255,6 +286,29 @@ class SelectPlaceActivity : BaseActivity() {
         super.onDestroy()
         mapView.onDestroy()
     }
+
+
+    override fun onAllow(permission: String) {
+//        if (checkPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))) {
+//
+//        }
+    }
+
+    override fun onDenied(permission: String) {
+        val alertBuilder = AlertDialog.Builder(
+            supportFragmentManager,
+            getString(R.string.permission), getString(R.string.permission_location)
+        )
+        alertBuilder.setBtnPositive(getString(R.string.yes), View.OnClickListener {
+            requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), this)
+            alertBuilder.dialog!!.dismissAllowingStateLoss()
+        })
+        alertBuilder.setBtnNegative(getString(R.string.no), View.OnClickListener {
+            finish()
+        })
+        alertBuilder.build().show()
+    }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

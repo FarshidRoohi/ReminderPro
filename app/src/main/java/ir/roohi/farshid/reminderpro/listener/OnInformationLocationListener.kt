@@ -5,5 +5,5 @@ package ir.roohi.farshid.reminderpro.listener
  * ReminderPro | Copyrights 1/5/19.
  */
 interface OnInformationLocationListener {
-    fun onInformationLocation(title: String, desc: String?)
+    fun onInformationLocation(title: String, desc: String?,distance:Int)
 }
