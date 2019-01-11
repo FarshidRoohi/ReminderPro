@@ -13,7 +13,7 @@ import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.LocationAdapter
 import kotlinx.android.synthetic.main.activity_reminder_location.*
-import kotlin.collections.ArrayList
+
 
 /**
  * Created by Farshid Roohi.
@@ -33,7 +33,9 @@ class LocationListActivity : BaseActivity() {
         setContentView(R.layout.activity_reminder_location)
 
         toolbar.getLeftImageView().setOnClickListener { finish() }
-        fabAdd.setOnClickListener { MapActivity.start(this) }
+        fabAdd.setOnClickListener {
+            SelectPlaceActivity.start(this)
+        }
 
         recycler.layoutManager = LinearLayoutManager(this)
 
@@ -63,4 +65,5 @@ class LocationListActivity : BaseActivity() {
         })
 
     }
+
 }

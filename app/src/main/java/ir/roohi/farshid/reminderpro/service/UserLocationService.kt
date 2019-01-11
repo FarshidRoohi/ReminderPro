@@ -18,12 +18,12 @@ import androidx.core.app.ActivityCompat
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/5/19.
  */
-class LocationService :Service() {
+class UserLocationService :Service() {
 
     private val MINIMUM_DISTANCE_CHANGE_FOR_UPDATES: Long = 10 // Meters
     private val MINIMUM_TIME_BETWEEN_UPDATES: Long = 5000 // in Milliseconds
     private var locationManager: LocationManager? = null
-    private var instance: LocationService? = null
+    private var instance: UserLocationService? = null
     internal var isGPSEnabled = false
     internal var isNetworkEnabled = false
     private val TAG = "LOCATION_SERVICE"

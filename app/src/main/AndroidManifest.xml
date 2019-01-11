@@ -38,6 +38,7 @@
         <activity android:name=".views.activities.RecordSoundActivity"/>
         <activity android:name=".views.activities.SoundListActivity"/>
         <activity android:name=".views.activities.MapActivity"/>
+        <activity android:name=".views.activities.SelectPlaceActivity"/>
     </application>
 
 </manifest>

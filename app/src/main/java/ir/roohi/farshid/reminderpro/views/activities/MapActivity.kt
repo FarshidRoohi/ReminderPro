@@ -2,7 +2,6 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.location.Location
@@ -22,11 +21,6 @@ import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
 import kotlinx.android.synthetic.main.activity_map.*
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.camera.CameraPosition
-import androidx.core.app.ShareCompat.IntentBuilder
-import com.mapbox.mapboxsdk.plugins.places.picker.PlacePicker
-import com.mapbox.mapboxsdk.plugins.places.picker.model.PlacePickerOptions
 
 
 /**

@@ -6,4 +6,6 @@
     <dimen name="text_subtitle_size">14dp</dimen>
 
     <dimen name="bottom_sheet_top_radius">8dp</dimen>
+
+    <dimen name="circle_size">50dp</dimen>
 </resources>

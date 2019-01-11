@@ -60,6 +60,8 @@ dependencies {
     implementation 'com.airbnb.android:lottie:2.8.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.8.1'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places:0.6.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+
 }
 repositories {
     mavenCentral()
