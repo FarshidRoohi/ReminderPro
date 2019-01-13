@@ -32,8 +32,8 @@ public abstract class BaseRecyclerAdapter<DataSetType> : RecyclerView.Adapter<Re
 
     public abstract fun getItemLayout(viewType: Int): Int
 
-    public abstract fun onBindViewHolderA(
-        viewDataBinding: ViewDataBinding, position: Int,
+    public abstract fun onBindView(
+        viewDataBinding: ViewDataBinding,viewHolder :RecyclerView.ViewHolder, position: Int,
         viewType: Int, element: DataSetType
     )
 
@@ -55,8 +55,9 @@ public abstract class BaseRecyclerAdapter<DataSetType> : RecyclerView.Adapter<Re
     private inner class VH constructor(var binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        onBindViewHolderA(
+        onBindView(
             (holder as BaseRecyclerAdapter<*>.VH).binding,
+            holder,
             position,
             holder.getItemViewType(),
             items!![position]

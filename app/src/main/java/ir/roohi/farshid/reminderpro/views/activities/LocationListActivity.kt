@@ -3,7 +3,6 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -45,7 +44,6 @@ class LocationListActivity : BaseActivity() {
         val adapter = LocationAdapter()
         adapter.listener = object : OnClickItemLocationListener {
             override fun onClickItemLocation(position: Int, element: LocationEntity) {
-//                adapter.getItems()!![position].status = element.status
                 viewModel.update(element)
             }
         }

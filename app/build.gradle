@@ -62,7 +62,7 @@ dependencies {
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places:0.6.0'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 
-    implementation 'ir.farshid_roohi:customAdapterRecycleView:0.2'
+//    implementation 'ir.farshid_roohi:customAdapterRecycleView:0.2'
 
 }
 repositories {

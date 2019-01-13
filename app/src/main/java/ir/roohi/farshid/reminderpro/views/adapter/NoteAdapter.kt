@@ -1,6 +1,7 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemNotBinding
 import ir.roohi.farshid.reminderpro.extensions.toAgoTime
@@ -18,7 +19,7 @@ class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
         return R.layout.item_not
     }
 
-    override fun onBindViewHolderA(viewDataBinding: ViewDataBinding, position: Int, viewType: Int, element: NoteEntity) {
+    override fun onBindView(viewDataBinding: ViewDataBinding,viewHolder: RecyclerView.ViewHolder, position: Int, viewType: Int, element: NoteEntity) {
         val binding = viewDataBinding as ItemNotBinding
         binding.txtDate.text = element.date.toAgoTime()
         binding.txtTitle.text = element.title

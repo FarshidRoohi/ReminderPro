@@ -2,6 +2,7 @@ package ir.roohi.farshid.reminderpro.views.adapter
 
 import android.view.View
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemVoBinding
 import ir.roohi.farshid.reminderpro.extensions.toAgoTime
@@ -19,7 +20,13 @@ class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
         return R.layout.item_vo
     }
 
-    override fun onBindViewHolderA(viewDataBinding: ViewDataBinding, position: Int, viewType: Int, element: VoiceEntity) {
+    override fun onBindView(
+        viewDataBinding: ViewDataBinding,
+        viewHolder: RecyclerView.ViewHolder,
+        position: Int,
+        viewType: Int,
+        element: VoiceEntity
+    ) {
         val binding = viewDataBinding as ItemVoBinding
         binding.txtTitle.text = element.title
         binding.txtDate.text = element.date.toAgoTime()
