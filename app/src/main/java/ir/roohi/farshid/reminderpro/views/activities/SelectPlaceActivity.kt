@@ -7,7 +7,6 @@ import android.content.Intent
 import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.mapbox.android.core.location.LocationEngineListener
 import com.mapbox.android.core.location.LocationEnginePriority
 import com.mapbox.android.core.permissions.PermissionsManager
-import com.mapbox.mapboxsdk.annotations.IconFactory
 import com.mapbox.mapboxsdk.annotations.Marker
 import com.mapbox.mapboxsdk.annotations.MarkerView
 import com.mapbox.mapboxsdk.annotations.MarkerViewOptions
@@ -35,7 +33,6 @@ import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
 import ir.roohi.farshid.reminderpro.map.PulseMarkerViewAdapter
-import ir.roohi.farshid.reminderpro.map.PulseMarkerViewOptions
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
 import kotlinx.android.synthetic.main.activity_select_place.*
@@ -51,7 +48,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
     private var addressPin: Marker? = null
     private var userMarker: MarkerView? = null
     private var dropPinView: ImageView? = null
-    private lateinit var viewModel:LocationViewModel
+    private lateinit var viewModel: LocationViewModel
 
     companion object {
         fun start(context: Context) {
@@ -68,7 +65,8 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
         viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
 
-        requestPermission(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+        requestPermission(
+            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
             this
         )
 
@@ -89,22 +87,22 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
         btnSelect.setOnClickListener {
 
-            val bottomSheet =  InformationLocationBottomSheet(supportFragmentManager,object :OnInformationLocationListener{
-                override fun onInformationLocation(title: String, text: String?,distance:Int) {
+            val bottomSheet =
+                InformationLocationBottomSheet(supportFragmentManager, object : OnInformationLocationListener {
+                    override fun onInformationLocation(title: String, text: String?, distance: Int) {
 
-                    if (mapboxMap != null) {
-                        val position: LatLng = getLocationPickerLocation()
+                        if (mapboxMap != null) {
+                            val position: LatLng = getLocationPickerLocation()
 
-                        //Create new one
-                        addressPin = mapboxMap!!.addMarker(MarkerViewOptions().title(title).position(position))
-                        mapboxMap!!.selectMarker(addressPin!!)
+                            //Create new one
+                            addressPin = mapboxMap!!.addMarker(MarkerViewOptions().title(title).position(position))
+                            mapboxMap!!.selectMarker(addressPin!!)
 
-                        viewModel.add(title,text,true,position,distance)
+                            viewModel.add(title, text, true, position, distance)
+                        }
                     }
-                }
-            })
+                })
             bottomSheet.show()
-
 
 
         }
@@ -125,9 +123,6 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
         locationComponent.locationEngine!!.interval = 500
         locationComponent.locationEngine!!.activate()
         locationComponent.locationEngine!!.requestLocationUpdates()
-
-        Log.i("myTAG", "longitude : ${locationComponent.locationEngine!!.lastLocation.longitude}")
-        Log.i("myTAG", "latitude : ${locationComponent.locationEngine!!.lastLocation.latitude}")
 
         locationComponent.locationEngine!!.addLocationEngineListener(object : LocationEngineListener {
             override fun onLocationChanged(location: Location?) {
@@ -154,23 +149,6 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
             .enableStaleState(true)
             .compassAnimationEnabled(true)
             .build()
-    }
-
-
-    private fun showAddressPin(position: LatLng): Marker {
-
-        //Create new one
-        addressPin = mapboxMap!!.addMarker(MarkerViewOptions().title("Loading address...").position(position))
-        mapboxMap!!.selectMarker(addressPin!!)
-        return addressPin!!
-    }
-
-    private fun createCustomUserMarker(markerPosition: LatLng): MarkerView {
-        return mapboxMap!!.addMarker(
-            PulseMarkerViewOptions()
-                .icon(IconFactory.getInstance(applicationContext).fromResource(R.drawable.ic_person_pin))
-                .position(markerPosition)
-        )
     }
 
     private fun createDropPin() {
