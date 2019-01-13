@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "ir.farshid.roohi.reminderpro"
-        minSdkVersion 17
+        minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
         versionName "1"
@@ -61,6 +61,8 @@ dependencies {
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.8.1'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places:0.6.0'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+
+    implementation 'ir.farshid_roohi:customAdapterRecycleView:0.2'
 
 }
 repositories {
