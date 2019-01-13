@@ -1,10 +1,10 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
-import android.os.Handler
+import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import ir.roohi.farshid.reminderpro.R
-import ir.roohi.farshid.reminderpro.databinding.ItemLocBinding
+import ir.roohi.farshid.reminderpro.databinding.ItemLocationBinding
 import ir.roohi.farshid.reminderpro.extensions.toAgoTime
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
@@ -15,6 +15,13 @@ import ir.roohi.farshid.reminderpro.model.LocationEntity
  */
 class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
 
+    var listener: OnClickItemLocationListener? = null
+
+
+    override fun getItemLayout(viewType: Int): Int {
+        return R.layout.item_location
+    }
+
     override fun onBindView(
         viewDataBinding: ViewDataBinding,
         viewHolder: RecyclerView.ViewHolder,
@@ -23,13 +30,16 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
         element: LocationEntity
     ) {
 
-        val binding = viewDataBinding as ItemLocBinding
+        val binding = viewDataBinding as ItemLocationBinding
+        binding.switchCompat.isChecked = element.status
         binding.txtTitle.text = element.title
         binding.txtDesc.text = element.text
         binding.txtDate.text = element.date.toAgoTime()
+        binding.txtDesc.visibility = View.GONE
 
-        binding.switchCompat.isChecked = element.status
-
+        if (!element.text!!.isEmpty()) {
+            binding.txtDesc.visibility = View.VISIBLE
+        }
 
         binding.switchCompat.setOnCheckedChangeListener { _, isChecked ->
             getItems()!![viewHolder.adapterPosition].status = isChecked
@@ -37,10 +47,5 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
         }
     }
 
-    var listener: OnClickItemLocationListener? = null
-
-    override fun getItemLayout(viewType: Int): Int {
-        return R.layout.item_loc
-    }
 
 }

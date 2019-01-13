@@ -4,7 +4,7 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import ir.roohi.farshid.reminderpro.R
-import ir.roohi.farshid.reminderpro.databinding.ItemVoBinding
+import ir.roohi.farshid.reminderpro.databinding.ItemVoiceBinding
 import ir.roohi.farshid.reminderpro.extensions.toAgoTime
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 
@@ -17,7 +17,7 @@ class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
     var listener: OnClickItemListener? = null
 
     override fun getItemLayout(viewType: Int): Int {
-        return R.layout.item_vo
+        return R.layout.item_voice
     }
 
     override fun onBindView(
@@ -27,7 +27,7 @@ class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
         viewType: Int,
         element: VoiceEntity
     ) {
-        val binding = viewDataBinding as ItemVoBinding
+        val binding = viewDataBinding as ItemVoiceBinding
         binding.txtTitle.text = element.title
         binding.txtDate.text = element.date.toAgoTime()
         binding.icPlay.setImageResource(if (element.isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
