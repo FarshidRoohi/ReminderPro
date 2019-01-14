@@ -3,12 +3,15 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.listener.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.VoiceAdapter
@@ -20,8 +23,10 @@ import java.util.*
  * ReminderPro | Copyrights 12/23/18.
  */
 
-class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdapter.OnClickItemListener {
+class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdapter.OnClickItemListener,
+    OnMultiSelectVoiceListener {
 
+    private lateinit var viewModel: VoiceViewModel
 
     private val adapter = VoiceAdapter()
     private val player = MediaPlayer()
@@ -38,10 +43,11 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sound_list)
 
-        val viewModel = ViewModelProviders.of(this).get(VoiceViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(VoiceViewModel::class.java)
         viewModel.mutableList!!.observe(this, this)
 
-        adapter.listener = this
+        adapter.onItemClickListener = this
+        adapter.listenerMultiSelect = this
         recycler.layoutManager = LinearLayoutManager(this)
         recycler.adapter = adapter
 
@@ -108,6 +114,54 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
         player.reset()
         adapter.getItems()!![positionPlayItem].isPlaying = false
         adapter.notifyItemChanged(positionPlayItem)
+    }
+
+    override fun onMultiSelectVoice(items: ArrayList<VoiceEntity>) {
+        stopPlay()
+        if (items.size == 0) {
+            layoutSelectItem.visibility = View.GONE
+            return
+        }
+        txtCounterSelect.text = items.size.toString()
+        if (layoutSelectItem.visibility == View.GONE) {
+            layoutSelectItem.visibility = View.VISIBLE
+        }
+
+        if (items.size > 1) {
+            imgShare.visibility = View.GONE
+        } else {
+            imgShare.visibility = View.VISIBLE
+        }
+
+        imgCancelSelect.setOnClickListener {
+            adapter.itemsSelected.clear()
+            adapter.getItems()?.forEach { item ->
+                item.statusSelect = false
+            }
+            adapter.notifyDataSetChanged()
+            layoutSelectItem.visibility = View.GONE
+        }
+        imgShare.setOnClickListener {
+            if (items.isEmpty()) {
+                return@setOnClickListener
+            }
+            val uri = Uri.parse(items[0].path)
+            val share = Intent(Intent.ACTION_SEND)
+            share.type = "audio/*"
+            share.putExtra(Intent.EXTRA_STREAM, uri)
+            startActivity(Intent.createChooser(share, "Share Sound File"))
+
+        }
+        imgDelete.setOnClickListener {
+            items.forEach { item ->
+                items.remove(item)
+                viewModel.remove(item)
+                txtCounterSelect.text = items.size.toString()
+                if (items.isEmpty()) {
+                    layoutSelectItem.visibility = View.GONE
+                }
+            }
+        }
     }
 
     override fun onBackPressed() {

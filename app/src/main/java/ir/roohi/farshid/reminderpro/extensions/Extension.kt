@@ -5,6 +5,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.text.format.DateUtils
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import ir.roohi.farshid.reminderpro.R
@@ -28,7 +29,7 @@ fun Date.toAgoTime(): String {
 }
 
 
-fun ConstraintLayout.animatedColorBackgroundSelected(isSelected: Boolean = true) {
+fun View.animatedColorBackgroundSelected(isSelected: Boolean = true) {
     val colorFrom: Int
     val colorTo: Int
 

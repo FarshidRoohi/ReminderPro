@@ -20,4 +20,5 @@ data class VoiceEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
     @Ignore var isPlaying: Boolean = false
+    @Ignore var statusSelect: Boolean = false
 }

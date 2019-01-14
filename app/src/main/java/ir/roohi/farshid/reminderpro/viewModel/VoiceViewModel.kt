@@ -24,4 +24,7 @@ class VoiceViewModel : AndroidViewModel {
     public fun add(title: String, path: String, duration: Int) {
         repository!!.add(VoiceEntity(Date(), title, path, duration))
     }
+    public fun remove(item:VoiceEntity){
+        repository!!.delete(item)
+    }
 }
