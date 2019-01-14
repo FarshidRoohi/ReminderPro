@@ -4,10 +4,7 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
-import android.drm.DrmStore
 import android.text.format.DateUtils
-import android.util.Log
-import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import ir.roohi.farshid.reminderpro.R

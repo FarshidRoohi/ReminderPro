@@ -1,7 +1,6 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
 import android.graphics.Color
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

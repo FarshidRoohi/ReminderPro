@@ -3,7 +3,6 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,8 +14,6 @@ import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.NoteAdapter
 import kotlinx.android.synthetic.main.activity_note_list.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 /**
@@ -27,7 +24,6 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
 
     private lateinit var adapter: NoteAdapter
     private lateinit var viewModel: NoteViewModel
-
 
     companion object {
         fun start(context: Context) {
@@ -98,11 +94,19 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             layoutSelectItem.visibility = View.GONE
         }
         imgShare.setOnClickListener {
+            if (items.isEmpty()){
+                return@setOnClickListener
+            }
             items[0].text.share(this)
         }
         imgDelete.setOnClickListener {
             items.forEach { item ->
+                items.remove(item)
                 viewModel.removeNote(item)
+                txtCounterSelect.text = items.size.toString()
+                if(items.isEmpty()){
+                    layoutSelectItem.visibility = View.GONE
+                }
             }
 
         }

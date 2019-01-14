@@ -21,4 +21,7 @@ data class LocationEntity(
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
+
+    @Ignore
+    var statusSelect:Boolean = false
 }
