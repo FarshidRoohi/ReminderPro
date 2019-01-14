@@ -3,17 +3,20 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
+import ir.roohi.farshid.reminderpro.extensions.share
 import ir.roohi.farshid.reminderpro.listener.OnMultiSelectNotesListener
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.NoteAdapter
 import kotlinx.android.synthetic.main.activity_note_list.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -71,7 +74,40 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
     }
 
     override fun onMultiSelectNotes(items: ArrayList<NoteEntity>) {
-    showMsg("size select items : ${items.size}")
+        if (items.size == 0) {
+            layoutSelectItem.visibility = View.GONE
+            return
+        }
+        txtCounterSelect.text = items.size.toString()
+        if (layoutSelectItem.visibility == View.GONE) {
+            layoutSelectItem.visibility = View.VISIBLE
+        }
+
+        if (items.size > 1) {
+            imgShare.visibility = View.GONE
+        } else {
+            imgShare.visibility = View.VISIBLE
+        }
+
+        imgCancelSelect.setOnClickListener {
+            adapter.itemsSelected.clear()
+            adapter.getItems()?.forEach { item ->
+                item.statusSelect = false
+            }
+            adapter.notifyDataSetChanged()
+            layoutSelectItem.visibility = View.GONE
+        }
+        imgShare.setOnClickListener {
+            items[0].text.share(this)
+        }
+        imgDelete.setOnClickListener {
+            items.forEach { item ->
+                viewModel.removeNote(item)
+            }
+
+        }
+
+
     }
 
     override fun onClick(v: View?) {

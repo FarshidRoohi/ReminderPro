@@ -2,6 +2,9 @@ package ir.roohi.farshid.reminderpro.extensions
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.content.Context
+import android.content.Intent
+import android.drm.DrmStore
 import android.text.format.DateUtils
 import android.util.Log
 import android.view.View
@@ -46,4 +49,14 @@ fun ConstraintLayout.animatedColorBackgroundSelected(isSelected: Boolean = true)
     colorAnimation.duration = 250 // milliseconds
     colorAnimation.addUpdateListener { animator -> this.setBackgroundColor(animator.animatedValue as Int) }
     colorAnimation.start()
+}
+
+
+// String extension
+fun String.share(context: Context) {
+    val intent = Intent(Intent.ACTION_SEND)
+    intent.type = "text/plain"
+    intent.putExtra(Intent.EXTRA_TEXT, this)
+    context.startActivity(Intent.createChooser(intent, "share text"))
+
 }

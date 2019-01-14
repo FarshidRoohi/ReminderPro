@@ -1,6 +1,7 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
 import android.graphics.Color
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +20,7 @@ import ir.roohi.farshid.reminderpro.views.activities.NoteEditActivity
  */
 class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
 
-    private var itemsSelected: ArrayList<NoteEntity> = ArrayList()
+    var itemsSelected: ArrayList<NoteEntity> = ArrayList()
     var listener: OnMultiSelectNotesListener? = null
 
     override fun getItemLayout(viewType: Int): Int {
@@ -42,6 +43,12 @@ class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
         val color = if (element.statusSelect) colorSelectItem else Color.TRANSPARENT
 
         binding.rootLayout.setBackgroundColor(color)
+
+        if (element.statusSelect) {
+            changeColorLight(binding)
+        } else {
+            changeColorDarker(binding)
+        }
 
         binding.rootLayout.setOnClickListener {
             if (itemsSelected.size > 0) {
