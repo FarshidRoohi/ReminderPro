@@ -14,4 +14,7 @@ data class NoteEntity(
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
+
+    @Ignore
+    var statusSelect:Boolean = false
 }
