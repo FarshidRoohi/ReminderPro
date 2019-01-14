@@ -58,6 +58,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
 
     override fun onChanged(list: List<NoteEntity>?) {
         this.progressBar.visibility = View.GONE
+        adapter.removeAll()
         list?.apply {
             adapter.swapData(ArrayList(this))
         }
@@ -94,21 +95,17 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             layoutSelectItem.visibility = View.GONE
         }
         imgShare.setOnClickListener {
-            if (items.isEmpty()){
+            if (items.isEmpty()) {
                 return@setOnClickListener
             }
             items[0].text.share(this)
         }
         imgDelete.setOnClickListener {
             items.forEach { item ->
-                items.remove(item)
-                viewModel.removeNote(item)
-                txtCounterSelect.text = items.size.toString()
-                if(items.isEmpty()){
-                    layoutSelectItem.visibility = View.GONE
-                }
+                viewModel.remove(item)
             }
-
+            layoutSelectItem.visibility = View.GONE
+            items.clear()
         }
 
 

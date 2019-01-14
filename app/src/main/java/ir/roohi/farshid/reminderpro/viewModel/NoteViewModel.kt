@@ -34,11 +34,11 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         this.noteRepository.insertNote(entity)
     }
 
-    fun updateNote(entity: NoteEntity) {
+    fun update(entity: NoteEntity) {
         this.noteRepository.updateNote(entity)
     }
 
-    fun removeNote(entity: NoteEntity) {
+    fun remove(entity: NoteEntity) {
         this.noteRepository.deleteNote(entity)
     }
 }

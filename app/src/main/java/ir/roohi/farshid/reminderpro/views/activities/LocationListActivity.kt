@@ -15,7 +15,6 @@ import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.LocationAdapter
 import kotlinx.android.synthetic.main.activity_reminder_location.*
-import androidx.core.content.ContextCompat.startActivity
 import java.util.*
 
 
@@ -62,6 +61,7 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
             layoutEmptyState.visibility = View.GONE
             progressBar.visibility = View.GONE
             if (list == null || list.isEmpty()) {
+                adapter.removeAll()
                 layoutEmptyState.visibility = View.VISIBLE
                 return@Observer
             }
@@ -99,7 +99,7 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
             layoutSelectItem.visibility = View.GONE
         }
         imgShare.setOnClickListener {
-            if (items.isEmpty()){
+            if (items.isEmpty()) {
                 return@setOnClickListener
             }
             val uri = String.format(Locale.ENGLISH, "geo:%f,%f", items[0].latitude, items[0].longitude)
@@ -109,14 +109,10 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
         }
         imgDelete.setOnClickListener {
             items.forEach { item ->
-                items.remove(item)
                 viewModel.remove(item)
-                txtCounterSelect.text = items.size.toString()
-                if (items.isEmpty()) {
-                    layoutSelectItem.visibility = View.GONE
-                }
             }
-
+            layoutSelectItem.visibility = View.GONE
+            items.clear()
         }
 
 

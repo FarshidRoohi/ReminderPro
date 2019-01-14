@@ -64,7 +64,7 @@ class NoteEditActivity : BaseActivity() {
             alertDialog.dialog!!.dismiss()
         })
         alertDialog.setBtnPositive(getString(R.string.yes), View.OnClickListener {
-            this.viewModel.removeNote(noteEntity!!)
+            this.viewModel.remove(noteEntity!!)
             finish()
         })
         alertDialog.build().show()
@@ -83,7 +83,7 @@ class NoteEditActivity : BaseActivity() {
         } else if (noteEntity!!.text != text) {
             noteEntity!!.date = Date()
             noteEntity!!.text = text
-            this.viewModel.updateNote(noteEntity!!)
+            this.viewModel.update(noteEntity!!)
 
         }
         showMsg(getString(R.string.save))

@@ -16,7 +16,9 @@ import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.VoiceAdapter
 import kotlinx.android.synthetic.main.activity_sound_list.*
+import java.io.File
 import java.util.*
+import java.util.concurrent.Executors
 
 /**
  * Created by Farshid Roohi.
@@ -68,6 +70,7 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
 
         if (list == null || list.isEmpty()) {
             layoutEmptyState.visibility = View.VISIBLE
+            adapter.removeAll()
             return
         }
         list.let {
@@ -153,14 +156,13 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
 
         }
         imgDelete.setOnClickListener {
+            val ex = Executors.newSingleThreadExecutor()
             items.forEach { item ->
-                items.remove(item)
                 viewModel.remove(item)
-                txtCounterSelect.text = items.size.toString()
-                if (items.isEmpty()) {
-                    layoutSelectItem.visibility = View.GONE
-                }
+                ex.execute { File(item.path).deleteOnExit() }
             }
+            items.clear()
+            layoutSelectItem.visibility = View.GONE
         }
     }
 
