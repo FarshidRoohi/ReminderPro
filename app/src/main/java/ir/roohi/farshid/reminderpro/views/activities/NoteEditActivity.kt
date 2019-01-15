@@ -61,7 +61,7 @@ class NoteEditActivity : BaseActivity() {
         }
         val alertDialog = AlertDialog.Builder(
             supportFragmentManager,
-            getString(R.string.note), getString(R.string.sure_note_delete)
+            getString(R.string.note), getString(R.string.do_you_sure_delete)
         )
         alertDialog.setBtnNegative(getString(R.string.no), View.OnClickListener {
             alertDialog.dialog!!.dismiss()

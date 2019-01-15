@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
@@ -109,11 +110,23 @@ class LocationListActivity : BaseActivity(),
 
         }
         imgDelete.setOnClickListener {
-            items.forEach { item ->
-                viewModel.remove(item)
-            }
-            layoutSelectItem.visibility = View.GONE
-            items.clear()
+            val alertDialog = AlertDialog.Builder(
+                supportFragmentManager,
+                getString(R.string.note), getString(R.string.do_you_sure_delete)
+            )
+            alertDialog.setBtnNegative(getString(R.string.no), View.OnClickListener {
+                alertDialog.dialog!!.dismiss()
+            })
+            alertDialog.setBtnPositive(getString(R.string.yes), View.OnClickListener {
+                items.forEach { item ->
+                    viewModel.remove(item)
+                }
+                layoutSelectItem.visibility = View.GONE
+                items.clear()
+                alertDialog.dialog!!.dismissAllowingStateLoss()
+            })
+            alertDialog.build().show()
+
         }
 
 

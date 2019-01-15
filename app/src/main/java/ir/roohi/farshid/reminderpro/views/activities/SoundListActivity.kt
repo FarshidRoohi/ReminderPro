@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
@@ -155,13 +156,28 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
 
         }
         imgDelete.setOnClickListener {
-            val ex = Executors.newSingleThreadExecutor()
-            items.forEach { item ->
-                viewModel.remove(item)
-                ex.execute { File(item.path).deleteOnExit() }
-            }
-            items.clear()
-            layoutSelectItem.visibility = View.GONE
+
+            val alertDialog = AlertDialog.Builder(
+                supportFragmentManager,
+                getString(R.string.note), getString(R.string.do_you_sure_delete)
+            )
+            alertDialog.setBtnNegative(getString(R.string.no), View.OnClickListener {
+                alertDialog.dialog!!.dismiss()
+            })
+            alertDialog.setBtnPositive(getString(R.string.yes), View.OnClickListener {
+
+                val ex = Executors.newSingleThreadExecutor()
+                items.forEach { item ->
+                    viewModel.remove(item)
+                    ex.execute { File(item.path).deleteOnExit() }
+                }
+                items.clear()
+                layoutSelectItem.visibility = View.GONE
+                alertDialog.dialog!!.dismissAllowingStateLoss()
+            })
+            alertDialog.build().show()
+
+
         }
     }
 

@@ -137,7 +137,7 @@ class AlertDialog private constructor(private var fm: androidx.fragment.app.Frag
 
         var dialog: AlertDialog? = null
             private set
-        var isCancelable: Boolean = false
+        var isCancelable: Boolean = true
 
 
         //region Button Negative

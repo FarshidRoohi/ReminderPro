@@ -7,6 +7,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
 import ir.roohi.farshid.reminderpro.extensions.share
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectNotesListener
@@ -102,11 +103,22 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             items[0].text.share(this)
         }
         imgDelete.setOnClickListener {
-            items.forEach { item ->
-                viewModel.remove(item)
-            }
-            layoutSelectItem.visibility = View.GONE
-            items.clear()
+            val alertDialog = AlertDialog.Builder(
+                supportFragmentManager,
+                getString(R.string.note), getString(R.string.do_you_sure_delete)
+            )
+            alertDialog.setBtnNegative(getString(R.string.no), View.OnClickListener {
+                alertDialog.dialog!!.dismiss()
+            })
+            alertDialog.setBtnPositive(getString(R.string.yes), View.OnClickListener {
+                items.forEach { item ->
+                    viewModel.remove(item)
+                }
+                layoutSelectItem.visibility = View.GONE
+                items.clear()
+                alertDialog.dialog!!.dismissAllowingStateLoss()
+            })
+            alertDialog.build().show()
         }
 
 

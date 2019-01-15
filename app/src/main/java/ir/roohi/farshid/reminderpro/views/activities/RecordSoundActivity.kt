@@ -260,16 +260,18 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
     }
 
     override fun onDenied(permission: String) {
-        val alertBuilder = AlertDialog.Builder(supportFragmentManager,
+        val alertDialog = AlertDialog.Builder(supportFragmentManager,
                 getString(R.string.permission), getString(R.string.permission_audio))
-        alertBuilder.setBtnPositive(getString(R.string.yes), View.OnClickListener {
+        alertDialog.setBtnPositive(getString(R.string.yes), View.OnClickListener {
             requestPermission(permissions, this)
-            alertBuilder.dialog!!.dismissAllowingStateLoss()
+            alertDialog.dialog!!.dismissAllowingStateLoss()
         })
-        alertBuilder.setBtnNegative(getString(R.string.no), View.OnClickListener {
+        alertDialog.setBtnNegative(getString(R.string.no), View.OnClickListener {
+            alertDialog.dialog!!.dismissAllowingStateLoss()
+
             finish()
         })
-        alertBuilder.build().show()
+        alertDialog.build().show()
     }
 
     private fun delete() {

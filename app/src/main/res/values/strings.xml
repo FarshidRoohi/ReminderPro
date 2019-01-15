@@ -31,7 +31,7 @@
     <string name="permission_audio">Memory and microphone access are required to record audio.</string>
     <string name="permission_location">Your location access are required to open map</string>
 
-    <string name="sure_note_delete">Do you want to delete this note?</string>
+    <string name="do_you_sure_delete">Do you want to delete?</string>
     <string name="title">Title</string>
     <string name="location_information">location information</string>
     <string name="dot">...</string>
