@@ -89,7 +89,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
             val bottomSheet =
                 InformationLocationBottomSheet(supportFragmentManager, object : OnInformationLocationListener {
-                    override fun onInformationLocation(title: String, text: String?, distance: Int) {
+                    override fun onInformationLocation(title: String, desc: String?, distance: Int) {
 
                         if (mapboxMap != null) {
                             val position: LatLng = getLocationPickerLocation()
@@ -98,7 +98,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
                             addressPin = mapboxMap!!.addMarker(MarkerViewOptions().title(title).position(position))
                             mapboxMap!!.selectMarker(addressPin!!)
 
-                            viewModel.add(title, text, true, position, distance)
+                            viewModel.add(title, desc, true, position, distance)
                         }
                     }
                 })
@@ -223,7 +223,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
     }
 
     private fun showDropPin() {
-        if (dropPinView != null && dropPinView!!.visibility !== View.VISIBLE) {
+        if (dropPinView != null && this.dropPinView!!.visibility !== View.VISIBLE) {
             dropPinView!!.visibility = View.VISIBLE
         }
     }

@@ -14,11 +14,8 @@ import ir.roohi.farshid.reminderpro.R
  * ReminderPro | Copyrights 1/11/19.
  */
 
-class PulseMarkerViewAdapter : MapboxMap.MarkerViewAdapter<PulseMarkerView> {
-    var ctx: Context? = null
-
-    public constructor(myContext: Context) : super(myContext, PulseMarkerView::class.java) {
-    }
+class PulseMarkerViewAdapter(myContext: Context) :
+    MapboxMap.MarkerViewAdapter<PulseMarkerView>(myContext, PulseMarkerView::class.java) {
 
     override fun getView(marker: PulseMarkerView, convertView: View?, parent: ViewGroup): View? {
         val viewHolder: ViewHolder
@@ -26,8 +23,8 @@ class PulseMarkerViewAdapter : MapboxMap.MarkerViewAdapter<PulseMarkerView> {
         if (view == null) {
             viewHolder = ViewHolder()
             view = LayoutInflater.from(context).inflate(R.layout.view_pulse_marker, parent, false)
-            viewHolder.foregroundImageView = view!!.findViewById<ImageView>(R.id.foreground_imageView)
-            viewHolder.backgroundImageView = view!!.findViewById<ImageView>(R.id.background_imageview)
+            viewHolder.foregroundImageView = view!!.findViewById(R.id.foreground_imageView)
+            viewHolder.backgroundImageView = view.findViewById(R.id.background_imageview)
             view.tag = viewHolder
         }
 

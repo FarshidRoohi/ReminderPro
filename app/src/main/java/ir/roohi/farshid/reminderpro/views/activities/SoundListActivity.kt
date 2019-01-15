@@ -79,12 +79,12 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
         }
     }
 
-    override fun onClickItem(element: VoiceEntity, position: Int) {
+    override fun onClickItem(item: VoiceEntity, position: Int) {
         if (player.isPlaying) {
             player.reset()
         }
-        if (element.isPlaying) {
-            element.isPlaying = false
+        if (item.isPlaying) {
+            item.isPlaying = false
             player.reset()
             adapter.notifyDataSetChanged()
             return
@@ -92,21 +92,21 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
         this.positionPlayItem = position
 
         adapter.getItems()!!.forEach { it ->
-            if (it != element) {
+            if (it != item) {
                 it.isPlaying = false
             }
         }
 
-        player.setDataSource(element.path)
+        player.setDataSource(item.path)
         player.prepare()
         player.start()
-        element.isPlaying = true
+        item.isPlaying = true
         adapter.notifyDataSetChanged()
 
         player.setOnCompletionListener {
             player.reset()
             adapter.notifyItemChanged(position)
-            element.isPlaying = false
+            item.isPlaying = false
         }
     }
 
