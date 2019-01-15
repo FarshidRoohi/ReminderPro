@@ -56,20 +56,6 @@
                     tools:ignore="RtlHardcoded"/>
 
         </LinearLayout>
-
-        <!--<com.airbnb.lottie.LottieAnimationView-->
-        <!--android:id="@+id/lottieAnimationView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="200dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--app:lottie_autoPlay="true"-->
-        <!--app:lottie_fileName="color_line.json"-->
-        <!--app:lottie_loop="true"/>-->
-
-
     </LinearLayout>
 
     <ImageView
@@ -113,13 +99,13 @@
             android:layout_marginStart="120dp"
             android:background="@color/color_item_main"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="@string/reminder_location"
+            android:text="@string/locations"
             android:tint="@color/color_tint_item_main"
             app:item_icon="@drawable/ic_location"
             app:item_radius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="100dp"
             app:layout_constraintTop_toBottomOf="@+id/layout_header"/>
 
     <ir.roohi.farshid.reminderpro.customViews.CustomItemView
