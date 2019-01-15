@@ -20,13 +20,7 @@ class NoteViewModel(application: Application) : AndroidViewModel(application) {
         this.notes = this.noteRepository.notes
     }
 
-    fun add(text: String) {
-
-        var title = text
-        if (text.length > 20) {
-            title = text.substring(0, 19) + "..."
-        }
-
+    fun add(text: String,title:String) {
         this.noteRepository.insertNote(NoteEntity(Date(), title, text))
     }
 

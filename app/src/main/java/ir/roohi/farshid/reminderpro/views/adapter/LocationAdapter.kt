@@ -10,7 +10,7 @@ import ir.roohi.farshid.reminderpro.databinding.ItemLocationBinding
 import ir.roohi.farshid.reminderpro.extensions.animatedColorBackgroundSelected
 import ir.roohi.farshid.reminderpro.extensions.toAgoTime
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
-import ir.roohi.farshid.reminderpro.listener.OnMultiSelectLocationListener
+import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 
 /**

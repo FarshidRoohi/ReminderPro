@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient">
 
     <ir.roohi.farshid.reminderpro.customViews.CustomToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:caption="@string/note"
-        app:leftImage="@drawable/ic_arrow_back"
-        app:rightImage="@drawable/ic_delete"/>
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:caption="@string/note"
+            app:leftImage="@drawable/ic_arrow_back"
+            app:rightImage="@drawable/ic_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     <EditText
-        android:id="@+id/edtText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
-        android:gravity="top"
-        android:lineSpacingExtra="12dp"
-        android:padding="10dp"
-        android:textColor="@color/color_note_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:ignore="Autofill,LabelFor,TextFields"/>
+            style="@style/EditTextStyle"
+            android:hint="@string/title"
+            android:padding="10dp"
+            android:id="@+id/edtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <EditText
+            android:id="@+id/edtText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:lineSpacingExtra="12dp"
+            android:padding="10dp"
+            android:hint="@string/write_everything"
+            android:textColor="@color/color_note_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="Autofill,LabelFor,TextFields"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/edtTitle"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

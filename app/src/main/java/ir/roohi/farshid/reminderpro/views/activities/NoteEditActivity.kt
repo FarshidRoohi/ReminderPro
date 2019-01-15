@@ -47,7 +47,8 @@ class NoteEditActivity : BaseActivity() {
 
         if (noteEntity != null) {
             edtText.setText(noteEntity!!.text)
-            this.toolbar.setCaption(noteEntity!!.title!!)
+            edtTitle.setText(noteEntity!!.title)
+            this.toolbar.setCaption(noteEntity!!.title)
             return
         }
 
@@ -58,8 +59,10 @@ class NoteEditActivity : BaseActivity() {
         if (noteEntity == null) {
             return
         }
-        val alertDialog = AlertDialog.Builder(supportFragmentManager,
-                getString(R.string.note), getString(R.string.sure_note_delete))
+        val alertDialog = AlertDialog.Builder(
+            supportFragmentManager,
+            getString(R.string.note), getString(R.string.sure_note_delete)
+        )
         alertDialog.setBtnNegative(getString(R.string.no), View.OnClickListener {
             alertDialog.dialog!!.dismiss()
         })
@@ -72,21 +75,25 @@ class NoteEditActivity : BaseActivity() {
 
     private fun save() {
         val text = edtText.text.toString()
+        val title = edtTitle.text.toString()
 
         if (text.isEmpty() && noteEntity == null) {
             return
         }
 
         if (noteEntity == null) {
-            this.viewModel.add(text)
 
-        } else if (noteEntity!!.text != text) {
+            this.viewModel.add(text, title)
+            showMsg(getString(R.string.save))
+
+        } else if (noteEntity!!.text != text || noteEntity!!.title != title) {
             noteEntity!!.date = Date()
             noteEntity!!.text = text
+            noteEntity!!.title = title
             this.viewModel.update(noteEntity!!)
+            showMsg(getString(R.string.save))
 
         }
-        showMsg(getString(R.string.save))
     }
 
     override fun onBackPressed() {

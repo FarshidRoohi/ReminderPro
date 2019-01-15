@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
 import ir.roohi.farshid.reminderpro.extensions.share
-import ir.roohi.farshid.reminderpro.listener.OnMultiSelectNotesListener
+import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectNotesListener
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.NoteAdapter
@@ -20,7 +20,8 @@ import kotlinx.android.synthetic.main.activity_note_list.*
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 2018.
  */
-class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClickListener, OnMultiSelectNotesListener {
+class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClickListener,
+    OnMultiSelectNotesListener {
 
     private lateinit var adapter: NoteAdapter
     private lateinit var viewModel: NoteViewModel

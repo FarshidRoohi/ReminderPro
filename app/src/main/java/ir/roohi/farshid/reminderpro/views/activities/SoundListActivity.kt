@@ -5,13 +5,12 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
-import ir.roohi.farshid.reminderpro.listener.OnMultiSelectVoiceListener
+import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.VoiceAdapter

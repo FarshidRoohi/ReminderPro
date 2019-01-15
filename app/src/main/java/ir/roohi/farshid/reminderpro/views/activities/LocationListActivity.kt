@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
-import ir.roohi.farshid.reminderpro.listener.OnMultiSelectLocationListener
+import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.LocationAdapter
@@ -22,7 +22,8 @@ import java.util.*
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 2018.
  */
-class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
+class LocationListActivity : BaseActivity(),
+    OnMultiSelectLocationListener {
 
     private lateinit var adapter: LocationAdapter
     private lateinit var viewModel: LocationViewModel
