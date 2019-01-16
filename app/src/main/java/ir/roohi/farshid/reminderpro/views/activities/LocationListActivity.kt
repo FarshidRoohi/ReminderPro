@@ -16,6 +16,7 @@ import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.LocationAdapter
 import kotlinx.android.synthetic.main.activity_reminder_location.*
+import kotlinx.android.synthetic.main.layout_item_selected.*
 import java.util.*
 
 
@@ -81,7 +82,8 @@ class LocationListActivity : BaseActivity(),
             layoutSelectItem.visibility = View.GONE
             return
         }
-        txtCounterSelect.text = items.size.toString()
+        txtCounterSelect.text = String.format(getString(R.string.selected_number), items.size.toString())
+        setStatusBarColor(R.color.black)
         if (layoutSelectItem.visibility == View.GONE) {
             layoutSelectItem.visibility = View.VISIBLE
         }
@@ -99,6 +101,7 @@ class LocationListActivity : BaseActivity(),
             }
             adapter.notifyDataSetChanged()
             layoutSelectItem.visibility = View.GONE
+            setStatusBarColor(R.color.colorPrimaryDark)
         }
         imgShare.setOnClickListener {
             if (items.isEmpty()) {
@@ -122,6 +125,7 @@ class LocationListActivity : BaseActivity(),
                     viewModel.remove(item)
                 }
                 layoutSelectItem.visibility = View.GONE
+                setStatusBarColor(R.color.colorPrimaryDark)
                 items.clear()
                 alertDialog.dialog!!.dismissAllowingStateLoss()
             })

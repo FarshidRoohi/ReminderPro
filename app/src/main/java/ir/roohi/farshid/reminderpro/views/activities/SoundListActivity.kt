@@ -16,6 +16,7 @@ import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.VoiceAdapter
 import kotlinx.android.synthetic.main.activity_sound_list.*
+import kotlinx.android.synthetic.main.layout_item_selected.*
 import java.io.File
 import java.util.*
 import java.util.concurrent.Executors
@@ -125,7 +126,8 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
             layoutSelectItem.visibility = View.GONE
             return
         }
-        txtCounterSelect.text = items.size.toString()
+        txtCounterSelect.text = String.format(getString(R.string.selected_number), items.size.toString())
+        setStatusBarColor(R.color.black)
         if (layoutSelectItem.visibility == View.GONE) {
             layoutSelectItem.visibility = View.VISIBLE
         }
@@ -143,6 +145,7 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
             }
             adapter.notifyDataSetChanged()
             layoutSelectItem.visibility = View.GONE
+            setStatusBarColor(R.color.colorPrimaryDark)
         }
         imgShare.setOnClickListener {
             if (items.isEmpty()) {
@@ -173,6 +176,7 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
                 }
                 items.clear()
                 layoutSelectItem.visibility = View.GONE
+                setStatusBarColor(R.color.colorPrimaryDark)
                 alertDialog.dialog!!.dismissAllowingStateLoss()
             })
             alertDialog.build().show()

@@ -6,9 +6,9 @@
     <string name="note">Note</string>
     <string name="voice_recorder">Voice Recorder</string>
     <string name="reminder_location">Reminder Location</string>
-    <string name="voices">voices</string>
-    <string name="notes">notes</string>
-    <string name="locations">locations</string>
+    <string name="voices">Voices</string>
+    <string name="notes">Notes</string>
+    <string name="locations">Locations</string>
     <string name="add">add</string>
     <string name="empty">There is no item to display</string>
     <string name="pipe">|</string>
@@ -59,6 +59,8 @@
     <string name="distance_value">%s meter</string>
     <string name="meter">meter</string>
     <string name="write_everything">write everything</string>
+
+    <string name="selected_number">%s selected</string>
 
     <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
     <string name="api_mapbox_key">

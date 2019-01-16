@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#0334b4</color>
     <color name="colorAccent">#0D43CE</color>
 
+    <color name="black">#000000</color>
+
     <color name="color_background">#ffffff</color>
     <color name="color_background_select_item_recycler_view">#0D43CE</color>
 
@@ -27,6 +29,8 @@
 
     <color name="color1">#EFEFF3</color>
     <color name="color2">#EFEFF3</color>
+
+    <color name="color_bg_select_layout">#212121</color>
 
     <color name="color_gradient_dark_one">#2E2A42</color>
     <color name="color_gradient_dark_two">#746176</color>

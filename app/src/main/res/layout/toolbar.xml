@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:gravity="center">
 
     <ImageView
-        android:id="@+id/imgLeft"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:padding="7dp"
-        android:tint="@color/color_tint_icon_dark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription"/>
+            android:id="@+id/imgLeft"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="10dp"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/color_tint_icon_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"/>
 
     <TextView
-        android:id="@+id/txtTitle"
-        style="@style/TitleStyle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="10dp"
-        android:textColor="@color/color_tint_icon_dark"
-        android:textSize="18sp"/>
+            android:id="@+id/txtTitle"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:layout_marginLeft="22dp"
+            android:text="Reminder Pro"
+            android:textColor="@color/color_tint_icon_dark"
+            tools:ignore="RtlHardcoded"/>
 
     <ImageView
-        android:id="@+id/imgRight"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="?android:attr/selectableItemBackground"
-        android:padding="8dp"
-        android:tint="@color/color_tint_icon_dark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription"/>
+            android:id="@+id/imgRight"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp"
+            android:tint="@color/color_tint_icon_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"/>
 
 </LinearLayout>

@@ -2,8 +2,10 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
@@ -15,6 +17,7 @@ import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.NoteAdapter
 import kotlinx.android.synthetic.main.activity_note_list.*
+import kotlinx.android.synthetic.main.layout_item_selected.*
 
 
 /**
@@ -77,7 +80,9 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             layoutSelectItem.visibility = View.GONE
             return
         }
-        txtCounterSelect.text = items.size.toString()
+        txtCounterSelect.text = String.format(getString(R.string.selected_number), items.size.toString())
+        setStatusBarColor(R.color.black)
+
         if (layoutSelectItem.visibility == View.GONE) {
             layoutSelectItem.visibility = View.VISIBLE
         }
@@ -95,6 +100,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             }
             adapter.notifyDataSetChanged()
             layoutSelectItem.visibility = View.GONE
+            setStatusBarColor(R.color.colorPrimaryDark)
         }
         imgShare.setOnClickListener {
             if (items.isEmpty()) {
@@ -115,6 +121,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
                     viewModel.remove(item)
                 }
                 layoutSelectItem.visibility = View.GONE
+                setStatusBarColor(R.color.colorPrimaryDark)
                 items.clear()
                 alertDialog.dialog!!.dismissAllowingStateLoss()
             })

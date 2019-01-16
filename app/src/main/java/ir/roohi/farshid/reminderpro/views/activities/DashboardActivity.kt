@@ -17,8 +17,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class DashboardActivity : BaseActivity(), View.OnClickListener {
 
-    var APP_REQUEST_CODE = 99
-
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, DashboardActivity::class.java)
@@ -34,7 +32,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         itemNote.setOnClickListener(this)
         itemReminderLocation.setOnClickListener(this)
         itemSoundRecorder.setOnClickListener(this)
-        imgProfile.setOnClickListener(this)
+        imgSettings.setOnClickListener(this)
 
 
         animatedView(itemReminderLocation, 400)
@@ -82,7 +80,8 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
                     SoundListActivity.start(this)
                 }, 450)
             }
-            R.id.imgProfile -> {
+            R.id.imgSettings -> {
+                SettingsActivity.start(this)
             }
 
         }

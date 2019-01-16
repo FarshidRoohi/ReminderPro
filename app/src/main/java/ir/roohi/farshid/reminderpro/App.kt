@@ -13,8 +13,8 @@ class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        MultiDex.install(applicationContext)
         ResourceApplication.build(this)
+        MultiDex.install(applicationContext)
         Mapbox.getInstance(this, getString(R.string.api_mapbox_key))
         Fabric.Builder(applicationContext).build()
     }

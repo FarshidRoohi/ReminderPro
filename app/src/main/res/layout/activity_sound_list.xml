@@ -1,122 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient">
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ir.roohi.farshid.reminderpro.customViews.CustomToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:caption="@string/voices"
-        app:leftImage="@drawable/ic_arrow_back"/>
-    <LinearLayout
-            android:id="@+id/layoutSelectItem"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/color1"
-            android:gravity="center"
-            android:orientation="horizontal" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:visibility="gone">
-
-        <ImageView
-                android:id="@+id/imgCancelSelect"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_arrow_back"
-                android:padding="10dp"/>
-
-        <TextView
-                android:id="@+id/txtCounterSelect"
-                android:layout_width="50dp"
-                android:gravity="center"
-                android:layout_height="50dp"
-                style="@style/TitleStyle"/>
-        <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-        <ImageView
-                android:layout_width="50dp"
-                android:padding="10dp"
-                android:layout_height="50dp"
-                android:id="@+id/imgShare"
-                android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_share"/>
-
-        <ImageView android:layout_width="50dp"
-                   android:layout_height="50dp"
-                   android:background="?android:attr/selectableItemBackground"
-                   android:id="@+id/imgDelete"
-                   android:src="@drawable/ic_delete"
-                   android:padding="10dp"/>
-    </LinearLayout>
-
-
-    <ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:show_divider="true"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_microphone"
-        android:tint="@color/color_title"
-        app:backgroundTint="@android:color/white"
-        app:fabSize="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/color_item_main_dark"
-        />
-
-    <LinearLayout
-        android:id="@+id/layoutEmptyState"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:background="@drawable/bg_gradient">
 
-        <ImageView
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <ir.roohi.farshid.reminderpro.customViews.CustomToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:padding="5dp"
-            android:src="@drawable/ic_empty_voice"
-            />
+            android:layout_height="?attr/actionBarSize"
+            app:caption="@string/voices"
+            app:leftImage="@drawable/ic_arrow_back"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <TextView
-            style="@style/TitleStyle"
+    <include layout="@layout/layout_item_selected"/>
+
+    <ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:show_divider="true" android:layout_marginTop="8dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/empty"
-            android:textColor="@color/color_tint_icon_light"
-            android:textStyle="bold"
-            android:visibility="gone"/>
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_microphone"
+            android:tint="@color/color_title"
+            app:backgroundTint="@android:color/white"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/color_item_main_dark"
+    />
+
+    <LinearLayout
+            android:id="@+id/layoutEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:padding="5dp"
+                android:src="@drawable/ic_empty_voice"
+        />
+
+        <TextView
+                style="@style/TitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty"
+                android:textColor="@color/color_tint_icon_light"
+                android:textStyle="bold"
+                android:visibility="gone"/>
 
     </LinearLayout>
 

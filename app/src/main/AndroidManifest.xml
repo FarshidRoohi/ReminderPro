@@ -35,6 +35,7 @@
         <activity android:name=".views.activities.SoundListActivity"/>
         <activity android:name=".views.activities.MapActivity"/>
         <activity android:name=".views.activities.SelectPlaceActivity"/>
+        <activity android:name=".views.activities.SettingsActivity"/>
 
     </application>
 
