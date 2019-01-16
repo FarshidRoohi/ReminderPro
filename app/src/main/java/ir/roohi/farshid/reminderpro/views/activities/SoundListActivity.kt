@@ -20,6 +20,9 @@ import kotlinx.android.synthetic.main.layout_item_selected.*
 import java.io.File
 import java.util.*
 import java.util.concurrent.Executors
+import android.os.StrictMode
+
+
 
 /**
  * Created by Farshid Roohi.
@@ -145,10 +148,9 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
             if (items.isEmpty()) {
                 return@setOnClickListener
             }
-            val uri = Uri.parse(items[0].path)
             val share = Intent(Intent.ACTION_SEND)
             share.type = "audio/*"
-            share.putExtra(Intent.EXTRA_STREAM, uri)
+            share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(File(items[0].path)))
             startActivity(Intent.createChooser(share, "Share Sound File"))
 
         }
