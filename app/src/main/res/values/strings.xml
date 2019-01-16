@@ -52,8 +52,6 @@
     <string name="gigabyte">GB</string>
     <string name="trabyte">TB</string>
 
-    <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
-    <string name="api_mapbox_key">pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg</string>
     <string name="coming_soon">coming soon!</string>
     <string name="select_any_where">select any where</string>
     <string name="select">select</string>
@@ -61,6 +59,11 @@
     <string name="distance_value">%s meter</string>
     <string name="meter">meter</string>
     <string name="write_everything">write everything</string>
+
+    <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
+    <string name="api_mapbox_key">
+        pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
+    </string>
 
 
 </resources>

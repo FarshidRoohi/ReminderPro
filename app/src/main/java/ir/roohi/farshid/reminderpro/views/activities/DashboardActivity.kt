@@ -6,9 +6,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.widget.Toast
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 /**
  * Created by Farshid Roohi.
@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class DashboardActivity : BaseActivity(), View.OnClickListener {
 
+    var APP_REQUEST_CODE = 99
 
     companion object {
         fun start(context: Context) {
@@ -39,7 +40,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         animatedView(itemReminderLocation, 400)
         animatedView(itemNote, 600)
         animatedView(itemSoundRecorder, 800)
-
     }
 
 
@@ -83,7 +83,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
                 }, 450)
             }
             R.id.imgProfile -> {
-                Toast.makeText(this, "profile", Toast.LENGTH_SHORT).show()
             }
 
         }
