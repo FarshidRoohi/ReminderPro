@@ -94,13 +94,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
         }
 
         imgCancelSelect.setOnClickListener {
-            adapter.itemsSelected.clear()
-            adapter.getItems()?.forEach { item ->
-                item.statusSelect = false
-            }
-            adapter.notifyDataSetChanged()
-            layoutSelectItem.visibility = View.GONE
-            setStatusBarColor(R.color.colorPrimaryDark)
+            resetData()
         }
         imgShare.setOnClickListener {
             if (items.isEmpty()) {
@@ -141,4 +135,23 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             }
         }
     }
+
+    private fun resetData() {
+        adapter.itemsSelected.clear()
+        adapter.getItems()?.forEach { item ->
+            item.statusSelect = false
+        }
+        adapter.notifyDataSetChanged()
+        layoutSelectItem.visibility = View.GONE
+        setStatusBarColor(R.color.colorPrimaryDark)
+    }
+
+    override fun onBackPressed() {
+        if (layoutSelectItem.visibility == View.VISIBLE) {
+            resetData()
+            return
+        }
+        super.onBackPressed()
+    }
+
 }

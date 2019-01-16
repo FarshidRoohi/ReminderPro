@@ -139,13 +139,7 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
         }
 
         imgCancelSelect.setOnClickListener {
-            adapter.itemsSelected.clear()
-            adapter.getItems()?.forEach { item ->
-                item.statusSelect = false
-            }
-            adapter.notifyDataSetChanged()
-            layoutSelectItem.visibility = View.GONE
-            setStatusBarColor(R.color.colorPrimaryDark)
+            resetData()
         }
         imgShare.setOnClickListener {
             if (items.isEmpty()) {
@@ -184,8 +178,21 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
 
         }
     }
+    private fun resetData() {
+        adapter.itemsSelected.clear()
+        adapter.getItems()?.forEach { item ->
+            item.statusSelect = false
+        }
+        adapter.notifyDataSetChanged()
+        layoutSelectItem.visibility = View.GONE
+        setStatusBarColor(R.color.colorPrimaryDark)
+    }
 
     override fun onBackPressed() {
+        if (layoutSelectItem.visibility == View.VISIBLE) {
+            resetData()
+            return
+        }
         stopPlay()
         super.onBackPressed()
     }
