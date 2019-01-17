@@ -1,8 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:background="#789"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</LinearLayout>
+    <ir.roohi.farshid.reminderpro.customViews.CustomToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:caption="@string/settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:gravity="center"
+                  android:layout_marginTop="30dp"
+                  app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent">
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:text="@string/change_language"
+                  android:padding="10dp"
+                  style="@style/TitleStyle"/>
+
+        <Button
+                android:id="@+id/btnChangeLanguage"
+                android:layout_width="wrap_content"
+                android:text="@string/change_to_fa"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

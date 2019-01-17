@@ -58,7 +58,7 @@
         />
 
         <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -73,7 +73,7 @@
         </LinearLayout>
 
         <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_width="match_parent"

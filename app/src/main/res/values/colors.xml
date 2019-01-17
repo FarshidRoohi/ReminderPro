@@ -7,7 +7,8 @@
     <color name="black">#000000</color>
 
     <color name="color_background">#ffffff</color>
-    <color name="color_background_select_item_recycler_view">#0D43CE</color>
+    <!--<color name="color_background_select_item_recycler_view">#0D43CE</color>-->
+    <color name="color_background_select_item_recycler_view">#7E7E7E</color>
 
     <color name="color_tint_icon_dark">#1B2024</color>
     <color name="color_tint_icon_light">#d1d1d4</color>

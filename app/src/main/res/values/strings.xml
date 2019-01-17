@@ -66,6 +66,10 @@
     <string name="api_mapbox_key">
         pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
     </string>
+    <string name="settings">Settings</string>
+    <string name="change_language">change language</string>
+    <string name="change_to_fa">change language to farsi</string>
+    <string name="change_to_en">change language to english</string>
 
 
 </resources>

@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Reminder Pro</string>
+    <string name="subtitle_main">هیچ چیزی برای فراموشی نیست!</string>
+
+
+    <string name="note">یادداشت</string>
+    <string name="voice_recorder">ضبط صدا</string>
+    <string name="reminder_location">یادآور موقعیت جغرافیایی</string>
+    <string name="voices">صدا</string>
+    <string name="notes">یادداشت</string>
+    <string name="locations">موقعیت جغرافیایی</string>
+    <string name="add">add</string>
+    <string name="empty">آیتمی برای نمایش وجود نداردو</string>
+    <string name="pipe">|</string>
+    <string name="zero_time">00 : 00 : 00</string>
+    <string name="start_recording">شروع</string>
+    <string name="stop_recording">توفق</string>
+    <string name="zero_size">0.00 MB</string>
+    <string name="save">ذخیره</string>
+    <string name="delete">حذف</string>
+    <string name="play">پخش</string>
+    <string name="stop">توقف</string>
+
+    <string name="not_show_again">دیگر نشان نده</string>
+    <string name="ok">باشه</string>
+    <string name="yes">بله</string>
+    <string name="no">خیر</string>
+    <string name="maybe_later">شاید بعدا</string>
+
+    <string name="permission">مجوز</string>
+    <string name="permission_audio">برای ضبط صدا دسترسی به حافظه جانبی و میکروفون نیاز است.</string>
+    <string name="permission_location">برای مشاهده موقعیت جغرافیایی این دسترسی نیاز است</string>
+
+    <string name="do_you_sure_delete">آیا میخواهید حذف کنید؟</string>
+    <string name="title">عنوان</string>
+    <string name="location_information">توضیحات محل</string>
+    <string name="dot">…</string>
+    <string name="enter_some_things">متنی را وارد کنید</string>
+    <string name="location_title">عنوان موقعیت جغرافیایی</string>
+    <string name="location_description">توضیحات موقعیت جغرافیایی</string>
+
+
+    <!-- Error -->
+    <string name="error_can_not_create_file">متاسفم، مشکلی در ایجاد فایل رخ داده است!</string>
+    <string name="error_unknown">مشکلی ناشناخته رخ داده است.</string>
+    <string name="error_empty_title">عنوان خالی است!</string>
+
+
+    <string name="Byte">بایت</string>
+    <string name="kiloByte">کیلوبایت</string>
+    <string name="megabyte">مگابایت</string>
+    <string name="gigabyte">گیگابایت</string>
+    <string name="trabyte">ترابایت</string>
+
+    <string name="coming_soon">به زودی!</string>
+    <string name="select_any_where">یک مکان دلخواه انتخاب کنید</string>
+    <string name="select">انتخاب</string>
+    <string name="distance_alarm">فاصله‌ی هشدار :‌</string>
+    <string name="distance_value">%s متر</string>
+    <string name="meter">متر</string>
+    <string name="write_everything">متنی بنویسید</string>
+
+    <string name="selected_number">%s انتخاب شده</string>
+
+    <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
+    <string name="api_mapbox_key">
+        pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
+    </string>
+    <string name="settings">تنظیمات</string>
+    <string name="change_language">تغییر زبان</string>
+    <string name="change_to_fa">تغییر زبان به فارسی</string>
+    <string name="change_to_en">تغییر زبان به انگلیسی</string>
+
+
+
+</resources>
