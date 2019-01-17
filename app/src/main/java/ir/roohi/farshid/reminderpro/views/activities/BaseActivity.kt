@@ -2,11 +2,14 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.util.Log
 import android.view.Window
 import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
@@ -14,8 +17,12 @@ import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.Nullable
 import ir.roohi.farshid.reminderpro.ResourceApplication
+import ir.roohi.farshid.reminderpro.listener.IEventBus
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import java.util.*
 
 /**
@@ -23,9 +30,11 @@ import java.util.*
  * ReminderPro | Copyrights 2018.
  */
 @SuppressLint("Registered")
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity(), IEventBus {
 
     private var listener: OnPermissionRequestListener? = null
+    public var sharedPreferences: SharedPreferences? = null
+    public var currentLanguage: String? = null
 
     companion object {
 
@@ -37,15 +46,23 @@ open class BaseActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        this.currentLanguage = sharedPreferences!!.getString("LANGUAGE", "EN")
+        setLocale(this.currentLanguage!!)
         super.onCreate(savedInstanceState)
         this.resourceApp = ResourceApplication.applicationResource
+
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
     }
 
     fun setContentView(@LayoutRes layoutResID: Int, @ColorRes color: Int) {
         super.setContentView(layoutResID)
         setStatusBarColor(color)
     }
-    fun hasFullScreen(){
+
+    fun hasFullScreen() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
@@ -126,6 +143,26 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe
+    override fun onChangeLanguage(str: String) {
+        recreate()
+    }
+
+
+    open fun setLocale(lang: String) {
+        val locale = Locale(lang)
+        val res = resources
+        val displayMatris = res.displayMetrics
+        val configuration = res.configuration
+        configuration.locale = locale
+        res.updateConfiguration(configuration, displayMatris)
+
+    }
 
     fun checkPermissions(permissions: Array<String>): Boolean {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {

@@ -5,8 +5,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
         android:layout_height="?android:attr/actionBarSize"
-        android:gravity="center">
+>
 
     <ImageView
             android:id="@+id/imgLeft"
@@ -23,10 +24,10 @@
     <TextView
             android:id="@+id/txtTitle"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:padding="0dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="22dp"
             android:text="Reminder Pro"
             android:textColor="@color/color_tint_icon_dark"

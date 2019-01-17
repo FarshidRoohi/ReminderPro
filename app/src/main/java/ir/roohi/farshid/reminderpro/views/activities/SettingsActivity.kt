@@ -2,12 +2,11 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
+import android.util.Log
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_settings.*
-import java.util.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by Farshid Roohi.
@@ -15,8 +14,7 @@ import java.util.*
  */
 class SettingsActivity : BaseActivity() {
 
-    private var sharedPreferences: SharedPreferences? = null
-    private var currentLanguage: String? = null
+
 
     companion object {
         fun start(context: Context) {
@@ -25,9 +23,6 @@ class SettingsActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        this.sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-        this.currentLanguage = sharedPreferences!!.getString("LANGUAGE", "EN")
-        setLocale(this.currentLanguage!!)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
@@ -40,18 +35,9 @@ class SettingsActivity : BaseActivity() {
             currentLanguage = if (currentLanguage!! == "EN") "FA" else "EN"
             sharedPreferences!!.edit().putString("LANGUAGE", currentLanguage!!).apply()
             setLocale(this.currentLanguage!!)
+            EventBus.getDefault().post("change language $currentLanguage")
             recreate()
         }
-
-    }
-
-    private fun setLocale(lang: String) {
-        val locale = Locale(lang)
-        val res = resources
-        val displayMatris = res.displayMetrics
-        val configuration = res.configuration
-        configuration.locale = locale
-        res.updateConfiguration(configuration, displayMatris)
 
     }
 }
