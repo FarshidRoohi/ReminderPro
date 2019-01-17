@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Reminder Pro</string>
+    <string name="app_name">یادآور پیشرفته</string>
     <string name="subtitle_main">هیچ چیزی برای فراموشی نیست!</string>
 
 
@@ -67,10 +67,10 @@
         pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
     </string>
     <string name="settings">تنظیمات</string>
-    <string name="change_language">تغییر زبان</string>
+    <string name="change_language">زبان اپلیکیشن</string>
     <string name="change_to_fa">تغییر زبان به فارسی</string>
     <string name="change_to_en">تغییر زبان به انگلیسی</string>
-
-
+    <string name="persian">فارسی</string>
+    <string name="english">English</string>
 
 </resources>

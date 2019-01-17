@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,28 +15,57 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical"
-                  android:gravity="center"
-                  android:layout_marginTop="30dp"
-                  app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                  app:layout_constraintEnd_toEndOf="parent"
-                  app:layout_constraintStart_toStartOf="parent">
+    <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/change_language"
+            android:padding="16dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/TitleStyle"/>
 
-        <TextView android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:text="@string/change_language"
-                  android:padding="10dp"
-                  style="@style/TitleStyle"/>
+    <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+            android:id="@+id/groupToggle"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:tbgChildSpacing="auto"
+            app:tbgChildSpacingForLastRow="align"
+            app:tbgFlow="true"
+            app:tbgRowSpacing="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-                android:id="@+id/btnChangeLanguage"
+        <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/choiceEn"
                 android:layout_width="wrap_content"
-                android:text="@string/change_to_fa"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/english"
+                android:textSize="12sp"
+                app:tbgMarkerColor="@color/colorPrimary"/>
 
-    </LinearLayout>
+        <com.nex3z.togglebuttongroup.button.LabelToggle
+                android:id="@+id/choiceFa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/persian"
+                android:textSize="12sp"
+                app:tbgMarkerColor="@color/colorPrimary"/>
 
+    </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
+
+    <ImageView android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:background="@color/color_divider"
+               android:layout_marginTop="16dp"
+               app:layout_constraintTop_toBottomOf="@+id/groupToggle"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

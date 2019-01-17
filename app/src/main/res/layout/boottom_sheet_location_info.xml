@@ -84,13 +84,13 @@
                     android:layout_height="wrap_content"
                     style="@style/SubtitleStyle"
                     android:padding="10dp"
-                    android:text="500 meter"/>
+                    android:text="100 meter"/>
 
             <SeekBar android:layout_width="0dp"
                      android:layout_weight="1"
                      android:id="@+id/seekBar"
-                     android:max="2000"
-                     android:progress="500"
+                     android:max="500"
+                     android:progress="100"
                      android:layout_height="wrap_content"/>
         </LinearLayout>
 

@@ -3,17 +3,32 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+import com.nex3z.togglebuttongroup.SingleSelectToggleGroup.OnCheckedChangeListener
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.greenrobot.eventbus.EventBus
+
 
 /**
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/17/19.
  */
-class SettingsActivity : BaseActivity() {
+class SettingsActivity : BaseActivity(), OnCheckedChangeListener {
 
+    private var currentIdSelect = R.id.choiceEn
+
+    override fun onCheckedChanged(group: SingleSelectToggleGroup?, checkedId: Int) {
+        if (currentIdSelect != checkedId) {
+            currentIdSelect = checkedId
+
+            currentLanguage = if (currentIdSelect == R.id.choiceFa) "FA" else "EN"
+            sharedPreferences!!.edit().putString("LANGUAGE", currentLanguage!!).apply()
+            setLocale(this.currentLanguage!!)
+            EventBus.getDefault().post("change language $currentLanguage")
+            recreate()
+        }
+    }
 
 
     companion object {
@@ -28,16 +43,8 @@ class SettingsActivity : BaseActivity() {
 
         toolbar.getLeftImageView().setOnClickListener { finish() }
 
-        btnChangeLanguage.text =
-                if (this.currentLanguage == "FA") getString(R.string.change_to_en) else getString(R.string.change_to_fa)
-
-        btnChangeLanguage.setOnClickListener {
-            currentLanguage = if (currentLanguage!! == "EN") "FA" else "EN"
-            sharedPreferences!!.edit().putString("LANGUAGE", currentLanguage!!).apply()
-            setLocale(this.currentLanguage!!)
-            EventBus.getDefault().post("change language $currentLanguage")
-            recreate()
-        }
-
+        groupToggle.setOnCheckedChangeListener(this)
+        currentIdSelect = if (this.currentLanguage == "FA") R.id.choiceFa else R.id.choiceEn
+        groupToggle.check(currentIdSelect)
     }
 }
