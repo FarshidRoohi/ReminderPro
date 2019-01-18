@@ -174,4 +174,8 @@ open class BaseActivity : AppCompatActivity(), IEventBus {
         }
         return true
     }
+
+    open fun valuesForDirection(value: Float): Float {
+        return if (resources.configuration.layoutDirection == 0) value else -value
+    }
 }

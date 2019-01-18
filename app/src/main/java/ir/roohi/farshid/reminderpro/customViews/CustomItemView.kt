@@ -62,16 +62,34 @@ class CustomItemView : LinearLayout {
             txtCaption.setTextColor(ContextCompat.getColor(context, tintColor))
         }
 
-
         val gradientDrawable = GradientDrawable()
         gradientDrawable.setColor(ContextCompat.getColor(context, backgroundColor))
-        val radii = floatArrayOf(backgroundRadius.toFloat(), backgroundRadius.toFloat(), 0f, 0f, 0f, 0f, backgroundRadius.toFloat(), backgroundRadius.toFloat())
-        gradientDrawable.cornerRadii = radii
+        if (resources.configuration.layoutDirection == 0) {
+            gradientDrawable.cornerRadii = floatArrayOf(
+                backgroundRadius.toFloat(),
+                backgroundRadius.toFloat(),
+                0f,
+                0f,
+                0f,
+                0f,
+                backgroundRadius.toFloat(),
+                backgroundRadius.toFloat()
+            )
+
+        } else {
+            gradientDrawable.cornerRadii = floatArrayOf(
+                0f,
+                0f,
+                backgroundRadius.toFloat(),
+                backgroundRadius.toFloat(),
+                backgroundRadius.toFloat(),
+                backgroundRadius.toFloat(),
+                0f,
+                0f
+            )
+        }
 
         this.background = gradientDrawable
-
-
     }
-
 
 }

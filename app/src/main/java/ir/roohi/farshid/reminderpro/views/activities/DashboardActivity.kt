@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,7 +35,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         itemSoundRecorder.setOnClickListener(this)
         imgSettings.setOnClickListener(this)
 
-
         animatedView(itemReminderLocation, 400)
         animatedView(itemNote, 600)
         animatedView(itemSoundRecorder, 800)
@@ -42,14 +42,14 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
 
 
     private fun animatedView(view: View, time: Long) {
-        ObjectAnimator.ofFloat(view, View.TRANSLATION_X, 3000f, 0f).apply {
+        ObjectAnimator.ofFloat(view, View.TRANSLATION_X, valuesForDirection(3000f), 0f).apply {
             duration = time
             start()
         }
     }
 
     private fun animatedViewGone(view: View, time: Long) {
-        ObjectAnimator.ofFloat(view, View.TRANSLATION_X, 100f, 3000f).apply {
+        ObjectAnimator.ofFloat(view, View.TRANSLATION_X, valuesForDirection(100f), valuesForDirection(3000f)).apply {
             duration = time
             start()
             Handler().postDelayed({ animatedView(view, 600) }, 1500)
