@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.text.format.DateUtils
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import ir.roohi.farshid.reminderpro.R
 import java.text.SimpleDateFormat
@@ -27,7 +26,6 @@ fun Date.toAgoTime(): String {
     }
     return DateUtils.getRelativeTimeSpanString(this.time, currentTime, DateUtils.SECOND_IN_MILLIS).toString()
 }
-
 
 fun View.animatedColorBackgroundSelected(isSelected: Boolean = true) {
     val colorFrom: Int

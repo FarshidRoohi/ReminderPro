@@ -73,4 +73,12 @@
     <string name="persian">فارسی</string>
     <string name="english">English</string>
 
+    <string name="just_now">just now</string>
+    <string name="a_minute_ago">a minute ago</string>
+    <string name="minute_ago">minute ago</string>
+    <string name="an_hour_ago">an hour ago</string>
+    <string name="hours_ago">hours ago</string>
+    <string name="yesterday">yesterday</string>
+    <string name="days_ago">days ago</string>
+
 </resources>

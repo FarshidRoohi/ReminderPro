@@ -60,7 +60,7 @@
     <string name="meter">متر</string>
     <string name="write_everything">متنی بنویسید</string>
 
-    <string name="selected_number">%s انتخاب شده</string>
+    <string name="selected_number">%s  انتخاب شده</string>
 
     <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
     <string name="api_mapbox_key">
@@ -72,5 +72,14 @@
     <string name="change_to_en">تغییر زبان به انگلیسی</string>
     <string name="persian">فارسی</string>
     <string name="english">English</string>
+
+    <string name="just_now">همین الان</string>
+    <string name="a_minute_ago">چند دقیقه پیش</string>
+    <string name="minute_ago">دقیقه پیش</string>
+    <string name="an_hour_ago">یک ساعت پیش</string>
+    <string name="hours_ago">ساعت پیش</string>
+    <string name="yesterday">دیروز</string>
+    <string name="days_ago">روز پیش</string>
+
 
 </resources>

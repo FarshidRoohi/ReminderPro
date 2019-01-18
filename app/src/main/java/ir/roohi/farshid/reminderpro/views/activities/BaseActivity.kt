@@ -159,6 +159,7 @@ open class BaseActivity : AppCompatActivity(), IEventBus {
         val res = resources
         val displayMatris = res.displayMetrics
         val configuration = res.configuration
+        configuration.setLayoutDirection(locale)
         configuration.locale = locale
         res.updateConfiguration(configuration, displayMatris)
 
