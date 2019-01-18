@@ -20,8 +20,6 @@ import kotlinx.android.synthetic.main.layout_item_selected.*
 import java.io.File
 import java.util.*
 import java.util.concurrent.Executors
-import android.os.StrictMode
-
 
 
 /**
@@ -180,6 +178,7 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
 
         }
     }
+
     private fun resetData() {
         adapter.itemsSelected.clear()
         adapter.getItems()?.forEach { item ->

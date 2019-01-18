@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -82,8 +81,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
             R.id.imgSettings -> {
                 SettingsActivity.start(this)
             }
-
         }
     }
-
 }

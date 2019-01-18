@@ -2,10 +2,8 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
@@ -121,8 +119,6 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             })
             alertDialog.build().show()
         }
-
-
     }
 
     override fun onClick(v: View?) {

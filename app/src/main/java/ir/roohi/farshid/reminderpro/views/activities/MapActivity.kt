@@ -32,8 +32,6 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener, OnMapReadyCallb
 
     private var mapboxMap: MapboxMap? = null
 
-    private val REQUEST_CODE = 241
-
     companion object {
         fun start(context: Context) {
             context.startActivity(Intent(context, MapActivity::class.java))
@@ -113,9 +111,6 @@ class MapActivity : BaseActivity(), OnPermissionRequestListener, OnMapReadyCallb
         locationComponent.locationEngine!!.interval = 500
         locationComponent.locationEngine!!.activate()
         locationComponent.locationEngine!!.requestLocationUpdates()
-
-        Log.i("myTAG", "longitude : ${locationComponent.locationEngine!!.lastLocation.longitude}")
-        Log.i("myTAG", "latitude : ${locationComponent.locationEngine!!.lastLocation.latitude}")
 
         locationComponent.locationEngine!!.addLocationEngineListener(object : LocationEngineListener {
             override fun onLocationChanged(location: Location?) {
