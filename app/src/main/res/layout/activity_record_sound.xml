@@ -25,7 +25,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/layout_details"
+            app:layout_constraintBottom_toTopOf="@+id/layoutDetails"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -55,7 +55,7 @@
     </RelativeLayout>
 
     <LinearLayout
-            android:id="@+id/layout_details"
+            android:id="@+id/layoutDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -68,13 +68,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layer_animation"
-            tools:ignore="ContentDescription,RtlHardcoded">
+            tools:ignore="ContentDescription,LtrHardcoded">
 
         <ImageView
                 android:id="@+id/img_time"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:padding="2dp"
                 android:src="@drawable/ic_access_time"
                 android:tint="@color/color_title"
@@ -87,11 +87,9 @@
                 style="@style/SubtitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:text="@string/zero_time"
                 android:textColor="@color/color_title"
-                android:textSize="14sp"
-        />
+                android:textSize="14sp"/>
 
         <TextView
                 android:id="@+id/txt_pipe"
@@ -109,7 +107,7 @@
                 android:id="@+id/img_size"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginRight="2dp"
+                android:layout_marginEnd="2dp"
                 android:padding="2dp"
                 android:src="@drawable/ic_music_note"
                 android:tint="@color/color_title"
@@ -155,7 +153,8 @@
         <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                tools:ignore="ContentDescription"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabRecord"
@@ -173,7 +172,8 @@
         <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                tools:ignore="ContentDescription"/>
 
         <com.zarinpal.libs.views.ZarinImageView
                 android:id="@+id/imgSave"

@@ -1,7 +1,7 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
 import android.Manifest
-import androidx.lifecycle.ViewModelProviders
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
@@ -9,6 +9,8 @@ import android.media.MediaRecorder
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
@@ -47,6 +49,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
         }
     }
 
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record_sound)
@@ -56,9 +59,10 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
         fabRecord.setOnClickListener(this)
         imgSave.setOnClickListener(this)
         imgDelete.setOnClickListener(this)
+        layoutDetails.layoutDirection = ViewCompat.LAYOUT_DIRECTION_LTR
 
         toolbar.getLeftImageView().setOnClickListener {
-           onBackPressed()
+            onBackPressed()
         }
 
         requestPermission(permissions, this)
