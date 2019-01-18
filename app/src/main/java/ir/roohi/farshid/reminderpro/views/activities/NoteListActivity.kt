@@ -130,9 +130,6 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
             R.id.fabAdd -> {
                 NoteEditActivity.start(this, null)
             }
-            R.id.imgBack -> {
-                finish()
-            }
         }
     }
 

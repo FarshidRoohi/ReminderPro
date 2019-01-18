@@ -45,7 +45,10 @@ class CustomToolbar : Toolbar {
             this.leftIcon = arrayType.getResourceId(R.styleable.CustomToolbar_leftImage, R.drawable.ic_arrow_back)
             this.rightIcon = arrayType.getResourceId(R.styleable.CustomToolbar_rightImage, 0)
             this.title = arrayType.getString(R.styleable.CustomToolbar_caption)
-            this.tint = arrayType.getColor(R.styleable.CustomToolbar_elementTint, ContextCompat.getColor(context, R.color.color_tint_toolbar))
+            this.tint = arrayType.getColor(
+                R.styleable.CustomToolbar_elementTint,
+                ContextCompat.getColor(context, R.color.color_tint_toolbar)
+            )
 
             arrayType.recycle()
         }
@@ -59,6 +62,8 @@ class CustomToolbar : Toolbar {
         this.imgRight.setColorFilter(this.tint)
         this.imgLeft.setColorFilter(this.tint)
 
+        val direction = resources.configuration.layoutDirection
+        imgLeft.rotation = if (direction == 0) 0f else 180f
 
     }
 

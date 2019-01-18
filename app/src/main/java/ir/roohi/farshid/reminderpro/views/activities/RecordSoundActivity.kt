@@ -37,8 +37,6 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
 
     private var counter = 0
     private var counterPlay = 0
-
-
     private val permissions = arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
 
@@ -49,7 +47,6 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record_sound)
@@ -57,10 +54,12 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
         this.player = MediaPlayer()
 
         fabRecord.setOnClickListener(this)
-        imgBack.setOnClickListener(this)
-//        imgShare.setOnClickListener(this)
         imgSave.setOnClickListener(this)
         imgDelete.setOnClickListener(this)
+
+        toolbar.getLeftImageView().setOnClickListener {
+           onBackPressed()
+        }
 
         requestPermission(permissions, this)
 
@@ -70,10 +69,6 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
         when (v!!.id) {
             R.id.fabRecord -> {
                 handledVoiceRecording()
-            }
-            R.id.imgBack -> {
-                delete()
-                finish()
             }
             R.id.imgShare -> {
                 lottieLayer.cancelAnimation()
@@ -260,8 +255,10 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
     }
 
     override fun onDenied(permission: String) {
-        val alertDialog = AlertDialog.Builder(supportFragmentManager,
-                getString(R.string.permission), getString(R.string.permission_audio))
+        val alertDialog = AlertDialog.Builder(
+            supportFragmentManager,
+            getString(R.string.permission), getString(R.string.permission_audio)
+        )
         alertDialog.setBtnPositive(getString(R.string.yes), View.OnClickListener {
             requestPermission(permissions, this)
             alertDialog.dialog!!.dismissAllowingStateLoss()
