@@ -81,4 +81,13 @@
     <string name="yesterday">yesterday</string>
     <string name="days_ago">days ago</string>
 
+    <string name="map_style">map styles</string>
+    <string name="map_style_basic">basic</string>
+    <string name="map_style_light">light</string>
+    <string name="map_style_satellite">Satellite</string>
+    <string name="map_style_ice_cream">Ice Cream</string>
+    <string name="map_style_dark">dark</string>
+    <string name="map_style_decimal">dark</string>
+    <string name="map_style_map_style">map style</string>
+
 </resources>

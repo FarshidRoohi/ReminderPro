@@ -60,7 +60,7 @@
     <string name="meter">متر</string>
     <string name="write_everything">متنی بنویسید</string>
 
-    <string name="selected_number">%s  انتخاب شده</string>
+    <string name="selected_number">%s انتخاب شده</string>
 
     <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
     <string name="api_mapbox_key">
@@ -80,6 +80,15 @@
     <string name="hours_ago">ساعت پیش</string>
     <string name="yesterday">دیروز</string>
     <string name="days_ago">روز پیش</string>
+
+    <string name="map_style">حالت نمایش نقشه</string>
+    <string name="map_style_basic">ساده</string>
+    <string name="map_style_light">روشن</string>
+    <string name="map_style_satellite">ماهواره</string>
+    <string name="map_style_ice_cream">بستنی</string>
+    <string name="map_style_dark">تیره</string>
+    <string name="map_style_decimal">دودویی</string>
+    <string name="map_style_map_style">نمایش نقشه</string>
 
 
 </resources>

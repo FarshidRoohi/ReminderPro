@@ -6,6 +6,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 
 import java.util.ArrayList
 import java.util.Arrays
@@ -33,7 +34,7 @@ public abstract class BaseRecyclerAdapter<DataSetType> : RecyclerView.Adapter<Re
     public abstract fun getItemLayout(viewType: Int): Int
 
     public abstract fun onBindView(
-        viewDataBinding: ViewDataBinding,viewHolder :RecyclerView.ViewHolder, position: Int,
+        viewDataBinding: ViewDataBinding, viewHolder: RecyclerView.ViewHolder, position: Int,
         viewType: Int, element: DataSetType
     )
 
@@ -128,6 +129,10 @@ public abstract class BaseRecyclerAdapter<DataSetType> : RecyclerView.Adapter<Re
         }
         items!!.clear()
         notifyDataSetChanged()
+    }
+
+    open fun getContextCompatColor(color: Int): Int {
+        return ContextCompat.getColor(context!!, color)
     }
 
 }

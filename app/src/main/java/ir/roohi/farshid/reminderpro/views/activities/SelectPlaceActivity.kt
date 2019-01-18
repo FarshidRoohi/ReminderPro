@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,9 @@ import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.Storage
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
+import ir.roohi.farshid.reminderpro.keys.MAP_STYLE_URL
 import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
 import ir.roohi.farshid.reminderpro.map.PulseMarkerViewAdapter
@@ -64,6 +67,12 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
         createDropPin()
 
         viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
+
+        var url = Storage(this)[String::class.java, MAP_STYLE_URL]
+        if (url == null) {
+            url = "mapbox://styles/farshidroohi/cjr2f00e66xyz2srs69kwkmuz"
+        }
+        mapView.setStyleUrl(url)
 
         requestPermission(
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
