@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/shape_top_radius"
-    android:gravity="center|bottom"
-    android:orientation="vertical">
-
-    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16sp">
+        android:background="@drawable/shape_top_radius"
+        android:gravity="center|bottom"
+        android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16sp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:padding="5dp"
-                android:src="@drawable/ic_title"/>
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_title"/>
 
             <TextView
-                style="@style/TitleStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|left"
-                android:text="@string/title"
-                android:textSize="20sp"/>
+                    style="@style/TitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/title"
+                    android:textSize="20sp"/>
 
         </LinearLayout>
 
         <ir.roohi.farshid.reminderpro.customViews.CustomInputEditText
-            android:id="@+id/edtTitle"
-            style="@style/InputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:hint="@string/enter_some_things"
-            app:zv_style="@style/EditText"
-            />
+                android:id="@+id/edtTitle"
+                style="@style/InputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:hint="@string/enter_some_things"
+                app:zv_style="@style/EditText"
+        />
 
         <com.zarinpal.libs.views.ZarinButton
-            android:id="@+id/btnOk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/ok"
-            android:textColor="@android:color/white"
-            app:zp_cornerRadius="12"
-            app:zp_firstColor="@color/colorAccent"
-            app:zp_fontFace="iransans_bold"
-            />
+                android:id="@+id/btnOk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/ok"
+                android:textColor="@android:color/white"
+                app:zp_cornerRadius="12"
+                app:zp_firstColor="@color/colorAccent"
+                app:zp_fontFace="iransans_bold"
+        />
 
     </LinearLayout>
 

@@ -82,7 +82,9 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
                 delete()
             }
             R.id.imgSave -> {
-
+                if (status == StatusVoiceRecord.RECORD) {
+                    return
+                }
                 if (status == StatusVoiceRecord.STOP) {
                     lottieLayer.cancelAnimation()
                     this.counterPlay = 1000000000

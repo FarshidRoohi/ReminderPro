@@ -15,7 +15,7 @@
     <string name="zero_time">00 : 00 : 00</string>
     <string name="start_recording">start</string>
     <string name="stop_recording">stop</string>
-    <string name="zero_size">0.00 MB</string>
+    <string name="zero_size">0.00 KB</string>
     <string name="save">save</string>
     <string name="delete">delete</string>
     <string name="play">play</string>

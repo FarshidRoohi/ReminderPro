@@ -1,13 +1,17 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import androidx.core.view.ViewCompat
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
 import com.nex3z.togglebuttongroup.SingleSelectToggleGroup.OnCheckedChangeListener
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.greenrobot.eventbus.EventBus
+import javax.security.auth.login.LoginException
 
 
 /**
@@ -26,7 +30,6 @@ class SettingsActivity : BaseActivity(), OnCheckedChangeListener {
             sharedPreferences!!.edit().putString("LANGUAGE", currentLanguage!!).apply()
             setLocale(this.currentLanguage!!)
             EventBus.getDefault().post("change language $currentLanguage")
-            recreate()
         }
     }
 
@@ -37,9 +40,11 @@ class SettingsActivity : BaseActivity(), OnCheckedChangeListener {
         }
     }
 
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+        toolbar.rotateLayoutDirection()
 
         toolbar.getLeftImageView().setOnClickListener { finish() }
 

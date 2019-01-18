@@ -9,13 +9,13 @@
     <string name="voices">صدا</string>
     <string name="notes">یادداشت</string>
     <string name="locations">موقعیت جغرافیایی</string>
-    <string name="add">add</string>
+    <string name="add">افزودن</string>
     <string name="empty">آیتمی برای نمایش وجود نداردو</string>
     <string name="pipe">|</string>
     <string name="zero_time">00 : 00 : 00</string>
     <string name="start_recording">شروع</string>
     <string name="stop_recording">توفق</string>
-    <string name="zero_size">0.00 MB</string>
+    <string name="zero_size">0.00 KB</string>
     <string name="save">ذخیره</string>
     <string name="delete">حذف</string>
     <string name="play">پخش</string>

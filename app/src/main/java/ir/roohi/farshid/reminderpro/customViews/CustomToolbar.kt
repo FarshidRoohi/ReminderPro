@@ -1,11 +1,12 @@
 package ir.roohi.farshid.reminderpro.customViews
 
 import android.content.Context
-import androidx.core.content.ContextCompat
-import androidx.appcompat.widget.Toolbar
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.toolbar.view.*
 
@@ -81,4 +82,16 @@ class CustomToolbar : Toolbar {
 
     fun getLeftImageView(): ImageView = this.imgLeft
     fun getRightImageView(): ImageView = this.imgRight
+
+    fun rotateLayoutDirection() {
+        val direction = resources.configuration.layoutDirection
+        imgLeft.rotation = if (direction == 0) 0f else 180f
+
+        if (resources.configuration.layoutDirection == 0) {
+            layoutDirection = ViewCompat.LAYOUT_DIRECTION_LTR
+        } else {
+            layoutDirection = ViewCompat.LAYOUT_DIRECTION_RTL
+
+        }
+    }
 }
