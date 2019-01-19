@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.service.UserLocationService
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -37,6 +38,8 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         animatedView(itemReminderLocation, 400)
         animatedView(itemNote, 600)
         animatedView(itemSoundRecorder, 800)
+
+//        startService(Intent(this@DashboardActivity, UserLocationService::class.java))
     }
 
 

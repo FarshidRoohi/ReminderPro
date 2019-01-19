@@ -37,6 +37,8 @@
         <activity android:name=".views.activities.SelectPlaceActivity"/>
         <activity android:name=".views.activities.SettingsActivity"/>
 
+    <service android:name=".service.UserLocationService"
+    android:enabled="true"/>
     </application>
 
 </manifest>

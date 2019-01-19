@@ -20,12 +20,12 @@ import androidx.core.app.ActivityCompat
  */
 class UserLocationService :Service() {
 
-    private val MINIMUM_DISTANCE_CHANGE_FOR_UPDATES: Long = 10 // Meters
+    private val MINIMUM_DISTANCE_CHANGE_FOR_UPDATES: Long = 5 // Meters
     private val MINIMUM_TIME_BETWEEN_UPDATES: Long = 5000 // in Milliseconds
     private var locationManager: LocationManager? = null
     private var instance: UserLocationService? = null
-    internal var isGPSEnabled = false
-    internal var isNetworkEnabled = false
+    private var isGPSEnabled = false
+    private var isNetworkEnabled = false
     private val TAG = "LOCATION_SERVICE"
 
     override fun onBind(arg0: Intent): IBinder? {
@@ -35,21 +35,6 @@ class UserLocationService :Service() {
     @SuppressLint("MissingPermission")
     override fun onCreate() {
         super.onCreate()
-        instance = this
-
-        this.locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        this.isGPSEnabled = this.locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        this.isNetworkEnabled = this.locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-
-        if (isAllowPermission()) {
-
-            val provider = if (this.isGPSEnabled) LocationManager.GPS_PROVIDER else LocationManager.NETWORK_PROVIDER
-
-            this.locationManager!!.requestLocationUpdates(
-                    provider,
-                    MINIMUM_TIME_BETWEEN_UPDATES,
-                    MINIMUM_DISTANCE_CHANGE_FOR_UPDATES.toFloat(),
-                    MyLocationListener())
 
             // Location location = this.locationManager.getLastKnownLocation(provider);
             //Log.i(TAG, "onCreate location : " + location.toString());
@@ -71,7 +56,32 @@ class UserLocationService :Service() {
             //                        .getLastKnownLocation(LocationManager.GPS_PROVIDER);
             //                Log.i(TAG, "onCreate: " + location.toString());
             //            }
+    }
+
+    @SuppressLint("MissingPermission")
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        instance = this
+        Log.d(TAG, "GPS onStartCommand ...")
+
+
+        this.locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        this.isGPSEnabled = this.locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        this.isNetworkEnabled = this.locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+
+        if (isAllowPermission()) {
+
+            val provider = if (this.isGPSEnabled) LocationManager.GPS_PROVIDER else LocationManager.NETWORK_PROVIDER
+
+            this.locationManager!!.requestLocationUpdates(
+                provider,
+                MINIMUM_TIME_BETWEEN_UPDATES,
+                MINIMUM_DISTANCE_CHANGE_FOR_UPDATES.toFloat(),
+                MyLocationListener()
+            )
         }
+
+
+        return START_STICKY
     }
 
     fun isRunnig(): Boolean {
@@ -97,7 +107,7 @@ class UserLocationService :Service() {
     }
 
     private fun checkLocation(location: Location) {
-
+        Log.i(TAG,"location :latitude :  ${location.latitude} || longitude : ${location.longitude}")
     }
 
 
