@@ -6,9 +6,15 @@
     <string name="note">یادداشت</string>
     <string name="voice_recorder">ضبط صدا</string>
     <string name="reminder_location">یادآور موقعیت جغرافیایی</string>
+
     <string name="voices">صدا</string>
     <string name="notes">یادداشت</string>
     <string name="locations">موقعیت جغرافیایی</string>
+
+      <string name="voices_description">صدای خود را ضبط کنید</string>
+    <string name="note_description">هر نوشته‌ایی را ذخیره کنید</string>
+    <string name="locations_description">موقعیت جغرافیایی دلخواه خود ذخیره کنید.</string>
+
     <string name="add">افزودن</string>
     <string name="empty">آیتمی برای نمایش وجود نداردو</string>
     <string name="pipe">|</string>

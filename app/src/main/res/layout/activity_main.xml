@@ -71,73 +71,54 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-
-    <TextView
-            android:id="@+id/txtHi"
-            style="@style/SubtitleStyle"
-            fontPath="fonts/IRSANS_medium.ttf"
-            android:layout_width="0dp"
+    <ir.roohi.farshid.reminderpro.customViews.CustomItemView
+            android:id="@+id/itemSoundRecorder"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="Hi farshid"
-            android:textSize="16sp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/color_item_main"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:title="@string/voices"
+            app:description="@string/voices_description"
+            android:tint="@color/color_tint_item_main"
+            app:item_icon="@drawable/ic_record_voice_over"
+            app:item_radius="30dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintTop_toBottomOf="@+id/layout_header"
-            tools:ignore="MissingPrefix"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="150dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <ir.roohi.farshid.reminderpro.customViews.CustomItemView
             android:id="@+id/itemReminderLocation"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginStart="120dp"
+            android:layout_height="wrap_content"
             android:background="@color/color_item_main"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="@string/locations"
+            app:title="@string/locations"
+            app:description="@string/locations_description"
             android:tint="@color/color_tint_item_main"
             app:item_icon="@drawable/ic_location"
             app:item_radius="30dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/itemNote"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="100dp"
-            app:layout_constraintTop_toBottomOf="@+id/layout_header"/>
-
+            android:layout_marginStart="50dp"/>
     <ir.roohi.farshid.reminderpro.customViews.CustomItemView
             android:id="@+id/itemNote"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginStart="80dp"
+            android:layout_height="wrap_content"
             android:background="@color/color_item_main"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="@string/note"
+            app:title="@string/notes"
+            app:description="@string/note_description"
             android:tint="@color/color_tint_item_main"
             app:item_icon="@drawable/ic_note"
             app:item_radius="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/itemSoundRecorder"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/itemReminderLocation"/>
+            android:layout_marginStart="100dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ir.roohi.farshid.reminderpro.customViews.CustomItemView
-            android:id="@+id/itemSoundRecorder"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginStart="40dp"
-            android:background="@color/color_item_main"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:text="@string/voice_recorder"
-            android:tint="@color/color_tint_item_main"
-            app:item_icon="@drawable/ic_record_voice_over"
-            app:item_radius="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="18dp"
-            app:layout_constraintTop_toBottomOf="@+id/itemNote"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

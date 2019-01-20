@@ -61,25 +61,13 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.itemNote -> {
-                animatedViewGone(itemNote, 600)
-
-                Handler().postDelayed({
-                    NoteListActivity.start(this)
-                }, 350)
+                NoteListActivity.start(this)
             }
             R.id.itemReminderLocation -> {
-                animatedViewGone(itemReminderLocation, 400)
-                Handler().postDelayed({
-                    LocationListActivity.start(this)
-                }, 350)
-
+                LocationListActivity.start(this)
             }
             R.id.itemSoundRecorder -> {
-                animatedViewGone(itemSoundRecorder, 800)
-
-                Handler().postDelayed({
-                    SoundListActivity.start(this)
-                }, 450)
+                SoundListActivity.start(this)
             }
             R.id.imgSettings -> {
                 SettingsActivity.start(this)

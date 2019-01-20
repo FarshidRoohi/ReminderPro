@@ -6,9 +6,15 @@
     <string name="note">Note</string>
     <string name="voice_recorder">Voice Recorder</string>
     <string name="reminder_location">Reminder Location</string>
+
     <string name="voices">Voices</string>
     <string name="notes">Notes</string>
     <string name="locations">Locations</string>
+
+    <string name="voices_description">record voice</string>
+    <string name="note_description">add any text</string>
+    <string name="locations_description">select any location on the map</string>
+
     <string name="add">add</string>
     <string name="empty">There is no item to display</string>
     <string name="pipe">|</string>

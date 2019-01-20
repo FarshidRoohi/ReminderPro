@@ -42,7 +42,8 @@ class CustomItemView : LinearLayout {
         val icon = typedArray.getResourceId(R.styleable.CustomItemView_item_icon, 0)
         val backgroundRadius = typedArray.getDimension(R.styleable.CustomItemView_item_radius, 10f).toInt()
         val tintColor = typedArray.getResourceId(R.styleable.CustomItemView_android_tint, Color.DKGRAY)
-        val text = typedArray.getString(R.styleable.CustomItemView_android_text)
+        val title = typedArray.getString(R.styleable.CustomItemView_title)
+        val description = typedArray.getString(R.styleable.CustomItemView_description)
 
 
         typedArray.recycle()
@@ -51,15 +52,20 @@ class CustomItemView : LinearLayout {
         val view = LayoutInflater.from(context).inflate(R.layout.custom_item_view, this, true)
 
         val txtCaption = view.findViewById<TextView>(R.id.txt_caption)
+        val txtDescription = view.findViewById<TextView>(R.id.txt_description)
         val imgIcon = view.findViewById<ImageView>(R.id.img_icon)
 
         if (icon != 0) {
             imgIcon.setImageResource(icon)
             imgIcon.setColorFilter(ContextCompat.getColor(context, tintColor))
         }
-        if (text != null) {
-            txtCaption.text = text
+        if (title != null) {
+            txtCaption.text = title
             txtCaption.setTextColor(ContextCompat.getColor(context, tintColor))
+        }
+
+        if (description != null){
+            txtDescription.text = description
         }
 
         val gradientDrawable = GradientDrawable()
