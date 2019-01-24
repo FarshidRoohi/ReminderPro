@@ -43,7 +43,6 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
         binding.txtTitle.text = element.title
         binding.txtDesc.text = element.text
         binding.txtDate.text = element.date.toAgoTime(context!!)
-//        binding.txtDate.text = EPrettyTime(context!!).getPrettyTimeFormat(element.date)
         binding.txtDesc.visibility = View.GONE
         if (!element.text!!.isEmpty()) {
             binding.txtDesc.visibility = View.VISIBLE

@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
@@ -15,6 +16,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.mapbox.android.core.location.LocationEngineListener
@@ -164,7 +166,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
         val density = resources.displayMetrics.density
 
         dropPinView = ImageView(this)
-        dropPinView!!.setImageResource(R.drawable.pin)
+        dropPinView!!.setImageResource(R.drawable.ic_pin)
         val params = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,

@@ -27,14 +27,12 @@
                 style="@style/SubtitleStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:padding="10dp"
-                app:layout_constraintEnd_toStartOf="@+id/switchCompat"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTitle"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/switchCompat"/>
 
         <TextView
                 android:id="@+id/txtDate"
