@@ -68,10 +68,6 @@
 
     <string name="selected_number">%s انتخاب شده</string>
 
-    <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
-    <string name="api_mapbox_key">
-        pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
-    </string>
     <string name="settings">تنظیمات</string>
     <string name="change_language">زبان اپلیکیشن</string>
     <string name="change_to_fa">تغییر زبان به فارسی</string>
@@ -95,6 +91,13 @@
     <string name="map_style_dark">تیره</string>
     <string name="map_style_decimal">دودویی</string>
     <string name="map_style_map_style">نمایش نقشه</string>
+
+
+       <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
+    <string name="api_mapbox_key">
+        pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
+    </string>
+        <string name="map_default_style">mapbox://styles/farshidroohi/cjr2f00e66xyz2srs69kwkmuz</string>
 
 
 </resources>

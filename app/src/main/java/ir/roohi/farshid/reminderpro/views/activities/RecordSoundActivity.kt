@@ -8,7 +8,6 @@ import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R

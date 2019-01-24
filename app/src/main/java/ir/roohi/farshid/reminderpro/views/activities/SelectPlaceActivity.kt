@@ -70,9 +70,9 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
         var url = Storage(this)[String::class.java, MAP_STYLE_URL]
         if (url == null) {
-            url = "mapbox://styles/farshidroohi/cjr2f00e66xyz2srs69kwkmuz"
+            url = getString(R.string.map_default_style)
         }
-        mapView.setStyleUrl(url)
+        mapView.setStyleUrl(url!!)
 
         requestPermission(
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
@@ -164,7 +164,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
         val density = resources.displayMetrics.density
 
         dropPinView = ImageView(this)
-        dropPinView!!.setImageResource(R.drawable.ic_person_pin)
+        dropPinView!!.setImageResource(R.drawable.pin)
         val params = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,

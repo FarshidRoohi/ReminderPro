@@ -68,10 +68,6 @@
 
     <string name="selected_number">%s selected</string>
 
-    <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
-    <string name="api_mapbox_key">
-        pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
-    </string>
     <string name="settings">Settings</string>
     <string name="change_language">language application</string>
     <string name="change_to_fa">change language to farsi</string>
@@ -95,5 +91,14 @@
     <string name="map_style_dark">dark</string>
     <string name="map_style_decimal">dark</string>
     <string name="map_style_map_style">map style</string>
+
+
+
+        <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
+    <string name="api_mapbox_key">
+        pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
+    </string>
+
+    <string name="map_default_style">mapbox://styles/farshidroohi/cjr2f00e66xyz2srs69kwkmuz</string>
 
 </resources>
