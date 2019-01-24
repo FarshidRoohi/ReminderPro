@@ -3,7 +3,6 @@ package ir.roohi.farshid.reminderpro.views.adapter
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Handler
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -48,9 +47,9 @@ class MapStyleAdapter : BaseRecyclerAdapter<MapStyle>() {
             binding.txtTitle.setTextColor(Color.WHITE)
         }
 
-        binding.layoutRoot.setOnClickListener { _ ->
-            getItems()!!.forEach {
-                it.status = false
+        binding.layoutRoot.setOnClickListener {
+            getItems()!!.forEach { item ->
+                item.status = false
             }
             getItems()!![viewHolder.adapterPosition].status = true
             binding.layoutRoot.setBackgroundColor(getContextCompatColor(R.color.colorAccent))
