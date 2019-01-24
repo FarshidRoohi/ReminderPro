@@ -75,13 +75,13 @@
     <string name="persian">فارسی</string>
     <string name="english">English</string>
 
-    <string name="just_now">همین الان</string>
-    <string name="a_minute_ago">چند دقیقه پیش</string>
-    <string name="minute_ago">دقیقه پیش</string>
-    <string name="an_hour_ago">یک ساعت پیش</string>
-    <string name="hours_ago">ساعت پیش</string>
-    <string name="yesterday">دیروز</string>
-    <string name="days_ago">روز پیش</string>
+     <string name="just_now">چند لحظه پیش</string>
+    <string name="min_ago"> دقیقه پیش </string>
+    <string name="hour_ago"> ساعت پیش </string>
+    <string name="day_ago"> روز پیش </string>
+    <string name="week_ago"> هفته پیش </string>
+    <string name="month_ago"> ماه پیش </string>
+    <string name="year_ago"> سال پیش </string>
 
     <string name="map_style">حالت نمایش نقشه</string>
     <string name="map_style_basic">ساده</string>
@@ -91,6 +91,9 @@
     <string name="map_style_dark">تیره</string>
     <string name="map_style_decimal">دودویی</string>
     <string name="map_style_map_style">نمایش نقشه</string>
+
+        <string name="share_text">اشتراک گذاری متن</string>
+
 
 
        <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>

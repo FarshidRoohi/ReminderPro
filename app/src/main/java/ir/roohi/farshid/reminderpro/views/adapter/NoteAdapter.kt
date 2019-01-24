@@ -34,7 +34,7 @@ class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
         element: NoteEntity
     ) {
         val binding = viewDataBinding as ItemNoteBinding
-        binding.txtDate.text = element.date.toAgoTime()
+        binding.txtDate.text = element.date.toAgoTime(context!!)
         binding.txtTitle.text = if (element.title.isEmpty()) element.text else element.title
 
         val colorSelectItem =

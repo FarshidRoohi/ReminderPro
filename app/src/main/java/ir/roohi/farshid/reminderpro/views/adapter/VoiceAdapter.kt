@@ -35,7 +35,7 @@ class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
     ) {
         val binding = viewDataBinding as ItemVoiceBinding
         binding.txtTitle.text = element.title
-        binding.txtDate.text = element.date.toAgoTime()
+        binding.txtDate.text = element.date.toAgoTime(context!!)
         binding.icPlay.setImageResource(if (element.isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
         binding.progressBar.max = element.duration / 60
 

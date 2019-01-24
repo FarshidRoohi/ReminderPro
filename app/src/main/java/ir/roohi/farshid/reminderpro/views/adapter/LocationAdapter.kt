@@ -12,6 +12,7 @@ import ir.roohi.farshid.reminderpro.extensions.toAgoTime
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
+import ir.roohi.farshid.reminderpro.utility.EPrettyTime
 
 /**
  * Created by Farshid Roohi.
@@ -41,7 +42,8 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
         binding.switchCompat.isChecked = element.status
         binding.txtTitle.text = element.title
         binding.txtDesc.text = element.text
-        binding.txtDate.text = element.date.toAgoTime()
+        binding.txtDate.text = element.date.toAgoTime(context!!)
+//        binding.txtDate.text = EPrettyTime(context!!).getPrettyTimeFormat(element.date)
         binding.txtDesc.visibility = View.GONE
         if (!element.text!!.isEmpty()) {
             binding.txtDesc.visibility = View.VISIBLE

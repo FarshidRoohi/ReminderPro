@@ -5,9 +5,12 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.ResourceApplication
+import ir.roohi.farshid.reminderpro.utility.EPrettyTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,15 +19,8 @@ import java.util.*
  * ReminderPro | Copyrights 1/4/19.
  */
 
-fun Date.toAgoTime(): String {
-    val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    sdf.timeZone = TimeZone.getTimeZone("GMT")
-    val currentTime = System.currentTimeMillis()
-    DateUtils.getRelativeTimeSpanString(this.time, currentTime, DateUtils.SECOND_IN_MILLIS)
-    if ((currentTime - this.time) < 60000) {
-        return "just now"
-    }
-    return DateUtils.getRelativeTimeSpanString(this.time, currentTime, DateUtils.SECOND_IN_MILLIS).toString()
+fun Date.toAgoTime(context: Context): String {
+    return EPrettyTime(context).getPrettyTimeFormat(this)
 }
 
 fun View.animatedColorBackgroundSelected(isSelected: Boolean = true) {
@@ -53,6 +49,6 @@ fun String.share(context: Context) {
     val intent = Intent(Intent.ACTION_SEND)
     intent.type = "text/plain"
     intent.putExtra(Intent.EXTRA_TEXT, this)
-    context.startActivity(Intent.createChooser(intent, "share text"))
+    context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_text)))
 
 }
