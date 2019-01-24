@@ -74,12 +74,15 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
     }
 
     override fun onMultiSelectNotes(items: ArrayList<NoteEntity>) {
+
         if (items.size == 0) {
             layoutSelectItem.visibility = View.GONE
             return
         }
         txtCounterSelect.text = String.format(getString(R.string.selected_number), items.size.toString())
         setStatusBarColor(R.color.black)
+        imgEdit.visibility = View.GONE
+
 
         if (layoutSelectItem.visibility == View.GONE) {
             layoutSelectItem.visibility = View.VISIBLE

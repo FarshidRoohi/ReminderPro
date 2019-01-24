@@ -27,4 +27,7 @@ class VoiceViewModel(application: Application) : AndroidViewModel(application) {
     public fun remove(item:VoiceEntity){
         repository!!.delete(item)
     }
+    public fun update(item:VoiceEntity){
+        repository!!.update(item)
+    }
 }

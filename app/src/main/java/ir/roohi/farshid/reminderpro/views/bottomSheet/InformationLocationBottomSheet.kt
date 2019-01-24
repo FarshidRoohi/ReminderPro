@@ -12,6 +12,7 @@ import com.zarinpal.libs.views.ZarinButton
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.CustomInputEditText
 import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
+import ir.roohi.farshid.reminderpro.model.LocationEntity
 
 /**
  * Created by Farshid Roohi.
@@ -21,6 +22,7 @@ import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 class InformationLocationBottomSheet constructor(fm: FragmentManager, val listener: OnInformationLocationListener) :
     BottomSheetModal(fm) {
 
+    var modelMap: LocationEntity? = null
 
     override fun getLayout(): Int {
         return R.layout.boottom_sheet_location_info
@@ -34,9 +36,13 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
         val edtTitle = view.findViewById<CustomInputEditText>(R.id.edtTitle)
         val edtDesc = view.findViewById<CustomInputEditText>(R.id.edtDesc)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
-
         txtDistance.text = String.format(getString(R.string.distance_value), 100)
 
+        if (modelMap != null){
+            edtTitle.text = modelMap!!.title
+            edtDesc.text = modelMap!!.text.toString()
+            txtDistance.text = String.format(getString(R.string.distance_value) , modelMap!!.distance)
+        }
         edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_NEXT
         edtTitle.edt!!.setSingleLine(true)
         edtDesc.edt!!.maxLines = 2

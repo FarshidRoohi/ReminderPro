@@ -11,10 +11,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
+import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.VoiceAdapter
+import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
+import ir.roohi.farshid.reminderpro.views.bottomSheet.NameBottomSheet
 import kotlinx.android.synthetic.main.activity_sound_list.*
 import kotlinx.android.synthetic.main.layout_item_selected.*
 import java.io.File
@@ -135,12 +138,17 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
 
         if (items.size > 1) {
             imgShare.visibility = View.GONE
+            imgEdit.visibility = View.GONE
         } else {
             imgShare.visibility = View.VISIBLE
+            imgEdit.visibility = View.VISIBLE
         }
 
         imgCancelSelect.setOnClickListener {
             resetData()
+        }
+        imgEdit.setOnClickListener {
+            edit(items.first())
         }
         imgShare.setOnClickListener {
             if (items.isEmpty()) {
@@ -188,6 +196,20 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
         layoutSelectItem.visibility = View.GONE
         setStatusBarColor(R.color.colorPrimaryDark)
     }
+
+    private fun edit(item: VoiceEntity) {
+        val bottomSheet = NameBottomSheet(supportFragmentManager)
+        bottomSheet.listener = object : NameBottomSheet.OnTitleListener {
+            override fun onTitle(title: String) {
+                item.title = title
+                viewModel.update(item)
+                resetData()
+            }
+        }
+        bottomSheet.item = item
+        bottomSheet.show()
+    }
+
 
     override fun onBackPressed() {
         if (layoutSelectItem.visibility == View.VISIBLE) {

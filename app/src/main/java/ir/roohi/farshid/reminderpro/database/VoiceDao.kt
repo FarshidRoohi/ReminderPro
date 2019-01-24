@@ -20,4 +20,7 @@ interface VoiceDao {
     @Delete
     fun delete(item: VoiceEntity)
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun update(item: VoiceEntity)
+
 }

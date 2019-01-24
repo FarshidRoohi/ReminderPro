@@ -46,4 +46,9 @@ class VoiceRepository(context: Context) {
             this.dataBase!!.voiceDao().delete(item)
         }
     }
+    fun update(item: VoiceEntity) {
+        executor.execute {
+            this.dataBase!!.voiceDao().update(item)
+        }
+    }
 }

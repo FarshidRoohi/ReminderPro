@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
+import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.LocationAdapter
+import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
 import kotlinx.android.synthetic.main.activity_reminder_location.*
 import kotlinx.android.synthetic.main.layout_item_selected.*
 import java.util.*
@@ -29,8 +31,6 @@ class LocationListActivity : BaseActivity(),
 
     private lateinit var adapter: LocationAdapter
     private lateinit var viewModel: LocationViewModel
-
-    private var itemSelected: ArrayList<LocationEntity>? = null
 
     companion object {
         fun start(context: Context) {
@@ -92,8 +92,14 @@ class LocationListActivity : BaseActivity(),
 
         if (items.size > 1) {
             imgShare.visibility = View.GONE
+            imgEdit.visibility = View.GONE
         } else {
             imgShare.visibility = View.VISIBLE
+            imgEdit.visibility = View.VISIBLE
+        }
+
+        imgEdit.setOnClickListener {
+            edit(items.first())
         }
 
         imgCancelSelect.setOnClickListener {
@@ -138,6 +144,21 @@ class LocationListActivity : BaseActivity(),
         adapter.notifyDataSetChanged()
         layoutSelectItem.visibility = View.GONE
         setStatusBarColor(R.color.colorPrimaryDark)
+    }
+
+    private fun edit(item: LocationEntity) {
+        val bottomSheet =
+            InformationLocationBottomSheet(supportFragmentManager, object : OnInformationLocationListener {
+                override fun onInformationLocation(title: String, desc: String?, distance: Int) {
+                    item.distance = distance
+                    item.title = title
+                    item.text = desc
+                    viewModel.update(item)
+                    resetData()
+                }
+            })
+        bottomSheet.modelMap = item
+        bottomSheet.show()
     }
 
     override fun onBackPressed() {

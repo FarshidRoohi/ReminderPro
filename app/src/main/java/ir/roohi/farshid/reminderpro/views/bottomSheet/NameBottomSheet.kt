@@ -9,6 +9,7 @@ import com.zarinpal.libs.bottomsheet.BottomSheetModal
 import com.zarinpal.libs.views.ZarinButton
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.CustomInputEditText
+import ir.roohi.farshid.reminderpro.model.VoiceEntity
 
 /**
  * Created by Farshid Roohi.
@@ -18,12 +19,18 @@ import ir.roohi.farshid.reminderpro.customViews.CustomInputEditText
 class NameBottomSheet constructor(fm: FragmentManager) : BottomSheetModal(fm) {
 
     var listener: OnTitleListener? = null
+    var item: VoiceEntity? = null
 
     override fun getView(view: View?) {
         val btnOk = view!!.findViewById<ZarinButton>(R.id.btnOk)
         val edtTitle = view.findViewById<CustomInputEditText>(R.id.edtTitle)
         edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_DONE
         edtTitle.edt!!.setSingleLine(true)
+
+        if (item != null) {
+            edtTitle.text = item!!.title
+        }
+
         edtTitle.edt!!.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 validationTitle(edtTitle.text)
