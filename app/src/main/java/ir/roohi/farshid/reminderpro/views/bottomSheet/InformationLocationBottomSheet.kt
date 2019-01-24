@@ -35,8 +35,11 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
         val edtDesc = view.findViewById<CustomInputEditText>(R.id.edtDesc)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
 
+        txtDistance.text = String.format(getString(R.string.distance_value), 100)
+
         edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_NEXT
         edtTitle.edt!!.setSingleLine(true)
+        edtDesc.edt!!.maxLines = 2
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onStartTrackingTouch(seekBar: SeekBar?) {

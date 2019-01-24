@@ -62,7 +62,7 @@
     <string name="select_any_where">select any where</string>
     <string name="select">select</string>
     <string name="distance_alarm">Distance alarm :</string>
-    <string name="distance_value">%s meter</string>
+    <string name="distance_value"> %s meter</string>
     <string name="meter">meter</string>
     <string name="write_everything">write everything</string>
 

@@ -62,7 +62,7 @@
     <string name="select_any_where">یک مکان دلخواه انتخاب کنید</string>
     <string name="select">انتخاب</string>
     <string name="distance_alarm">فاصله‌ی هشدار :‌</string>
-    <string name="distance_value">%s متر</string>
+    <string name="distance_value"> %s متر</string>
     <string name="meter">متر</string>
     <string name="write_everything">متنی بنویسید</string>
 
