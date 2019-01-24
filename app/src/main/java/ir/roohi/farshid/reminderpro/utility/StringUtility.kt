@@ -1,5 +1,7 @@
 package ir.roohi.farshid.reminderpro.utility
 
+import android.content.Context
+import ir.roohi.farshid.reminderpro.R
 import java.text.DecimalFormat
 import java.util.*
 
@@ -45,7 +47,7 @@ fun convertToTime(cnt: Float): String {
     return "$hourPrefix$hours : $minPrefix$min : $secPrefix$sec"
 }
 
-fun formatFileSize(size: Long): String {
+fun formatFileSize(size: Long, context: Context): String {
 
     val b = size.toDouble()
     val k = size / 1024.0
@@ -56,10 +58,10 @@ fun formatFileSize(size: Long): String {
     val dec = DecimalFormat("0.00")
 
     return  when {
-        t > 1 -> dec.format(t) + ("  TB")
-        g > 1 -> dec.format(g) + ("  GB")
-        m > 1 -> dec.format(m) + ("  MG")
-        k > 1 -> dec.format(k) + ("  KB")
-        else -> dec.format(b) + ("  B")
+        t > 1 ->  String.format(context.getString(R.string.TB),dec.format(t))
+        g > 1 ->  String.format(context.getString(R.string.GB),dec.format(g))
+        m > 1 ->  String.format(context.getString(R.string.MG),dec.format(m))
+        k > 1 ->  String.format(context.getString(R.string.KB),dec.format(k))
+        else ->  String.format(context.getString(R.string.BYTE),dec.format(b))
     }
 }

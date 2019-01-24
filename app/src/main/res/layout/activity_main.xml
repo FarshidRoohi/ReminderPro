@@ -75,8 +75,8 @@
             android:id="@+id/itemSoundRecorder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_item_main"
-            android:foreground="?android:attr/selectableItemBackground"
+            app:bgColor="@color/color_item_main"
+            android:foreground="@drawable/ripple_radius"
             app:title="@string/voices"
             app:description="@string/voices_description"
             android:tint="@color/color_tint_item_main"
@@ -92,8 +92,8 @@
             android:id="@+id/itemReminderLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_item_main"
-            android:foreground="?android:attr/selectableItemBackground"
+            app:bgColor="@color/color_item_main"
+            android:foreground="@drawable/ripple_radius"
             app:title="@string/locations"
             app:description="@string/locations_description"
             android:tint="@color/color_tint_item_main"
@@ -108,8 +108,8 @@
             android:id="@+id/itemNote"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color_item_main"
-            android:foreground="?android:attr/selectableItemBackground"
+            app:bgColor="@color/color_item_main"
+            android:foreground="@drawable/ripple_radius"
             app:title="@string/notes"
             app:description="@string/note_description"
             android:tint="@color/color_tint_item_main"
@@ -121,33 +121,4 @@
             android:layout_marginStart="100dp"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!--<ir.roohi.farshid.reminderpro.customViews.CustomCircleAnimation-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="200dp"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--android:layout_marginTop="8dp"/>-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="50dp"-->
-    <!--app:fabSize="normal"-->
-    <!--android:layout_marginBottom="0dp"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--android:layout_marginEnd="0dp"-->
-    <!--android:gravity="center"-->
-    <!--android:background="@color/colorPrimary"-->
-    <!--android:tint="@android:color/white"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--android:layout_marginStart="0dp">-->
-
-    <!--<ImageView android:layout_width="50dp"-->
-    <!--android:layout_height="50dp"-->
-    <!--android:tint="@android:color/white"-->
-    <!--android:padding="5dp"-->
-    <!--android:src="@drawable/ic_arrow"-->
-    <!--android:rotation="180"/>-->
-    <!--</LinearLayout>-->
     </androidx.constraintlayout.widget.ConstraintLayout>

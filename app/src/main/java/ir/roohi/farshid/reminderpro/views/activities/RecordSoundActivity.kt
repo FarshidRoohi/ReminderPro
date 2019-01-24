@@ -54,7 +54,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
         setContentView(R.layout.activity_record_sound)
 
         this.player = MediaPlayer()
-
+        this.txtSize.text = String.format(getString(R.string.BYTE), 0.0)
         fabRecord.setOnClickListener(this)
         imgSave.setOnClickListener(this)
         imgDelete.setOnClickListener(this)
@@ -141,8 +141,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
                     try {
                         Thread.sleep(1500)
                         runOnUiThread {
-                            txtSize.text = formatFileSize(file.length())
-
+                            txtSize.text = formatFileSize(file.length(), this@RecordSoundActivity)
                         }
 
                     } catch (e: InterruptedException) {

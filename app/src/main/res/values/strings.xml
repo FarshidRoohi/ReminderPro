@@ -94,6 +94,12 @@
 
     <string name="share_text">share text</string>
 
+    <string name="TB"> %s TB </string>
+    <string name="GB"> %s GB </string>
+    <string name="MG"> %s MG </string>
+    <string name="KB"> %s KB </string>
+    <string name="BYTE"> %s B </string>
+
 
 
         <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>

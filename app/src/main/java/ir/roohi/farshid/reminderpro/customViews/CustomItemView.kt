@@ -38,7 +38,7 @@ class CustomItemView : LinearLayout {
 
         val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.CustomItemView)
 
-        val backgroundColor = typedArray.getResourceId(R.styleable.CustomItemView_android_background, Color.WHITE)
+        val backgroundColor = typedArray.getResourceId(R.styleable.CustomItemView_bgColor, Color.WHITE)
         val icon = typedArray.getResourceId(R.styleable.CustomItemView_item_icon, 0)
         val backgroundRadius = typedArray.getDimension(R.styleable.CustomItemView_item_radius, 10f).toInt()
         val tintColor = typedArray.getResourceId(R.styleable.CustomItemView_android_tint, Color.DKGRAY)

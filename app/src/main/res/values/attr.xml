@@ -2,7 +2,7 @@
 <resources>
 
     <declare-styleable name="CustomItemView">
-        <attr name="android:background" format="color"/>
+        <attr name="bgColor" format="color"/>
         <attr name="item_icon" format="reference"/>
         <attr name="android:tint" format="color"/>
         <attr name="title" format="string"/>

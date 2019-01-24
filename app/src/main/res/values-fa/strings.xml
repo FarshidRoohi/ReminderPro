@@ -92,7 +92,13 @@
     <string name="map_style_decimal">دودویی</string>
     <string name="map_style_map_style">نمایش نقشه</string>
 
-        <string name="share_text">اشتراک گذاری متن</string>
+    <string name="share_text">اشتراک گذاری متن</string>
+
+    <string name="TB"> %s ترابایت </string>
+    <string name="GB"> %s گیگابایت </string>
+    <string name="MG"> %s مگابایت </string>
+    <string name="KB"> %s کیلوبایت </string>
+    <string name="BYTE"> %s بایت </string>
 
 
 
