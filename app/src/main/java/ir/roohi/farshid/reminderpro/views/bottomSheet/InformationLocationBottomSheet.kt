@@ -14,6 +14,7 @@ import ir.roohi.farshid.reminderpro.customViews.CustomInputEditText
 import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 
+
 /**
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/5/19.
@@ -23,6 +24,11 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
     BottomSheetModal(fm) {
 
     var modelMap: LocationEntity? = null
+
+    private val step = 10
+    private val max = 1500
+    private val min = 50
+    private var meter: Int = 100
 
     override fun getLayout(): Int {
         return R.layout.boottom_sheet_location_info
@@ -38,10 +44,14 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
         txtDistance.text = String.format(getString(R.string.distance_value), 100)
 
-        if (modelMap != null){
+        seekBar.max = (max - min) / step
+        seekBar.progress = meter
+
+        if (modelMap != null) {
             edtTitle.text = modelMap!!.title
             edtDesc.text = modelMap!!.text.toString()
-            txtDistance.text = String.format(getString(R.string.distance_value) , modelMap!!.distance)
+            txtDistance.text = String.format(getString(R.string.distance_value), modelMap!!.distance)
+            meter = modelMap!!.distance
         }
         edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_NEXT
         edtTitle.edt!!.setSingleLine(true)
@@ -56,7 +66,9 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
             }
 
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                txtDistance.text = String.format(getString(R.string.distance_value), progress)
+
+                meter = min + (progress * step)
+                txtDistance.text = String.format(getString(R.string.distance_value), meter)
             }
 
         })
@@ -72,12 +84,12 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
 
         edtDesc.edt!!.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                validation(edtTitle.text, edtDesc.text, seekBar.progress)
+                validation(edtTitle.text, edtDesc.text,meter)
             }
             false
         }
         btnOk.setOnClickListener {
-            validation(edtTitle.text, edtDesc.text, seekBar.progress)
+            validation(edtTitle.text, edtDesc.text, meter)
         }
 
     }
