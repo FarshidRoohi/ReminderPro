@@ -11,12 +11,12 @@ import java.util.*
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 12/24/18.
  */
-class VoiceViewModel : AndroidViewModel {
+class VoiceViewModel(application: Application) : AndroidViewModel(application) {
 
     private var repository: VoiceRepository? = null
     var mutableList: LiveData<List<VoiceEntity>>? = null
 
-    constructor(application: Application) : super(application) {
+    init {
         this.repository = VoiceRepository.get(application)
         this.mutableList = this.repository!!.liveData
     }

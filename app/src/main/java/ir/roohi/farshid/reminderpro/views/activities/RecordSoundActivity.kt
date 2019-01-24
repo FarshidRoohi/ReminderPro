@@ -76,7 +76,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
             }
             R.id.imgShare -> {
                 lottieLayer.cancelAnimation()
-                Toast.makeText(this, "share", Toast.LENGTH_SHORT).show()
+                showMsg("share")
             }
             R.id.imgDelete -> {
                 delete()
@@ -279,6 +279,13 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
 
     private fun delete() {
         this.counterPlay = 1000000000
+
+        if (this.status == StatusVoiceRecord.STOP) {
+            this.recorder.stop()
+            this.recorder.release()
+        }
+
+
         this.status = StatusVoiceRecord.RECORD
 
         this.oncePlay = true
