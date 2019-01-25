@@ -107,7 +107,8 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
                             addressPin = mapboxMap!!.addMarker(MarkerViewOptions().title(title).position(position))
                             mapboxMap!!.selectMarker(addressPin!!)
 
-                            viewModel.add(title, desc, true, position, distance)
+                            viewModel.add(title, desc, false, position, distance)
+                            finish()
                         }
                     }
                 })
