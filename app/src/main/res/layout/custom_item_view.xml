@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center|left"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="my text for description"
                 tools:ignore="RtlHardcoded"
                 app:layout_constraintStart_toEndOf="@+id/img_icon"
