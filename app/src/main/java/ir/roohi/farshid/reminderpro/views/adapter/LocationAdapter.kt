@@ -1,6 +1,7 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
@@ -59,6 +60,11 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
             changeColorDarker(binding)
         }
 
+        binding.switchCompat.setOnCheckedChangeListener { buttonView, isChecked ->
+            getItems()!![viewHolder.adapterPosition].status = isChecked
+            onClickListener!!.onClickItemLocation(viewHolder.adapterPosition, getItems()!![viewHolder.adapterPosition])
+        }
+
         binding.rootLayout.setOnClickListener {
             if (itemsSelected.size > 0) {
                 val item = getItems()!![viewHolder.adapterPosition]
@@ -95,12 +101,6 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
                 changeColorLight(binding)
                 listenerMultiSelect?.onMultiSelectLocation(itemsSelected)
                 true
-            }
-
-
-            binding.switchCompat.setOnCheckedChangeListener { _, isChecked ->
-                getItems()!![viewHolder.adapterPosition].status = isChecked
-                onClickListener!!.onClickItemLocation(viewHolder.adapterPosition, getItems()!![viewHolder.adapterPosition])
             }
         }
 

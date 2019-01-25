@@ -14,6 +14,7 @@ import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
 import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
+import ir.roohi.farshid.reminderpro.service.UserLocationService
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.LocationAdapter
 import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
@@ -57,6 +58,9 @@ class LocationListActivity : BaseActivity(),
         adapter.onClickListener = object : OnClickItemLocationListener {
             override fun onClickItemLocation(position: Int, element: LocationEntity) {
                 viewModel.update(element)
+                val intent = Intent(this@LocationListActivity, UserLocationService::class.java)
+                intent.putExtra("locationEntity",element)
+                startService(intent)
             }
         }
         recycler.adapter = adapter
@@ -160,7 +164,6 @@ class LocationListActivity : BaseActivity(),
         bottomSheet.modelMap = item
         bottomSheet.show()
     }
-
     override fun onBackPressed() {
         if (layoutSelectItem.visibility == View.VISIBLE) {
             resetData()

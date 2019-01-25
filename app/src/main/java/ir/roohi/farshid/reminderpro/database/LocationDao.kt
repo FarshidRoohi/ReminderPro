@@ -21,9 +21,9 @@ interface LocationDao {
     @Delete
     fun delete(item: LocationEntity)
 
-    @Query("UPDATE locations SET date = :date , title = :title , text = :text , status = :status,latitude= :latitude,longitude= :longitude,distance= :distance WHERE id == :id")
-    fun update(id: Int, date: Date, title: String, text: String?, status: Boolean,
-               latitude: Double, longitude: Double,distance:Int)
+
+    @Update
+    fun update(item: LocationEntity)
 
 
 }

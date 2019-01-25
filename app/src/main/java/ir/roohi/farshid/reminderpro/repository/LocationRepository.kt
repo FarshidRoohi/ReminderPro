@@ -49,9 +49,9 @@ class LocationRepository constructor(context: Context) {
         }
     }
 
-    public fun update(id: Int, date: Date, title: String, text: String?, status: Boolean, latitude: Double, longitude: Double,distance:Int) {
+    public fun update(item: LocationEntity) {
         executors.execute {
-            database!!.locationDao().update(id, date, title, text, status, latitude, longitude,distance)
+            database!!.locationDao().update(item)
         }
     }
 }

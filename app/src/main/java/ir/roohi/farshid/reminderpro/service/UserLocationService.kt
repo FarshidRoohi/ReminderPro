@@ -2,6 +2,7 @@ package ir.roohi.farshid.reminderpro.service
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
@@ -13,12 +14,16 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import ir.roohi.farshid.reminderpro.keys.NOTIFICATION_CHANNEL_ID
+import ir.roohi.farshid.reminderpro.model.LocationEntity
 
 /**
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/5/19.
  */
-class UserLocationService :Service() {
+@SuppressLint("LogNotTimber")
+class UserLocationService : Service() {
 
     private val MINIMUM_DISTANCE_CHANGE_FOR_UPDATES: Long = 5 // Meters
     private val MINIMUM_TIME_BETWEEN_UPDATES: Long = 5000 // in Milliseconds
@@ -28,34 +33,13 @@ class UserLocationService :Service() {
     private var isNetworkEnabled = false
     private val TAG = "LOCATION_SERVICE"
 
+    private var locationItem: LocationEntity? = null
+
+    private var notificationManager: NotificationManager? = null
+    private var notificationBuilder: NotificationCompat.Builder? = null
+
     override fun onBind(arg0: Intent): IBinder? {
         return null
-    }
-
-    @SuppressLint("MissingPermission")
-    override fun onCreate() {
-        super.onCreate()
-
-            // Location location = this.locationManager.getLastKnownLocation(provider);
-            //Log.i(TAG, "onCreate location : " + location.toString());
-
-
-            //            if (this.isGPSEnabled) {
-            //                this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-            //                        MINIMUM_TIME_BETWEEN_UPDATES,
-            //                        MINIMUM_DISTANCE_CHANGE_FOR_UPDATES, new MyLocationListener());
-            //
-            //                Location location = locationManager
-            //                        .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            //
-            //            } else if (isNetworkEnabled) {
-            //                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-            //                        MINIMUM_TIME_BETWEEN_UPDATES,
-            //                        MINIMUM_DISTANCE_CHANGE_FOR_UPDATES, new MyLocationListener());
-            //                Location location = locationManager
-            //                        .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            //                Log.i(TAG, "onCreate: " + location.toString());
-            //            }
     }
 
     @SuppressLint("MissingPermission")
@@ -63,6 +47,14 @@ class UserLocationService :Service() {
         instance = this
         Log.d(TAG, "GPS onStartCommand ...")
 
+        this.notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        this.notificationBuilder = NotificationCompat.Builder(this)
+        this.notificationBuilder!!.setChannelId(NOTIFICATION_CHANNEL_ID)
+
+
+         locationItem  = intent!!.getParcelableExtra("locationEntity")
+
+        Log.d(TAG, " service tag start : title : ${locationItem!!.title}")
 
         this.locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         this.isGPSEnabled = this.locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -107,14 +99,25 @@ class UserLocationService :Service() {
     }
 
     private fun checkLocation(location: Location) {
-        Log.i(TAG,"location :latitude :  ${location.latitude} || longitude : ${location.longitude}")
+        Log.d(TAG, "location :latitude :  ${location.latitude} || longitude : ${location.longitude}")
+
+        val selectLocation = Location("SelectLocation")
+        selectLocation.longitude = locationItem!!.longitude
+        selectLocation.latitude = locationItem!!.latitude
+        Log.i(TAG, "location distance : ${location.distanceTo(selectLocation)}")
     }
 
 
     private fun isAllowPermission(): Boolean {
-        return ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION) === PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) === PackageManager.PERMISSION_GRANTED
+
+        return ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
 }

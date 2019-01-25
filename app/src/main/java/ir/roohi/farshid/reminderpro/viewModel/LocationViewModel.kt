@@ -27,7 +27,7 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
     }
 
     public fun update(item: LocationEntity) {
-        repository!!.update(item.id!!, item.date, item.title, item.text, item.status, item.latitude, item.longitude,item.distance)
+        repository!!.update(item)
     }
 
     public fun remove(item:LocationEntity){
