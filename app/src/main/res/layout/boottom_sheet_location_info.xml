@@ -17,6 +17,7 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
             <ImageView
@@ -28,8 +29,7 @@
             <TextView
                     style="@style/TitleStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center|left"
+                    android:layout_height="wrap_content"
                     android:text="@string/location_information"
                     android:textSize="20sp"/>
 
