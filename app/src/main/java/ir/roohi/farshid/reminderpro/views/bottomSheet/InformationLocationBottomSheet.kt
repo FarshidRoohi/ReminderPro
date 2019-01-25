@@ -1,6 +1,8 @@
 package ir.roohi.farshid.reminderpro.views.bottomSheet
 
 import android.annotation.SuppressLint
+import android.location.Location
+import android.text.Html
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.SeekBar
@@ -24,6 +26,8 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
     BottomSheetModal(fm) {
 
     var modelMap: LocationEntity? = null
+    var myLocation: Location? = null
+    var selectLocation: Location? = null
 
     private val step = 10
     private val max = 1500
@@ -42,6 +46,7 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
         val edtTitle = view.findViewById<CustomInputEditText>(R.id.edtTitle)
         val edtDesc = view.findViewById<CustomInputEditText>(R.id.edtDesc)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
+        val txtDistanceMeterLocationSelect = view.findViewById<TextView>(R.id.txtDistanceLocation)
         txtDistance.text = String.format(getString(R.string.distance_value), 100)
 
         seekBar.max = (max - min) / step
@@ -53,6 +58,17 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
             txtDistance.text = String.format(getString(R.string.distance_value), modelMap!!.distance)
             meter = modelMap!!.distance
         }
+        if (myLocation != null && selectLocation != null) {
+            val distance: Int = myLocation!!.distanceTo(selectLocation!!).toInt()
+
+            val text = Html.fromHtml(
+                getString(R.string.distance_my_location) + "   <b>  "
+                        + distance + "  </b>   " + getString(R.string.meter)
+            )
+
+            txtDistanceMeterLocationSelect.text = text
+        }
+
         edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_NEXT
         edtTitle.edt!!.setSingleLine(true)
         edtDesc.edt!!.maxLines = 2
@@ -84,7 +100,7 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
 
         edtDesc.edt!!.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                validation(edtTitle.text, edtDesc.text,meter)
+                validation(edtTitle.text, edtDesc.text, meter)
             }
             false
         }

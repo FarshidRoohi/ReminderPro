@@ -100,6 +100,7 @@
     <string name="KB"> %s KB </string>
     <string name="BYTE"> %s B </string>
 
+    <string name="distance_my_location">Your distance from the select location </string>
 
 
         <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>

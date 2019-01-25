@@ -100,13 +100,14 @@
     <string name="KB"> %s کیلوبایت </string>
     <string name="BYTE"> %s بایت </string>
 
+    <string name="distance_my_location">فاصله شما از نقطه انتخابی شما </string>
 
 
-       <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
-    <string name="api_mapbox_key">
-        pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
-    </string>
-        <string name="map_default_style">mapbox://styles/farshidroohi/cjr2f00e66xyz2srs69kwkmuz</string>
+
+
+    <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
+    <string name="api_mapbox_key">pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg</string>
+    <string name="map_default_style">mapbox://styles/farshidroohi/cjr2f00e66xyz2srs69kwkmuz</string>
 
 
 </resources>

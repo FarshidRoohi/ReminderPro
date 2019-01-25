@@ -35,6 +35,11 @@
 
         </LinearLayout>
 
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:padding="10dp"
+                  style="@style/SubtitleStyle"
+                  android:id="@+id/txtDistanceLocation"/>
         <ir.roohi.farshid.reminderpro.customViews.CustomInputEditText
                 android:id="@+id/edtTitle"
                 style="@style/InputLayout"

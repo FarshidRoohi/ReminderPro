@@ -4,11 +4,9 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +14,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
 import com.mapbox.android.core.location.LocationEngineListener
@@ -54,6 +51,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
     private var userMarker: MarkerView? = null
     private var dropPinView: ImageView? = null
     private lateinit var viewModel: LocationViewModel
+    private var myLocation: Location? = null
 
     companion object {
         fun start(context: Context) {
@@ -113,8 +111,13 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
                         }
                     }
                 })
-            bottomSheet.show()
+            val locationSelect = Location("locationSelect")
+            locationSelect.latitude = getLocationPickerLocation().latitude
+            locationSelect.longitude = getLocationPickerLocation().longitude
 
+            bottomSheet.selectLocation = locationSelect
+            bottomSheet.myLocation = myLocation
+            bottomSheet.show()
 
         }
 
@@ -137,6 +140,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
         locationComponent.locationEngine!!.addLocationEngineListener(object : LocationEngineListener {
             override fun onLocationChanged(location: Location?) {
+                myLocation = location
             }
 
             override fun onConnected() {
