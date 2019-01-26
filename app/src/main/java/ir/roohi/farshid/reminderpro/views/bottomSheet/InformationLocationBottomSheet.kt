@@ -47,7 +47,7 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
         val edtDesc = view.findViewById<CustomInputEditText>(R.id.edtDesc)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
         val txtDistanceMeterLocationSelect = view.findViewById<TextView>(R.id.txtDistanceLocation)
-        txtDistance.text = String.format(getString(R.string.distance_value), 100)
+        txtDistance.text = String.format(getString(R.string.distance_value), meter)
 
         seekBar.max = (max - min) / step
         seekBar.progress = meter
@@ -62,8 +62,7 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
             val distance: Int = myLocation!!.distanceTo(selectLocation!!).toInt()
 
             val text = Html.fromHtml(
-                getString(R.string.distance_my_location) + "   <b>  "
-                        + distance + "  </b>   " + getString(R.string.meter)
+                getString(R.string.distance_my_location) + "   <b>  " + distance + "  </b>   " + getString(R.string.meter)
             )
 
             txtDistanceMeterLocationSelect.text = text

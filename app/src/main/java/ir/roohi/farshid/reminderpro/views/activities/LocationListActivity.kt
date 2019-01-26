@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -44,7 +45,9 @@ class LocationListActivity : BaseActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminder_location)
 
-        toolbar.getLeftImageView().setOnClickListener { finish() }
+        toolbar.getLeftImageView().setOnClickListener {
+            finish()
+        }
         fabAdd.setOnClickListener {
             SelectPlaceActivity.start(this)
         }
@@ -59,7 +62,7 @@ class LocationListActivity : BaseActivity(),
             override fun onClickItemLocation(position: Int, element: LocationEntity) {
                 viewModel.update(element)
                 val intent = Intent(this@LocationListActivity, UserLocationService::class.java)
-                intent.putExtra("locationEntity",element)
+                intent.putExtra("locationEntity", element)
                 startService(intent)
             }
         }
@@ -164,6 +167,7 @@ class LocationListActivity : BaseActivity(),
         bottomSheet.modelMap = item
         bottomSheet.show()
     }
+
     override fun onBackPressed() {
         if (layoutSelectItem.visibility == View.VISIBLE) {
             resetData()

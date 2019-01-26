@@ -37,6 +37,10 @@
     <string name="permission_audio">برای ضبط صدا دسترسی به حافظه جانبی و میکروفون نیاز است.</string>
     <string name="permission_location">برای مشاهده موقعیت جغرافیایی این دسترسی نیاز است</string>
 
+
+    <string name="gps">سیستم موقعیت‌ یاب</string>
+    <string name="gps_status_details">موقعیت مکانی شما غیر فعال می باشد، آیا مایلید آن را فعال کنید؟</string>
+
     <string name="do_you_sure_delete">آیا میخواهید حذف کنید؟</string>
     <string name="title">عنوان</string>
     <string name="location_information">توضیحات محل</string>

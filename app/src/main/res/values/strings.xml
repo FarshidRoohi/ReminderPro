@@ -36,6 +36,9 @@
     <string name="permission">Permission</string>
     <string name="permission_audio">Memory and microphone access are required to record audio.</string>
     <string name="permission_location">Your location access are required to open map</string>
+    
+    <string name="gps">GPS</string>
+    <string name="gps_status_details">GPS turn off, do you want turn on?</string>
 
     <string name="do_you_sure_delete">Do you want to delete?</string>
     <string name="title">Title</string>

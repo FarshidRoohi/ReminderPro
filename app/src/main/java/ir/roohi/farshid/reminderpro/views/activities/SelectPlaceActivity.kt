@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -78,6 +79,9 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
             this
         )
+
+        checkLocationEnabled()
+
 
         fabMyLocation.setOnClickListener { enableLocationComponent() }
 
@@ -303,6 +307,29 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
         alertBuilder.build().show()
     }
 
+    private fun checkLocationEnabled() {
+        val alertBuilder = AlertDialog.Builder(
+            supportFragmentManager,
+            getString(R.string.gps), getString(R.string.gps_status_details)
+        )
+        alertBuilder.setBtnPositive(getString(R.string.yes), View.OnClickListener {
+            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+            alertBuilder.dialog!!.dismissAllowingStateLoss()
+        })
+        alertBuilder.setBtnNegative(getString(R.string.no), View.OnClickListener {
+            alertBuilder.dialog!!.dismissAllowingStateLoss()
+        })
+
+
+        val locationProviders = Settings.Secure.getString(contentResolver, Settings.Secure.LOCATION_PROVIDERS_ALLOWED)
+        if (locationProviders == null || locationProviders == "") {
+            alertBuilder.build().show()
+            return
+        }
+
+        enableLocationComponent()
+
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
