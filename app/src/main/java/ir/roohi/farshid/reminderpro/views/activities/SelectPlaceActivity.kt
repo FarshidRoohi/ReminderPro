@@ -80,22 +80,16 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
             this
         )
 
-        checkLocationEnabled()
-
-
-        fabMyLocation.setOnClickListener { enableLocationComponent() }
+        fabMyLocation.setOnClickListener { checkLocationEnabled() }
 
         mapView.getMapAsync {
             mapboxMap = it
             mapboxMap!!.uiSettings.isAttributionEnabled = false
             mapboxMap!!.uiSettings.isLogoEnabled = false
-            enableLocationComponent()
-            mapboxMap!!.markerViewManager.addMarkerViewAdapter(
-                PulseMarkerViewAdapter(
-                    this
-                )
-            )
+            mapboxMap!!.markerViewManager.addMarkerViewAdapter(PulseMarkerViewAdapter(this))
             trackUserLocationView(userMarker)
+            checkLocationEnabled()
+
         }
 
         btnSelect.setOnClickListener {
@@ -132,6 +126,10 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
     private fun enableLocationComponent() {
 
         if (!PermissionsManager.areLocationPermissionsGranted(this)) {
+            return
+        }
+
+        if (mapboxMap == null){
             return
         }
 
@@ -227,6 +225,10 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
             }
         })
 
+        if ( mapboxMap!!.locationComponent.locationEngine == null){
+            return
+        }
+
         mapboxMap!!.locationComponent.locationEngine!!.addLocationEngineListener(object : LocationEngineListener {
             override fun onLocationChanged(location: Location?) {
                 if (location != null && markerView != null) {
@@ -235,7 +237,6 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
             }
 
             override fun onConnected() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
         })
