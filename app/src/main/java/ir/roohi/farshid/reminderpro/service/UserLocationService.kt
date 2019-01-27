@@ -22,6 +22,7 @@ import ir.roohi.farshid.reminderpro.keys.NOTIFICATION_CHANNEL_ID
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.views.activities.LocationListActivity
 import android.app.NotificationManager
+import android.os.Handler
 import ir.roohi.farshid.reminderpro.views.activities.AlarmActivity
 
 
@@ -86,7 +87,7 @@ class UserLocationService : Service() {
         this.notificationBuilder!!.setContentTitle(getString(R.string.locations))
         this.notificationBuilder!!.setContentText(getString(R.string.location_service_active))
         this.notificationBuilder!!.setAutoCancel(false)
-        this.notificationBuilder!!.setSmallIcon(R.mipmap.ic_app)
+        this.notificationBuilder!!.setSmallIcon(R.drawable.ic_pin)
 
         val intentNotification = Intent(this, LocationListActivity::class.java)
         intentNotification.action = Intent.ACTION_MAIN
@@ -155,8 +156,11 @@ class UserLocationService : Service() {
             val selectLocation = Location("SelectLocation")
             selectLocation.longitude = it.longitude
             selectLocation.latitude = it.latitude
-            if (location.distanceTo(selectLocation) < it.distance) {
-                AlarmActivity.start(this, it)
+            if (location.distanceTo(selectLocation) > it.distance) {
+                Handler().postDelayed({
+                    AlarmActivity.start(this, it)
+                },2000)
+                return@forEach
             }
         }
     }
