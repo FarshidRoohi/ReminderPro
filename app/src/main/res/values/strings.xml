@@ -15,6 +15,8 @@
     <string name="note_description">add any text</string>
     <string name="locations_description">select any location on the map</string>
 
+    <string name="location_service_active">location reminder in active</string>
+
     <string name="add">add</string>
     <string name="empty">There is no item to display</string>
     <string name="pipe">|</string>

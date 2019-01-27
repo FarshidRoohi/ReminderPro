@@ -15,6 +15,9 @@
     <string name="note_description">هر نوشته‌ایی را ذخیره کنید</string>
     <string name="locations_description">موقعیت جغرافیایی دلخواه خود ذخیره کنید.</string>
 
+        <string name="location_service_active">یادآور موقعیت جغرافیایی فعال است</string>
+
+
     <string name="add">افزودن</string>
     <string name="empty">آیتمی برای نمایش وجود نداردو</string>
     <string name="pipe">|</string>

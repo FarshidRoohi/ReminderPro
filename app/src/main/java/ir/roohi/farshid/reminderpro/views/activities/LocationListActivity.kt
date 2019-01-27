@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -21,7 +20,9 @@ import ir.roohi.farshid.reminderpro.views.adapter.LocationAdapter
 import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
 import kotlinx.android.synthetic.main.activity_reminder_location.*
 import kotlinx.android.synthetic.main.layout_item_selected.*
+import java.io.Serializable
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -61,8 +62,10 @@ class LocationListActivity : BaseActivity(),
         adapter.onClickListener = object : OnClickItemLocationListener {
             override fun onClickItemLocation(position: Int, element: LocationEntity) {
                 viewModel.update(element)
+                val list:ArrayList<LocationEntity> = ArrayList(adapter.getItems()!!)
+                list[position] = element
                 val intent = Intent(this@LocationListActivity, UserLocationService::class.java)
-                intent.putExtra("locationEntity", element)
+                intent.putExtra("locationEntity", list as Serializable)
                 startService(intent)
             }
         }

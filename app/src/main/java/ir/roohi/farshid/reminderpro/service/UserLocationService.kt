@@ -2,21 +2,28 @@ package ir.roohi.farshid.reminderpro.service
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.NotificationManager
-import android.app.Service
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
+import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.keys.NOTIFICATION_CHANNEL_ID
 import ir.roohi.farshid.reminderpro.model.LocationEntity
+import ir.roohi.farshid.reminderpro.views.activities.LocationListActivity
+import android.app.NotificationManager
+import ir.roohi.farshid.reminderpro.views.activities.AlarmActivity
+
 
 /**
  * Created by Farshid Roohi.
@@ -24,6 +31,8 @@ import ir.roohi.farshid.reminderpro.model.LocationEntity
  */
 @SuppressLint("LogNotTimber")
 class UserLocationService : Service() {
+
+    private val NOTIFICATION_ID = 100001
 
     private val MINIMUM_DISTANCE_CHANGE_FOR_UPDATES: Long = 5 // Meters
     private val MINIMUM_TIME_BETWEEN_UPDATES: Long = 5000 // in Milliseconds
@@ -33,10 +42,10 @@ class UserLocationService : Service() {
     private var isNetworkEnabled = false
     private val TAG = "LOCATION_SERVICE"
 
-    private var locationItem: LocationEntity? = null
-
     private var notificationManager: NotificationManager? = null
     private var notificationBuilder: NotificationCompat.Builder? = null
+
+    private var locationList: ArrayList<LocationEntity> = java.util.ArrayList()
 
     override fun onBind(arg0: Intent): IBinder? {
         return null
@@ -45,16 +54,6 @@ class UserLocationService : Service() {
     @SuppressLint("MissingPermission")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         instance = this
-        Log.d(TAG, "GPS onStartCommand ...")
-
-        this.notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        this.notificationBuilder = NotificationCompat.Builder(this)
-        this.notificationBuilder!!.setChannelId(NOTIFICATION_CHANNEL_ID)
-
-
-         locationItem  = intent!!.getParcelableExtra("locationEntity")
-
-        Log.d(TAG, " service tag start : title : ${locationItem!!.title}")
 
         this.locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         this.isGPSEnabled = this.locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -72,8 +71,60 @@ class UserLocationService : Service() {
             )
         }
 
+        this.notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        this.notificationBuilder = NotificationCompat.Builder(this)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.notificationBuilder!!.setChannelId(
+                createNotificationChannel(
+                    NOTIFICATION_CHANNEL_ID,
+                    "notification location reminder"
+                )
+            )
+        }
+
+
+        this.notificationBuilder!!.setContentTitle(getString(R.string.locations))
+        this.notificationBuilder!!.setContentText(getString(R.string.location_service_active))
+        this.notificationBuilder!!.setAutoCancel(false)
+        this.notificationBuilder!!.setSmallIcon(R.mipmap.ic_app)
+
+        val intentNotification = Intent(this, LocationListActivity::class.java)
+        intentNotification.action = Intent.ACTION_MAIN
+        intentNotification.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        val pendingIntent = PendingIntent.getActivity(this, 101, intentNotification, PendingIntent.FLAG_UPDATE_CURRENT)
+        this.notificationBuilder!!.setContentIntent(pendingIntent)
+
+        locationList = (intent!!.getParcelableArrayListExtra("locationEntity"))
+        val notificationManager =
+            applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.cancelAll()
+
+        locationList.forEach {
+            if (it.status) {
+                startForeground(NOTIFICATION_ID, this.notificationBuilder!!.build())
+                return START_STICKY
+            }
+        }
+
+        stopSelf()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            stopForeground(true)
+        }
 
         return START_STICKY
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel(channelId: String, channelName: String): String {
+        val chan = NotificationChannel(
+            channelId,
+            channelName, NotificationManager.IMPORTANCE_NONE
+        )
+        chan.lightColor = Color.BLUE
+        chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
+        val service = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        service.createNotificationChannel(chan)
+        return channelId
     }
 
     fun isRunnig(): Boolean {
@@ -99,12 +150,15 @@ class UserLocationService : Service() {
     }
 
     private fun checkLocation(location: Location) {
-        Log.d(TAG, "location :latitude :  ${location.latitude} || longitude : ${location.longitude}")
 
-        val selectLocation = Location("SelectLocation")
-        selectLocation.longitude = locationItem!!.longitude
-        selectLocation.latitude = locationItem!!.latitude
-        Log.i(TAG, "location distance : ${location.distanceTo(selectLocation)}")
+        locationList.forEach {
+            val selectLocation = Location("SelectLocation")
+            selectLocation.longitude = it.longitude
+            selectLocation.latitude = it.latitude
+            if (location.distanceTo(selectLocation) < it.distance) {
+                AlarmActivity.start(this, it)
+            }
+        }
     }
 
 
