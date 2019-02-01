@@ -129,11 +129,15 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
             return
         }
 
-        if (mapboxMap == null){
+        if (mapboxMap == null) {
             return
         }
 
         val locationComponent = mapboxMap!!.locationComponent
+
+        if (locationComponent.locationEngine == null){
+            return
+        }
 
         locationComponent.activateLocationComponent(this, getLocationComponent())
         locationComponent.locationEngine!!.priority = LocationEnginePriority.BALANCED_POWER_ACCURACY
@@ -225,7 +229,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
             }
         })
 
-        if ( mapboxMap!!.locationComponent.locationEngine == null){
+        if (mapboxMap!!.locationComponent.locationEngine == null) {
             return
         }
 

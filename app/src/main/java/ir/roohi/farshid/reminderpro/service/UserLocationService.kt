@@ -101,6 +101,7 @@ class UserLocationService : Service() {
         notificationManager.cancelAll()
 
         locationList.forEach {
+            Log.i("myCustomTag","title ${it.title} status : ${it.status}")
             if (it.status) {
                 startForeground(NOTIFICATION_ID, this.notificationBuilder!!.build())
                 return START_STICKY
@@ -159,7 +160,7 @@ class UserLocationService : Service() {
             if (location.distanceTo(selectLocation) > it.distance) {
                 Handler().postDelayed({
                     AlarmActivity.start(this, it)
-                },2000)
+                },5000)
                 return@forEach
             }
         }

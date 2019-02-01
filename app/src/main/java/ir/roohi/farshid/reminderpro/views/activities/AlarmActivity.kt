@@ -3,7 +3,6 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
@@ -11,7 +10,6 @@ import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.service.UserLocationService
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import kotlinx.android.synthetic.main.activity_alarm.*
-import kotlinx.android.synthetic.main.activity_reminder_location.*
 import java.io.Serializable
 import android.view.WindowManager
 
@@ -45,11 +43,13 @@ class AlarmActivity : BaseActivity() {
         txtTitle.text = locationEntity.title
 
         val viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
+        locationEntity.status = false
         viewModel.update(locationEntity)
 
         viewModel.liveDateLocations!!.observe(this, Observer<List<LocationEntity>> { list ->
+            val items:ArrayList<LocationEntity> = ArrayList(list!!)
             val intent = Intent(this, UserLocationService::class.java)
-            intent.putExtra("locationEntity", list as Serializable)
+            intent.putExtra("locationEntity", items as Serializable)
             startService(intent)
         })
 
