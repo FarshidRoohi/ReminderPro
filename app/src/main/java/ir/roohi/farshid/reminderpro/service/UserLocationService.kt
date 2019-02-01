@@ -152,7 +152,7 @@ class UserLocationService : Service() {
             val selectLocation = Location("SelectLocation")
             selectLocation.longitude = it.longitude
             selectLocation.latitude = it.latitude
-            if (location.distanceTo(selectLocation) > it.distance) {
+            if (location.distanceTo(selectLocation) <= it.distance) {
                 AlarmActivity.start(this, it)
                 kill()
                 return

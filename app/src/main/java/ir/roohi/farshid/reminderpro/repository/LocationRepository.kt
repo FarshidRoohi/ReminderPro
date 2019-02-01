@@ -32,23 +32,23 @@ class LocationRepository constructor(context: Context) {
         }
     }
 
-    public fun getLocations(): LiveData<List<LocationEntity>> {
+     fun getLocations(): LiveData<List<LocationEntity>> {
         return database!!.locationDao().all
     }
 
-    public fun add(item: LocationEntity) {
+     fun add(item: LocationEntity) {
         executors.execute {
             database!!.locationDao().insert(item)
         }
     }
 
-    public fun remove(item: LocationEntity) {
+     fun remove(item: LocationEntity) {
         executors.execute {
             database!!.locationDao().delete(item)
         }
     }
 
-    public fun update(item: LocationEntity) {
+     fun update(item: LocationEntity) {
         executors.execute {
             database!!.locationDao().update(item)
         }

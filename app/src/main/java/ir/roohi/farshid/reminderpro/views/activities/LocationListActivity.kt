@@ -64,7 +64,6 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
             }
         }
         viewModel.liveDateLocations!!.observe(this, Observer<List<LocationEntity>> { list ->
-            Log.i("TAHD", "observe")
             layoutEmptyState.visibility = View.GONE
             progressBar.visibility = View.GONE
             if (list == null || list.isEmpty()) {
@@ -72,9 +71,10 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
                 layoutEmptyState.visibility = View.VISIBLE
                 return@Observer
             }
-            if (list.size == adapter.itemCount) {
-                return@Observer
-            }
+            // TODO : // fixed update very fast problem
+//            if (list.size == adapter.itemCount) {
+//                return@Observer
+//            }
             adapter.swapData(ArrayList(list))
 
         })
@@ -168,10 +168,6 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
             })
         bottomSheet.modelMap = item
         bottomSheet.show()
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun onBackPressed() {
