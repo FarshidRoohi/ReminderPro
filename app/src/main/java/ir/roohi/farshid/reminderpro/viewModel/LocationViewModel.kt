@@ -14,23 +14,27 @@ import java.util.*
  */
 class LocationViewModel(application: Application) : AndroidViewModel(application) {
 
-    public var liveDateLocations: LiveData<List<LocationEntity>>? = null
-    public var repository: LocationRepository? = null
+    var liveDateLocations: LiveData<List<LocationEntity>>? = null
+    var repository: LocationRepository? = null
 
     init {
         repository = LocationRepository.instance(application)
         liveDateLocations = repository!!.getLocations()
     }
 
-    public fun add(title: String, text: String?, status: Boolean, point: LatLng,distance:Int) {
-        repository!!.add(LocationEntity(Date(), title, text, status, point.latitude, point.longitude,distance))
+    fun all(){
+        liveDateLocations = repository!!.getLocations()
     }
 
-    public fun update(item: LocationEntity) {
+    fun add(title: String, text: String?, status: Boolean, point: LatLng, distance: Int) {
+        repository!!.add(LocationEntity(Date(), title, text, status, point.latitude, point.longitude, distance))
+    }
+
+    fun update(item: LocationEntity) {
         repository!!.update(item)
     }
 
-    public fun remove(item:LocationEntity){
+    fun remove(item: LocationEntity) {
         repository!!.remove(item)
     }
 }

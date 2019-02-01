@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import ir.roohi.farshid.reminderpro.database.AppDatabase
 import ir.roohi.farshid.reminderpro.model.LocationEntity
-import java.util.*
 import java.util.concurrent.Executors
 
 /**

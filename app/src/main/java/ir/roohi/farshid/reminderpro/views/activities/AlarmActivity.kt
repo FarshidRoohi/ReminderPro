@@ -3,6 +3,7 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
@@ -19,6 +20,8 @@ import android.view.WindowManager
  * ReminderPro | Copyrights 1/27/19.
  */
 class AlarmActivity : BaseActivity() {
+
+  private  lateinit var viewModel: LocationViewModel
 
     companion object {
         private lateinit var locationEntity: LocationEntity
@@ -42,20 +45,36 @@ class AlarmActivity : BaseActivity() {
         txtDescription.text = locationEntity.text
         txtTitle.text = locationEntity.title
 
-        val viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
-        locationEntity.status = false
-        viewModel.update(locationEntity)
+        viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
+
 
         viewModel.liveDateLocations!!.observe(this, Observer<List<LocationEntity>> { list ->
-            val items:ArrayList<LocationEntity> = ArrayList(list!!)
+            val items: ArrayList<LocationEntity> = ArrayList(list!!)
             val intent = Intent(this, UserLocationService::class.java)
             intent.putExtra("locationEntity", items as Serializable)
             startService(intent)
+
+            list.forEach {
+                Log.i("MYADM","status ${it.status}")
+            }
         })
 
         btnOk.setOnClickListener {
             finish()
         }
+    }
+
+    private fun update(){
+        locationEntity.status = false
+        viewModel.update(locationEntity)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if( intent == null){
+            return
+        }
+        update()
     }
 
 }

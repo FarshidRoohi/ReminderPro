@@ -21,13 +21,15 @@ class VoiceViewModel(application: Application) : AndroidViewModel(application) {
         this.mutableList = this.repository!!.liveData
     }
 
-    public fun add(title: String, path: String, duration: Int) {
+    fun add(title: String, path: String, duration: Int) {
         repository!!.add(VoiceEntity(Date(), title, path, duration))
     }
-    public fun remove(item:VoiceEntity){
+
+    fun remove(item: VoiceEntity) {
         repository!!.delete(item)
     }
-    public fun update(item:VoiceEntity){
+
+    fun update(item: VoiceEntity) {
         repository!!.update(item)
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -29,8 +30,7 @@ import kotlin.collections.ArrayList
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 2018.
  */
-class LocationListActivity : BaseActivity(),
-    OnMultiSelectLocationListener {
+class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
 
     private lateinit var adapter: LocationAdapter
     private lateinit var viewModel: LocationViewModel
@@ -46,33 +46,25 @@ class LocationListActivity : BaseActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminder_location)
 
-        toolbar.getLeftImageView().setOnClickListener {
-            finish()
-        }
-        fabAdd.setOnClickListener {
-            SelectPlaceActivity.start(this)
-        }
-
-        recycler.layoutManager = LinearLayoutManager(this)
-
         viewModel = ViewModelProviders.of(this).get(LocationViewModel::class.java)
 
         adapter = LocationAdapter()
         adapter.listenerMultiSelect = this
+        recycler.layoutManager = LinearLayoutManager(this)
+        recycler.adapter = adapter
+
         adapter.onClickListener = object : OnClickItemLocationListener {
             override fun onClickItemLocation(position: Int, element: LocationEntity) {
                 viewModel.update(element)
-                val list:ArrayList<LocationEntity> = ArrayList(adapter.getItems()!!)
+                val list: ArrayList<LocationEntity> = ArrayList(adapter.getItems()!!)
                 list[position] = element
                 val intent = Intent(this@LocationListActivity, UserLocationService::class.java)
                 intent.putExtra("locationEntity", list as Serializable)
                 startService(intent)
             }
         }
-        recycler.adapter = adapter
-
         viewModel.liveDateLocations!!.observe(this, Observer<List<LocationEntity>> { list ->
-
+            Log.i("TAHD", "observe")
             layoutEmptyState.visibility = View.GONE
             progressBar.visibility = View.GONE
             if (list == null || list.isEmpty()) {
@@ -86,6 +78,13 @@ class LocationListActivity : BaseActivity(),
             adapter.swapData(ArrayList(list))
 
         })
+
+        toolbar.getLeftImageView().setOnClickListener {
+            finish()
+        }
+        fabAdd.setOnClickListener {
+            SelectPlaceActivity.start(this)
+        }
     }
 
 

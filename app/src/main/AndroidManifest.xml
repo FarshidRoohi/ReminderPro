@@ -41,6 +41,7 @@
         <activity android:name=".views.activities.AlarmActivity"/>
 
     <service android:name=".service.UserLocationService"
+             android:launchMode="singleTask"
              android:enabled="true"/>
     </application>
 

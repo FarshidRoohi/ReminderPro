@@ -83,7 +83,6 @@ class UserLocationService : Service() {
             )
         }
 
-
         this.notificationBuilder!!.setContentTitle(getString(R.string.locations))
         this.notificationBuilder!!.setContentText(getString(R.string.location_service_active))
         this.notificationBuilder!!.setAutoCancel(false)
@@ -96,22 +95,15 @@ class UserLocationService : Service() {
         this.notificationBuilder!!.setContentIntent(pendingIntent)
 
         locationList = (intent!!.getParcelableArrayListExtra("locationEntity"))
-        val notificationManager =
-            applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.cancelAll()
-
         locationList.forEach {
-            Log.i("myCustomTag","title ${it.title} status : ${it.status}")
+            Log.i(LOCATION_SERVICE, "title ${it.title} status : ${it.status}")
             if (it.status) {
                 startForeground(NOTIFICATION_ID, this.notificationBuilder!!.build())
                 return START_STICKY
             }
         }
 
-        stopSelf()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            stopForeground(true)
-        }
+        kill()
 
         return START_STICKY
     }
@@ -136,6 +128,7 @@ class UserLocationService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         instance = null
+        locationManager = null
         Log.d(TAG, "GPS Service destroyed ...")
     }
 
@@ -152,17 +145,25 @@ class UserLocationService : Service() {
     }
 
     private fun checkLocation(location: Location) {
-
+        Log.i(TAG, "check location tag")
         locationList.forEach {
             val selectLocation = Location("SelectLocation")
             selectLocation.longitude = it.longitude
             selectLocation.latitude = it.latitude
             if (location.distanceTo(selectLocation) > it.distance) {
-                Handler().postDelayed({
-                    AlarmActivity.start(this, it)
-                },5000)
+                it.status = false
+                AlarmActivity.start(this, it)
+                kill()
                 return@forEach
             }
+        }
+    }
+
+    private fun kill() {
+        notificationManager!!.cancelAll()
+        stopSelf()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            stopForeground(true)
         }
     }
 

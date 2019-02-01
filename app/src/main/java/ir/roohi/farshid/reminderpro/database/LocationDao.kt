@@ -3,7 +3,6 @@ package ir.roohi.farshid.reminderpro.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import ir.roohi.farshid.reminderpro.model.LocationEntity
-import java.util.*
 
 /**
  * Created by Farshid Roohi.
