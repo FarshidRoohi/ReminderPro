@@ -170,6 +170,10 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
         bottomSheet.show()
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
     override fun onBackPressed() {
         if (layoutSelectItem.visibility == View.VISIBLE) {
             resetData()

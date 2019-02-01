@@ -22,7 +22,6 @@ import ir.roohi.farshid.reminderpro.keys.NOTIFICATION_CHANNEL_ID
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.views.activities.LocationListActivity
 import android.app.NotificationManager
-import android.os.Handler
 import ir.roohi.farshid.reminderpro.views.activities.AlarmActivity
 
 
@@ -145,16 +144,18 @@ class UserLocationService : Service() {
     }
 
     private fun checkLocation(location: Location) {
-        Log.i(TAG, "check location tag")
+        if (instance == null){
+            locationList.clear()
+            return
+        }
         locationList.forEach {
             val selectLocation = Location("SelectLocation")
             selectLocation.longitude = it.longitude
             selectLocation.latitude = it.latitude
             if (location.distanceTo(selectLocation) > it.distance) {
-                it.status = false
                 AlarmActivity.start(this, it)
                 kill()
-                return@forEach
+                return
             }
         }
     }
@@ -166,6 +167,7 @@ class UserLocationService : Service() {
             stopForeground(true)
         }
     }
+
 
 
     private fun isAllowPermission(): Boolean {

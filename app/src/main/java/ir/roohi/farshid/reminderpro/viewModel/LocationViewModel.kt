@@ -22,8 +22,8 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
         liveDateLocations = repository!!.getLocations()
     }
 
-    fun all(){
-        liveDateLocations = repository!!.getLocations()
+    fun all():LiveData<List<LocationEntity>> {
+        return repository!!.getLocations()
     }
 
     fun add(title: String, text: String?, status: Boolean, point: LatLng, distance: Int) {
