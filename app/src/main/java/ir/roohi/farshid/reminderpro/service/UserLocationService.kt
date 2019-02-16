@@ -35,7 +35,7 @@ class UserLocationService : Service() {
     private val NOTIFICATION_ID = 100001
 
     private val MINIMUM_DISTANCE_CHANGE_FOR_UPDATES: Long = 5 // Meters
-    private val MINIMUM_TIME_BETWEEN_UPDATES: Long = 5000 // in Milliseconds
+    private val MINIMUM_TIME_BETWEEN_UPDATES: Long = 3000 // in Milliseconds
     private var locationManager: LocationManager? = null
     private var instance: UserLocationService? = null
     private var isGPSEnabled = false
@@ -58,18 +58,6 @@ class UserLocationService : Service() {
         this.locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         this.isGPSEnabled = this.locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
         this.isNetworkEnabled = this.locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-
-        if (isAllowPermission()) {
-
-            val provider = if (this.isGPSEnabled) LocationManager.GPS_PROVIDER else LocationManager.NETWORK_PROVIDER
-
-            this.locationManager!!.requestLocationUpdates(
-                provider,
-                MINIMUM_TIME_BETWEEN_UPDATES,
-                MINIMUM_DISTANCE_CHANGE_FOR_UPDATES.toFloat(),
-                MyLocationListener()
-            )
-        }
 
         this.notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         this.notificationBuilder = NotificationCompat.Builder(this)
@@ -98,6 +86,7 @@ class UserLocationService : Service() {
             Log.i(LOCATION_SERVICE, "title ${it.title} status : ${it.status}")
             if (it.status) {
                 startForeground(NOTIFICATION_ID, this.notificationBuilder!!.build())
+                locationListener()
                 return START_STICKY
             }
         }
@@ -105,6 +94,20 @@ class UserLocationService : Service() {
         kill()
 
         return START_STICKY
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun locationListener(){
+        if (isAllowPermission()) {
+            val provider = if (this.isGPSEnabled) LocationManager.GPS_PROVIDER else LocationManager.NETWORK_PROVIDER
+
+            this.locationManager!!.requestLocationUpdates(
+                provider,
+                MINIMUM_TIME_BETWEEN_UPDATES,
+                MINIMUM_DISTANCE_CHANGE_FOR_UPDATES.toFloat(),
+                MyLocationListener()
+            )
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

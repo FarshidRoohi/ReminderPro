@@ -8,6 +8,7 @@ import android.graphics.PointF
 import android.location.Location
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
+import com.mapbox.android.core.location.LocationEngine
 import com.mapbox.android.core.location.LocationEngineListener
 import com.mapbox.android.core.location.LocationEnginePriority
 import com.mapbox.android.core.permissions.PermissionsManager
@@ -132,14 +134,13 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
         if (mapboxMap == null) {
             return
         }
-
         val locationComponent = mapboxMap!!.locationComponent
+        locationComponent.activateLocationComponent(this, getLocationComponent())
 
-        if (locationComponent.locationEngine == null){
+        if (locationComponent.locationEngine == null) {
             return
         }
 
-        locationComponent.activateLocationComponent(this, getLocationComponent())
         locationComponent.locationEngine!!.priority = LocationEnginePriority.BALANCED_POWER_ACCURACY
         locationComponent.locationEngine!!.interval = 500
         locationComponent.locationEngine!!.activate()

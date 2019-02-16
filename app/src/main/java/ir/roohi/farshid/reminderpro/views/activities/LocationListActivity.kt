@@ -2,6 +2,7 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.content.Context
 import android.content.Intent
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
@@ -16,6 +18,7 @@ import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.service.UserLocationService
+import ir.roohi.farshid.reminderpro.utility.LocationUtility
 import ir.roohi.farshid.reminderpro.viewModel.LocationViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.LocationAdapter
 import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
@@ -55,6 +58,20 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
 
         adapter.onClickListener = object : OnClickItemLocationListener {
             override fun onClickItemLocation(position: Int, element: LocationEntity) {
+                val flag = LocationUtility(this@LocationListActivity)
+                    .isFarLocation(element.latitude, element.longitude, element.distance)
+
+                if (!flag) {
+                    Snackbar.make(
+                        recycler,
+                        String.format(getString(R.string.error_distance_the_selected_location_near), element.distance),
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                    element.status = false
+                    viewModel.update(element)
+                    return
+                }
+
                 viewModel.update(element)
                 val list: ArrayList<LocationEntity> = ArrayList(adapter.getItems()!!)
                 list[position] = element

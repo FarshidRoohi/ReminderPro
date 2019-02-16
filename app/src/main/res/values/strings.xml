@@ -106,12 +106,11 @@
     <string name="BYTE"> %s B </string>
 
     <string name="distance_my_location">Your distance from the select location </string>
+    <string name="error_distance_the_selected_location_near">The selected location should be %s meters away</string>
 
 
         <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
-    <string name="api_mapbox_key">
-        pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqcXJ1eXl2YjAyMXMzeHBrN3VwaTUybzYifQ.pEUGXe7Qz6ZY13BZCQycsg
-    </string>
+    <string name="api_mapbox_key">pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqczd2c2ZlajBpeWw0NHBoYXN1YWUxN3oifQ.Cf2K7w0GvZTbeTacGZol9g</string>
 
     <string name="map_default_style">mapbox://styles/farshidroohi/cjr2f00e66xyz2srs69kwkmuz</string>
 

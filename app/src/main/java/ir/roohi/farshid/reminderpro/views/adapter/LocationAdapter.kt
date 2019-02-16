@@ -1,7 +1,6 @@
 package ir.roohi.farshid.reminderpro.views.adapter
 
 import android.graphics.Color
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
@@ -60,7 +59,10 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
             changeColorDarker(binding)
         }
 
-        binding.switchCompat.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.switchCompat.setOnCheckedChangeListener { _, isChecked ->
+            if (getItems()!![viewHolder.adapterPosition].status == isChecked) {
+                return@setOnCheckedChangeListener
+            }
             getItems()!![viewHolder.adapterPosition].status = isChecked
             onClickListener!!.onClickItemLocation(viewHolder.adapterPosition, getItems()!![viewHolder.adapterPosition])
         }
@@ -85,23 +87,24 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
                 changeColorLight(binding)
                 return@setOnClickListener
             }
-            binding.rootLayout.setOnLongClickListener {
 
-                val item = getItems()!![viewHolder.adapterPosition]
-                if (itemsSelected.contains(getItems()!![viewHolder.adapterPosition])) {
-                    item.statusSelect = false
-                    itemsSelected.remove(getItems()!![viewHolder.adapterPosition])
-                    binding.rootLayout.animatedColorBackgroundSelected(false)
-                    changeColorDarker(binding)
-                    listenerMultiSelect?.onMultiSelectLocation(itemsSelected)
-                }
-                item.statusSelect = true
-                itemsSelected.add(item)
-                binding.rootLayout.animatedColorBackgroundSelected()
-                changeColorLight(binding)
+        }
+        binding.rootLayout.setOnLongClickListener {
+
+            val item = getItems()!![viewHolder.adapterPosition]
+            if (itemsSelected.contains(getItems()!![viewHolder.adapterPosition])) {
+                item.statusSelect = false
+                itemsSelected.remove(getItems()!![viewHolder.adapterPosition])
+                binding.rootLayout.animatedColorBackgroundSelected(false)
+                changeColorDarker(binding)
                 listenerMultiSelect?.onMultiSelectLocation(itemsSelected)
-                true
             }
+            item.statusSelect = true
+            itemsSelected.add(item)
+            binding.rootLayout.animatedColorBackgroundSelected()
+            changeColorLight(binding)
+            listenerMultiSelect?.onMultiSelectLocation(itemsSelected)
+            true
         }
 
     }
