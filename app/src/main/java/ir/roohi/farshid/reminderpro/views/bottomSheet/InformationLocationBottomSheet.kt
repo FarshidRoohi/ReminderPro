@@ -3,6 +3,7 @@ package ir.roohi.farshid.reminderpro.views.bottomSheet
 import android.annotation.SuppressLint
 import android.location.Location
 import android.text.Html
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.SeekBar
@@ -30,9 +31,9 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
     var selectLocation: Location? = null
 
     private val step = 10
-    private val max = 1500
+    private val max = 3000
     private val min = 50
-    private var meter: Int = 100
+    private var meter: Int = 300
 
     override fun getLayout(): Int {
         return R.layout.boottom_sheet_location_info
@@ -47,10 +48,6 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
         val edtDesc = view.findViewById<CustomInputEditText>(R.id.edtDesc)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
         val txtDistanceMeterLocationSelect = view.findViewById<TextView>(R.id.txtDistanceLocation)
-        txtDistance.text = String.format(getString(R.string.distance_value), meter)
-
-        seekBar.max = (max - min) / step
-        seekBar.progress = meter
 
         if (modelMap != null) {
             edtTitle.text = modelMap!!.title
@@ -58,6 +55,11 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
             txtDistance.text = String.format(getString(R.string.distance_value), modelMap!!.distance)
             meter = modelMap!!.distance
         }
+
+        seekBar.max = (max - min) / step
+        seekBar.progress = meter / step
+        txtDistance.text = String.format(getString(R.string.distance_value), meter)
+
         if (myLocation != null && selectLocation != null) {
             val distance: Int = myLocation!!.distanceTo(selectLocation!!).toInt()
 

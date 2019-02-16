@@ -109,6 +109,7 @@
 
     <string name="distance_my_location">فاصله شما از نقطه انتخابی شما </string>
     <string name="error_distance_the_selected_location_near">مکان انتخاب شده باید دورتر %s متر باشد</string>
+    <string name="distance_default">300 متر</string>
 
 
 

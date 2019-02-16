@@ -107,6 +107,8 @@
 
     <string name="distance_my_location">Your distance from the select location </string>
     <string name="error_distance_the_selected_location_near">The selected location should be %s meters away</string>
+    <string name="distance_default">300 meter</string>
+
 
 
         <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
