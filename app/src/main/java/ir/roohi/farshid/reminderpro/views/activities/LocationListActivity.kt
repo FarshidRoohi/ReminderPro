@@ -2,10 +2,8 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.content.Context
 import android.content.Intent
-import android.location.Location
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -60,7 +58,6 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
             override fun onClickItemLocation(position: Int, element: LocationEntity) {
                 val flag = LocationUtility(this@LocationListActivity)
                     .isFarLocation(element.latitude, element.longitude, element.distance)
-
                 if (!flag) {
                     Snackbar.make(
                         recycler,
