@@ -74,7 +74,7 @@
     <string name="selected_number">%s selected</string>
 
     <string name="settings">Settings</string>
-    <string name="change_language">language application</string>
+    <string name="change_language">Language application</string>
     <string name="change_to_fa">change language to farsi</string>
     <string name="change_to_en">change language to english</string>
     <string name="persian">فارسی</string>
@@ -88,7 +88,7 @@
     <string name="month_ago"> months ago </string>
     <string name="year_ago"> years ago </string>
 
-    <string name="map_style">map styles</string>
+    <string name="map_style">Map styles</string>
     <string name="map_style_basic">basic</string>
     <string name="map_style_light">light</string>
     <string name="map_style_satellite">Satellite</string>
@@ -108,12 +108,13 @@
     <string name="distance_my_location">Your distance from the select location </string>
     <string name="error_distance_the_selected_location_near">The selected location should be %s meters away</string>
     <string name="distance_default">300 meter</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="feedback_hint">write to us, from everything you think will make us better</string>
+    <string name="send">Send</string>
 
 
-
-        <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
+    <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
     <string name="api_mapbox_key">pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqczd2c2ZlajBpeWw0NHBoYXN1YWUxN3oifQ.Cf2K7w0GvZTbeTacGZol9g</string>
-
     <string name="map_default_style">mapbox://styles/farshidroohi/cjr2f00e66xyz2srs69kwkmuz</string>
 
 </resources>

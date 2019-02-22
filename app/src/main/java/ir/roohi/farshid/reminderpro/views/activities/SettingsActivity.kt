@@ -59,6 +59,10 @@ class SettingsActivity : BaseActivity(), OnCheckedChangeListener {
         recyclerView.isNestedScrollingEnabled = false
         recyclerView.setItemViewCacheSize(0)
 
+        txtFeedback.setOnClickListener {
+            startActivity(Intent(this, FeedbackActivity::class.java))
+        }
+
 
     }
 
