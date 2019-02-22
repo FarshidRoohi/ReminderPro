@@ -111,6 +111,9 @@
     <string name="send_feedback">Send feedback</string>
     <string name="feedback_hint">write to us, from everything you think will make us better</string>
     <string name="send">Send</string>
+    <string name="failure_send_feedback">failed send feedback try again</string>
+    <string name="success_send_feedback">success send feedback, thank you for send feedback</string>
+    <string name="your_name">your name</string>
 
 
     <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>

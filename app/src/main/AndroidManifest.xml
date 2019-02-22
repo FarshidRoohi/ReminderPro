@@ -20,6 +20,7 @@
             android:roundIcon="@mipmap/ic_app"
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
+            android:networkSecurityConfig="@xml/network_security_config"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".views.activities.DashboardActivity">
             <intent-filter>

@@ -114,6 +114,10 @@
     <string name="feedback_hint">برای ما بنویسید، از هر آن چیزی که فکر می کنید ما را بهتر می کند</string>
     <string name="send">ارسال</string>
 
+    <string name="failure_send_feedback">خطایی در ارسال رخ داده است، لطفا دوباره تلاش کنید.</string>
+    <string name="success_send_feedback">با موفقیت ثبت شد، با تشکر از شما</string>
+    <string name="your_name">نام شما</string>
+
 
 
 
