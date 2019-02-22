@@ -117,6 +117,8 @@
     <string name="failure_send_feedback">خطایی در ارسال رخ داده است، لطفا دوباره تلاش کنید.</string>
     <string name="success_send_feedback">با موفقیت ثبت شد، با تشکر از شما</string>
     <string name="your_name">نام شما</string>
+    <string name="error_empty_content">لطفا متن بلندتری بنویسید</string>
+
 
 
 

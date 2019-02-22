@@ -55,6 +55,7 @@
     <string name="error_can_not_create_file">Sorry, there is a problem creating the file.</string>
     <string name="error_unknown">unknown error</string>
     <string name="error_empty_title">empty title</string>
+    <string name="error_empty_content">empty content</string>
 
 
     <string name="Byte">Byte</string>

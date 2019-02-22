@@ -42,6 +42,12 @@ class FeedbackActivity : BaseActivity() {
         progressBar.visibility = View.VISIBLE
         layoutSend.isEnabled = false
         edtFeedback.isEnabled = false
+
+        if (edtFeedback.text.toString().isEmpty() || edtFeedback.text.toString().length < 5) {
+            showMsg(getString(R.string.error_empty_content))
+            return
+        }
+
         this.viewModel.send(edtFeedback.text.toString(), "farshid roohi")
 
 
