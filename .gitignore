@@ -6,3 +6,8 @@
 /captures
 .externalNativeBuild
 /.idea/
+/app/release/app-release.apk
+/app/release/output.json
+app/libs/
+app/sampledata/
+app/src/test/java/com/
