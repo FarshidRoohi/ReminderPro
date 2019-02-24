@@ -20,9 +20,8 @@ import androidx.core.app.NotificationCompat
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.keys.NOTIFICATION_CHANNEL_ID
 import ir.roohi.farshid.reminderpro.model.LocationEntity
-import ir.roohi.farshid.reminderpro.views.activities.LocationListActivity
-import android.app.NotificationManager
 import ir.roohi.farshid.reminderpro.views.activities.AlarmActivity
+import ir.roohi.farshid.reminderpro.views.activities.LocationListActivity
 
 
 /**
@@ -97,7 +96,8 @@ class UserLocationService : Service() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun locationListener(){
+    private fun locationListener() {
+
         if (isAllowPermission()) {
             val provider = if (this.isGPSEnabled) LocationManager.GPS_PROVIDER else LocationManager.NETWORK_PROVIDER
 
@@ -147,7 +147,7 @@ class UserLocationService : Service() {
     }
 
     private fun checkLocation(location: Location) {
-        if (instance == null){
+        if (instance == null) {
             locationList.clear()
             return
         }
@@ -170,7 +170,6 @@ class UserLocationService : Service() {
             stopForeground(true)
         }
     }
-
 
 
     private fun isAllowPermission(): Boolean {
