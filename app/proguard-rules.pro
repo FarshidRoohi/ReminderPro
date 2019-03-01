@@ -1,59 +1,31 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+-keepattributes Signature
+-keep class sun.misc.Unsafe { *; }
+# JSR 305 annotations are for embedding nullability information.
+-dontwarn javax.annotation.**
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+-dontwarn org.codehaus.mojo.animal_sniffer.*
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# OkHttp platform used only on JVM and when Conscrypt dependency is available.
+-dontwarn okhttp3.internal.platform.ConscryptPlatform
 
--dontwarn com.squareup.**
--dontwarn com.google.**
--dontwarn org.ocpsoft.**
--dontwarn com.itextpdf.**
+-keep class com.firebase.** { *; }
+-keep class org.apache.** { *; }
+-keepnames class javax.servlet.** { *; }
+-keepnames class org.ietf.jgss.** { *; }
+-dontwarn org.w3c.dom.**
+-dontwarn org.joda.time.**
+-dontwarn org.ietf.jgss.**
 
+ #### -- OkHttp --
+ -dontwarn com.squareup.okhttp.internal.**
 
--keep class com.squareup.**
--keep class com.google.**
--keep class org.self4j.**
--keep class org.ocpsoft.**
--keep class com.itextpdf.**
-
-
-# Get rid of warnings about unreachable but unused classes referred to by Netty
--dontwarn org.jboss.netty.**
-
-# Needed by commons logging
--keep class org.apache.commons.logging.* {*;}
-
-#Some Factory that seemed to be pruned
--keep class java.util.concurrent.atomic.AtomicReferenceFieldUpdater {*;}
--keep class java.util.concurrent.atomic.AtomicReferenceFieldUpdaterImpl{*;}
-
-#Some important internal fields that where removed
--keep class org.jboss.netty.channel.DefaultChannelPipeline{volatile <fields>;}
-
-#A Factory which has a static factory implementation selector which is pruned
--keep class org.jboss.netty.util.internal.QueueFactory{static <fields>;}
-
-#Some fields whose names need to be maintained because they are accessed using inflection
--keepclassmembernames class org.jboss.netty.util.internal.**{*;}
-
-
--keepattributes SourceFile,LineNumberTable
--keepattributes *Annotation*
--keep class org.acra.** { *; }
--dontwarn android.support.v4.app.NotificationCompat*
+ #### -- Apache Commons --
+ -dontwarn org.apache.commons.logging.**
+     -ignorewarnings
+-keep class * {
+public private protected *;
+}
