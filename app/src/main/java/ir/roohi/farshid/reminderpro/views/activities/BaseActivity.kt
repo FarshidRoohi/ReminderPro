@@ -55,6 +55,8 @@ open class BaseActivity : AppCompatActivity(), IEventBus {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)
         }
+
+        logEvent(this.javaClass.simpleName)
     }
 
     fun setContentView(@LayoutRes layoutResID: Int, @ColorRes color: Int) {
@@ -178,4 +180,10 @@ open class BaseActivity : AppCompatActivity(), IEventBus {
     open fun valuesForDirection(value: Float): Float {
         return if (resources.configuration.layoutDirection == 0) value else -value
     }
+
+    fun logEvent(event: String) {
+        resourceApp!!.getAnalytics().logEvent(event, resourceApp!!.getBundleAnalytics())
+    }
+
+
 }

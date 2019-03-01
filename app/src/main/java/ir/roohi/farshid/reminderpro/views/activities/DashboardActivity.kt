@@ -100,6 +100,8 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
                 startActivity(Intent(this, SettingsActivity::class.java))
             }
             R.id.layoutRating -> {
+
+                logEvent("market Rating Click user")
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
                 closeBottomSheet()
             }

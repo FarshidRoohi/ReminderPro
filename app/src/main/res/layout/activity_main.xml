@@ -179,7 +179,7 @@
                   android:orientation="vertical">
 
          <ImageView android:layout_width="match_parent"
-                    android:layout_height="4dp"
+                    android:layout_height="1dp"
                     android:rotation="180"
                     android:background="@drawable/bg_shadow"
                     tools:ignore="ContentDescription"/>

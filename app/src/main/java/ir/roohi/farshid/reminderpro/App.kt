@@ -19,6 +19,7 @@ class App : MultiDexApplication() {
         Mapbox.getInstance(this, getString(R.string.api_mapbox_key))
         Fabric.Builder(applicationContext).build()
 
+
         // for share audio file strict mode
         val builder = StrictMode.VmPolicy.Builder()
         StrictMode.setVmPolicy(builder.build())
