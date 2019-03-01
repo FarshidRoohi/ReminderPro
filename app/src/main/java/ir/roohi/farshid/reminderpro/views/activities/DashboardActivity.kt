@@ -44,6 +44,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         layoutRating.setOnClickListener(this)
         layoutFeedback.setOnClickListener(this)
         layoutPeek.setOnClickListener(this)
+        layoutSettings.setOnClickListener(this)
 
         animatedView(itemReminderLocation, 400)
         animatedView(itemNote, 600)
@@ -107,6 +108,7 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
             }
             R.id.layoutSettings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
+                closeBottomSheet()
             }
             R.id.layoutFeedback -> {
                 startActivity(Intent(this, FeedbackActivity::class.java))
