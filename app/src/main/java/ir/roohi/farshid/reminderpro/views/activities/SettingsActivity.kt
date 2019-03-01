@@ -23,6 +23,7 @@ import org.greenrobot.eventbus.EventBus
 class SettingsActivity : BaseActivity(), OnCheckedChangeListener {
 
     private var currentIdSelect = R.id.choiceEn
+    private var numberPlusCrash = 0
 
     override fun onCheckedChanged(group: SingleSelectToggleGroup?, checkedId: Int) {
         if (currentIdSelect != checkedId) {
@@ -34,12 +35,24 @@ class SettingsActivity : BaseActivity(), OnCheckedChangeListener {
             EventBus.getDefault().post("change language $currentLanguage")
         }
     }
+
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         toolbar.rotateLayoutDirection()
         toolbar.getLeftImageView().setOnClickListener { finish() }
+
+        toolbar.getTxtTitle().setOnClickListener {
+            numberPlusCrash++
+            if (numberPlusCrash == 10) {
+                var temp = arrayOf("a", "b")
+                var c = temp[3]
+            }
+            if (numberPlusCrash > 6) {
+                showMsg("crash : $numberPlusCrash")
+            }
+        }
 
         groupToggle.setOnCheckedChangeListener(this)
         currentIdSelect = if (this.currentLanguage == "FA") R.id.choiceFa else R.id.choiceEn

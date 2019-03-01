@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -82,6 +83,7 @@ class CustomToolbar : Toolbar {
 
     fun getLeftImageView(): ImageView = this.imgLeft
     fun getRightImageView(): ImageView = this.imgRight
+    fun getTxtTitle():TextView = this.txtTitle
 
     fun rotateLayoutDirection() {
         val direction = resources.configuration.layoutDirection
