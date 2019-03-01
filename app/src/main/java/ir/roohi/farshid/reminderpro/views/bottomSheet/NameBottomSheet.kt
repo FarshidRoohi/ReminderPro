@@ -53,7 +53,7 @@ class NameBottomSheet constructor(fm: FragmentManager) : BottomSheetModal(fm) {
     }
 
     override fun getLayout(): Int {
-        return R.layout.boottom_sheet_name
+        return R.layout.bottom_sheet_name
     }
 
     interface OnTitleListener {

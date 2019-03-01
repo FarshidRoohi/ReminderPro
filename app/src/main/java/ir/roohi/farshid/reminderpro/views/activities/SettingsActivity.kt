@@ -34,13 +34,6 @@ class SettingsActivity : BaseActivity(), OnCheckedChangeListener {
             EventBus.getDefault().post("change language $currentLanguage")
         }
     }
-
-    companion object {
-        fun start(context: Context) {
-            context.startActivity(Intent(context, SettingsActivity::class.java))
-        }
-    }
-
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

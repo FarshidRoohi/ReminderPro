@@ -3,14 +3,15 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.GradientDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import androidx.core.content.ContextCompat
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ir.roohi.farshid.reminderpro.R
-import ir.roohi.farshid.reminderpro.model.LocationEntity
-import ir.roohi.farshid.reminderpro.service.UserLocationService
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 
 /**
@@ -19,6 +20,10 @@ import java.util.*
  */
 
 class DashboardActivity : BaseActivity(), View.OnClickListener {
+
+
+    lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+
 
     companion object {
         fun start(context: Context) {
@@ -36,11 +41,40 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         itemReminderLocation.setOnClickListener(this)
         itemSoundRecorder.setOnClickListener(this)
         imgSettings.setOnClickListener(this)
+        layoutRating.setOnClickListener(this)
+        layoutFeedback.setOnClickListener(this)
+        layoutPeek.setOnClickListener(this)
 
         animatedView(itemReminderLocation, 400)
         animatedView(itemNote, 600)
         animatedView(itemSoundRecorder, 800)
 
+        bottomSheetBehavior = BottomSheetBehavior.from(layoutBottomSheet)
+
+
+
+        bottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                imgArrowBottomSheet.rotation = (slideOffset * 180)
+                updateRadius((slideOffset * 180))
+            }
+
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+
+            }
+
+        })
+
+    }
+
+    private fun updateRadius(value: Float) {
+        if (value > 70) {
+            return
+        }
+        val gradient = GradientDrawable()
+        gradient.setColor(ContextCompat.getColor(this, R.color.color_background))
+        gradient.cornerRadii = floatArrayOf(value, value, value, value, 0.0f, 0.0f, 0.0f, 0.0f)
+        layoutPeek.background = gradient
     }
 
 
@@ -48,14 +82,6 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         ObjectAnimator.ofFloat(view, View.TRANSLATION_X, valuesForDirection(3000f), 0f).apply {
             duration = time
             start()
-        }
-    }
-
-    private fun animatedViewGone(view: View, time: Long) {
-        ObjectAnimator.ofFloat(view, View.TRANSLATION_X, valuesForDirection(100f), valuesForDirection(3000f)).apply {
-            duration = time
-            start()
-            Handler().postDelayed({ animatedView(view, 600) }, 1500)
         }
     }
 
@@ -71,8 +97,30 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
                 SoundListActivity.start(this)
             }
             R.id.imgSettings -> {
-                SettingsActivity.start(this)
+                startActivity(Intent(this, SettingsActivity::class.java))
+            }
+            R.id.layoutRating -> {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
+                closeBottomSheet()
+            }
+            R.id.layoutSettings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+            }
+            R.id.layoutFeedback -> {
+                startActivity(Intent(this, FeedbackActivity::class.java))
+                closeBottomSheet()
+            }
+            R.id.layoutPeek -> {
+                if (bottomSheetBehavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                } else {
+                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                }
             }
         }
+    }
+
+    private fun closeBottomSheet() {
+        Handler().postDelayed({ bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED }, 1000)
     }
 }

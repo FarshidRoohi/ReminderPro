@@ -116,6 +116,10 @@
     <string name="success_send_feedback">success send feedback, thank you for send feedback</string>
     <string name="your_name">your name</string>
 
+    <string name="rating">rating and review</string>
+    <string name="share_app">share application</string>
+    <string name="menu">Menu</string>
+
 
     <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
     <string name="api_mapbox_key">pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqczd2c2ZlajBpeWw0NHBoYXN1YWUxN3oifQ.Cf2K7w0GvZTbeTacGZol9g</string>

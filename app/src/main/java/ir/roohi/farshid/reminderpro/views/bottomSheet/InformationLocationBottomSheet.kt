@@ -3,7 +3,6 @@ package ir.roohi.farshid.reminderpro.views.bottomSheet
 import android.annotation.SuppressLint
 import android.location.Location
 import android.text.Html
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.SeekBar
@@ -36,7 +35,7 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
     private var meter: Int = 300
 
     override fun getLayout(): Int {
-        return R.layout.boottom_sheet_location_info
+        return R.layout.bottom_sheet_location_info
     }
 
 
