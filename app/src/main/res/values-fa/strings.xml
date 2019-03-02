@@ -122,6 +122,9 @@
     <string name="rating">امتیاز و نظر دادن</string>
     <string name="share_app">اشتراک گذاری اپلیکیشن</string>
     <string name="menu">منو</string>
+    <string name="internet">اینترنت</string>
+    <string name="internet_status_off">اینترنت خاموش است، برای مشاهده نقشه باید به اینترنت متصل شوید</string>
+
 
 
     <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>

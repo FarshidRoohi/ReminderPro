@@ -119,7 +119,8 @@
     <string name="rating">rating and review</string>
     <string name="share_app">share application</string>
     <string name="menu">Menu</string>
-
+    <string name="internet">internet</string>
+    <string name="internet_status_off">can not connect internet, please check internet connection</string>
 
     <string name="api_key">AIzaSyDtaFQk2Mt1oshQIIc947C1Jl4rC-c2lrs</string>
     <string name="api_mapbox_key">pk.eyJ1IjoiZmFyc2hpZHJvb2hpIiwiYSI6ImNqczd2c2ZlajBpeWw0NHBoYXN1YWUxN3oifQ.Cf2K7w0GvZTbeTacGZol9g</string>

@@ -2,22 +2,22 @@ package ir.roohi.farshid.reminderpro.views.activities
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.util.Log
 import android.view.Window
-import androidx.annotation.ColorRes
-import androidx.annotation.LayoutRes
-import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.annotation.Nullable
+import androidx.annotation.ColorRes
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import ir.roohi.farshid.reminderpro.ResourceApplication
 import ir.roohi.farshid.reminderpro.listener.IEventBus
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
@@ -33,8 +33,8 @@ import java.util.*
 open class BaseActivity : AppCompatActivity(), IEventBus {
 
     private var listener: OnPermissionRequestListener? = null
-    public var sharedPreferences: SharedPreferences? = null
-    public var currentLanguage: String? = null
+    var sharedPreferences: SharedPreferences? = null
+    var currentLanguage: String? = null
 
     companion object {
 
@@ -69,6 +69,14 @@ open class BaseActivity : AppCompatActivity(), IEventBus {
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
+    fun hasConnection(): Boolean {
+        val manager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        val networkInfo = manager.activeNetworkInfo ?: return false
+
+        return networkInfo.isAvailable && networkInfo.isConnected
+    }
+
     fun setStatusBarColor(@ColorRes color: Int) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return
@@ -80,7 +88,7 @@ open class BaseActivity : AppCompatActivity(), IEventBus {
         window.statusBarColor = contextCompatColor(color)
     }
 
-    fun contextCompatColor(@ColorRes color: Int): Int {
+    private fun contextCompatColor(@ColorRes color: Int): Int {
         return ContextCompat.getColor(this, color)
     }
 
@@ -159,11 +167,11 @@ open class BaseActivity : AppCompatActivity(), IEventBus {
     open fun setLocale(lang: String) {
         val locale = Locale(lang)
         val res = resources
-        val displayMatris = res.displayMetrics
+        val displayMatres = res.displayMetrics
         val configuration = res.configuration
         configuration.setLayoutDirection(locale)
         configuration.locale = locale
-        res.updateConfiguration(configuration, displayMatris)
+        res.updateConfiguration(configuration, displayMatres)
 
     }
 

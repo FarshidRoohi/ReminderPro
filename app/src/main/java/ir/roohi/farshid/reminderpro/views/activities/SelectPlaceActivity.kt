@@ -18,7 +18,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProviders
-import com.mapbox.android.core.location.LocationEngine
 import com.mapbox.android.core.location.LocationEngineListener
 import com.mapbox.android.core.location.LocationEnginePriority
 import com.mapbox.android.core.permissions.PermissionsManager
@@ -81,6 +80,9 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
             this
         )
+        if (!hasConnection()) {
+           dialogInternetConnection()
+        }
 
         fabMyLocation.setOnClickListener { checkLocationEnabled() }
 
@@ -96,6 +98,11 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
         btnSelect.setOnClickListener {
 
+            if (!hasConnection()){
+                dialogInternetConnection()
+                return@setOnClickListener
+            }
+
             val bottomSheet =
                 InformationLocationBottomSheet(supportFragmentManager, object : OnInformationLocationListener {
                     override fun onInformationLocation(title: String, desc: String?, distance: Int) {
@@ -108,7 +115,6 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
                             mapboxMap!!.selectMarker(addressPin!!)
 
                             viewModel.add(title, desc, false, position, distance)
-                            finish()
                         }
                     }
                 })
@@ -138,6 +144,9 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
         locationComponent.activateLocationComponent(this, getLocationComponent())
 
         if (locationComponent.locationEngine == null) {
+            return
+        }
+        if (!hasConnection()) {
             return
         }
 
@@ -213,7 +222,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
                 //Get the distance from the tip of the location picker to the MarkerView
                 val distance = getLocationPickerLocation().distanceTo(markerView.position)
 
-                //If closeby, animate, otherwise, stop animation
+                //If close by, animate, otherwise, stop animation
                 val view = mapboxMap!!.markerViewManager.getView(markerView)
                 if (view != null) {
                     val backgroundView = view.findViewById<ImageView>(R.id.background_imageview)
@@ -249,7 +258,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
     }
 
     private fun showDropPin() {
-        if (dropPinView != null && this.dropPinView!!.visibility !== View.VISIBLE) {
+        if (dropPinView != null && this.dropPinView!!.visibility != View.VISIBLE) {
             dropPinView!!.visibility = View.VISIBLE
         }
     }
@@ -293,9 +302,6 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
 
     override fun onAllow(permission: String) {
-//        if (checkPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))) {
-//
-//        }
     }
 
     override fun onDenied(permission: String) {
@@ -335,6 +341,17 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
         enableLocationComponent()
 
+    }
+
+    private fun dialogInternetConnection() {
+        val alertBuilder = AlertDialog.Builder(
+            supportFragmentManager,
+            getString(R.string.internet), getString(R.string.internet_status_off)
+        )
+        alertBuilder.setBtnPositive(getString(R.string.ok), View.OnClickListener {
+            alertBuilder.dialog!!.dismissAllowingStateLoss()
+        })
+        alertBuilder.build().show()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

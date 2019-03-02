@@ -121,8 +121,8 @@ class AlertDialog private constructor(private var fm: androidx.fragment.app.Frag
 
     }
 
-    private fun setBackgroundColor(@ColorInt color: Int) {
-        var color = color
+    private fun setBackgroundColor(@ColorInt value: Int) {
+        var color = value
         if (color == 0) {
             color = Color.WHITE
         }
