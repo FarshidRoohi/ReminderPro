@@ -21,17 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class DashboardActivity : BaseActivity(), View.OnClickListener {
 
-
-    lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
-
-
-    companion object {
-        fun start(context: Context) {
-            val intent = Intent(context, DashboardActivity::class.java)
-            context.startActivity(intent)
-        }
-    }
-
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,27 +41,21 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
         animatedView(itemSoundRecorder, 800)
 
         bottomSheetBehavior = BottomSheetBehavior.from(layoutBottomSheet)
-
-
-
         bottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 imgArrowBottomSheet.rotation = (slideOffset * 180)
-                updateRadius((slideOffset * 180))
+                updateRadius((slideOffset * 180) / 2)
             }
-
             override fun onStateChanged(bottomSheet: View, newState: Int) {
 
             }
-
         })
 
     }
 
     private fun updateRadius(value: Float) {
-        if (value > 70) {
-            return
-        }
+        if (value > 70) return
+
         val gradient = GradientDrawable()
         gradient.setColor(ContextCompat.getColor(this, R.color.color_background))
         gradient.cornerRadii = floatArrayOf(value, value, value, value, 0.0f, 0.0f, 0.0f, 0.0f)

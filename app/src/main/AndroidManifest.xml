@@ -24,12 +24,12 @@
             tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity android:name=".views.activities.DashboardActivity">
-            <intent-filter>
+                         <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
         </activity>
-        <activity android:name=".views.activities.SplashActivity"/>
         <activity android:name=".views.activities.NoteListActivity"/>
         <activity android:name=".views.activities.LocationListActivity"
                   android:launchMode="singleTask"/>
@@ -38,7 +38,6 @@
         <activity android:name=".views.activities.SoundListActivity"/>
         <activity android:name=".views.activities.SelectPlaceActivity"/>
         <activity android:name=".views.activities.SettingsActivity"/>
-
         <activity android:name=".views.activities.AlarmActivity"/>
         <activity android:name=".views.activities.FeedbackActivity"/>
 
@@ -48,7 +47,7 @@
 
         <meta-data
                 android:name="firebase_crashlytics_collection_enabled"
-                android:value="true" />
+                android:value="true"/>
     </application>
 
 </manifest>
