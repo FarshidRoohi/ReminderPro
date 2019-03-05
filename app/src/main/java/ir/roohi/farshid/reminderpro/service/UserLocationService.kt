@@ -80,9 +80,9 @@ class UserLocationService : Service() {
         val pendingIntent = PendingIntent.getActivity(this, 101, intentNotification, PendingIntent.FLAG_UPDATE_CURRENT)
         this.notificationBuilder!!.setContentIntent(pendingIntent)
 
+        locationList.clear()
         locationList = (intent!!.getParcelableArrayListExtra("locationEntity"))
         locationList.forEach {
-            Log.i(LOCATION_SERVICE, "title ${it.title} status : ${it.status}")
             if (it.status) {
                 startForeground(NOTIFICATION_ID, this.notificationBuilder!!.build())
                 locationListener()
@@ -116,7 +116,6 @@ class UserLocationService : Service() {
             channelId,
             channelName, NotificationManager.IMPORTANCE_NONE
         )
-        chan.lightColor = Color.BLUE
         chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
         val service = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         service.createNotificationChannel(chan)
