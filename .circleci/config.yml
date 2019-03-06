@@ -10,8 +10,8 @@ jobs:
     - checkout
     - restore_cache:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-#    - run: echo $KEYSTORE | base64 --decode >> ${HOME}${HOME}/repo/key_store_reminder
-#    - run: echo 'export KEYSTORE=${HOME}${HOME}/repo/key_store_reminder' >> $BASH_ENV
+    - run: echo $KEYSTORE | base64 --decode >> $HOME/repo/key_store_reminder
+    - run: echo 'export KEYSTORE=$HOME/repo/key_store_reminder' >> $BASH_ENV
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
@@ -28,8 +28,8 @@ jobs:
       - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: app/build/test-results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
-#    - run:
-#        name: Build debug APK and release APK
-#        command: |
-#          ./gradlew :app:assembleDebug
-#          ./gradlew :app:assembleDebugAndroidTest
+    - run:
+        name: Build debug APK and release APK
+        command: |
+          ./gradlew :app:assembleDebug
+          ./gradlew :app:assembleDebugAndroidTest
