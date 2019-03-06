@@ -89,10 +89,10 @@ class CustomToolbar : Toolbar {
         val direction = resources.configuration.layoutDirection
         imgLeft.rotation = if (direction == 0) 0f else 180f
 
-        if (resources.configuration.layoutDirection == 0) {
-            layoutDirection = ViewCompat.LAYOUT_DIRECTION_LTR
+        layoutDirection = if (resources.configuration.layoutDirection == 0) {
+            ViewCompat.LAYOUT_DIRECTION_LTR
         } else {
-            layoutDirection = ViewCompat.LAYOUT_DIRECTION_RTL
+            ViewCompat.LAYOUT_DIRECTION_RTL
 
         }
     }

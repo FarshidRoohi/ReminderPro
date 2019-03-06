@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import java.util.*
 
 
@@ -15,7 +16,7 @@ import java.util.*
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/20/19.
  */
-class CustomCircleAnimation : ImageView {
+class CustomCircleAnimation : AppCompatImageView {
 
     private var circleList = ArrayList<Circle>()
 
