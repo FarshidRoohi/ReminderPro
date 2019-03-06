@@ -10,8 +10,8 @@ jobs:
     - checkout
     - restore_cache:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-    - run: echo $KEYSTORE | base64 --decode >> ${HOME}/Users/farshidroohi/Desktop/key_store_reminder
-    - run: echo 'export KEYSTORE=${HOME}/Users/farshidroohi/Desktop/key_store_reminder' >> $BASH_ENV
+    - run: echo $KEYSTORE | base64 --decode >> ${HOME}${HOME}/repo/key_store_reminder
+    - run: echo 'export KEYSTORE=${HOME}${HOME}/repo/key_store_reminder' >> $BASH_ENV
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
