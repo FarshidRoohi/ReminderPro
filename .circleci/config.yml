@@ -6,30 +6,36 @@ jobs:
     - image: circleci/android:api-28
     environment:
       JVM_OPTS: -Xmx3200m
+    ranches:
+      only:
+      - master
     steps:
     - checkout
     - restore_cache:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-    - run: echo $KEYSTORE | base64 --decode >> $HOME/repo/key_store_reminder
-    - run: echo 'export KEYSTORE = $HOME/repo/key_store_reminder' >> $BASH_ENV
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
-      - save_cache:
-          paths:
-          - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-      - run:
-          name: Run Tests
-          command: ./gradlew lint test
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: app/build/reports
-          destination: reports
-      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: app/build/test-results
+    - run:
+        name: get key store
+        command: curl $KEY_STOR_DOWNLOAD_LINK --output ./app/key_store_reminder.jks
+
+    - run:
+        name: Download Dependencies
+        command: ./gradlew androidDependencies
+    - save_cache:
+        paths:
+        - ~/.gradle
+        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+    - run:
+        name: Run Tests
+        command: ./gradlew lint test
+    - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+        path: app/build/reports
+        destination: reports
+    - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+        path: app/build/test-results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
     - run:
-        name: Build debug APK and release APK
-        command: |
-          ./gradlew :app:assembleDebug
-          ./gradlew :app:assembleDebugAndroidTest
+        name: myBuild
+        command: ./gradlew clean assembleRelease
+    - store_artifacts:
+        path: app/build/outputs
+        destination: apks
