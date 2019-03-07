@@ -4,7 +4,7 @@ Reminder Pro android application open source
 [Google play](https://play.google.com/store/apps/details?id=ir.farshid.roohi.reminderpro)</br>
 [Cafebazaar](https://cafebazaar.ir/app/ir.farshid.roohi.reminderpro)</hr>
 
-In addition to this, you can use the following features:
+## Features now available:
 
 - Ability to record and share sound
 
@@ -16,7 +16,7 @@ In addition to this, you can use the following features:
 
 - Ability to change how you view the map with your taste
 
-TODO: </br>
+## TODO: </br>
 
 - Add Note Reminder Alarm
 - Add Voice Reminder Alarm
