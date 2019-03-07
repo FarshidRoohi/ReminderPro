@@ -45,15 +45,15 @@ android {
 }
 
 dependencies {
-    def lifecycle_version = "2.1.0-alpha01"
-    def room_version = "2.0.0-rc01"
+    def lifecycle_version = "2.1.0-alpha02"
+    def room_version = "2.1.0-alpha04"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    kapt 'androidx.databinding:databinding-compiler:3.3.1'
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    kapt 'androidx.databinding:databinding-compiler:3.3.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
-    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha02'
+    implementation 'com.google.android.material:material:1.1.0-alpha04'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
