@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
+apply plugin: 'com.github.triplet.play'
 
 
 android {
@@ -13,8 +14,8 @@ android {
         minSdkVersion 18
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 5
-        versionName "0.5"
+        versionCode 6
+        versionName "0.6-alpha"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -42,6 +43,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+}
+
+play {
+    track = 'alpha'
+    serviceAccountEmail = 'farshid.roohi.a@gmail.com'
+    pk12File = file('key.p12')
 }
 
 dependencies {

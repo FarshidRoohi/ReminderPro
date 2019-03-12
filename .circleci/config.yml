@@ -13,6 +13,11 @@ jobs:
     - checkout
     - restore_cache:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+    - run: echo $KEYSTORE | base64 --decode >> ${HOME}/app/keystore.jks
+    - run: echo $p12 | base64 --decode >> ${HOME}/app/key.p12
+    - run: echo 'export p12=${HOME}/app/key.p12' >> $BASH_ENV
+    - run: echo 'export KEYSTORE=${HOME}/app/keystore.jks' >> $BASH_ENV
     - run:
         name: get key store
         command: curl $KEY_STOR_DOWNLOAD_LINK --output ./app/key_store_reminder.jks
@@ -34,8 +39,11 @@ jobs:
         path: app/build/test-results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
     - run:
-        name: myBuild
+        name: ‌Release App
         command: ./gradlew clean assembleRelease
+    - run:
+        name: ‌Release App
+        command: ./gradlew  publishApkRelease
     - store_artifacts:
         path: app/build/outputs
         destination: apks
