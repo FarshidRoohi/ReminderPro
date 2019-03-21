@@ -283,6 +283,10 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
             this.recorder.release()
         }
 
+        if (this.player.isPlaying) {
+            this.player.stop()
+        }
+
 
         this.status = StatusVoiceRecord.RECORD
 
@@ -298,6 +302,13 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
 
         File(filePath).delete()
 
+    }
+
+    override fun onDestroy() {
+        if (this.player.isPlaying) {
+            this.player.stop()
+        }
+        super.onDestroy()
     }
 
     override fun onBackPressed() {
