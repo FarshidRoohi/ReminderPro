@@ -14,14 +14,14 @@ android {
         minSdkVersion 18
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 6
-        versionName "0.6-alpha"
+        versionCode 8
+        versionName "0.8"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
 
         release {
-            storeFile file("keystore.jks")
+            storeFile file(System.getenv("KEYSTORE") ?: "keystore.jks")
             storePassword System.getenv('KEYSTORE_PASSWORD')
             keyAlias System.getenv('KEY_ALIAS')
             keyPassword System.getenv('KEY_PASSWORD')
@@ -46,9 +46,11 @@ android {
 }
 
 play {
-    track = 'alpha'
-    serviceAccountEmail = 'farshid.roohi.a@gmail.com'
-    pk12File = file('key.p12')
+    track = 'production'
+//    userFraction = 1.0
+    serviceAccountEmail = 'circleci@api-8092016095226204444-719602.iam.gserviceaccount.com'
+    pk12File = file(System.getenv("KEY_12") ?: "key.p12")
+
 }
 
 dependencies {
