@@ -64,7 +64,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
         this.progressBar.visibility = View.GONE
         adapter.removeAll()
         list?.apply {
-            adapter.swapData(ArrayList(this))
+            adapter.addItems(ArrayList(this))
         }
 
         if (adapter.itemCount == 0) {

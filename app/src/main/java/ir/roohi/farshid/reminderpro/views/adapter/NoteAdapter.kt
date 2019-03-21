@@ -3,7 +3,8 @@ package ir.roohi.farshid.reminderpro.views.adapter
 import android.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
+import ir.farshid_roohi.customadapterrecycleview.AdapterRecyclerView
+import ir.farshid_roohi.customadapterrecycleview.viewHolder.ItemViewHolder
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemNoteBinding
 import ir.roohi.farshid.reminderpro.extensions.animatedColorBackgroundSelected
@@ -17,7 +18,7 @@ import ir.roohi.farshid.reminderpro.views.activities.NoteEditActivity
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 2018.
  */
-class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
+class NoteAdapter : AdapterRecyclerView<NoteEntity>() {
 
     var itemsSelected: ArrayList<NoteEntity> = ArrayList()
     var listener: OnMultiSelectNotesListener? = null
@@ -28,7 +29,7 @@ class NoteAdapter : BaseRecyclerAdapter<NoteEntity>() {
 
     override fun onBindView(
         viewDataBinding: ViewDataBinding,
-        viewHolder: RecyclerView.ViewHolder,
+        viewHolder: ItemViewHolder,
         position: Int,
         viewType: Int,
         element: NoteEntity

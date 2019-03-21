@@ -4,7 +4,8 @@ import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
+import ir.farshid_roohi.customadapterrecycleview.AdapterRecyclerView
+import ir.farshid_roohi.customadapterrecycleview.viewHolder.ItemViewHolder
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemVoiceBinding
 import ir.roohi.farshid.reminderpro.extensions.animatedColorBackgroundSelected
@@ -16,7 +17,7 @@ import ir.roohi.farshid.reminderpro.model.VoiceEntity
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 12/24/18.
  */
-class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
+class VoiceAdapter : AdapterRecyclerView<VoiceEntity>() {
 
     var onItemClickListener: OnClickItemListener? = null
     var itemsSelected: ArrayList<VoiceEntity> = ArrayList()
@@ -28,7 +29,7 @@ class VoiceAdapter : BaseRecyclerAdapter<VoiceEntity>() {
 
     override fun onBindView(
         viewDataBinding: ViewDataBinding,
-        viewHolder: RecyclerView.ViewHolder,
+        viewHolder: ItemViewHolder,
         position: Int,
         viewType: Int,
         element: VoiceEntity

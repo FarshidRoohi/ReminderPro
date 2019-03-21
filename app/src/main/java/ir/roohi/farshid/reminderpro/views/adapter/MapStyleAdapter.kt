@@ -3,9 +3,11 @@ package ir.roohi.farshid.reminderpro.views.adapter
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Handler
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
+import ir.farshid_roohi.customadapterrecycleview.AdapterRecyclerView
+import ir.farshid_roohi.customadapterrecycleview.viewHolder.ItemViewHolder
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.Storage
 import ir.roohi.farshid.reminderpro.databinding.ItemMapStyleBinding
@@ -16,7 +18,7 @@ import ir.roohi.farshid.reminderpro.model.MapStyle
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/18/19.
  */
-class MapStyleAdapter : BaseRecyclerAdapter<MapStyle>() {
+class MapStyleAdapter : AdapterRecyclerView<MapStyle>() {
 
     override fun getItemLayout(viewType: Int): Int {
         return R.layout.item_map_style
@@ -24,7 +26,7 @@ class MapStyleAdapter : BaseRecyclerAdapter<MapStyle>() {
 
     @SuppressLint("WrongConstant")
     override fun onBindView(
-        viewDataBinding: ViewDataBinding, viewHolder: RecyclerView.ViewHolder, position: Int,
+        viewDataBinding: ViewDataBinding, viewHolder:ItemViewHolder, position: Int,
         viewType: Int,
         element: MapStyle
     ) {
@@ -67,6 +69,9 @@ class MapStyleAdapter : BaseRecyclerAdapter<MapStyle>() {
         }
 
 
+    }
+    private  fun getContextCompatColor(color: Int): Int {
+        return ContextCompat.getColor(context!!, color)
     }
 
 

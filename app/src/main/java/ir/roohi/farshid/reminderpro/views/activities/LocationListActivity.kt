@@ -89,7 +89,7 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
 //            if (list.size == adapter.itemCount) {
 //                return@Observer
 //            }
-            adapter.swapData(ArrayList(list))
+            adapter.addItems(ArrayList(list))
 
         })
 

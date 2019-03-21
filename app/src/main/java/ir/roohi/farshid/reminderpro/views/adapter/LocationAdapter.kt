@@ -4,7 +4,8 @@ import android.graphics.Color
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.RecyclerView
+import ir.farshid_roohi.customadapterrecycleview.AdapterRecyclerView
+import ir.farshid_roohi.customadapterrecycleview.viewHolder.ItemViewHolder
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemLocationBinding
 import ir.roohi.farshid.reminderpro.extensions.animatedColorBackgroundSelected
@@ -17,7 +18,7 @@ import ir.roohi.farshid.reminderpro.model.LocationEntity
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/5/19.
  */
-class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
+class LocationAdapter : AdapterRecyclerView<LocationEntity>() {
 
     var onClickListener: OnClickItemLocationListener? = null
 
@@ -31,7 +32,7 @@ class LocationAdapter : BaseRecyclerAdapter<LocationEntity>() {
 
     override fun onBindView(
         viewDataBinding: ViewDataBinding,
-        viewHolder: RecyclerView.ViewHolder,
+        viewHolder: ItemViewHolder,
         position: Int,
         viewType: Int,
         element: LocationEntity

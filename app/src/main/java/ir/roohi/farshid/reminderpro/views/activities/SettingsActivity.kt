@@ -1,7 +1,6 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -59,7 +58,7 @@ class SettingsActivity : BaseActivity(), OnCheckedChangeListener {
         groupToggle.check(currentIdSelect)
 
         val adapter = MapStyleAdapter()
-        adapter.swapData(populate())
+        adapter.addItems(populate())
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
         recyclerView.isNestedScrollingEnabled = false

@@ -6,13 +6,11 @@ import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_main.*
-import java.net.InetAddress
 
 
 /**

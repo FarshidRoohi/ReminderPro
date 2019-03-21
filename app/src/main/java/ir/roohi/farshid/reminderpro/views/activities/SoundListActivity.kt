@@ -11,12 +11,10 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
-import ir.roohi.farshid.reminderpro.listener.OnInformationLocationListener
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import ir.roohi.farshid.reminderpro.views.adapter.VoiceAdapter
-import ir.roohi.farshid.reminderpro.views.bottomSheet.InformationLocationBottomSheet
 import ir.roohi.farshid.reminderpro.views.bottomSheet.NameBottomSheet
 import kotlinx.android.synthetic.main.activity_sound_list.*
 import kotlinx.android.synthetic.main.layout_item_selected.*
@@ -79,7 +77,7 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
             return
         }
         list.let {
-            adapter.swapData(ArrayList(list))
+            adapter.addItems(ArrayList(list))
             return
         }
     }
