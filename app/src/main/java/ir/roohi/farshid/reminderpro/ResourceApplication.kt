@@ -4,7 +4,11 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.StrictMode
+import androidx.multidex.MultiDex
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.mapbox.mapboxsdk.Mapbox
+import io.fabric.sdk.android.Fabric
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
@@ -28,6 +32,14 @@ class ResourceApplication(val context: Context) {
         this.initCalligraphy()
         this.dirApplication = Environment.getExternalStorageDirectory().absolutePath
         File(getDirSoundSave()).mkdirs()
+        MultiDex.install(context)
+        Mapbox.getInstance(context, context.getString(R.string.api_mapbox_key))
+        Fabric.Builder(context).build()
+
+
+        // for share audio file strict mode
+        val builder = StrictMode.VmPolicy.Builder()
+        StrictMode.setVmPolicy(builder.build())
     }
 
     companion object {
@@ -53,7 +65,7 @@ class ResourceApplication(val context: Context) {
 
     }
 
-  private  fun getDeviceName(): String {
+    private  fun getDeviceName(): String {
         val manufacturer = Build.MANUFACTURER
         val model = Build.MODEL
         return if (model.toLowerCase().startsWith(manufacturer.toLowerCase())) {

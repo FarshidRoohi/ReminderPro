@@ -1,4 +1,4 @@
-version: 5
+version: 2
 jobs:
   build:
     working_directory: ~/app
@@ -6,22 +6,20 @@ jobs:
     - image: circleci/android:api-28
     environment:
       JVM_OPTS: -Xmx3200m
-    ranches:
-      only:
-      - master
+    filters:
+      branches:
+        only:
+        - release
     steps:
     - checkout
     - restore_cache:
         key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
     - run: echo $KEYSTORE | base64 --decode >> ${HOME}/app/keystore.jks
-    - run: echo $p12 | base64 --decode >> ${HOME}/app/key.p12
-    - run: echo 'export p12=${HOME}/app/key.p12' >> $BASH_ENV
     - run: echo 'export KEYSTORE=${HOME}/app/keystore.jks' >> $BASH_ENV
-    - run:
-        name: get key store
-        command: curl $KEY_STOR_DOWNLOAD_LINK --output ./app/key_store_reminder.jks
 
+    - run: echo $KEY_12 | base64 --decode >> ${HOME}/app/key.p12
+    - run: echo 'export KEY_12=${HOME}/app/key.p12' >> $BASH_ENV
     - run:
         name: Download Dependencies
         command: ./gradlew androidDependencies
@@ -41,9 +39,9 @@ jobs:
     - run:
         name: ‌Release App
         command: ./gradlew clean assembleRelease
-    - run:
-        name: ‌Release App
-        command: ./gradlew  publishApkRelease
+    #    - run:
+    #        name: ‌Release App
+    #        command: ./gradlew  publishApkRelease
     - store_artifacts:
         path: app/build/outputs
         destination: apks
