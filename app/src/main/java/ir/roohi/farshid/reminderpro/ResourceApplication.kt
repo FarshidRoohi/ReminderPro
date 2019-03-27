@@ -65,7 +65,7 @@ class ResourceApplication(val context: Context) {
 
     }
 
-    private  fun getDeviceName(): String {
+    public fun getDeviceName(): String {
         val manufacturer = Build.MANUFACTURER
         val model = Build.MODEL
         return if (model.toLowerCase().startsWith(manufacturer.toLowerCase())) {

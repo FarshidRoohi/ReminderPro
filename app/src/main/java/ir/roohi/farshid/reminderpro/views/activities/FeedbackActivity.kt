@@ -48,7 +48,7 @@ class FeedbackActivity : BaseActivity() {
             return
         }
 
-        this.viewModel.send(edtFeedback.text.toString(), "farshid roohi")
+        this.viewModel.send(edtFeedback.text.toString(), edtName.text.toString())
 
 
     }
