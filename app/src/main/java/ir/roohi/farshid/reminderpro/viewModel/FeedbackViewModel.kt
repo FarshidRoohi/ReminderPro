@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.JsonObject
+import ir.roohi.farshid.reminderpro.ResourceApplication
 import ir.roohi.farshid.reminderpro.listener.OnCallbackResponse
 import ir.roohi.farshid.reminderpro.repository.FeedbackRepository
 import org.json.JSONObject
@@ -22,7 +23,7 @@ class FeedbackViewModel(application: Application) : AndroidViewModel(application
         val json = JsonObject()
         json.addProperty("user_msg", content)
         json.addProperty("user_name", name)
-        json.addProperty("user_device", "android device")
+        json.addProperty("user_device", ResourceApplication.applicationResource!!.getDeviceName())
         repository.request(json)
     }
 

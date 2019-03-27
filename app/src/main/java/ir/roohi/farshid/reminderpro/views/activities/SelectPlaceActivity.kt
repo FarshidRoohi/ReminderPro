@@ -87,8 +87,8 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
         mapView.getMapAsync {
             mapboxMap = it
-            mapboxMap!!.uiSettings.isAttributionEnabled = false
-            mapboxMap!!.uiSettings.isLogoEnabled = false
+//            mapboxMap!!.uiSettings.isAttributionEnabled = false
+//            mapboxMap!!.uiSettings.isLogoEnabled = false
             mapboxMap!!.markerViewManager.addMarkerViewAdapter(PulseMarkerViewAdapter(this))
             trackUserLocationView(userMarker)
             checkLocationEnabled()
