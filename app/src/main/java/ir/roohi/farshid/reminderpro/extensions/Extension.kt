@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.text.format.DateUtils
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.ResourceApplication
 import ir.roohi.farshid.reminderpro.utility.EPrettyTime
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -50,5 +52,13 @@ fun String.share(context: Context) {
     intent.type = "text/plain"
     intent.putExtra(Intent.EXTRA_TEXT, this)
     context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_text)))
+}
+
+// String extension
+fun shareVoice(context: Context, path: String) {
+    val share = Intent(Intent.ACTION_SEND)
+    share.type = "audio/*"
+    share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(File(path)))
+    context.startActivity(Intent.createChooser(share, "Share Sound File"))
 
 }

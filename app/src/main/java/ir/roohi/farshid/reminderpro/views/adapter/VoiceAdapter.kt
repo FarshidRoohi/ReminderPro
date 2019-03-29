@@ -12,6 +12,7 @@ import ir.roohi.farshid.reminderpro.extensions.animatedColorBackgroundSelected
 import ir.roohi.farshid.reminderpro.extensions.toAgoTime
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
+import java.util.*
 
 /**
  * Created by Farshid Roohi.
@@ -38,7 +39,7 @@ class VoiceAdapter : AdapterRecyclerView<VoiceEntity>() {
         binding.txtTitle.text = element.title
         binding.txtDate.text = element.date.toAgoTime(context!!)
         binding.icPlay.setImageResource(if (element.isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
-        binding.progressBar.max = element.duration / 60
+        binding.seekBar.max = element.duration / 60
 
 
         val colorSelectItem =
@@ -63,7 +64,7 @@ class VoiceAdapter : AdapterRecyclerView<VoiceEntity>() {
                     super.run()
                     for (i in 0..element.duration) {
                         Thread.sleep(60)
-                        binding.progressBar.progress = i
+                        binding.seekBar.progress = i
                         if (!element.isPlaying) break
                     }
                 }
@@ -77,18 +78,18 @@ class VoiceAdapter : AdapterRecyclerView<VoiceEntity>() {
 
         binding.rootLayout.setOnClickListener {
             if (itemsSelected.size > 0) {
-                val item = getItems()!![viewHolder.adapterPosition]
+                val item = items!![viewHolder.adapterPosition]
 
-                if (itemsSelected.contains(getItems()!![viewHolder.adapterPosition])) {
+                if (itemsSelected.contains(item)) {
                     item.statusSelect = false
-                    itemsSelected.remove(getItems()!![viewHolder.adapterPosition])
+                    itemsSelected.remove(item)
                     binding.rootLayout.animatedColorBackgroundSelected(false)
                     listenerMultiSelect?.onMultiSelectVoice(itemsSelected)
                     changeColorDarker(binding)
                     return@setOnClickListener
                 }
 
-                getItems()!![viewHolder.adapterPosition].statusSelect = true
+                item.statusSelect = true
                 itemsSelected.add(item)
                 binding.rootLayout.animatedColorBackgroundSelected()
                 listenerMultiSelect?.onMultiSelectVoice(itemsSelected)
@@ -100,10 +101,10 @@ class VoiceAdapter : AdapterRecyclerView<VoiceEntity>() {
 
         binding.rootLayout.setOnLongClickListener {
 
-            val item = getItems()!![viewHolder.adapterPosition]
-            if (itemsSelected.contains(getItems()!![viewHolder.adapterPosition])) {
+            val item = items!![viewHolder.adapterPosition]
+            if (itemsSelected.contains(item)) {
                 item.statusSelect = false
-                itemsSelected.remove(getItems()!![viewHolder.adapterPosition])
+                itemsSelected.remove(item)
                 binding.rootLayout.animatedColorBackgroundSelected(false)
                 changeColorDarker(binding)
                 listenerMultiSelect?.onMultiSelectVoice(itemsSelected)
@@ -127,6 +128,7 @@ class VoiceAdapter : AdapterRecyclerView<VoiceEntity>() {
         binding.txtDate.setTextColor(ContextCompat.getColor(binding.root.context, R.color.color_subtitle))
         binding.txtTitle.setTextColor(ContextCompat.getColor(binding.root.context, R.color.color_title))
     }
+
     interface OnClickItemListener {
         fun onClickItem(item: VoiceEntity, position: Int)
     }

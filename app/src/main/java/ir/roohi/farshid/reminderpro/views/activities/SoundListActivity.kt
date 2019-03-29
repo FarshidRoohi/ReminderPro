@@ -3,7 +3,6 @@ package ir.roohi.farshid.reminderpro.views.activities
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -11,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
+import ir.roohi.farshid.reminderpro.extensions.shareVoice
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
@@ -149,10 +149,7 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
             if (items.isEmpty()) {
                 return@setOnClickListener
             }
-            val share = Intent(Intent.ACTION_SEND)
-            share.type = "audio/*"
-            share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(File(items[0].path)))
-            startActivity(Intent.createChooser(share, "Share Sound File"))
+            shareVoice(this, items[0].path)
         }
         imgDelete.setOnClickListener {
 

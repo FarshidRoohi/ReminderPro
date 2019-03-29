@@ -85,11 +85,10 @@
                     app:lottie_fileName="audio.json"
                     app:lottie_loop="true"/>
 
-            <ProgressBar
-                    android:id="@+id/progressBar"
+            <SeekBar
+                    android:id="@+id/seekBar"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
