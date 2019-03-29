@@ -70,10 +70,10 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
     override fun onChanged(list: List<VoiceEntity>?) {
         this.progressBar.visibility = View.GONE
         this.layoutEmptyState.visibility = View.INVISIBLE
+        this.adapter.removeAll()
 
         if (list == null || list.isEmpty()) {
             layoutEmptyState.visibility = View.VISIBLE
-            adapter.removeAll()
             return
         }
         adapter.addItems(ArrayList(list))
@@ -153,7 +153,6 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
             share.type = "audio/*"
             share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(File(items[0].path)))
             startActivity(Intent.createChooser(share, "Share Sound File"))
-
         }
         imgDelete.setOnClickListener {
 

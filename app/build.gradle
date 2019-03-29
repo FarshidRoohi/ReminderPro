@@ -47,7 +47,6 @@ android {
 
 play {
     track = 'production'
-//    userFraction = 1.0
     serviceAccountEmail = 'circleci@api-8092016095226204444-719602.iam.gserviceaccount.com'
     pk12File = file(System.getenv("KEY_12") ?: "key.p12")
 
@@ -55,10 +54,9 @@ play {
 
 dependencies {
     def lifecycle_version = "2.1.0-alpha03"
-    def room_version = "2.1.0-alpha05"
+    def room_version = "2.1.0-alpha06"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-//    kapt 'androidx.databinding:databinding-compiler:3.3.2'
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha03'
@@ -70,10 +68,7 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'io.github.inflationx:calligraphy3:3.0.0'
     implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-    // lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    kapt "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation 'com.zarinpal:views:0.4.4'
     implementation 'com.zarinpal:bottomsheet:0.0.5'
     implementation 'com.airbnb.android:paris:1.0.0'
@@ -81,14 +76,14 @@ dependencies {
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.8.1'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places:0.6.0'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-
     implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
-
     implementation 'com.nex3z:toggle-button-group:1.1.8'
     implementation 'org.ocpsoft.prettytime:prettytime:3.2.0.Final'
-
     implementation 'ir.farshid_roohi:customAdapterRecycleView:1.0.0'
+
+    kapt "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }
 repositories {
     mavenCentral()
