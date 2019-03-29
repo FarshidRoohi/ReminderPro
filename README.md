@@ -17,7 +17,7 @@ Reminder Pro android application open source
 - Ability to change how you view the map with your taste
 
 ## TODO: </br>
-
+- Remove Libarary map-box and use openStreetMap api
 - Add Note Reminder Alarm
 - Add Voice Reminder Alarm
 - Ability to choose weekdays for alerts(voice, note or location)
