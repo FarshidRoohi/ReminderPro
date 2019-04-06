@@ -6,7 +6,7 @@ jobs:
     - image: circleci/android:api-28
     environment:
       JVM_OPTS: -Xmx3200m
-    branches:
+    tags:
       only:
       - release
     steps:
