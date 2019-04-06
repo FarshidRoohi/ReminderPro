@@ -38,9 +38,9 @@ jobs:
     - run:
         name: ‌Release App
         command: ./gradlew clean assembleRelease
-    #    - run:
-    #        name: ‌Release App
-    #        command: ./gradlew  publishApkRelease
+        - run:
+            name: ‌Release App
+            command: ./gradlew  publishApkRelease
     - store_artifacts:
         path: app/build/outputs
         destination: apks
