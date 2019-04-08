@@ -80,7 +80,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
             this
         )
         if (!hasConnection()) {
-           dialogInternetConnection()
+            dialogInternetConnection()
         }
 
         fabMyLocation.setOnClickListener { checkLocationEnabled() }
@@ -97,7 +97,7 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
 
         btnSelect.setOnClickListener {
 
-            if (!hasConnection()){
+            if (!hasConnection()) {
                 dialogInternetConnection()
                 return@setOnClickListener
             }
@@ -263,6 +263,9 @@ class SelectPlaceActivity : BaseActivity(), OnPermissionRequestListener {
     }
 
     private fun getLocationPickerLocation(): LatLng {
+        if (mapboxMap == null) {
+            return LatLng()
+        }
         return mapboxMap!!.projection.fromScreenLocation(
             PointF((dropPinView!!.left + dropPinView!!.width / 2).toFloat(), dropPinView!!.bottom.toFloat())
         )

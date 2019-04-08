@@ -66,11 +66,12 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
                     ).show()
                     element.status = false
                     viewModel.update(element)
+                    resetData()
                     return
                 }
 
                 viewModel.update(element)
-                val list: ArrayList<LocationEntity> = ArrayList(adapter.getItems()!!)
+                val list: ArrayList<LocationEntity> = ArrayList(adapter.items!!)
                 list[position] = element
                 val intent = Intent(this@LocationListActivity, UserLocationService::class.java)
                 intent.putExtra("locationEntity", list as Serializable)
@@ -85,11 +86,12 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
                 layoutEmptyState.visibility = View.VISIBLE
                 return@Observer
             }
-            // TODO : // fixed update very fast problem
-//            if (list.size == adapter.itemCount) {
-//                return@Observer
-//            }
+            adapter.removeAll()
             adapter.addItems(ArrayList(list))
+//            if (list.size != adapter.itemCount) {
+//                adapter.removeAll()
+//                adapter.addItems(ArrayList(list))
+//            }
 
         })
 
@@ -161,7 +163,7 @@ class LocationListActivity : BaseActivity(), OnMultiSelectLocationListener {
 
     private fun resetData() {
         adapter.itemsSelected.clear()
-        adapter.getItems()?.forEach { item ->
+        adapter.items?.forEach { item ->
             item.statusSelect = false
         }
         adapter.notifyDataSetChanged()
