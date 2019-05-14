@@ -8,8 +8,8 @@ import ir.farshid_roohi.customadapterrecycleview.AdapterRecyclerView
 import ir.farshid_roohi.customadapterrecycleview.viewHolder.ItemViewHolder
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemVoiceBinding
-import ir.roohi.farshid.reminderpro.extensions.animatedColorBackgroundSelected
-import ir.roohi.farshid.reminderpro.extensions.toAgoTime
+import ir.roohi.farshid.reminderpro.utility.animatedColorBackgroundSelected
+import ir.roohi.farshid.reminderpro.utility.toAgoTime
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import java.util.*
@@ -63,7 +63,7 @@ class VoiceAdapter : AdapterRecyclerView<VoiceEntity>() {
                 override fun run() {
                     super.run()
                     for (i in 0..element.duration) {
-                        Thread.sleep(60)
+                        sleep(60)
                         binding.seekBar.progress = i
                         if (!element.isPlaying) break
                     }

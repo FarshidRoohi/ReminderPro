@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
-import ir.roohi.farshid.reminderpro.extensions.shareVoice
+import ir.roohi.farshid.reminderpro.utility.shareVoice
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel

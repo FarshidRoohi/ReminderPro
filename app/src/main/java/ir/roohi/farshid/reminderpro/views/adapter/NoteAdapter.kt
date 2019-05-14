@@ -7,8 +7,8 @@ import ir.farshid_roohi.customadapterrecycleview.AdapterRecyclerView
 import ir.farshid_roohi.customadapterrecycleview.viewHolder.ItemViewHolder
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemNoteBinding
-import ir.roohi.farshid.reminderpro.extensions.animatedColorBackgroundSelected
-import ir.roohi.farshid.reminderpro.extensions.toAgoTime
+import ir.roohi.farshid.reminderpro.utility.animatedColorBackgroundSelected
+import ir.roohi.farshid.reminderpro.utility.toAgoTime
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectNotesListener
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.views.activities.NoteEditActivity
@@ -52,18 +52,18 @@ class NoteAdapter : AdapterRecyclerView<NoteEntity>() {
 
         binding.rootLayout.setOnClickListener {
             if (itemsSelected.size > 0) {
-                val item = getItems()!![viewHolder.adapterPosition]
+                val item = items!![viewHolder.adapterPosition]
 
-                if (itemsSelected.contains(getItems()!![viewHolder.adapterPosition])) {
+                if (itemsSelected.contains(items!![viewHolder.adapterPosition])) {
                     item.statusSelect = false
-                    itemsSelected.remove(getItems()!![viewHolder.adapterPosition])
+                    itemsSelected.remove(items!![viewHolder.adapterPosition])
                     binding.rootLayout.animatedColorBackgroundSelected(false)
                     listener?.onMultiSelectNotes(itemsSelected)
                     changeColorDarker(binding)
                     return@setOnClickListener
                 }
 
-                getItems()!![viewHolder.adapterPosition].statusSelect = true
+                items!![viewHolder.adapterPosition].statusSelect = true
                 itemsSelected.add(item)
                 binding.rootLayout.animatedColorBackgroundSelected()
                 listener?.onMultiSelectNotes(itemsSelected)
@@ -75,10 +75,10 @@ class NoteAdapter : AdapterRecyclerView<NoteEntity>() {
 
         binding.rootLayout.setOnLongClickListener {
 
-            val item = getItems()!![viewHolder.adapterPosition]
-            if (itemsSelected.contains(getItems()!![viewHolder.adapterPosition])) {
+            val item = items!![viewHolder.adapterPosition]
+            if (itemsSelected.contains(items!![viewHolder.adapterPosition])) {
                 item.statusSelect = false
-                itemsSelected.remove(getItems()!![viewHolder.adapterPosition])
+                itemsSelected.remove(items!![viewHolder.adapterPosition])
                 binding.rootLayout.animatedColorBackgroundSelected(false)
                 changeColorDarker(binding)
                 listener?.onMultiSelectNotes(itemsSelected)

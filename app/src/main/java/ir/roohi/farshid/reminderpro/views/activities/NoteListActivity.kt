@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.customViews.CustomRecyclerView
-import ir.roohi.farshid.reminderpro.extensions.share
+import ir.roohi.farshid.reminderpro.utility.share
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectNotesListener
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
@@ -135,7 +135,7 @@ class NoteListActivity : BaseActivity(), Observer<List<NoteEntity>>, View.OnClic
 
     private fun resetData() {
         adapter.itemsSelected.clear()
-        adapter.getItems()?.forEach { item ->
+        adapter.items?.forEach { item ->
             item.statusSelect = false
         }
         adapter.notifyDataSetChanged()

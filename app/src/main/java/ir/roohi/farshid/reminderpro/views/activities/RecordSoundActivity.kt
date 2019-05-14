@@ -116,7 +116,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
             override fun run() {
                 while (status == StatusVoiceRecord.STOP) {
                     try {
-                        Thread.sleep(100)
+                        sleep(100)
                         counter += 100
                         runOnUiThread {
                             txtTime.text = convertToTime(counter.toFloat())
@@ -139,7 +139,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
                 super.run()
                 while (status == StatusVoiceRecord.STOP) {
                     try {
-                        Thread.sleep(1500)
+                        sleep(1500)
                         runOnUiThread {
                             txtSize.text = formatFileSize(file.length(), this@RecordSoundActivity)
                         }
@@ -161,7 +161,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
             override fun run() {
                 while (counterPlay <= counter) {
                     try {
-                        Thread.sleep(100)
+                        sleep(100)
                         counterPlay += 100
 
                         runOnUiThread {

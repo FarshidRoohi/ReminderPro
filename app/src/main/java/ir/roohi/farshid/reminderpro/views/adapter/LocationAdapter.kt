@@ -8,8 +8,8 @@ import ir.farshid_roohi.customadapterrecycleview.AdapterRecyclerView
 import ir.farshid_roohi.customadapterrecycleview.viewHolder.ItemViewHolder
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemLocationBinding
-import ir.roohi.farshid.reminderpro.extensions.animatedColorBackgroundSelected
-import ir.roohi.farshid.reminderpro.extensions.toAgoTime
+import ir.roohi.farshid.reminderpro.utility.animatedColorBackgroundSelected
+import ir.roohi.farshid.reminderpro.utility.toAgoTime
 import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
