@@ -9,6 +9,8 @@ import ir.roohi.farshid.reminderpro.ResourceApplication
 import ir.roohi.farshid.reminderpro.listener.OnCallbackResponse
 import ir.roohi.farshid.reminderpro.repository.FeedbackRepository
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by Farshid Roohi.
@@ -20,9 +22,12 @@ class FeedbackViewModel(application: Application) : AndroidViewModel(application
     var mutableLiveData = MutableLiveData<Boolean>()
 
     fun send(content: String, name: String) {
+        val dateFormat = SimpleDateFormat("dd/mm/yyyy")
+
         val json = JsonObject()
         json.addProperty("user_msg", content)
         json.addProperty("user_name", name)
+        json.addProperty("date", dateFormat.format(Calendar.getInstance().time))
         json.addProperty("user_device", ResourceApplication.applicationResource!!.getDeviceName())
         repository.request(json)
     }
