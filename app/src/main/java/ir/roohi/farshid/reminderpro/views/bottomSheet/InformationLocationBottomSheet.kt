@@ -29,7 +29,7 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
     var myLocation: Location? = null
     var selectLocation: Location? = null
 
-    private val step = 10
+    private val step = 50
     private val max = 3000
     private val min = 50
     private var meter: Int = 300
