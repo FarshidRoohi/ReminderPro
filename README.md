@@ -21,3 +21,4 @@ Reminder Pro android application open source
 - Add Note Reminder Alarm
 - Add Voice Reminder Alarm
 - Ability to choose weekdays for alerts(voice, note or location)
+- Fixed problem show alarm location and kill service(dismiss all location active list)
