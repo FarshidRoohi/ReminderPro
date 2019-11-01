@@ -1,6 +1,5 @@
 package ir.roohi.farshid.reminderpro.views.bottomSheet
 
-import android.annotation.SuppressLint
 import android.location.Location
 import android.text.Html
 import android.view.View
@@ -21,7 +20,6 @@ import ir.roohi.farshid.reminderpro.model.LocationEntity
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 1/5/19.
  */
-@SuppressLint("ValidFragment")
 class InformationLocationBottomSheet constructor(fm: FragmentManager, val listener: OnInformationLocationListener) :
     BottomSheetModal(fm) {
 
@@ -49,7 +47,7 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
         val txtDistanceMeterLocationSelect = view.findViewById<TextView>(R.id.txtDistanceLocation)
 
         if (modelMap != null) {
-            edtTitle.text = modelMap!!.title
+            edtTitle.text = modelMap!!.title!!
             edtDesc.text = modelMap!!.text.toString()
             txtDistance.text = String.format(getString(R.string.distance_value), modelMap!!.distance)
             meter = modelMap!!.distance
@@ -70,7 +68,7 @@ class InformationLocationBottomSheet constructor(fm: FragmentManager, val listen
         }
 
         edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_NEXT
-        edtTitle.edt!!.setSingleLine(true)
+        edtTitle.edt!!.isSingleLine = true
         edtDesc.edt!!.maxLines = 2
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {

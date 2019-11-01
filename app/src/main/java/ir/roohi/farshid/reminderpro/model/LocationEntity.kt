@@ -14,7 +14,7 @@ import java.util.*
 @Entity(tableName = "locations")
 class LocationEntity(
     var date: Date,
-    var title: String,
+    var title: String?,
     var text: String?,
     var status: Boolean,
     var latitude: Double,

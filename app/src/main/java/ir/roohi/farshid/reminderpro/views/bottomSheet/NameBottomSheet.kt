@@ -1,6 +1,5 @@
 package ir.roohi.farshid.reminderpro.views.bottomSheet
 
-import android.annotation.SuppressLint
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -15,7 +14,6 @@ import ir.roohi.farshid.reminderpro.model.VoiceEntity
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 12/26/18.
  */
-@SuppressLint("ValidFragment")
 class NameBottomSheet constructor(fm: FragmentManager) : BottomSheetModal(fm) {
 
     var listener: OnTitleListener? = null
@@ -25,9 +23,9 @@ class NameBottomSheet constructor(fm: FragmentManager) : BottomSheetModal(fm) {
         val btnOk = view!!.findViewById<ZarinButton>(R.id.btnOk)
         val edtTitle = view.findViewById<CustomInputEditText>(R.id.edtTitle)
         edtTitle.edt!!.imeOptions = EditorInfo.IME_ACTION_DONE
-        edtTitle.edt!!.setSingleLine(true)
+        edtTitle.edt!!.isSingleLine = true
 
-        if (item != null) {
+        item?.let {
             edtTitle.text = item!!.title
         }
 
@@ -45,7 +43,8 @@ class NameBottomSheet constructor(fm: FragmentManager) : BottomSheetModal(fm) {
     private fun validationTitle(value: String) {
 
         if (value.isEmpty()) {
-            Toast.makeText(context, getString(R.string.error_empty_title), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.error_empty_title), Toast.LENGTH_SHORT)
+                .show()
             return
         }
         listener!!.onTitle(value)
