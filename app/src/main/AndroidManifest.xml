@@ -23,7 +23,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:networkSecurityConfig="@xml/network_security_config"
-            tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute">
+            tools:ignore="AllowBackup,GoogleAppIndexingWarning,UnusedAttribute"
+            android:requestLegacyExternalStorage="true">
 
         <activity android:name=".views.activities.DashboardActivity">
                          <intent-filter>
