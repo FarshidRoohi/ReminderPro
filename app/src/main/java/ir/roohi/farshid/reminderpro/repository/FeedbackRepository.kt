@@ -1,6 +1,5 @@
 package ir.roohi.farshid.reminderpro.repository
 
-import android.content.Context
 import com.google.gson.JsonElement
 import ir.roohi.farshid.reminderpro.listener.OnCallbackResponse
 import okhttp3.*

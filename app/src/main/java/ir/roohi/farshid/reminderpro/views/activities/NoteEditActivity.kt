@@ -8,6 +8,7 @@ import android.view.View
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.model.NoteEntity
+import ir.roohi.farshid.reminderpro.utility.showMsg
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import kotlinx.android.synthetic.main.activity_note_edit.*
 import org.jetbrains.annotations.Nullable

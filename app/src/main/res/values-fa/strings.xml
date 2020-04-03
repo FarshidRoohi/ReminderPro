@@ -43,6 +43,8 @@
 
     <string name="gps">سیستم موقعیت‌ یاب</string>
     <string name="gps_status_details">موقعیت مکانی شما غیر فعال می باشد، آیا مایلید آن را فعال کنید؟</string>
+    <string name="message">پیام</string>
+
 
     <string name="do_you_sure_delete">آیا میخواهید حذف کنید؟</string>
     <string name="title">عنوان</string>
@@ -51,6 +53,7 @@
     <string name="enter_some_things">متنی را وارد کنید</string>
     <string name="location_title">عنوان موقعیت جغرافیایی</string>
     <string name="location_description">توضیحات موقعیت جغرافیایی</string>
+    <string name="error_empty_name">لطفا نام خود را وارد کنید</string>
 
 
     <!-- Error -->

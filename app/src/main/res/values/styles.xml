@@ -24,7 +24,7 @@
     <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:textColor">@color/color_title</item>
         <item name="android:textSize">@dimen/text_title_size</item>
-        <item name="android:textColorHint">@color/color_hint</item>
+<!--        <item name="android:textColorHint">@color/color_hint</item>-->
     </style>
 
     <style name="EditText" parent="Base.Widget.AppCompat.EditText">
