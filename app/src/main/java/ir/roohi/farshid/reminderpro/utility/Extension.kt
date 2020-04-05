@@ -4,8 +4,10 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
+import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
 import android.text.format.DateUtils
 import android.util.Log
 import android.view.View
@@ -88,13 +90,32 @@ public fun getDeviceName(): String {
 
 
 private fun capitalize(s: String?): String {
-    if (s == null || s.isEmpty()) {
+
+    if (s.isNullOrEmpty()) {
         return ""
     }
+
     val first = s[0]
     return if (Character.isUpperCase(first)) {
         s
     } else {
         Character.toUpperCase(first) + s.substring(1)
     }
+}
+
+fun Context.getVoiceDirectory(): String {
+    return "${pathDir()}/record/voice-${randomName()}.3gp"
+}
+
+fun Context.pathDir(): String {
+    val dirApp = Environment.getExternalStorageDirectory().absolutePath
+    return "$dirApp/android/data/$packageName"
+}
+
+fun MediaRecorder.initialize(): MediaRecorder {
+    setAudioSource(MediaRecorder.AudioSource.MIC)
+    setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+    setAudioEncoder(MediaRecorder.AudioEncoder.AMR_WB)
+    setAudioEncodingBitRate(320)
+    return this
 }

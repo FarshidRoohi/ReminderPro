@@ -78,6 +78,9 @@ dependencies {
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
     implementation 'ir.farshid_roohi:customAdapterRecycleView:1.0.4'
 
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+
     implementation "androidx.room:room-runtime:2.2.1"
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
 
