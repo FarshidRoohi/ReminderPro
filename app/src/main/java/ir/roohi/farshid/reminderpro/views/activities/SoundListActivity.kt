@@ -58,7 +58,9 @@ class SoundListActivity : BaseActivity(), Observer<List<VoiceEntity>>, VoiceAdap
 
         fabAdd.setOnClickListener {
             stopPlay()
-            RecordSoundActivity.start(this)
+            val intent = Intent(this,VoiceRecordActivity::class.java)
+            startActivity(intent)
+//            RecordSoundActivity.start(this)
         }
 
         toolbar.setIconLeftListener(View.OnClickListener {
