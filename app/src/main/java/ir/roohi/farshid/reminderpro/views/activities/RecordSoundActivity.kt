@@ -17,6 +17,7 @@ import ir.roohi.farshid.reminderpro.model.enums.StatusVoiceRecord
 import ir.roohi.farshid.reminderpro.utility.convertToTime
 import ir.roohi.farshid.reminderpro.utility.formatFileSize
 import ir.roohi.farshid.reminderpro.utility.randomName
+import ir.roohi.farshid.reminderpro.utility.showMsg
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import ir.roohi.farshid.reminderpro.views.bottomSheet.NameBottomSheet
 import kotlinx.android.synthetic.main.activity_record_sound.*

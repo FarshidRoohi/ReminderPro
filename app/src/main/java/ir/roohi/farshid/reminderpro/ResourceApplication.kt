@@ -13,6 +13,7 @@ import io.fabric.sdk.android.Fabric
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
+import ir.roohi.farshid.reminderpro.utility.getDeviceName
 import java.io.File
 
 /**
@@ -63,29 +64,6 @@ class ResourceApplication(val context: Context) {
         }
         return bundleLog!!
 
-    }
-
-    public fun getDeviceName(): String {
-        val manufacturer = Build.MANUFACTURER
-        val model = Build.MODEL
-        return if (model.toLowerCase().startsWith(manufacturer.toLowerCase())) {
-            capitalize(model)
-        } else {
-            capitalize(manufacturer) + " " + model
-        }
-    }
-
-
-    private fun capitalize(s: String?): String {
-        if (s == null || s.isEmpty()) {
-            return ""
-        }
-        val first = s[0]
-        return if (Character.isUpperCase(first)) {
-            s
-        } else {
-            Character.toUpperCase(first) + s.substring(1)
-        }
     }
 
     private fun initCalligraphy() {

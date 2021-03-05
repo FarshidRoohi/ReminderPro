@@ -1,10 +1,12 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
 import android.os.Bundle
-import android.view.View
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
+import ir.roohi.farshid.reminderpro.databinding.FeedbackActivityBinding
+import ir.roohi.farshid.reminderpro.utility.showMsg
 import ir.roohi.farshid.reminderpro.viewModel.FeedbackViewModel
 import kotlinx.android.synthetic.main.feedback_activity.*
 
@@ -14,41 +16,41 @@ import kotlinx.android.synthetic.main.feedback_activity.*
  */
 class FeedbackActivity : BaseActivity() {
 
-    lateinit var viewModel: FeedbackViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.feedback_activity)
+        val feedbackActivityBinding = DataBindingUtil.setContentView<FeedbackActivityBinding>(
+            this,
+            R.layout.feedback_activity
+        )
 
-        this.viewModel = ViewModelProviders.of(this).get(FeedbackViewModel::class.java)
-        this.viewModel.mutableLiveData.observe(this, Observer<Boolean> {
-            layoutSend.isEnabled = true
-            edtFeedback.isEnabled = true
-            progressBar.visibility = View.GONE
-            if (it) {
-                showMsg(getString(R.string.success_send_feedback))
-                finish()
-            } else {
-                showMsg(getString(R.string.failure_send_feedback))
+        val viewModel = ViewModelProviders.of(this).get(FeedbackViewModel::class.java)
+        feedbackActivityBinding.viewModel = viewModel
+
+        btnSend.setOnClickListener {
+            val name = edtName.text.toString()
+            val message = edtFeedback.text.toString()
+
+            if (name.isEmpty()) {
+                showMsg(R.string.error_empty_name)
+                return@setOnClickListener
             }
-        })
+            if (message.isEmpty() || message.length < 5) {
+                showMsg(R.string.error_empty_content)
+                return@setOnClickListener
+            }
 
-        toolbar.getLeftImageView().setOnClickListener { finish() }
-        layoutSend.setOnClickListener { request() }
-
-    }
-
-    private fun request() {
-        progressBar.visibility = View.VISIBLE
-        layoutSend.isEnabled = false
-        edtFeedback.isEnabled = false
-
-        if (edtFeedback.text.toString().isEmpty() || edtFeedback.text.toString().length < 5) {
-            showMsg(getString(R.string.error_empty_content))
-            return
+            viewModel.send(name, message).observe(this, Observer {
+                if (it) {
+                    showMsg(getString(R.string.success_send_feedback))
+                    finish()
+                } else {
+                    showMsg(getString(R.string.failure_send_feedback))
+                }
+            })
         }
 
-        this.viewModel.send(edtFeedback.text.toString(), edtName.text.toString())
+
+        toolbar.getLeftImageView().setOnClickListener { finish() }
 
 
     }

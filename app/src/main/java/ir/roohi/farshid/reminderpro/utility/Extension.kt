@@ -4,10 +4,15 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
+import android.media.MediaRecorder
 import android.net.Uri
+import android.os.Build
+import android.os.Environment
 import android.text.format.DateUtils
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.ResourceApplication
@@ -36,7 +41,8 @@ fun View.animatedColorBackgroundSelected(isSelected: Boolean = true) {
         colorTo = ContextCompat.getColor(context, R.color.color1)
     } else {
         colorFrom = ContextCompat.getColor(context, R.color.color1)
-        colorTo = ContextCompat.getColor(context, R.color.color_background_select_item_recycler_view)
+        colorTo =
+            ContextCompat.getColor(context, R.color.color_background_select_item_recycler_view)
     }
 
     val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, colorTo)
@@ -61,4 +67,55 @@ fun shareVoice(context: Context, path: String) {
     share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(File(path)))
     context.startActivity(Intent.createChooser(share, "Share Sound File"))
 
+}
+
+
+fun Context.showMsg(msg: String) {
+    Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+}
+
+fun Context.showMsg(@StringRes msg: Int) {
+    showMsg(getString(msg))
+}
+
+public fun getDeviceName(): String {
+    val manufacturer = Build.MANUFACTURER
+    val model = Build.MODEL
+    return if (model.toLowerCase().startsWith(manufacturer.toLowerCase())) {
+        capitalize(model)
+    } else {
+        capitalize(manufacturer) + " " + model
+    }
+}
+
+
+private fun capitalize(s: String?): String {
+
+    if (s.isNullOrEmpty()) {
+        return ""
+    }
+
+    val first = s[0]
+    return if (Character.isUpperCase(first)) {
+        s
+    } else {
+        Character.toUpperCase(first) + s.substring(1)
+    }
+}
+
+fun Context.getVoiceDirectory(): String {
+    return "${pathDir()}/record/voice-${randomName()}.3gp"
+}
+
+fun Context.pathDir(): String {
+    val dirApp = Environment.getExternalStorageDirectory().absolutePath
+    return "$dirApp/android/data/$packageName"
+}
+
+fun MediaRecorder.initialize(): MediaRecorder {
+    setAudioSource(MediaRecorder.AudioSource.MIC)
+    setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+    setAudioEncoder(MediaRecorder.AudioEncoder.AMR_WB)
+    setAudioEncodingBitRate(320)
+    return this
 }

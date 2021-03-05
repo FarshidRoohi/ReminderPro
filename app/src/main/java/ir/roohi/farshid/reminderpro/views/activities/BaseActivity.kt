@@ -14,6 +14,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -97,9 +98,13 @@ open class BaseActivity : AppCompatActivity(), IEventBus {
         return DataBindingUtil.setContentView(this, layout)
     }
 
-    fun showMsg(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
-    }
+//    fun showMsg(msg: String) {
+//        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+//    }
+//
+//    fun showMsg(@StringRes msg: Int) {
+//        showMsg(getString(msg))
+//    }
 
     @TargetApi(Build.VERSION_CODES.M)
     fun requestPermission(permissions: Array<String>, listener: OnPermissionRequestListener) {

@@ -16,6 +16,8 @@
     <string name="locations_description">select any location on the map</string>
 
     <string name="location_service_active">location reminder in active</string>
+    <string name="message">message</string>
+    <string name="listening">Listening…</string>
 
     <string name="add">add</string>
     <string name="empty">There is no item to display</string>
@@ -56,6 +58,7 @@
     <string name="error_unknown">unknown error</string>
     <string name="error_empty_title">empty title</string>
     <string name="error_empty_content">empty content</string>
+    <string name="error_empty_name">please enter your name</string>
 
 
     <string name="Byte">Byte</string>
