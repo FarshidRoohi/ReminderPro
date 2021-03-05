@@ -8,7 +8,7 @@ import ir.farshid_roohi.customadapterrecycleview.viewHolder.ItemViewHolder
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemNoteBinding
 import ir.roohi.farshid.reminderpro.utility.animatedColorBackgroundSelected
-import ir.roohi.farshid.reminderpro.utility.toAgoTime
+import ir.roohi.farshid.reminderpro.utility.toPrettyTime
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectNotesListener
 import ir.roohi.farshid.reminderpro.model.NoteEntity
 import ir.roohi.farshid.reminderpro.views.activities.NoteEditActivity
@@ -35,7 +35,7 @@ class NoteAdapter : AdapterRecyclerView<NoteEntity>() {
         element: NoteEntity
     ) {
         val binding = viewDataBinding as ItemNoteBinding
-        binding.txtDate.text = element.date.toAgoTime(context!!)
+        binding.txtDate.text = element.date.toPrettyTime(context!!)
         binding.txtTitle.text = if (element.title.isEmpty()) element.text else element.title
 
         val colorSelectItem =

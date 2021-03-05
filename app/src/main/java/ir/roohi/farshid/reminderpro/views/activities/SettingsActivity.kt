@@ -10,7 +10,7 @@ import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.Storage
 import ir.roohi.farshid.reminderpro.keys.MAP_STYLE_URL
 import ir.roohi.farshid.reminderpro.model.MapStyle
-import ir.roohi.farshid.reminderpro.utility.showMsg
+import ir.roohi.farshid.reminderpro.utility.toast
 import ir.roohi.farshid.reminderpro.views.adapter.MapStyleAdapter
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.greenrobot.eventbus.EventBus
@@ -50,7 +50,7 @@ class SettingsActivity : BaseActivity(), OnCheckedChangeListener {
                 var c = temp[3]
             }
             if (numberPlusCrash > 6) {
-                showMsg("crash : $numberPlusCrash")
+                toast("crash : $numberPlusCrash")
             }
         }
 

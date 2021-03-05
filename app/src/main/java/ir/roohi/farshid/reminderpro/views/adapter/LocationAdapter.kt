@@ -12,7 +12,7 @@ import ir.roohi.farshid.reminderpro.listener.OnClickItemLocationListener
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectLocationListener
 import ir.roohi.farshid.reminderpro.model.LocationEntity
 import ir.roohi.farshid.reminderpro.utility.animatedColorBackgroundSelected
-import ir.roohi.farshid.reminderpro.utility.toAgoTime
+import ir.roohi.farshid.reminderpro.utility.toPrettyTime
 
 /**
  * Created by Farshid Roohi.
@@ -42,7 +42,7 @@ class LocationAdapter : AdapterRecyclerView<LocationEntity>() {
         binding.switchCompat.isChecked = element.status
         binding.txtTitle.text = element.title
         binding.txtDesc.text = element.text
-        binding.txtDate.text = element.date.toAgoTime(context!!)
+        binding.txtDate.text = element.date.toPrettyTime(context!!)
         binding.txtDesc.visibility = View.GONE
         if (element.text!!.isNotEmpty()) {
             binding.txtDesc.visibility = View.VISIBLE

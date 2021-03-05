@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.FeedbackActivityBinding
-import ir.roohi.farshid.reminderpro.utility.showMsg
+import ir.roohi.farshid.reminderpro.utility.toast
 import ir.roohi.farshid.reminderpro.viewModel.FeedbackViewModel
 import kotlinx.android.synthetic.main.feedback_activity.*
 
@@ -31,20 +31,20 @@ class FeedbackActivity : BaseActivity() {
             val message = edtFeedback.text.toString()
 
             if (name.isEmpty()) {
-                showMsg(R.string.error_empty_name)
+                toast(R.string.error_empty_name)
                 return@setOnClickListener
             }
             if (message.isEmpty() || message.length < 5) {
-                showMsg(R.string.error_empty_content)
+                toast(R.string.error_empty_content)
                 return@setOnClickListener
             }
 
             viewModel.send(name, message).observe(this, Observer {
                 if (it) {
-                    showMsg(getString(R.string.success_send_feedback))
+                    toast(getString(R.string.success_send_feedback))
                     finish()
                 } else {
-                    showMsg(getString(R.string.failure_send_feedback))
+                    toast(getString(R.string.failure_send_feedback))
                 }
             })
         }

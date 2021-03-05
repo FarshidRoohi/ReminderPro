@@ -1,13 +1,19 @@
 package ir.roohi.farshid.reminderpro.views.activities
 
+import android.Manifest
+import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.os.SystemClock
+import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
-import ir.roohi.farshid.reminderpro.utility.getVoiceDirectory
+import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
+import ir.roohi.farshid.reminderpro.utility.voiceDIR
 import ir.roohi.farshid.reminderpro.utility.initialize
-import ir.roohi.farshid.reminderpro.utility.showMsg
+import ir.roohi.farshid.reminderpro.utility.toast
 import ir.roohi.farshid.reminderpro.utility.toHumanTime
+import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
+import ir.roohi.farshid.reminderpro.views.bottomSheet.NameBottomSheet
 import kotlinx.android.synthetic.main.activity_voice_record.*
 import java.io.IOException
 
@@ -19,6 +25,7 @@ import java.io.IOException
 class VoiceRecordActivity : BaseActivity() {
 
     private val mediaRecorder = MediaRecorder()
+    private var voiceDIR: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,10 +42,9 @@ class VoiceRecordActivity : BaseActivity() {
         fabSave.isEnabled = false
 
         fabDelete.setOnClickListener {
-            lottieLayer.cancelAnimation()
-            mediaRecorder.stop()
-            mediaRecorder.reset()
+            lottieLayer.clearAnimation()
         }
+
         fabRecord.setOnClickListener {
 
             if (lottieLayer.isAnimating) {
@@ -47,7 +53,9 @@ class VoiceRecordActivity : BaseActivity() {
                 txtChronometer.stop()
                 fabRecord.setImageResource(R.drawable.ic_microphone)
                 lottieLayer.cancelAnimation()
-                showMsg(R.string.stop_recording)
+                toast(R.string.stop_recording)
+                fabDelete.isEnabled = true
+                fabSave.isEnabled = true
                 return@setOnClickListener
             }
 
@@ -55,23 +63,52 @@ class VoiceRecordActivity : BaseActivity() {
             fabRecord.setImageResource(R.drawable.ic_stop)
 
             try {
+                this.voiceDIR = this.voiceDIR()
                 this.mediaRecorder.initialize()
-                mediaRecorder.setOutputFile(getVoiceDirectory())
+                mediaRecorder.setOutputFile(this.voiceDIR)
                 mediaRecorder.prepare()
                 mediaRecorder.start()
                 txtChronometer.start()
-                showMsg(R.string.start_recording)
+                toast(R.string.start_recording)
+                fabDelete.isEnabled = false
             } catch (e: IOException) {
                 e.printStackTrace()
-                showMsg(getString(R.string.error_unknown))
+                toast(getString(R.string.error_unknown))
                 finish()
             }
         }
         fabSave.setOnClickListener {
             lottieLayer.cancelAnimation()
             mediaRecorder.release()
+
+            val bottomSheet = NameBottomSheet(supportFragmentManager)
+            bottomSheet.listener = object : NameBottomSheet.OnTitleListener {
+                override fun onTitle(title: String) {
+                    toast(getString(R.string.save))
+
+                    val player = MediaPlayer()
+                    player.setDataSource(voiceDIR)
+                    player.prepare()
+                    val viewModel = ViewModelProviders.of(this@VoiceRecordActivity).get(VoiceViewModel::class.java)
+                    viewModel.add(title, voiceDIR, player.duration)
+                    finish()
+                }
+            }
+            bottomSheet.show()
         }
 
+        requestPermission(arrayOf(Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE), object : OnPermissionRequestListener {
+            override fun onAllow(permission: String) {
+            }
+
+            override fun onDenied(permission: String) {
+                toast(R.string.permission_audio)
+                finish()
+            }
+
+        })
+
     }
+
 
 }
