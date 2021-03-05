@@ -9,7 +9,7 @@ import ir.farshid_roohi.customadapterrecycleview.viewHolder.ItemViewHolder
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.databinding.ItemVoiceBinding
 import ir.roohi.farshid.reminderpro.utility.animatedColorBackgroundSelected
-import ir.roohi.farshid.reminderpro.utility.toAgoTime
+import ir.roohi.farshid.reminderpro.utility.toPrettyTime
 import ir.roohi.farshid.reminderpro.listener.multiSelect.OnMultiSelectVoiceListener
 import ir.roohi.farshid.reminderpro.model.VoiceEntity
 import java.util.*
@@ -37,7 +37,7 @@ class VoiceAdapter : AdapterRecyclerView<VoiceEntity>() {
     ) {
         val binding = viewDataBinding as ItemVoiceBinding
         binding.txtTitle.text = element.title
-        binding.txtDate.text = element.date.toAgoTime(context!!)
+        binding.txtDate.text = element.date.toPrettyTime(context!!)
         binding.icPlay.setImageResource(if (element.isPlaying) R.drawable.ic_pause else R.drawable.ic_play)
         binding.seekBar.max = element.duration / 60
 

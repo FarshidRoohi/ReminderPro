@@ -17,7 +17,7 @@ import ir.roohi.farshid.reminderpro.model.enums.StatusVoiceRecord
 import ir.roohi.farshid.reminderpro.utility.convertToTime
 import ir.roohi.farshid.reminderpro.utility.formatFileSize
 import ir.roohi.farshid.reminderpro.utility.randomName
-import ir.roohi.farshid.reminderpro.utility.showMsg
+import ir.roohi.farshid.reminderpro.utility.toast
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import ir.roohi.farshid.reminderpro.views.bottomSheet.NameBottomSheet
 import kotlinx.android.synthetic.main.activity_record_sound.*
@@ -76,7 +76,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
             }
             R.id.imgShare -> {
                 lottieLayer.cancelAnimation()
-                showMsg("share")
+                toast("share")
             }
             R.id.imgDelete -> {
                 delete()
@@ -96,7 +96,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
                 val bottomSheet = NameBottomSheet(supportFragmentManager)
                 bottomSheet.listener = object : NameBottomSheet.OnTitleListener {
                     override fun onTitle(title: String) {
-                        showMsg(getString(R.string.save))
+                        toast(getString(R.string.save))
 
                         val player = MediaPlayer()
                         player.setDataSource(filePath)
@@ -218,7 +218,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
                     return
                 }
                 if (!File(filePath).exists()) {
-                    showMsg("problem play voice")
+                    toast("problem play voice")
                     return
                 }
                 this.player.setDataSource(this.filePath)
@@ -247,7 +247,7 @@ class RecordSoundActivity : BaseActivity(), View.OnClickListener, OnPermissionRe
             recorder.prepare()
         } catch (e: IOException) {
             e.printStackTrace()
-            showMsg(getString(R.string.error_unknown))
+            toast(getString(R.string.error_unknown))
             finish()
         }
 

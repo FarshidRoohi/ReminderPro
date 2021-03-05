@@ -8,17 +8,12 @@ import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
-import android.text.format.DateUtils
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import ir.roohi.farshid.reminderpro.R
-import ir.roohi.farshid.reminderpro.ResourceApplication
-import ir.roohi.farshid.reminderpro.utility.EPrettyTime
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -26,7 +21,7 @@ import java.util.*
  * ReminderPro | Copyrights 1/4/19.
  */
 
-fun Date.toAgoTime(context: Context): String {
+fun Date.toPrettyTime(context: Context): String {
     return EPrettyTime(context).getPrettyTimeFormat(this)
 }
 
@@ -70,12 +65,12 @@ fun shareVoice(context: Context, path: String) {
 }
 
 
-fun Context.showMsg(msg: String) {
+fun Context.toast(msg: String) {
     Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
 }
 
-fun Context.showMsg(@StringRes msg: Int) {
-    showMsg(getString(msg))
+fun Context.toast(@StringRes msg: Int) {
+    toast(getString(msg))
 }
 
 public fun getDeviceName(): String {
@@ -103,7 +98,7 @@ private fun capitalize(s: String?): String {
     }
 }
 
-fun Context.getVoiceDirectory(): String {
+fun Context.voiceDIR(): String {
     return "${pathDir()}/record/voice-${randomName()}.3gp"
 }
 

@@ -8,7 +8,7 @@ import android.view.View
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.customViews.AlertDialog
 import ir.roohi.farshid.reminderpro.model.NoteEntity
-import ir.roohi.farshid.reminderpro.utility.showMsg
+import ir.roohi.farshid.reminderpro.utility.toast
 import ir.roohi.farshid.reminderpro.viewModel.NoteViewModel
 import kotlinx.android.synthetic.main.activity_note_edit.*
 import org.jetbrains.annotations.Nullable
@@ -85,14 +85,14 @@ class NoteEditActivity : BaseActivity() {
         if (noteEntity == null) {
 
             this.viewModel.add(text, title)
-            showMsg(getString(R.string.save))
+            toast(getString(R.string.save))
 
         } else if (noteEntity!!.text != text || noteEntity!!.title != title) {
             noteEntity!!.date = Date()
             noteEntity!!.text = text
             noteEntity!!.title = title
             this.viewModel.update(noteEntity!!)
-            showMsg(getString(R.string.save))
+            toast(getString(R.string.save))
 
         }
     }

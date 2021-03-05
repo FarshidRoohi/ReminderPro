@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<data>
+    <data>
 
-</data>
+    </data>
+
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/layoutCounter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
+            android:layout_marginBottom="100dp"
             android:gravity="center"
             android:orientation="vertical">
 
+            <Chronometer
+                android:id="@+id/txtChronometer"
+                style="@style/TitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:rotationX="0"
+                android:textColor="@color/color_title_light"
+                android:textSize="42sp"
+                android:visibility="visible" />
 
-
-       <LinearLayout
-               android:id="@+id/layoutCounter"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:gravity="center"
-               android:layout_marginBottom="100dp"
-               android:orientation="vertical">
-
-           <Chronometer
-                   android:id="@+id/txtChronometer"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   style="@style/TitleStyle"
-                   android:gravity="center"
-                   android:textColor="@color/color_title_light"
-                   android:textSize="42sp"
-                   android:visibility="visible"/>
-
-        <com.airbnb.lottie.LottieAnimationView
+            <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottieLayer"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
@@ -44,9 +45,9 @@
                 app:lottie_colorFilter="@color/color_title_light"
                 app:lottie_fileName="voice_progress.json"
                 app:lottie_loop="true" />
-       </LinearLayout>
+        </LinearLayout>
 
-    <LinearLayout
+        <LinearLayout
             android:id="@+id/layoutController"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +55,8 @@
             android:gravity="center|bottom"
             android:orientation="horizontal"
             android:padding="16dp">
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +68,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabRecord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,11 +80,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:contentDescription="@string/save_voice"
                 android:src="@drawable/ic_save"
                 app:backgroundTint="@android:color/white"
                 app:fabSize="normal"
@@ -90,7 +93,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+        </LinearLayout>
 
 
-</RelativeLayout></layout>
+    </RelativeLayout>
+</layout>
