@@ -39,7 +39,6 @@
 
         <activity android:name=".views.activities.NoteListActivity" />
         <activity android:name=".views.activities.NoteEditActivity" />
-        <activity android:name=".views.activities.RecordSoundActivity" />
         <activity android:name=".views.activities.SoundListActivity" />
         <activity android:name=".views.activities.SelectPlaceActivity" />
         <activity android:name=".views.activities.SettingsActivity" />
