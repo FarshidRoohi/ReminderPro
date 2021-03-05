@@ -22,15 +22,15 @@ class CustomToolbar : Toolbar {
     private var rightIcon: Int = 0
     private var tint: Int = 0
 
-    constructor(context: Context?) : super(context) {
+    constructor(context: Context?) : super(context!!) {
         initialize()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs) {
         initialize(attrs)
     }
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context!!, attrs, defStyleAttr) {
         initialize(attrs)
     }
 
