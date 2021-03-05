@@ -17,6 +17,7 @@
 
     <string name="location_service_active">location reminder in active</string>
     <string name="message">message</string>
+    <string name="listening">Listening…</string>
 
     <string name="add">add</string>
     <string name="empty">There is no item to display</string>

@@ -68,7 +68,7 @@ dependencies {
     implementation 'com.zarinpal:views:0.4.6'
     implementation 'com.zarinpal:bottomsheet:0.0.5'
     implementation 'com.airbnb.android:paris:1.0.0'
-    implementation 'com.airbnb.android:lottie:2.8.0'
+    implementation 'com.airbnb.android:lottie:3.4.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.8.1'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places:0.6.0'
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
@@ -77,6 +77,9 @@ dependencies {
     implementation 'com.nex3z:toggle-button-group:1.1.8'
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
     implementation 'ir.farshid_roohi:customAdapterRecycleView:1.0.4'
+
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
 
     implementation "androidx.room:room-runtime:2.2.1"
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"

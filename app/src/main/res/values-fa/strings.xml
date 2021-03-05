@@ -44,6 +44,8 @@
     <string name="gps">سیستم موقعیت‌ یاب</string>
     <string name="gps_status_details">موقعیت مکانی شما غیر فعال می باشد، آیا مایلید آن را فعال کنید؟</string>
     <string name="message">پیام</string>
+    <string name="listening">در حال ضبط…</string>
+
 
 
     <string name="do_you_sure_delete">آیا میخواهید حذف کنید؟</string>
