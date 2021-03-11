@@ -50,10 +50,10 @@ class MapStyleAdapter : AdapterRecyclerView<MapStyle>() {
         }
 
         binding.layoutRoot.setOnClickListener {
-            getItems()!!.forEach { item ->
+            items!!.forEach { item ->
                 item.status = false
             }
-            getItems()!![viewHolder.adapterPosition].status = true
+            items!![viewHolder.adapterPosition].status = true
             binding.layoutRoot.setBackgroundColor(getContextCompatColor(R.color.colorAccent))
             binding.txtTitle.setTextColor(Color.WHITE)
 
@@ -64,7 +64,7 @@ class MapStyleAdapter : AdapterRecyclerView<MapStyle>() {
             Storage(viewDataBinding.root.context).put(
                 String::class.java,
                 MAP_STYLE_URL,
-                getItems()!![viewHolder.adapterPosition].url!!
+                items!![viewHolder.adapterPosition].url!!
             )
         }
 

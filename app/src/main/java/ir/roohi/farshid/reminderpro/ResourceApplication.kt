@@ -1,18 +1,17 @@
 package ir.roohi.farshid.reminderpro
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.StrictMode
 import androidx.multidex.MultiDex
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.mapbox.mapboxsdk.Mapbox
-import io.fabric.sdk.android.Fabric
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
+import ir.roohi.farshid.reminderpro.utility.getDeviceName
 import java.io.File
 
 /**
@@ -34,7 +33,6 @@ class ResourceApplication(val context: Context) {
         File(getDirSoundSave()).mkdirs()
         MultiDex.install(context)
         Mapbox.getInstance(context, context.getString(R.string.api_mapbox_key))
-        Fabric.Builder(context).build()
 
 
         // for share audio file strict mode
@@ -63,29 +61,6 @@ class ResourceApplication(val context: Context) {
         }
         return bundleLog!!
 
-    }
-
-    public fun getDeviceName(): String {
-        val manufacturer = Build.MANUFACTURER
-        val model = Build.MODEL
-        return if (model.toLowerCase().startsWith(manufacturer.toLowerCase())) {
-            capitalize(model)
-        } else {
-            capitalize(manufacturer) + " " + model
-        }
-    }
-
-
-    private fun capitalize(s: String?): String {
-        if (s == null || s.isEmpty()) {
-            return ""
-        }
-        val first = s[0]
-        return if (Character.isUpperCase(first)) {
-            s
-        } else {
-            Character.toUpperCase(first) + s.substring(1)
-        }
     }
 
     private fun initCalligraphy() {

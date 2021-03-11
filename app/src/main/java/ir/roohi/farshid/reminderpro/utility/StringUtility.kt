@@ -1,16 +1,19 @@
 package ir.roohi.farshid.reminderpro.utility
 
 import android.content.Context
+import android.os.SystemClock
 import ir.roohi.farshid.reminderpro.R
+import kotlinx.android.synthetic.main.activity_voice_record.*
 import java.text.DecimalFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Farshid Roohi.
  * ReminderPro | Copyrights 11/29/18.
  */
 
-fun randomName(len: Int = 20): String {
+fun randomName(len: Int = 10): String {
     val stringBuilder = StringBuilder(len)
     val character = "A1B2C3D4E5F6G7H8I9G0KLMNOP"
     var i = 0
@@ -57,11 +60,25 @@ fun formatFileSize(size: Long, context: Context): String {
 
     val dec = DecimalFormat("0.00")
 
-    return  when {
-        t > 1 ->  String.format(context.getString(R.string.TB),dec.format(t))
-        g > 1 ->  String.format(context.getString(R.string.GB),dec.format(g))
-        m > 1 ->  String.format(context.getString(R.string.MG),dec.format(m))
-        k > 1 ->  String.format(context.getString(R.string.KB),dec.format(k))
-        else ->  String.format(context.getString(R.string.BYTE),dec.format(b))
+    return when {
+        t > 1 -> String.format(context.getString(R.string.TB), dec.format(t))
+        g > 1 -> String.format(context.getString(R.string.GB), dec.format(g))
+        m > 1 -> String.format(context.getString(R.string.MG), dec.format(m))
+        k > 1 -> String.format(context.getString(R.string.KB), dec.format(k))
+        else -> String.format(context.getString(R.string.BYTE), dec.format(b))
     }
+}
+
+fun Long.toHumanTime(): String {
+    val strTime = String.format(
+        "%02d : %02d : %02d",
+        TimeUnit.MILLISECONDS.toHours(this),
+        TimeUnit.MILLISECONDS.toMinutes(this),
+        TimeUnit.MILLISECONDS.toSeconds(this) - TimeUnit.MINUTES.toSeconds(
+            TimeUnit.MILLISECONDS.toMinutes(
+                this
+            )
+        )
+    )
+    return strTime
 }

@@ -17,6 +17,7 @@
     <color name="color_subtitle">#282e33</color>
     <color name="color_subtitle_light">#e6e6e6</color>
     <color name="color_hint">#c2c2c2</color>
+    <color name="color_red">#E91E63</color>
 
 
     <color name="color_item_main">#0D43CE</color>

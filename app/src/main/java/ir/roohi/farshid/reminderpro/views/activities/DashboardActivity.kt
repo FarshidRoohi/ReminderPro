@@ -9,6 +9,7 @@ import android.os.Handler
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import io.sentry.Sentry
 import ir.roohi.farshid.reminderpro.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,6 +26,8 @@ class DashboardActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        Sentry.captureMessage("Hello Sentry")
 
         itemNote.setOnClickListener(this)
         itemReminderLocation.setOnClickListener(this)
