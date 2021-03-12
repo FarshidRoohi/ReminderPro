@@ -14,8 +14,8 @@ android {
         minSdkVersion 18
         targetSdkVersion 29
         multiDexEnabled true
-        versionCode 11
-        versionName "0.9.11"
+        versionCode 20
+        versionName "0.9.20"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -53,6 +53,7 @@ play {
 }
 
 dependencies {
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
