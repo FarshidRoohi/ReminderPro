@@ -66,7 +66,7 @@ fun shareVoice(context: Context, path: String) {
 
 
 fun Context.toast(msg: String) {
-    Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    Toast.makeText(this, msg.trim(), Toast.LENGTH_LONG).show()
 }
 
 fun Context.toast(@StringRes msg: Int) {
@@ -99,7 +99,7 @@ private fun capitalize(s: String?): String {
 }
 
 fun Context.voiceDIR(): String {
-    return "${pathDir()}/record/voice-${randomName()}.3gp"
+    return "${pathDir()}/record"
 }
 
 fun Context.pathDir(): String {

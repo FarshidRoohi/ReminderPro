@@ -8,14 +8,13 @@ import android.os.SystemClock
 import androidx.lifecycle.ViewModelProviders
 import ir.roohi.farshid.reminderpro.R
 import ir.roohi.farshid.reminderpro.listener.OnPermissionRequestListener
-import ir.roohi.farshid.reminderpro.utility.voiceDIR
-import ir.roohi.farshid.reminderpro.utility.initialize
-import ir.roohi.farshid.reminderpro.utility.toast
-import ir.roohi.farshid.reminderpro.utility.toHumanTime
+import ir.roohi.farshid.reminderpro.utility.*
 import ir.roohi.farshid.reminderpro.viewModel.VoiceViewModel
 import ir.roohi.farshid.reminderpro.views.bottomSheet.NameBottomSheet
 import kotlinx.android.synthetic.main.activity_voice_record.*
+import java.io.File
 import java.io.IOException
+import java.sql.Time
 
 
 /**
@@ -63,11 +62,15 @@ class VoiceRecordActivity : BaseActivity() {
             fabRecord.setImageResource(R.drawable.ic_stop)
 
             try {
-                this.voiceDIR = this.voiceDIR()
+                val dir = this.voiceDIR()
+                File(dir)
+                        .mkdirs()
+                this.voiceDIR = "$dir/voice-${randomName()}.3gp"
                 this.mediaRecorder.initialize()
                 mediaRecorder.setOutputFile(this.voiceDIR)
                 mediaRecorder.prepare()
                 mediaRecorder.start()
+                txtChronometer.base = SystemClock.elapsedRealtime()
                 txtChronometer.start()
                 toast(R.string.start_recording)
                 fabDelete.isEnabled = false

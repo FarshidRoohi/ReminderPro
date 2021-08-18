@@ -16,7 +16,7 @@ import ir.roohi.farshid.reminderpro.model.VoiceEntity
  * ReminderPro | Copyrights 2018.
  */
 
-@Database(entities = [NoteEntity::class, VoiceEntity::class, LocationEntity::class], version = 1)
+@Database(entities = [NoteEntity::class, VoiceEntity::class, LocationEntity::class], version = 2)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
@@ -38,7 +38,8 @@ abstract class AppDatabase : RoomDatabase() {
                     if (instance == null) {
                         instance =
                                 Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, DATABASE_NAME)
-                                    .build()
+                                        .fallbackToDestructiveMigration()
+                                        .build()
                     }
                 }
             }
