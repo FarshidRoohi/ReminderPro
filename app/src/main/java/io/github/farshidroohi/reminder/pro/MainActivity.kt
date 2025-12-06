@@ -15,12 +15,15 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -30,9 +33,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import io.github.farshidroohi.reminder.pro.home.HomeScreen
+import io.github.farshidroohi.reminder.pro.location.LocationScreen
+import io.github.farshidroohi.reminder.pro.note.NoteScreen
 import io.github.farshidroohi.reminder.pro.theme.Primary
 import io.github.farshidroohi.reminder.pro.theme.PrimaryBackground
 import io.github.farshidroohi.reminder.pro.theme.ReminderTheme
+import io.github.farshidroohi.reminder.pro.theme.TabSelectedBG
+import io.github.farshidroohi.reminder.pro.theme.Zinc500
+import io.github.farshidroohi.reminder.pro.theme.Zinc950
+import io.github.farshidroohi.reminder.pro.voice.VoiceScreen
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,36 +62,59 @@ class MainActivity : AppCompatActivity() {
 @Composable
 fun Dashboard(modifier: Modifier) {
 
-    val startDestination = Destination.HOME
-    var selectedDestination by rememberSaveable { mutableIntStateOf(startDestination.ordinal) }
+    var currentDestination by remember { mutableStateOf(Destination.HOME) }
+    var selectedDestination by rememberSaveable { mutableIntStateOf(currentDestination.ordinal) }
 
     Scaffold(modifier.background(PrimaryBackground), bottomBar = {
         NavigationBar(windowInsets = NavigationBarDefaults.windowInsets) {
-
             Destination.entries.forEachIndexed { index, destination ->
-                NavigationBarItem(selectedDestination == index, onClick = {
-                    selectedDestination = index
-                }, icon = {
-                    Icon(
-                        painter = painterResource(destination.icon),
-                        contentDescription = destination.contentDescription
+
+                val isSelectedItem = selectedDestination == index
+                NavigationBarItem(
+                    isSelectedItem, onClick = {
+                        selectedDestination = index
+                        currentDestination = destination
+                    }, icon = {
+                        val icon = if (isSelectedItem) {
+                            destination.selectIcon
+                        } else {
+                            destination.unSelectIcon
+                        }
+
+                        Icon(
+                            modifier = Modifier,
+                            painter = painterResource(icon),
+                            contentDescription = destination.contentDescription,
+                        )
+
+                    }, label = {
+                        Text(destination.label)
+                    }, colors = NavigationBarItemColors(
+                        selectedTextColor = Primary,
+                        selectedIconColor = Primary,
+                        selectedIndicatorColor = TabSelectedBG,
+                        unselectedIconColor = Zinc500,
+                        unselectedTextColor = Zinc500,
+                        disabledIconColor = Color.LightGray,
+                        disabledTextColor = Color.LightGray
                     )
-                }, label = {
-                    Text(destination.label)
-                })
+                )
             }
 
         }
     }, topBar = {
         TopAppBar(title = {
-            Text("Reminder", fontWeight = FontWeight.ExtraBold, fontSize = 32.sp)
+            Text(
+                "Reminder", fontWeight = FontWeight.ExtraBold, fontSize = 32.sp, color = Zinc950
+            )
         }, actions = {
             IconButton(onClick = {
 
             }) {
                 Icon(
                     painter = painterResource(R.drawable.ic_search),
-                    contentDescription = "Search"
+                    contentDescription = "Search",
+                    tint = Zinc950
                 )
             }
 
@@ -91,7 +123,8 @@ fun Dashboard(modifier: Modifier) {
             }) {
                 Icon(
                     painter = painterResource(R.drawable.ic_settings),
-                    contentDescription = "Settings"
+                    contentDescription = "Settings",
+                    tint = Zinc950
                 )
             }
         })
@@ -108,13 +141,16 @@ fun Dashboard(modifier: Modifier) {
             )
         }
     }) { innerPadding ->
-        HomeScreen(
-            Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        )
+        when (currentDestination) {
+            Destination.HOME -> HomeScreen(Modifier.padding(innerPadding))
+            Destination.NOTE -> NoteScreen(Modifier.padding(innerPadding))
+            Destination.LOCATION -> LocationScreen(Modifier.padding(innerPadding))
+            Destination.VOICE -> VoiceScreen(Modifier.padding(innerPadding))
+
+        }
     }
 }
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
