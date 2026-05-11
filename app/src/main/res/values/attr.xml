@@ -1,36 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="CustomItemView">
-        <attr name="bgColor" format="color"/>
-        <attr name="item_icon" format="reference"/>
-        <attr name="android:tint" format="color"/>
-        <attr name="title" format="string"/>
-        <attr name="description" format="string"/>
-        <attr name="item_radius" format="dimension"/>
-    </declare-styleable>
-
-    <declare-styleable name="CustomRecyclerView">
-        <attr name="show_divider" format="boolean"/>
-    </declare-styleable>
-
-    <declare-styleable name="CustomToolbar">
-        <attr name="rightImage" format="reference"/>
-        <attr name="leftImage" format="reference"/>
-        <attr name="elementTint" format="color"/>
-        <attr name="caption" format="string"/>
-    </declare-styleable>
-
-    <declare-styleable name="CustomProgressCircle">
-        <attr name="android:src" format="reference"/>
-        <attr name="android:max" format="integer"/>
-        <attr name="android:progress" format="integer"/>
-        <attr name="android:tint" format="color"/>
-    </declare-styleable>
-
-    <declare-styleable name="CustomInputEditText">
-        <attr name="android:hint"/>
-        <attr name="zv_style" format="reference"/>
-    </declare-styleable>
 
 </resources>
