@@ -1,28 +1,28 @@
 pluginManagement {
     includeBuild("build-logic")
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
+//        maven { url = uri("https://repo.simra.cloud/repository/maven-central-group") }
+        maven { url = uri("https://maven.myket.ir") }
     }
 }
 
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+//        maven { url = uri("https://repo.simra.cloud/repository/maven-central-group") }
+        maven { url = uri("https://maven.myket.ir") }
+    }
+}
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "ReminderPro"
+
 include(":app")
-include ':features'
-include ':features:home'
-include ':features:voice'
-include ':features:note'
-include ':features:location'
+
+include(":features")
+include(":features:home")
+include(":features:voice")
+include(":features:note")
+include(":features:location")
+include(":common")
