@@ -1,4 +1,4 @@
-package io.github.farshidroohi.note
+package io.github.farshidroohi.voice
 
 import org.junit.Test
 

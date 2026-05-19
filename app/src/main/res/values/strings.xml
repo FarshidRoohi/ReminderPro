@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Reminder Pro</string>
+    <string name="welcome_title">Welcome!</string>
+    <string name="welcome_description">You haven’t added any reminders yet.\nAdd a quick voice note, text, or location and\nmake life a little easier \ud83d\ude0a</string>
+    <string name="action_record_voice">Record Voice</string>
+    <string name="action_add_location">Add Location</string>
+    <string name="action_new_note">New Note</string>
+    <string name="section_today">Today</string>
+    <string name="section_overdue">Overdue</string>
+    <string name="section_upcoming">Upcoming</string>
+    <string name="empty_today">Nothing planned for today – you’re free!</string>
+    <string name="empty_overdue">Great job! No overdue tasks</string>
+    <string name="empty_upcoming">Nothing coming up yet</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_note">Note</string>
+    <string name="nav_voice">Voice</string>
+    <string name="nav_location">Location</string>
+    <string name="cd_search">Search</string>
+    <string name="cd_settings">Settings</string>
+    <string name="cd_add_reminder">Add Reminder</string>
 </resources>
