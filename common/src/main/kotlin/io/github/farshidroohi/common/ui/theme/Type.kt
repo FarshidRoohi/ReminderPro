@@ -5,7 +5,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
 import io.github.farshidroohi.common.R
 import io.github.farshidroohi.common.designsystem.pixelperfect.units.psp
 
@@ -22,7 +21,7 @@ val vazirmatnFontFamily = FontFamily(
 )
 
 
-val Typography = Typography(
+val ReminderTypes = Typography(
     displayLarge = TextStyle(
         fontFamily = vazirmatnFontFamily,
         fontWeight = FontWeight.SemiBold,

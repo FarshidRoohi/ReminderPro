@@ -3,6 +3,7 @@ package io.github.farshidroohi.reminder.pro
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -43,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.window.core.layout.WindowSizeClass.Companion.WIDTH_DP_EXPANDED_LOWER_BOUND
 import io.github.farshidroohi.HomeScreen
 import io.github.farshidroohi.common.CustomPreview
+import io.github.farshidroohi.common.designsystem.pixelperfect.units.pdp
 import io.github.farshidroohi.common.ui.theme.AppTheme
 import io.github.farshidroohi.home.R
 import io.github.farshidroohi.location.LocationScreen
@@ -54,17 +56,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+        enableEdgeToEdge()
         setContent {
             AppTheme {
                 Surface(Modifier.fillMaxSize()) {
-                    HomeScreen()
-//                    ReminderApp()
+                    ReminderApp()
                 }
             }
         }
     }
-
 }
 
 @Composable
@@ -126,10 +126,9 @@ fun ReminderApp(modifier: Modifier = Modifier) {
             Column(
                 modifier = Modifier
                     .padding(paddingValues)
-                    .padding(horizontal = 16.dp)
                     .fillMaxSize()
             ) {
-                AppTopBar()
+                AppTopBar(currentDestination.toTitleOfAppBar())
 
                 when (currentDestination) {
                     AppDestinations.HOME -> HomeScreen()
@@ -143,16 +142,16 @@ fun ReminderApp(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun AppTopBar() {
+private fun AppTopBar(@StringRes titleRes: Int) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 16.dp),
+            .padding(horizontal = 16.pdp, vertical = 16.pdp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = stringResource(R.string.app_name),
+            text = stringResource(titleRes),
             style = MaterialTheme.typography.displayLarge,
             color = MaterialTheme.colorScheme.primary,
         )
@@ -160,15 +159,15 @@ private fun AppTopBar() {
             IconButton(onClick = { }) {
                 Icon(
                     imageVector = Icons.Default.Search,
-                    contentDescription = "Search",
-                    modifier = Modifier.size(24.dp)
+                    contentDescription = stringResource(R.string.cd_search),
+                    modifier = Modifier.size(24.pdp)
                 )
             }
             IconButton(onClick = { }) {
                 Icon(
                     imageVector = Icons.Default.Settings,
-                    contentDescription = "Setting",
-                    modifier = Modifier.size(24.dp)
+                    contentDescription = stringResource(R.string.cd_settings),
+                    modifier = Modifier.size(24.pdp)
                 )
             }
         }
