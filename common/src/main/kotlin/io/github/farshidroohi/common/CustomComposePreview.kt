@@ -9,21 +9,21 @@ import androidx.compose.ui.tooling.preview.Preview
     uiMode = UI_MODE_NIGHT_NO,
     showBackground = true,
     device = "id:pixel_7",
-    showSystemUi = true,
+    showSystemUi = false,
 )
 @Preview(
     name = "Dark",
     uiMode = UI_MODE_NIGHT_YES,
     showBackground = true,
     device = "id:pixel_7",
-    showSystemUi = true,
+    showSystemUi = false,
 )
 @Preview(
     name = "Light Desktop",
     uiMode = UI_MODE_NIGHT_NO,
     showBackground = true,
     device = "id:desktop_small",
-    showSystemUi = true,
+    showSystemUi = false,
 )
 annotation class CustomPreview
 

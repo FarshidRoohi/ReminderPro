@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="location_empty_state_message">No location yet!</string>
+    <string name="add_location">Add location</string>
+</resources>
