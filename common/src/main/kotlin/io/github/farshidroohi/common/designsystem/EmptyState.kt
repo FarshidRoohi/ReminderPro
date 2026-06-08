@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Edit
-import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -21,15 +20,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import io.github.farshidroohi.common.CustomPreview
+import io.github.farshidroohi.common.R
 import io.github.farshidroohi.common.designsystem.pixelperfect.units.pdp
 import io.github.farshidroohi.common.ui.theme.AppTheme
 
 @Composable
 fun EmptyState(
     modifier: Modifier,
-    icon: ImageVector,
+    icon: Painter,
     title: String,
     btnTitle: String,
     btnIcon: ImageVector,
@@ -46,7 +48,7 @@ fun EmptyState(
             color = MaterialTheme.colorScheme.onSurface
         )
         Image(
-            imageVector = icon, contentDescription = null,
+            painter = icon, contentDescription = null,
             modifier = Modifier
                 .size(136.pdp)
                 .padding(vertical = 16.pdp)
@@ -90,7 +92,7 @@ fun Preview_EmptyView() {
         ) {
             EmptyState(
                 modifier = Modifier.width(200.pdp),
-                icon = Icons.Outlined.Image,
+                icon = painterResource(R.drawable.ic_note_empty_state),
                 title = "No Note Yet",
                 btnTitle = "Add a note",
                 btnIcon = Icons.Outlined.Edit,

@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import io.github.farshidroohi.common.CustomPreview
 import io.github.farshidroohi.common.designsystem.EmptyState
@@ -33,7 +34,7 @@ fun VoiceScreen(modifier: Modifier = Modifier) {
 
         EmptyState(
             modifier = Modifier.width(200.pdp),
-            icon = Icons.Outlined.Mic,
+            icon = painterResource(R.drawable.ic_voice_empty_state),
             title = stringResource(R.string.voice_empty_state_message),
             btnIcon = Icons.Outlined.Mic,
             btnTitle = stringResource(R.string.add_voice),
